@@ -1,26 +1,33 @@
-// _document is only rendered on the server side and not on the client side
-// Event handlers like onClick can't be added to this file
-
-// ./pages/_document.js
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Main, NextScript } from 'next/document'
+import { renderStatic } from 'glamor/server'
 
 export default class MyDocument extends Document {
-	static async getInitialProps(ctx) {
-		const initialProps = await Document.getInitialProps(ctx);
-		return { ...initialProps };
-	}
+  static async getInitialProps({ renderPage }) {
+    const page = renderPage()
+    const styles = renderStatic(() => page.html || page.errorHtml)
+    return { ...page, ...styles }
+  }
 
-	render() {
-		return (
-			<html>
-				<Head>
-					<style>{`body { margin: 0 } /* custom! */`}</style>
-				</Head>
-				<body className="custom_class">
-					<Main />
-					<NextScript />
-				</body>
-			</html>
-		);
-	}
+  constructor(props) {
+    super(props)
+    const { __NEXT_DATA__, ids } = props
+    if (ids) {
+      __NEXT_DATA__.ids = this.props.ids
+    }
+  }
+
+  render() {
+    return (
+      <html>
+        <Head>
+          <title>With Glamorous</title>
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    )
+  }
 }

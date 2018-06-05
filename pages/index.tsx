@@ -1,17 +1,9 @@
-import * as React from 'react';
+import Link from 'next/link'
 
-const Index = () => {
-	return <div>Welcome to next.js!</div>;
-};
-
-export default Index;
-
-// interface IProps {
-// 	thing?: any;
-// }
-
-// const Index: React.SFC<IProps> = ({ thing: any }) => {
-// 	return <div>Welcome to next.js!</div>;
-// };
-
-// export default Index;
+export default () =>
+  <div>
+    Hello World.{' '}
+    <Link href="/about">
+      <a>About</a>
+    </Link>
+  </div>
