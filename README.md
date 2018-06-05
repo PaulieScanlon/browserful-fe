@@ -1,29 +1,15 @@
-# README #
+# broswerful-fe
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[![forthebadge](https://forthebadge.com/images/badges/certified-snoop-lion.svg)](http://forthebadge.com)
 
-### What is this repository for? ###
+Features:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- React
 
-### How do I get set up? ###
+### Getting Started
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Clone the repo using `git clone` or by clicking the _Download ZIP_ button to the right.
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+```sh
+git clone git clone https://pauliescanlon_@bitbucket.org/pauliescanlon_/browserful-fe.git
+```
