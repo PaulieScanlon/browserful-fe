@@ -3,25 +3,32 @@
   "version": "1.0.0",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "dev": "next",
+    "test:watch": "NODE_ENV=test jest --watch --verbose=true",
+    "dev": "next src -p 3030",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@zeit/next-typescript": "1.0.1",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.13.1",
-    "next": "^6.0.3",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "emotion": "^9.2.8",
+    "emotion-server": "^9.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^6.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
-    "@types/next": "^2.4.7",
-    "@types/react": "^16.0.36",
+    "@types/next": "^6.1.4",
+    "@types/react": "^16.0.41",
+    "@types/react-dom": "^16.0.4",
+    "@zeit/next-typescript": "1.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "23.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.1.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.4.0",
-    "ts-jest": "^22.4.6"
+    "react-test-renderer": "^16.2.0",
+    "typescript": "^2.7.2"
   }
 }

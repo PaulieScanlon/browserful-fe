@@ -5,11 +5,30 @@
 Features:
 
 - React
+- TypeScript
+- Styled Components
+- Storybook
+- Jest
+- Enzyme
+- Made with Next.js
 
 ### Getting Started
 
-Clone the repo using `git clone` or by clicking the _Download ZIP_ button to the right.
+Dev:
 
 ```sh
-git clone git clone https://pauliescanlon_@bitbucket.org/pauliescanlon_/browserful-fe.git
+yarn dev
 ```
+
+```sh
+[WP] Access URL:
+ ----------------------------------
+       Local: http://localhost:3030
+ ----------------------------------
+```
+
+### caniuse data
+
+API:  
+`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-1.0.json`  
+`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json`
