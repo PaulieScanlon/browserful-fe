@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<EraChip /> renders correctly 1`] = `
+exports[`<VersionChip /> renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <EraChip
-    era={1}
+  Symbol(enzyme.__unrendered__): <VersionChip
+    browser="Chrome"
+    onClick={[Function]}
     variant="included"
+    version={1}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -22,6 +24,7 @@ ShallowWrapper {
     "props": Object {
       "children": 1,
       "isSelected": undefined,
+      "onClick": [Function],
       "variant": "included",
     },
     "ref": null,
@@ -36,6 +39,7 @@ ShallowWrapper {
       "props": Object {
         "children": 1,
         "isSelected": undefined,
+        "onClick": [Function],
         "variant": "included",
       },
       "ref": null,

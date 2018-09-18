@@ -8,7 +8,7 @@ interface IProps {
   isSelected?: boolean;
 }
 
-export const ChipBody = styled.div<IProps>(
+export const ChipButton = styled.button<IProps>(
   {
     label: 'chip-body',
     display: 'inline-flex',
@@ -23,7 +23,8 @@ export const ChipBody = styled.div<IProps>(
     marginBottom: '5px',
     marginRight: '5px',
     borderStyle: 'solid',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    outline: 'none'
   },
   ({ variant, isSelected }) => ({
     backgroundColor:
