@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
-
+import { Container, Row, Col } from 'react-grid-system';
 interface IProps {
   data: any;
 }
@@ -25,13 +25,24 @@ class App extends React.Component<IProps> {
     return (
       <React.Fragment>
         <HeadTag />
-        App.{' '}
-        <Link href="/">
-          <a>./</a>
-        </Link>
-        <div>
-          name: {name} stargazers_count: {stargazers_count}
-        </div>
+        <Container fluid style={{ padding: 0 }}>
+          <Row>
+            <Col sm={1}>
+              <Link href="/">
+                <a>./index</a>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+        <Container>
+          <Row>
+            <Col sm={4}>
+              name : {name} stargazers_count: {stargazers_count}
+            </Col>
+            <Col sm={4}>One of three columns</Col>
+            <Col sm={4}>One of three columns</Col>
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }
