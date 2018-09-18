@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { HeadTag } from '../HeadTag';
+import { HeadTag } from './HeadTag';
 
 const shallowDefault = () => {
   return shallow(<HeadTag />);

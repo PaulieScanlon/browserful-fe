@@ -12,8 +12,6 @@ Features:
 - Enzyme
 - Made with Next.js
 
-### Getting Started
-
 Dev:
 
 ```sh
@@ -24,6 +22,19 @@ yarn dev
 [WP] Access URL:
  ----------------------------------
        Local: http://localhost:3030
+ ----------------------------------
+```
+
+Storybook:
+
+```sh
+yarn storybook
+```
+
+```sh
+[WP] Access URL:
+ ----------------------------------
+       Local: http://localhost:6060
  ----------------------------------
 ```
 

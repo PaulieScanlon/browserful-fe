@@ -20,6 +20,11 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
+            rel="stylesheet"
+          />
+
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body>
