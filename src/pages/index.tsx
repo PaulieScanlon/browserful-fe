@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Link } from '../../routes';
+import routes from 'routes';
+const { Link } = routes;
 
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';

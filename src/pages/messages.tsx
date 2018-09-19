@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from '../../routes';
+
+import routes from 'routes';
+const { Link } = routes;
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateMessage } from '../modules/annoucements/actions/update_message';
+
+import { HeadTag } from '../components/HeadTag';
 
 interface IProps {
   message: string;
@@ -16,7 +21,8 @@ class Messages extends React.Component<IProps, IState> {
     const { message, updateMessage } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
+        <HeadTag />
         <Link route="/">
           <a>/index</a>
         </Link>
@@ -31,7 +37,7 @@ class Messages extends React.Component<IProps, IState> {
             Something Else
           </button>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

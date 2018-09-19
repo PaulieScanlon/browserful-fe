@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Link } from '../../routes';
+
+import routes from 'routes';
+const { Link } = routes;
 
 import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
