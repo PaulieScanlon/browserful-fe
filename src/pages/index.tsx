@@ -12,11 +12,12 @@ class Index extends React.Component<{}> {
         <Container fluid style={{ padding: 0 }}>
           <Row>
             <Col sm={1}>
-              <Link href="/app">
-                <a>./app</a>
+              <Link href="/app/matrix" as="/app/matrix">
+                <a>/app/matrix </a>
               </Link>
-              <Link href="/messages">
-                <a>./messages</a>
+              <div />
+              <Link href="/app/messages" as="/app/messages">
+                <a>/app/messages</a>
               </Link>
             </Col>
           </Row>

@@ -13,30 +13,41 @@ Features:
 - Made with Next.js
 - [react-grid-system](https://github.com/JSxMachina/react-grid-system#readme) - [API](https://jsxmachina.github.io/react-grid-system/)
 
-Dev:
+### Development
+
+server.js contains the named routes, these are:
+
+- ./
+- ./app/matrix
+- ./app/messages
+
+Each route resolves to a .tsx in ./src/pages.
+For example http://localhost:3030/app/matrix resolves to ./src/pages/matrix.tsx
+
+#### Dev:
 
 ```sh
 yarn dev
 ```
 
 ```sh
-[WP] Access URL:
- ----------------------------------
-       Local: http://localhost:3030
- ----------------------------------
+Access URL:
+----------------------------------
+  Local: http://localhost:3030
+----------------------------------
 ```
 
-Storybook:
+#### Storybook:
 
 ```sh
 yarn storybook
 ```
 
 ```sh
-[WP] Access URL:
- ----------------------------------
-       Local: http://localhost:6060
- ----------------------------------
+Access URL:
+----------------------------------
+  Local: http://localhost:6060
+----------------------------------
 ```
 
 ### caniuse data

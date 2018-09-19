@@ -4,9 +4,9 @@
   "scripts": {
     "test": "jest --verbose=true",
     "test:watch": "jest --watch",
-    "dev": "next src -p 3030",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node server.js -p 3030",
+    "build": "node server.js src build",
+    "start": "NODE_ENV=production src node server.js",
     "storybook": "start-storybook -p 6060",
     "build-storybook": "build-storybook"
   },

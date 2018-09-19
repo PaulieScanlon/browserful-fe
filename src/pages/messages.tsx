@@ -11,21 +11,20 @@ interface IProps {
 
 interface IState {}
 
-class IndexPage extends React.Component<IProps, IState> {
+class Messages extends React.Component<IProps, IState> {
   render() {
     const { message, updateMessage } = this.props;
 
     return (
       <div>
         <Link href="/">
-          <a>./index</a>
-        </Link>
-        <Link href="/app">
-          <a>./app</a>
+          <a>/index</a>
         </Link>
         <p>Message: {message}</p>
         <div>
-          <button onClick={() => updateMessage('Hello World')}>Hello World</button>
+          <button onClick={() => updateMessage('Hello World')}>
+            Hello World
+          </button>
         </div>
         <div>
           <button onClick={() => updateMessage('Something Else')}>
@@ -48,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(IndexPage);
+)(Messages);

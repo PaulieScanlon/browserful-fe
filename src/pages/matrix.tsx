@@ -8,7 +8,7 @@ interface IProps {
   data: any;
 }
 
-class App extends React.Component<IProps> {
+class Matrix extends React.Component<IProps> {
   static async getInitialProps() {
     const res = await fetchRepos();
 
@@ -29,10 +29,7 @@ class App extends React.Component<IProps> {
           <Row>
             <Col sm={1}>
               <Link href="/">
-                <a>./index</a>
-              </Link>
-              <Link href="/messages">
-                <a>./messages</a>
+                <a>/index</a>
               </Link>
             </Col>
           </Row>
@@ -51,4 +48,4 @@ class App extends React.Component<IProps> {
   }
 }
 
-export default App;
+export default Matrix;
