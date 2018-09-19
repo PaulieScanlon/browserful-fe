@@ -13,7 +13,10 @@ class Index extends React.Component<{}> {
           <Row>
             <Col sm={1}>
               <Link href="/app">
-                <a>/app</a>
+                <a>./app</a>
+              </Link>
+              <Link href="/messages">
+                <a>./messages</a>
               </Link>
             </Col>
           </Row>

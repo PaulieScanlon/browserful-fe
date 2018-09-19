@@ -31,6 +31,9 @@ class App extends React.Component<IProps> {
               <Link href="/">
                 <a>./index</a>
               </Link>
+              <Link href="/messages">
+                <a>./messages</a>
+              </Link>
             </Col>
           </Row>
         </Container>
