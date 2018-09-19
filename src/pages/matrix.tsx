@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from 'next/link';
+import { Link } from '../../routes';
 
 import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
@@ -28,7 +28,7 @@ class Matrix extends React.Component<IProps> {
         <Container fluid style={{ padding: 0 }}>
           <Row>
             <Col sm={1}>
-              <Link href="/">
+              <Link route="/">
                 <a>/index</a>
               </Link>
             </Col>

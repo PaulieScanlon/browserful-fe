@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '../../routes';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateMessage } from '../modules/annoucements/actions/update_message';
@@ -17,7 +17,7 @@ class Messages extends React.Component<IProps, IState> {
 
     return (
       <div>
-        <Link href="/">
+        <Link route="/">
           <a>/index</a>
         </Link>
         <p>Message: {message}</p>
