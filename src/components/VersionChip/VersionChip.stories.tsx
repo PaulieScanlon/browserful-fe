@@ -19,61 +19,64 @@ stories.add(
     <VersionChip
       browser="Chrome"
       version={72}
-      variant="included"
       onClick={(event, id) => onClick(event, id)}
     />
   ))
 );
 
 stories.add(
-  'included',
-  withInfo('included is green and is used when a browser version is included')(
-    () => (
-      <VersionChip
-        browser="Chrome"
-        version={72}
-        variant="included"
-        onClick={(event, id) => onClick(event, id)}
-      />
-    )
-  )
-);
-
-stories.add(
-  'included & isSelected',
-  withInfo('isSelected adds a border')(() => (
+  'isIncluded:true',
+  withInfo(
+    'isIncluded:true is green and is used when a browser version is included'
+  )(() => (
     <VersionChip
       browser="Chrome"
       version={72}
-      variant="included"
-      isSelected
+      isIncluded={true}
       onClick={(event, id) => onClick(event, id)}
     />
   ))
 );
 
 stories.add(
-  'excluded',
-  withInfo('excluded is red and is used when a browser version is excluded')(
-    () => (
-      <VersionChip
-        browser="Chrome"
-        version={72}
-        variant="excluded"
-        onClick={(event, id) => onClick(event, id)}
-      />
-    )
-  )
-);
-
-stories.add(
-  'excluded & isSelected',
-  withInfo('isSelected adds a border')(() => (
+  'isIncluded:false',
+  withInfo(
+    'isIncluded:false is red and is used when a browser version is not included'
+  )(() => (
     <VersionChip
       browser="Chrome"
       version={72}
-      variant="excluded"
-      isSelected
+      isIncluded={false}
+      onClick={(event, id) => onClick(event, id)}
+    />
+  ))
+);
+
+stories.add(
+  'isIncluded & always',
+  withInfo(
+    'always:true adds a border of the correct colour for the isIncluded sate and is used when a browser is always included'
+  )(() => (
+    <VersionChip
+      browser="Chrome"
+      version={72}
+      isIncluded={true}
+      always={true}
+      onClick={(event, id) => onClick(event, id)}
+    />
+  ))
+);
+
+stories.add(
+  '!isIncluded & always',
+  withInfo(
+    'always:true adds a border of the correct colour for the isIncluded sate and is used when a browser is always not included'
+  )(() => (
+    <VersionChip
+      browser="Chrome"
+      version={72}
+      isIncluded={false}
+      always={true}
       onClick={(event, id) => onClick(event, id)}
     />
   ))
@@ -85,7 +88,6 @@ stories.add(
     <VersionChip
       browser="Chrome"
       version={1}
-      variant="included"
       onClick={(event, id) => onClick(event, id)}
     />
   ))
@@ -97,7 +99,6 @@ stories.add(
     <VersionChip
       browser="Chrome"
       version={10}
-      variant="included"
       onClick={(event, id) => onClick(event, id)}
     />
   ))
@@ -109,7 +110,6 @@ stories.add(
     <VersionChip
       browser="Chrome"
       version={100}
-      variant="included"
       onClick={(event, id) => onClick(event, id)}
     />
   ))
@@ -125,26 +125,26 @@ stories.add(
         <VersionChip
           browser="Chrome"
           version={1}
-          variant="included"
-          onClick={(event, id) => onClick(event, id)}
-        />
-        <VersionChip
-          browser="Chrome"
-          version={2}
-          variant="excluded"
+          isIncluded={true}
           onClick={(event, id) => onClick(event, id)}
         />
         <VersionChip
           browser="Chrome"
           version={3}
-          variant="included"
+          isIncluded={true}
+          always={true}
+          onClick={(event, id) => onClick(event, id)}
+        />
+        <VersionChip
+          browser="Chrome"
+          version={2}
           onClick={(event, id) => onClick(event, id)}
         />
         <VersionChip
           browser="Chrome"
           version={4}
-          variant="excluded"
-          isSelected
+          isIncluded={false}
+          always={true}
           onClick={(event, id) => onClick(event, id)}
         />
       </div>
@@ -152,26 +152,27 @@ stories.add(
         <VersionChip
           browser="Chrome"
           version={5}
-          variant="excluded"
+          isIncluded={false}
+          always={true}
           onClick={(event, id) => onClick(event, id)}
         />
         <VersionChip
           browser="Chrome"
           version={6}
-          variant="included"
           onClick={(event, id) => onClick(event, id)}
         />
+
         <VersionChip
           browser="Chrome"
           version={7}
-          variant="excluded"
+          isIncluded={true}
+          always={true}
           onClick={(event, id) => onClick(event, id)}
         />
         <VersionChip
           browser="Chrome"
           version={8}
-          variant="included"
-          isSelected
+          isIncluded={true}
           onClick={(event, id) => onClick(event, id)}
         />
       </div>

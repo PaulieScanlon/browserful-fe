@@ -4,8 +4,8 @@ import { font } from '../../typography';
 import { colours } from '../../theme';
 
 interface IProps {
-  variant: string;
-  isSelected?: boolean;
+  isIncluded: boolean;
+  always: boolean;
 }
 
 export const ChipButton = styled.button<IProps>(
@@ -24,12 +24,19 @@ export const ChipButton = styled.button<IProps>(
     marginRight: '5px',
     borderStyle: 'solid',
     boxSizing: 'border-box',
-    outline: 'none'
+    outline: 'none',
+    cursor: 'pointer'
   },
-  ({ variant, isSelected }) => ({
-    backgroundColor:
-      variant === 'included' ? `${colours.greenLight}` : `${colours.redLight}`,
-    borderColor: variant === 'included' ? `${colours.green}` : `${colours.red}`,
-    borderWidth: isSelected ? '2px' : '0px'
+  ({ isIncluded, always }) => ({
+    backgroundColor: isIncluded
+      ? `${colours.greenLight}`
+      : `${colours.redLight}`,
+    borderColor:
+      always === true
+        ? isIncluded
+          ? `${colours.green}`
+          : `${colours.red}`
+        : null,
+    borderWidth: always ? '2px' : '0px'
   })
 );

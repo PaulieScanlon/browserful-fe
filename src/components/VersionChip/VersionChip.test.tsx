@@ -36,7 +36,7 @@ const mountDefault = props => {
 
 describe('<VersionChip />', () => {
   it('renders correctly', () => {
-    const wrapper = shallowDefault({ variant: 'included' });
+    const wrapper = shallowDefault({ isIncluded: true });
     expect(wrapper).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
@@ -46,7 +46,6 @@ describe('<VersionChip />', () => {
       <VersionChip
         browser="Chrome"
         version={1}
-        variant="included"
         onClick={(event, id) => testOnClick(event, id)}
       />
     );
@@ -55,50 +54,50 @@ describe('<VersionChip />', () => {
     expect(testOnClick).toHaveBeenCalledTimes(1);
   });
   it('has a browser prop', () => {
-    const wrapper = mountDefault({ variant: 'included' });
+    const wrapper = mountDefault({});
     expect(wrapper.props().browser).toEqual('Chrome');
   });
   it('has a version prop', () => {
-    const wrapper = mountDefault({ variant: 'included' });
+    const wrapper = mountDefault({});
     expect(wrapper.props().version).toEqual(1);
   });
-  it('has a variant prop', () => {
-    const wrapper = mountDefault({ variant: 'included' });
-    expect(wrapper.props().variant).toEqual('included');
+  it('has a isIncluded:true', () => {
+    const wrapper = mountDefault({ isIncluded: true });
+    expect(wrapper.props().isIncluded).toBe(true);
   });
   it('has a chipButton', () => {
-    const wrapper = mountDefault({ variant: 'included' });
+    const wrapper = mountDefault({});
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveLength(1);
   });
-  it('has correct styles for included', () => {
-    const wrapper = mountDefault({ variant: 'included' });
+  it('has correct styles for isIncluded:true', () => {
+    const wrapper = mountDefault({ isIncluded: true });
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveStyleRule(
       'background-color',
       `${colours.greenLight}`
     );
   });
-  it('has correct styles for excluded', () => {
-    const wrapper = mountDefault({ variant: 'excluded' });
+  it('has correct styles for isIncluded:false', () => {
+    const wrapper = mountDefault({ isIncluded: false });
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveStyleRule(
       'background-color',
       `${colours.redLight}`
     );
   });
-  it('has correct border colour for included isSelected true', () => {
-    const wrapper = mountDefault({ variant: 'included', isSelected: true });
+  it('has correct border colour for isIncluded:true & always:true', () => {
+    const wrapper = mountDefault({ isIncluded: true, always: true });
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveStyleRule('border-color', `${colours.green}`);
   });
-  it('has correct border colour for excluded isSelected true', () => {
-    const wrapper = mountDefault({ variant: 'excluded', isSelected: true });
+  it('has correct border colour for isIncluded:false & always:true', () => {
+    const wrapper = mountDefault({ isIncluded: false, always: true });
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveStyleRule('border-color', `${colours.red}`);
   });
-  it('has correct border-width', () => {
-    const wrapper = mountDefault({ variant: 'included', isSelected: true });
+  it('has correct border-width for always:true', () => {
+    const wrapper = mountDefault({ isIncluded: true, always: true });
     const chipButton = wrapper.find(ChipButton);
     expect(chipButton).toHaveStyleRule('border-width', '2px');
   });

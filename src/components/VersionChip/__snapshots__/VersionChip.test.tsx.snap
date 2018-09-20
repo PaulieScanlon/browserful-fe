@@ -4,9 +4,10 @@ exports[`<VersionChip /> renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <VersionChip
+    always={false}
     browser="Chrome"
+    isIncluded={true}
     onClick={[Function]}
-    variant="included"
     version={1}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -22,10 +23,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
+      "always": false,
       "children": 1,
-      "isSelected": undefined,
+      "isIncluded": true,
       "onClick": [Function],
-      "variant": "included",
     },
     "ref": null,
     "rendered": 1,
@@ -37,10 +38,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "always": false,
         "children": 1,
-        "isSelected": undefined,
+        "isIncluded": true,
         "onClick": [Function],
-        "variant": "included",
       },
       "ref": null,
       "rendered": 1,

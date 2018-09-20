@@ -5,25 +5,30 @@ import { ChipButton } from './styles';
 interface IProps {
   browser: string;
   version: number;
-  variant: 'included' | 'excluded';
-  isSelected?: boolean;
+  isIncluded?: boolean;
+  always?: boolean;
   onClick: (event: React.MouseEvent<HTMLButtonElement>, id: string) => void;
 }
 
 export const VersionChip: React.SFC<IProps> = ({
   browser,
   version,
-  variant,
-  isSelected,
+  isIncluded,
+  always,
   onClick
 }: IProps) => {
   return (
     <ChipButton
-      variant={variant}
-      isSelected={isSelected}
+      isIncluded={isIncluded}
+      always={always}
       onClick={event => onClick(event, `${browser}_${version}`)}
     >
       {version}
     </ChipButton>
   );
+};
+
+VersionChip.defaultProps = {
+  isIncluded: false,
+  always: false
 };
