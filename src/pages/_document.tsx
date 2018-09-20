@@ -1,8 +1,10 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import { extractCritical } from 'emotion-server';
 
+import '../theme/globalStyles';
+
 export default class MyDocument extends Document {
-  static async getInitialProps({ renderPage }) {
+  static async getInitialProps({ renderPage }: any) {
     const page = renderPage();
     const styles = extractCritical(page.html);
     return { ...page, ...styles };
@@ -20,12 +22,11 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <link
             href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
             rel="stylesheet"
           />
-
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body>
           <Main />
