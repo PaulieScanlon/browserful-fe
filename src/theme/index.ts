@@ -4,7 +4,7 @@ export const colours = {
   teal: '#36e5d0',
   purple: '#8b76bb',
   greyDark: '#333333',
-  greyMid: '404040',
+  greyMid: '#666666',
   greyLight: '#cccccc',
   greyUltraLight: 'dedede',
   offWhite: '#f7f7f7',

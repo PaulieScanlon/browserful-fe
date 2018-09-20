@@ -1,15 +1,14 @@
 import * as React from 'react';
+import { shallow, mount } from 'enzyme';
 import { createMatchers } from 'jest-emotion';
 import * as emotion from 'emotion';
+expect.extend(createMatchers(emotion));
 
 import { colours } from '../../theme';
 
-expect.extend(createMatchers(emotion));
-
-import { shallow, mount } from 'enzyme';
+import { VersionChip } from './VersionChip';
 
 import { ChipButton } from './styles';
-import { VersionChip } from './VersionChip';
 
 const onClick = (event, id) => {};
 
