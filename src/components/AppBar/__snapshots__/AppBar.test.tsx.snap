@@ -4,6 +4,7 @@ exports[`<AppBar /> renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <AppBar
+    fixed={false}
     showLogo={true}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -21,12 +22,13 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <BrowserfulLogo
-          fontColour="#666666"
+          fontColour="#404040"
           logoColour="#ff5ca3"
           showText={true}
         />,
         undefined,
       ],
+      "fixed": false,
     },
     "ref": null,
     "rendered": Array [
@@ -35,7 +37,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "fontColour": "#666666",
+          "fontColour": "#404040",
           "logoColour": "#ff5ca3",
           "showText": true,
         },
@@ -55,12 +57,13 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <BrowserfulLogo
-            fontColour="#666666"
+            fontColour="#404040"
             logoColour="#ff5ca3"
             showText={true}
           />,
           undefined,
         ],
+        "fixed": false,
       },
       "ref": null,
       "rendered": Array [
@@ -69,7 +72,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "fontColour": "#666666",
+            "fontColour": "#404040",
             "logoColour": "#ff5ca3",
             "showText": true,
           },

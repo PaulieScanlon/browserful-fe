@@ -7,6 +7,9 @@ import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
+import { SideBar } from '../components/SideBar';
+import { spaceLg } from '../theme';
+import { P } from '../typography';
 interface IProps {
   data: any;
 }
@@ -28,25 +31,23 @@ class Matrix extends React.Component<IProps> {
     return (
       <React.Fragment>
         <HeadTag />
-        <AppBar showLogo={false} />
-        <Container fluid style={{ padding: 0 }}>
-          <Row>
-            <Col sm={1}>
-              <Link route="/">
-                <a>/index</a>
-              </Link>
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <Col sm={4}>
-              name : {name} stargazers_count: {stargazers_count}
-            </Col>
-            <Col sm={4}>One of three columns</Col>
-            <Col sm={4}>One of three columns</Col>
-          </Row>
-        </Container>
+        <AppBar showLogo={false} fixed={true} />
+        <SideBar active={true}>
+          {/* @TODO is there a better way to wrap the containers so they always have the correct margin top */}
+          <Container style={{ marginTop: `${spaceLg}px` }}>
+            <Row>
+              <Col xs={12} sm={6}>
+                <Link route="/">
+                  <a>/index</a>
+                </Link>
+              </Col>
+              <Col xs={12} sm={6}>
+                <P> name : {name}</P>
+                <P>stargazers_count: {stargazers_count}</P>
+              </Col>
+            </Row>
+          </Container>
+        </SideBar>
       </React.Fragment>
     );
   }

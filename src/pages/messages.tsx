@@ -8,8 +8,10 @@ import { bindActionCreators } from 'redux';
 import { updateMessage } from '../modules/annoucements/actions/update_message';
 
 import { HeadTag } from '../components/HeadTag';
+import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-
+import { spaceLg } from '../theme';
+import { P } from '../typography';
 interface IProps {
   message: string;
   updateMessage: any;
@@ -25,20 +27,27 @@ class Messages extends React.Component<IProps, IState> {
       <React.Fragment>
         <HeadTag />
         <AppBar />
-        <Link route="/">
-          <a>/index</a>
-        </Link>
-        <p>Message: {message}</p>
-        <div>
-          <button onClick={() => updateMessage('Hello World')}>
-            Hello World
-          </button>
-        </div>
-        <div>
-          <button onClick={() => updateMessage('Something Else')}>
-            Something Else
-          </button>
-        </div>
+
+        <Container fluid style={{ marginTop: `${spaceLg}px` }}>
+          <Row>
+            <Col xs={12} sm={5}>
+              <Link route="/">
+                <a>/index</a>
+              </Link>
+            </Col>
+            <Col xs={12} sm={6}>
+              <P>Message: {message}</P>
+
+              <button onClick={() => updateMessage('Hello World')}>
+                Hello World
+              </button>
+
+              <button onClick={() => updateMessage('Something Else')}>
+                Something Else
+              </button>
+            </Col>
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }

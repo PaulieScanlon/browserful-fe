@@ -1,13 +1,25 @@
 import styled from 'react-emotion';
 
-import { colours, common } from '../../theme';
+import { colours, common, appBarZindex } from '../../theme';
 
-export const AppBarWrapper = styled.header({
-  label: 'app-bar-wrapper',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  backgroundColor: colours.white,
-  boxShadow: common.materialBoxShadow1,
-  minHeight: common.appBarHeight
-});
+interface IProps {
+  fixed?: boolean;
+}
+
+export const AppBarWrapper = styled.header<IProps>(
+  {
+    label: 'app-bar-wrapper',
+    display: 'flex',
+    position: 'fixed',
+    width: '100%',
+    zIndex: appBarZindex,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colours.white,
+    boxShadow: common.materialBoxShadow1,
+    minHeight: common.appBarHeight
+  },
+  ({ fixed }) => ({
+    position: fixed ? 'fixed' : 'relative'
+  })
+);

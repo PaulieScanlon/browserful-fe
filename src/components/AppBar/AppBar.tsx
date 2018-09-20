@@ -5,11 +5,16 @@ import { AppBarWrapper } from './styles';
 
 interface IProps extends React.Props<ChildNode> {
   showLogo?: boolean;
+  fixed?: boolean;
 }
 
-export const AppBar: React.SFC<IProps> = ({ showLogo, children }: IProps) => {
+export const AppBar: React.SFC<IProps> = ({
+  showLogo,
+  fixed,
+  children
+}: IProps) => {
   return (
-    <AppBarWrapper>
+    <AppBarWrapper fixed={fixed}>
       {showLogo && <BrowserfulLogo />}
       {children}
     </AppBarWrapper>
@@ -17,5 +22,6 @@ export const AppBar: React.SFC<IProps> = ({ showLogo, children }: IProps) => {
 };
 
 AppBar.defaultProps = {
-  showLogo: true
+  showLogo: true,
+  fixed: false
 };

@@ -6,6 +6,7 @@ const { Link } = routes;
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
+import { spaceLg } from '../theme';
 
 class Index extends React.Component<{}> {
   render() {
@@ -13,11 +14,11 @@ class Index extends React.Component<{}> {
       <React.Fragment>
         <HeadTag />
         <AppBar />
-        <Container fluid style={{ padding: 0 }}>
+        <Container fluid style={{ marginTop: `${spaceLg}px` }}>
           <Row>
-            <Col sm={1}>
+            <Col sm={12}>
               <Link route="matrix" params={{ id: 1 }}>
-                <button>/app/matrix </button>
+                <a>/app/matrix </a>
               </Link>
               <div />
               <Link route="messages">

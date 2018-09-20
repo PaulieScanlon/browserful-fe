@@ -4,7 +4,7 @@ export const colours = {
   teal: '#36e5d0',
   purple: '#8b76bb',
   greyDark: '#333333',
-  greyMid: '#666666',
+  greyMid: '#404040',
   greyLight: '#cccccc',
   greyUltraLight: 'dedede',
   offWhite: '#f7f7f7',
@@ -19,7 +19,10 @@ export const colours = {
 
 export const spaceLg = 20;
 export const spaceMd = 10;
-// const spaceSm = 5;
+export const spaceSm = 5;
+
+export const appBarZindex = 998;
+export const sideBarZindex = 999;
 
 export const common = {
   borderRadius: '5px',
@@ -28,6 +31,7 @@ export const common = {
   padding: `${spaceMd}px ${spaceLg}px ${spaceMd}px ${spaceLg}px`,
   margin: `0px ${spaceLg}px 0px ${spaceLg}px`,
   appBarHeight: '72px',
+  sideBarWidth: '220px',
   materialBoxShadow1: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
   materialBoxShadow2: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   materialBoxShadow3:

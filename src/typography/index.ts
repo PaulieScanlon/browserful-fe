@@ -99,7 +99,7 @@ export const H5 = styled.h5<IProps>(
   {
     ...(font as any),
     label: 'h5',
-    fontWeight: 700,
+    fontWeight: 400,
     fontSize: '18px',
     lineHeight: '18px',
     marginBottom: 0

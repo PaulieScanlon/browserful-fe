@@ -4,7 +4,7 @@ exports[`<BrowserfulLogo/> renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BrowserfulLogo
-    fontColour="#666666"
+    fontColour="#404040"
     logoColour="#ff5ca3"
     showText={true}
   />,
@@ -50,7 +50,7 @@ ShallowWrapper {
         </SvgWrapper>,
         <H5
           display="inline-flex"
-          fontColour="#666666"
+          fontColour="#404040"
         >
           Browserful
         </H5>,
@@ -170,7 +170,7 @@ ShallowWrapper {
         "props": Object {
           "children": "Browserful",
           "display": "inline-flex",
-          "fontColour": "#666666",
+          "fontColour": "#404040",
         },
         "ref": null,
         "rendered": "Browserful",
@@ -214,7 +214,7 @@ ShallowWrapper {
           </SvgWrapper>,
           <H5
             display="inline-flex"
-            fontColour="#666666"
+            fontColour="#404040"
           >
             Browserful
           </H5>,
@@ -334,7 +334,7 @@ ShallowWrapper {
           "props": Object {
             "children": "Browserful",
             "display": "inline-flex",
-            "fontColour": "#666666",
+            "fontColour": "#404040",
           },
           "ref": null,
           "rendered": "Browserful",
