@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { updateMessage } from '../modules/annoucements/actions/update_message';
 
 import { HeadTag } from '../components/HeadTag';
+import { AppBar } from '../components/AppBar';
 
 interface IProps {
   message: string;
@@ -23,6 +24,7 @@ class Messages extends React.Component<IProps, IState> {
     return (
       <React.Fragment>
         <HeadTag />
+        <AppBar />
         <Link route="/">
           <a>/index</a>
         </Link>

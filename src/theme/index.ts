@@ -8,6 +8,7 @@ export const colours = {
   greyLight: '#cccccc',
   greyUltraLight: 'dedede',
   offWhite: '#f7f7f7',
+  white: '#ffffff',
   greenLight: '#e8faf2',
   green: '#00b256',
   redLight: '#ffefef',
@@ -16,8 +17,16 @@ export const colours = {
 
 //box-shadow stolen from here: https://codepen.io/sdthornton/pen/wBZdXq
 
+export const spaceLg = 20;
+export const spaceMd = 10;
+// const spaceSm = 5;
+
 export const common = {
-  padding: '10px',
+  paddingLR: `${spaceLg}px`,
+  paddingTB: `${spaceMd}px`,
+  padding: `${spaceMd}px ${spaceLg}px ${spaceMd}px ${spaceLg}px`,
+  margin: `0px ${spaceLg}px 0px ${spaceLg}px`,
+  appBarHeight: '72px',
   materialBoxShadow1: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
   materialBoxShadow2: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   materialBoxShadow3:

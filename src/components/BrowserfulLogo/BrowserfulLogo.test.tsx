@@ -35,7 +35,7 @@ describe('<BrowserfulLogo/>', () => {
     const svgWrapper = wrapper.find(SvgWrapper);
     expect(svgWrapper).toHaveLength(1);
   });
-  it('renders text if showText: true', () => {
+  it('renders text if showText:true', () => {
     const wrapper = mountDefault({ showText: true });
     const h5 = wrapper.find(H5);
     expect(h5).toHaveLength(1);

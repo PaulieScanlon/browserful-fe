@@ -6,6 +6,7 @@ const { Link } = routes;
 import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
+import { AppBar } from '../components/AppBar';
 interface IProps {
   data: any;
 }
@@ -27,6 +28,7 @@ class Matrix extends React.Component<IProps> {
     return (
       <React.Fragment>
         <HeadTag />
+        <AppBar showLogo={false} />
         <Container fluid style={{ padding: 0 }}>
           <Row>
             <Col sm={1}>
