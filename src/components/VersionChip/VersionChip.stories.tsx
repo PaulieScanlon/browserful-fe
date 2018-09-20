@@ -2,8 +2,13 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
+import { State, Store } from '@sambego/storybook-state';
 
 import { VersionChip } from './VersionChip';
+
+const store = new Store({
+  always: false
+});
 
 const stories = storiesOf('VersionChip', module);
 
@@ -11,8 +16,13 @@ const onClick = (event, id) => {
   action('onClick')(event.currentTarget, id);
 };
 
+const onClickWithStore = (event, id, store) => {
+  store.set({ always: !store.get('always') });
+  action('onClick')(event.currentTarget, id, `always: ${store.get('always')}`);
+};
+
 stories.add(
-  'usage',
+  'default usage',
   withInfo(
     'The browser and version prop are used to create the id which is passed back in the onClick handler'
   )(() => (
@@ -25,7 +35,40 @@ stories.add(
 );
 
 stories.add(
-  'isIncluded:true',
+  'onClick & isIncluded',
+  withInfo(
+    'This story is purely to demonstrate the oncClick and receiveing the always prop from a state'
+  )(() => (
+    <State store={store}>
+      <VersionChip
+        browser="Chrome"
+        version={72}
+        isIncluded={true}
+        always={store.get('always')}
+        onClick={(event, id) => onClickWithStore(event, id, store)}
+      />
+    </State>
+  ))
+);
+
+stories.add(
+  'onClick & !isIncluded',
+  withInfo(
+    'This story is purely to demonstrate the oncClick and receiveing the always prop from a state'
+  )(() => (
+    <State store={store}>
+      <VersionChip
+        browser="Chrome"
+        version={72}
+        always={store.get('always')}
+        onClick={(event, id) => onClickWithStore(event, id, store)}
+      />
+    </State>
+  ))
+);
+
+stories.add(
+  'isIncluded',
   withInfo(
     'isIncluded:true is green and is used when a browser version is included'
   )(() => (
@@ -39,7 +82,7 @@ stories.add(
 );
 
 stories.add(
-  'isIncluded:false',
+  '!isIncluded',
   withInfo(
     'isIncluded:false is red and is used when a browser version is not included'
   )(() => (

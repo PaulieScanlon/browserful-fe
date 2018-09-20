@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@sambego/storybook-state": "^1.2.0",
     "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-backgrounds": "^3.4.10",
     "@storybook/addon-info": "^3.4.10",
