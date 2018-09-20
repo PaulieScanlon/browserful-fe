@@ -7,6 +7,8 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
+addDecorator(story => <div style={{ padding: '10px' }}>{story()}</div>);
+
 setDefaults({
   header: false,
   inline: true,

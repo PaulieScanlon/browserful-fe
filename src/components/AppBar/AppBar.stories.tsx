@@ -3,15 +3,15 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
-import { common, spaceLg } from '../../theme';
+import { spaceLg } from '../../theme';
 
 import { AppBar } from './AppBar';
-import { VersionChip } from '../VersionChip';
+import { Button } from '../Button';
 
 const stories = storiesOf('AppBar', module);
 
-const onClick = (event, id) => {
-  action('onClick')(event.currentTarget, id);
+const onClick = event => {
+  action('onClick')(event.currentTarget);
 };
 
 stories.add(
@@ -41,11 +41,9 @@ stories.add(
   'children: React',
   withInfo('Children can be React components')(() => (
     <AppBar>
-      <VersionChip
-        browser="Chrome"
-        version={1}
-        onClick={(event, id) => onClick(event, id)}
-      />
+      <span style={{ marginRight: `${spaceLg}px` }}>
+        <Button onClick={event => onClick(event)}>Click me</Button>
+      </span>
     </AppBar>
   ))
 );

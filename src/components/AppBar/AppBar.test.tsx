@@ -3,7 +3,10 @@ import { shallow, mount } from 'enzyme';
 
 import { AppBar } from './AppBar';
 import { AppBarWrapper } from './styles';
+import { Button } from '../Button';
 import { BrowserfulLogo } from '../BrowserfulLogo';
+
+const onClick = event => {};
 
 const shallowDefault = props => {
   return shallow(<AppBar {...props} />);
@@ -33,8 +36,12 @@ describe('<AppBar />', () => {
     );
     expect(wrapper.children.length).toEqual(1);
   });
-  it.skip('renders React child', () => {
-    const wrapper = shallow(<AppBar />);
+  it('renders React child', () => {
+    const wrapper = shallow(
+      <AppBar>
+        <Button onClick={event => onClick(event)} />
+      </AppBar>
+    );
     expect(wrapper.children.length).toEqual(1);
   });
 });

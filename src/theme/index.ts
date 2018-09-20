@@ -22,6 +22,7 @@ export const spaceMd = 10;
 // const spaceSm = 5;
 
 export const common = {
+  borderRadius: '5px',
   paddingLR: `${spaceLg}px`,
   paddingTB: `${spaceMd}px`,
   padding: `${spaceMd}px ${spaceLg}px ${spaceMd}px ${spaceLg}px`,

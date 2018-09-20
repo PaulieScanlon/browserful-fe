@@ -17,7 +17,7 @@ class Index extends React.Component<{}> {
           <Row>
             <Col sm={1}>
               <Link route="matrix" params={{ id: 1 }}>
-                <a>/app/matrix </a>
+                <button>/app/matrix </button>
               </Link>
               <div />
               <Link route="messages">

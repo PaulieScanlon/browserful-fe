@@ -52,6 +52,7 @@ injectGlobal`
     padding: 0;
     margin: 0; 
     color: ${font.color};
+    font-size: ${font.fontSize}
     font-family: ${font.fontFamily};
     background: ${colours.offWhite};
   }
