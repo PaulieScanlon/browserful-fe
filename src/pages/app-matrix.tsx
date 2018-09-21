@@ -37,11 +37,10 @@ class Matrix extends React.Component<IProps> {
           <Container style={{ marginTop: `${spaceLg}px` }}>
             <Row>
               <Col xs={12} sm={6}>
-                <Link route="/">
-                  <a>/index</a>
-                </Link>
+                <P>left content</P>
               </Col>
               <Col xs={12} sm={6}>
+                <P>right content</P>
                 <P> name : {name}</P>
                 <P>stargazers_count: {stargazers_count}</P>
               </Col>

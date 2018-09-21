@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import routes from 'routes';
-const { Link } = routes;
-
 import { HeadTag } from '../components/HeadTag';
+import { RouteTag } from '../components/RouteTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { spaceLg } from '../theme';
@@ -17,13 +15,10 @@ class Index extends React.Component<{}> {
         <Container fluid style={{ marginTop: `${spaceLg}px` }}>
           <Row>
             <Col sm={12}>
-              <Link route="matrix" params={{ id: 1 }}>
-                <a>/app/matrix </a>
-              </Link>
-              <div />
-              <Link route="messages">
-                <a>/app/messages </a>
-              </Link>
+              <RouteTag route="app/matrix" params={{ id: 1 }}>
+                /app/matrix
+              </RouteTag>{' '}
+              <RouteTag route="app/messages">/app/messages</RouteTag>
             </Col>
           </Row>
         </Container>

@@ -10,7 +10,7 @@
           {
             "root": ["./"],
             "alias": {
-              "routes": ""
+              "utils": "src/utils"
             }
           }
         ]

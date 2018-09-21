@@ -31,11 +31,10 @@ class Messages extends React.Component<IProps, IState> {
         <Container fluid style={{ marginTop: `${spaceLg}px` }}>
           <Row>
             <Col xs={12} sm={5}>
-              <Link route="/">
-                <a>/index</a>
-              </Link>
+              <P>This is nothing, just testing Redux</P>
             </Col>
             <Col xs={12} sm={6}>
+              <P>right content</P>
               <P>Message: {message}</P>
 
               <button onClick={() => updateMessage('Hello World')}>

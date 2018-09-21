@@ -16,22 +16,22 @@ const onClick = event => {
 
 stories.add(
   'default usage',
-  withInfo('AppBar houses the Browserful Logo and other things...')(() => (
-    <AppBar />
-  ))
+  withInfo(
+    'AppBar houses the Browserful Logo and other things... The disableLink prop disables the a `Link` which is part of `next-routes'
+  )(() => <AppBar disableLink={true} />)
 );
 
 stories.add(
   'showLogo',
   withInfo('The showLogo prop controls the visibility of the Browserful logo')(
-    () => <AppBar showLogo={false} />
+    () => <AppBar showLogo={false} disableLink={true} />
   )
 );
 
 stories.add(
   'children: HTML',
   withInfo('Children can be HTML')(() => (
-    <AppBar>
+    <AppBar disableLink={true}>
       <span style={{ marginRight: `${spaceLg}px` }}>Hi, I'm an HTML child</span>
     </AppBar>
   ))
@@ -40,7 +40,7 @@ stories.add(
 stories.add(
   'children: React',
   withInfo('Children can be React components')(() => (
-    <AppBar>
+    <AppBar disableLink={true}>
       <span style={{ marginRight: `${spaceLg}px` }}>
         <Button onClick={event => onClick(event)}>Click me</Button>
       </span>
