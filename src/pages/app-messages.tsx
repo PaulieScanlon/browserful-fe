@@ -1,8 +1,5 @@
 import React from 'react';
 
-import routes from 'routes';
-const { Link } = routes;
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateMessage } from '../modules/annoucements/actions/update_message';
