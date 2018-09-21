@@ -1,8 +1,5 @@
 import * as React from 'react';
 
-import routes from 'routes';
-const { Link } = routes;
-
 import { fetchRepos } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
