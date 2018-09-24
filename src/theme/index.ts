@@ -40,5 +40,5 @@ export const common = {
     '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
   materialBoxShadow5:
     '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
-  transition: 'all 0.25s ease-in-out'
+  transition: 'all .3s ease-out'
 };

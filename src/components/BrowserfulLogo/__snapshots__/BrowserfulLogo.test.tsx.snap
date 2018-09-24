@@ -48,12 +48,12 @@ ShallowWrapper {
             </g>
           </svg>
         </SvgWrapper>,
-        <H5
+        <BrowserfulLogoText
           display="inline-flex"
           fontColour="#404040"
         >
           Browserful
-        </H5>,
+        </BrowserfulLogoText>,
       ],
     },
     "ref": null,
@@ -212,12 +212,12 @@ ShallowWrapper {
               </g>
             </svg>
           </SvgWrapper>,
-          <H5
+          <BrowserfulLogoText
             display="inline-flex"
             fontColour="#404040"
           >
             Browserful
-          </H5>,
+          </BrowserfulLogoText>,
         ],
       },
       "ref": null,

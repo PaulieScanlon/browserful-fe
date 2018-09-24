@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { colours } from '../../theme';
 
-import { H5 } from '../../typography';
+import { BrowserfulLogoText } from '../../typography';
 import { LogoWrapper, SvgWrapper } from './styles';
 
 interface IProps {
@@ -34,9 +34,9 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
       </SvgWrapper>
 
       {showText && (
-        <H5 display="inline-flex" fontColour={fontColour}>
+        <BrowserfulLogoText display="inline-flex" fontColour={fontColour}>
           Browserful
-        </H5>
+        </BrowserfulLogoText>
       )}
     </LogoWrapper>
   );

@@ -1,0 +1,86 @@
+{
+  "agents": {
+    "edge": {
+      "browser": "Edge",
+      "abbr": "Edge",
+      "prefix": "ms",
+      "type": "desktop",
+      "usage_global": {
+        "12": 0.02163,
+        "13": 0.025956,
+        "14": 0.056238,
+        "15": 0.06489,
+        "16": 0.19467,
+        "17": 1.47949,
+        "18": 0
+      },
+      "version_list": [
+        {
+          "version": "12",
+          "global_usage": 0.02163,
+          "release_date": 1438128000,
+          "era": -5,
+          "prefix": "",
+          "isIncluded": false,
+          "always": true
+        },
+        {
+          "version": "13",
+          "global_usage": 0.025956,
+          "release_date": 1447286400,
+          "era": -4,
+          "prefix": "",
+          "isIncluded": false,
+          "always": false
+        },
+        {
+          "version": "14",
+          "global_usage": 0.056238,
+          "release_date": 1470096000,
+          "era": -3,
+          "prefix": "",
+          "isIncluded": false,
+          "always": false
+        },
+        {
+          "version": "15",
+          "global_usage": 0.06489,
+          "release_date": 1491868800,
+          "era": -2,
+          "prefix": "",
+          "isIncluded": false,
+          "always": true
+        },
+        {
+          "version": "16",
+          "global_usage": 0.19467,
+          "release_date": 1508198400,
+          "era": -1,
+          "prefix": "",
+          "isIncluded": true,
+          "always": true
+        },
+        {
+          "version": "17",
+          "global_usage": 1.47949,
+          "release_date": 1525046400,
+          "era": 0,
+          "prefix": "",
+          "isIncluded": true,
+          "always": false
+        },
+        {
+          "version": "18",
+          "global_usage": 0,
+          "release_date": null,
+          "era": 1,
+          "prefix": "",
+          "isIncluded": true,
+          "always": true
+        }
+      ],
+      "current_version": "17",
+      "totalVersions": 7
+    }
+  }
+}
