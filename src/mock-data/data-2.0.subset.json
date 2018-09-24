@@ -785,5 +785,23 @@
       ],
       "current_version": "69"
     }
+  },
+  "statuses": {
+    "rec": "W3C Recommendation",
+    "pr": "W3C Proposed Recommendation",
+    "cr": "W3C Candidate Recommendation",
+    "wd": "W3C Working Draft",
+    "ls": "WHATWG Living Standard",
+    "other": "Other",
+    "unoff": "Unofficial / Note"
+  },
+  "cats": {
+    "CSS": ["CSS", "CSS2", "CSS3"],
+    "HTML5": ["Canvas", "HTML5"],
+    "JS": ["JS"],
+    "JS API": ["JS API"],
+    "Other": ["Other", "DOM", "PNG"],
+    "Security": ["Security"],
+    "SVG": ["SVG"]
   }
 }

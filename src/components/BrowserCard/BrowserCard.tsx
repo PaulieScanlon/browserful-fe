@@ -15,9 +15,9 @@ import { spaceSm, colours } from '../../theme';
 import { Button } from '../Button';
 
 interface IProps {
-  data: browserfulData2;
-  onExpandClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onVersionClick: (
+  data: any;
+  onExpandClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onVersionClick?: (
     event: React.MouseEvent<HTMLButtonElement>,
     id: string
   ) => void;

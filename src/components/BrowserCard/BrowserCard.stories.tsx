@@ -4,7 +4,9 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import { State, Store } from '@sambego/storybook-state';
 
-const data2 = require('../../mock-data/data-2.0.modifed.json');
+import { coverToBrowserfulData2 } from '../../modules/browserful-data-2.0';
+
+const data2Subset = require('../../mock-data/data-2.0.subset.json');
 
 import { BrowserCard } from './BrowserCard';
 
@@ -31,7 +33,7 @@ stories.add(
   withInfo('BrowserCard displays versionChips and a other stuff..')(() => (
     <State store={store}>
       <BrowserCard
-        data={data2.agents.edge}
+        data={coverToBrowserfulData2(data2Subset).agents.edge}
         onExpandClick={event => onExpandClick(event, store)}
         onVersionClick={(event, id) => onVersionClick(event, id)}
       />

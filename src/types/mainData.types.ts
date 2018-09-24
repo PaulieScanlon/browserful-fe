@@ -26,6 +26,6 @@ export interface caniuseData2 {
 }
 
 export interface browserfulData2 extends caniuseData2 {
-  version_list: browserfulVersionList[];
+  versionList: browserfulVersionList[];
   totalVersions?: number;
 }

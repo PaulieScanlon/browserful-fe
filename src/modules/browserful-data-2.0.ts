@@ -1,18 +1,24 @@
 import { caniuseData2 } from '../types/mainData.types';
 
-export const covertoBrowserfulData2 = (data: caniuseData2) => {
-  return Object.keys(data.agents).map(agent => {
-    const versionList = data.agents[agent].version_list.map(keys => {
-      return {
-        ...keys,
-        isIncluded: false,
-        always: false
-      };
-    });
+export const coverToBrowserfulData2 = (data: caniuseData2) => {
+  const updatedAgents = new Object();
 
-    return {
-      ...versionList,
+  Object.keys(data.agents).forEach(agent => {
+    updatedAgents[agent] = {
+      ...data.agents[agent],
+      version_list: data.agents[agent].version_list.map(keys => {
+        return {
+          ...keys,
+          isIncluded: false,
+          always: false
+        };
+      }),
       totalVersions: data.agents[agent].version_list.length
     };
   });
+
+  // @TODO type the return as browserfulData2
+  return {
+    agents: updatedAgents as any
+  };
 };
