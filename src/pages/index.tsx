@@ -5,7 +5,6 @@ import { RouteTag } from '../components/RouteTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { spaceLg } from '../theme';
-import { P } from '../typography';
 
 class Index extends React.Component<{}> {
   render() {

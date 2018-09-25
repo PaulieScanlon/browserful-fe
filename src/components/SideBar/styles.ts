@@ -37,11 +37,9 @@ export const SideBarHeader = styled.div({
   margin: `${spaceLg}px`,
   textAlign: 'center',
   // This is just to position the BrowserfulLogo
-  a: {
+  'a, div': {
     paddingTop: '2px',
-    div: {
-      marginLeft: '0px'
-    }
+    marginLeft: '0px'
   }
 });
 
