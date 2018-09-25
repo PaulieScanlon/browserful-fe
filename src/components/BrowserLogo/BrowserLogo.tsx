@@ -7,9 +7,9 @@ interface IProps {
 }
 
 export const BrowserLogo: React.SFC<IProps> = ({ browser }: IProps) => {
-  console.log('browser', browser);
   return (
     <BrowserLogoImage
+      alt={`${changeCase.paramCase(browser)}`}
       src={require(`./images/${changeCase.paramCase(browser)}.png`)}
     />
   );

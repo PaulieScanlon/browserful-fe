@@ -1,22 +1,23 @@
 import * as React from 'react';
 
-import { browserfulData2 } from '../../types/mainData.types';
-import { H6 } from '../../typography';
-
 import {
   BrowserCardWrapper,
   BrowserCardHeader,
+  BrowserCardHeaderSection,
   BrowserCardBody,
-  BrowserCardHeaderSection
+  BrowserCardFooter
 } from './styles';
+
+import { H6 } from '../../typography';
+import { spaceSm } from '../../theme';
+
 import { BrowserLogo } from '../BrowserLogo';
 import { VersionChip } from '../VersionChip';
-import { spaceSm, colours } from '../../theme';
-import { Button } from '../Button';
+import { ExpandChip } from '../ExpandChip';
 
 interface IProps {
   data: any;
-  onExpandClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onExpandClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
   onVersionClick?: (
     event: React.MouseEvent<HTMLButtonElement>,
     id: string
@@ -31,7 +32,6 @@ export const BrowserCard: React.SFC<IProps> = ({
   isExpanded
 }: IProps) => {
   const { browser, version_list } = data;
-  const tempButtonText = isExpanded ? 'Collapse' : 'Expand';
 
   const versions = version_list.map((obj, i) => {
     return (
@@ -57,16 +57,17 @@ export const BrowserCard: React.SFC<IProps> = ({
         </BrowserCardHeaderSection>
 
         <BrowserCardHeaderSection>
-          <Button
-            fontColour={colours.greyDark}
-            backgroundColour={colours.offWhite}
+          <ExpandChip
+            isExpanded={isExpanded}
             onClick={event => onExpandClick(event)}
-          >
-            {tempButtonText}
-          </Button>
+          />
         </BrowserCardHeaderSection>
       </BrowserCardHeader>
-      <BrowserCardBody isExpanded={isExpanded}>{versions}</BrowserCardBody>
+      <BrowserCardBody isExpanded={isExpanded}>
+        {versions}
+
+        <BrowserCardFooter>BrowserCardFooter</BrowserCardFooter>
+      </BrowserCardBody>
     </BrowserCardWrapper>
   );
 };

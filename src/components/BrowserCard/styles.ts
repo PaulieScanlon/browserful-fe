@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { common, colours, spaceMd } from '../../theme';
+import { common, colours, spaceLg, spaceMd } from '../../theme';
 
 interface IProps {
   isExpanded?: boolean;
@@ -8,7 +8,8 @@ interface IProps {
 export const BrowserCardWrapper = styled.div({
   label: 'browser-card-wrapper',
   backgroundColor: colours.white,
-  boxShadow: common.materialBoxShadow1
+  boxShadow: common.materialBoxShadow1,
+  marginBottom: `${spaceLg}px`
 });
 
 export const BrowserCardHeader = styled.div<IProps>(
@@ -43,3 +44,10 @@ export const BrowserCardBody = styled.div<IProps>(
     padding: isExpanded ? `${spaceMd}px ${spaceMd}px` : `0px ${spaceMd}px`
   })
 );
+
+export const BrowserCardFooter = styled.div({
+  label: 'browser-card-footer',
+  margin: `${spaceMd}px 0px`,
+  paddingTop: `${spaceLg}px`,
+  borderTop: `1px solid ${colours.greenLight}`
+});

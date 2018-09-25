@@ -22,7 +22,13 @@ export const fetchRepos = () => {
 
 export const fetchCanIuseData2 = () => {
   return fetch(
-    'https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json'
+    'https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json',
+    {
+      headers: {
+        'content-type': 'application/json'
+      },
+      mode: 'no-cors'
+    }
   )
     .then(res => res.json())
     .then(data => {

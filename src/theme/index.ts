@@ -17,8 +17,8 @@ export const colours = {
 
 //box-shadow stolen from here: https://codepen.io/sdthornton/pen/wBZdXq
 
-export const spaceLg = 20;
-export const spaceMd = 10;
+export const spaceLg = 30;
+export const spaceMd = 15;
 export const spaceSm = 5;
 
 export const appBarZindex = 998;

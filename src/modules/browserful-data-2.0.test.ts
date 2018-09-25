@@ -5,6 +5,9 @@ import { coverToBrowserfulData2 } from './browserful-data-2.0';
 const edge = coverToBrowserfulData2(data2Subset).agents.edge;
 
 describe('browserful-data-2.0', () => {
+  it(`injects new 'isExpanded' key in browser object`, () => {
+    expect(edge.isExpanded).toBe(true);
+  });
   it(`injects new 'totalVersions' key in browser object`, () => {
     expect(edge.totalVersions).toEqual(7);
   });

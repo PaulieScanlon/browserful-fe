@@ -13,7 +13,8 @@ export const coverToBrowserfulData2 = (data: caniuseData2) => {
           always: false
         };
       }),
-      totalVersions: data.agents[agent].version_list.length
+      totalVersions: data.agents[agent].version_list.length,
+      isExpanded: true
     };
   });
 
