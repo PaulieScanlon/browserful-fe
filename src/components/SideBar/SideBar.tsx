@@ -24,7 +24,6 @@ export const SideBar: React.SFC<IProps> = ({
   return (
     <SideBarWrapper>
       <SideBarNav active={active}>
-        {/* @TODO make Link it's own LinkTag component which renders children so the a can be styled with text-decoration one */}
         <SideBarHeader>
           <RouteTag route="/" disableLink={disableLink}>
             <BrowserfulLogo fontColour={colours.white} />
