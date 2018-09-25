@@ -5,6 +5,7 @@ import { RouteTag } from '../components/RouteTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { spaceLg } from '../theme';
+import { P } from '../typography';
 
 class Index extends React.Component<{}> {
   render() {
@@ -15,10 +16,16 @@ class Index extends React.Component<{}> {
         <Container fluid style={{ marginTop: `${spaceLg}px` }}>
           <Row>
             <Col sm={12}>
-              <RouteTag route="app/matrix" params={{ id: 1 }}>
-                /app/matrix
-              </RouteTag>{' '}
-              <RouteTag route="app/messages">/app/messages</RouteTag>
+              <div style={{ marginBottom: '10px' }}>
+                This is the main matrix page =>
+                <RouteTag route="app/matrix" params={{ id: 1 }}>
+                  /app/matrix
+                </RouteTag>
+              </div>
+              <div>
+                This is just a temporary page with some WIP Redux stuff =>
+                <RouteTag route="app/messages">/app/messages</RouteTag>
+              </div>
             </Col>
           </Row>
         </Container>
