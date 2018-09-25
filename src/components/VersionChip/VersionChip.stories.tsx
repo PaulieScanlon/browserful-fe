@@ -44,7 +44,6 @@ stories.add(
         browser="Chrome"
         version={72}
         isIncluded={true}
-        always={store.get('always')}
         onClick={(event, id) => onClickWithStore(event, id, store)}
       />
     </State>
@@ -60,7 +59,6 @@ stories.add(
       <VersionChip
         browser="Chrome"
         version={72}
-        always={store.get('always')}
         onClick={(event, id) => onClickWithStore(event, id, store)}
       />
     </State>

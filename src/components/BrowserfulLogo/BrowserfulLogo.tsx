@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { colours } from '../../theme';
 
-import { H5 } from '../../typography';
+import { BrowserfulLogoText } from '../../typography';
 import { LogoWrapper, SvgWrapper } from './styles';
 
 interface IProps {
@@ -26,6 +26,7 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
           width="23.5"
           height="23.5"
         >
+          <title>Browserful</title>
           <circle cx="9.6" cy="9.6" r="9.6" />
           <g>
             <circle cx="20.3" cy="20.3" r="3.2" />
@@ -34,9 +35,9 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
       </SvgWrapper>
 
       {showText && (
-        <H5 display="inline-flex" fontColour={fontColour}>
+        <BrowserfulLogoText display="inline-flex" fontColour={fontColour}>
           Browserful
-        </H5>
+        </BrowserfulLogoText>
       )}
     </LogoWrapper>
   );

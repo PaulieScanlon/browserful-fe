@@ -34,6 +34,9 @@ ShallowWrapper {
             x="0px"
             y="0px"
           >
+            <title>
+              Browserful
+            </title>
             <circle
               cx="9.6"
               cy="9.6"
@@ -48,12 +51,12 @@ ShallowWrapper {
             </g>
           </svg>
         </SvgWrapper>,
-        <H5
+        <BrowserfulLogoText
           display="inline-flex"
           fontColour="#404040"
         >
           Browserful
-        </H5>,
+        </BrowserfulLogoText>,
       ],
     },
     "ref": null,
@@ -74,6 +77,9 @@ ShallowWrapper {
             x="0px"
             y="0px"
           >
+            <title>
+              Browserful
+            </title>
             <circle
               cx="9.6"
               cy="9.6"
@@ -95,6 +101,9 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
+              <title>
+                Browserful
+              </title>,
               <circle
                 cx="9.6"
                 cy="9.6"
@@ -118,6 +127,17 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Browserful",
+              },
+              "ref": null,
+              "rendered": "Browserful",
+              "type": "title",
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -198,6 +218,9 @@ ShallowWrapper {
               x="0px"
               y="0px"
             >
+              <title>
+                Browserful
+              </title>
               <circle
                 cx="9.6"
                 cy="9.6"
@@ -212,12 +235,12 @@ ShallowWrapper {
               </g>
             </svg>
           </SvgWrapper>,
-          <H5
+          <BrowserfulLogoText
             display="inline-flex"
             fontColour="#404040"
           >
             Browserful
-          </H5>,
+          </BrowserfulLogoText>,
         ],
       },
       "ref": null,
@@ -238,6 +261,9 @@ ShallowWrapper {
               x="0px"
               y="0px"
             >
+              <title>
+                Browserful
+              </title>
               <circle
                 cx="9.6"
                 cy="9.6"
@@ -259,6 +285,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
+                <title>
+                  Browserful
+                </title>,
                 <circle
                   cx="9.6"
                   cy="9.6"
@@ -282,6 +311,17 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Browserful",
+                },
+                "ref": null,
+                "rendered": "Browserful",
+                "type": "title",
+              },
               Object {
                 "instance": null,
                 "key": undefined,

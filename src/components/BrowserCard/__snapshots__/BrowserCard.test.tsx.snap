@@ -1,0 +1,878 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BrowserCard /> renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <BrowserCard
+    data={
+      Object {
+        "abbr": "Edge",
+        "browser": "Edge",
+        "current_version": "17",
+        "isExpanded": true,
+        "prefix": "ms",
+        "totalVersions": 7,
+        "type": "desktop",
+        "usage_global": Object {
+          "12": 0.02163,
+          "13": 0.025956,
+          "14": 0.056238,
+          "15": 0.06489,
+          "16": 0.19467,
+          "17": 1.47949,
+          "18": 0,
+        },
+        "version_list": Array [
+          Object {
+            "always": false,
+            "era": -5,
+            "global_usage": 0.02163,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1438128000,
+            "version": "12",
+          },
+          Object {
+            "always": false,
+            "era": -4,
+            "global_usage": 0.025956,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1447286400,
+            "version": "13",
+          },
+          Object {
+            "always": false,
+            "era": -3,
+            "global_usage": 0.056238,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1470096000,
+            "version": "14",
+          },
+          Object {
+            "always": false,
+            "era": -2,
+            "global_usage": 0.06489,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1491868800,
+            "version": "15",
+          },
+          Object {
+            "always": false,
+            "era": -1,
+            "global_usage": 0.19467,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1508198400,
+            "version": "16",
+          },
+          Object {
+            "always": false,
+            "era": 0,
+            "global_usage": 1.47949,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": 1525046400,
+            "version": "17",
+          },
+          Object {
+            "always": false,
+            "era": 1,
+            "global_usage": 0,
+            "isIncluded": false,
+            "prefix": "",
+            "release_date": null,
+            "version": "18",
+          },
+        ],
+      }
+    }
+    isExpanded={true}
+    onExpandClick={[Function]}
+    onVersionClick={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <BrowserCardHeader
+          isExpanded={true}
+        >
+          <BrowserCardHeaderSection>
+            <BrowserLogo
+              browser="Edge"
+            />
+            <H6
+              display="inline-flex"
+              marginLeft="5px"
+            >
+              Edge
+            </H6>
+          </BrowserCardHeaderSection>
+          <BrowserCardHeaderSection>
+            <ExpandChip
+              isExpanded={true}
+              onClick={[Function]}
+            />
+          </BrowserCardHeaderSection>
+        </BrowserCardHeader>,
+        <BrowserCardBody
+          isExpanded={true}
+        >
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={12}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={13}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={14}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={15}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={16}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={17}
+          />
+          <VersionChip
+            always={false}
+            browser="Edge"
+            isIncluded={false}
+            onClick={[Function]}
+            version={18}
+          />
+          <BrowserCardFooter>
+            BrowserCardFooter
+          </BrowserCardFooter>
+        </BrowserCardBody>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <BrowserCardHeaderSection>
+              <BrowserLogo
+                browser="Edge"
+              />
+              <H6
+                display="inline-flex"
+                marginLeft="5px"
+              >
+                Edge
+              </H6>
+            </BrowserCardHeaderSection>,
+            <BrowserCardHeaderSection>
+              <ExpandChip
+                isExpanded={true}
+                onClick={[Function]}
+              />
+            </BrowserCardHeaderSection>,
+          ],
+          "isExpanded": true,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <BrowserLogo
+                  browser="Edge"
+                />,
+                <H6
+                  display="inline-flex"
+                  marginLeft="5px"
+                >
+                  Edge
+                </H6>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "browser": "Edge",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Edge",
+                  "display": "inline-flex",
+                  "marginLeft": "5px",
+                },
+                "ref": null,
+                "rendered": "Edge",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <ExpandChip
+                isExpanded={true}
+                onClick={[Function]}
+              />,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "isExpanded": true,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            Array [
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={12}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={13}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={14}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={15}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={16}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={17}
+              />,
+              <VersionChip
+                always={false}
+                browser="Edge"
+                isIncluded={false}
+                onClick={[Function]}
+                version={18}
+              />,
+            ],
+            <BrowserCardFooter>
+              BrowserCardFooter
+            </BrowserCardFooter>,
+          ],
+          "isExpanded": true,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 12,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 13,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 14,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "3",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 15,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "4",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 16,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "5",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 17,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "6",
+            "nodeType": "function",
+            "props": Object {
+              "always": false,
+              "browser": "Edge",
+              "isIncluded": false,
+              "onClick": [Function],
+              "version": 18,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "BrowserCardFooter",
+            },
+            "ref": null,
+            "rendered": "BrowserCardFooter",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <BrowserCardHeader
+            isExpanded={true}
+          >
+            <BrowserCardHeaderSection>
+              <BrowserLogo
+                browser="Edge"
+              />
+              <H6
+                display="inline-flex"
+                marginLeft="5px"
+              >
+                Edge
+              </H6>
+            </BrowserCardHeaderSection>
+            <BrowserCardHeaderSection>
+              <ExpandChip
+                isExpanded={true}
+                onClick={[Function]}
+              />
+            </BrowserCardHeaderSection>
+          </BrowserCardHeader>,
+          <BrowserCardBody
+            isExpanded={true}
+          >
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={12}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={13}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={14}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={15}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={16}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={17}
+            />
+            <VersionChip
+              always={false}
+              browser="Edge"
+              isIncluded={false}
+              onClick={[Function]}
+              version={18}
+            />
+            <BrowserCardFooter>
+              BrowserCardFooter
+            </BrowserCardFooter>
+          </BrowserCardBody>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <BrowserCardHeaderSection>
+                <BrowserLogo
+                  browser="Edge"
+                />
+                <H6
+                  display="inline-flex"
+                  marginLeft="5px"
+                >
+                  Edge
+                </H6>
+              </BrowserCardHeaderSection>,
+              <BrowserCardHeaderSection>
+                <ExpandChip
+                  isExpanded={true}
+                  onClick={[Function]}
+                />
+              </BrowserCardHeaderSection>,
+            ],
+            "isExpanded": true,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <BrowserLogo
+                    browser="Edge"
+                  />,
+                  <H6
+                    display="inline-flex"
+                    marginLeft="5px"
+                  >
+                    Edge
+                  </H6>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "browser": "Edge",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Edge",
+                    "display": "inline-flex",
+                    "marginLeft": "5px",
+                  },
+                  "ref": null,
+                  "rendered": "Edge",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <ExpandChip
+                  isExpanded={true}
+                  onClick={[Function]}
+                />,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "isExpanded": true,
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              Array [
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={12}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={13}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={14}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={15}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={16}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={17}
+                />,
+                <VersionChip
+                  always={false}
+                  browser="Edge"
+                  isIncluded={false}
+                  onClick={[Function]}
+                  version={18}
+                />,
+              ],
+              <BrowserCardFooter>
+                BrowserCardFooter
+              </BrowserCardFooter>,
+            ],
+            "isExpanded": true,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 12,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 13,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "2",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 14,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "3",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 15,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "4",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 16,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "5",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 17,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "6",
+              "nodeType": "function",
+              "props": Object {
+                "always": false,
+                "browser": "Edge",
+                "isIncluded": false,
+                "onClick": [Function],
+                "version": 18,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "BrowserCardFooter",
+              },
+              "ref": null,
+              "rendered": "BrowserCardFooter",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

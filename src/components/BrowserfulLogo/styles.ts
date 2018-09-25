@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-import { common, spaceLg } from '../../theme';
+import { spaceLg } from '../../theme';
 
 export const LogoWrapper = styled.div({
   label: 'logo-wrapper',

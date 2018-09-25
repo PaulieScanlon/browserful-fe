@@ -55,6 +55,9 @@ Access URL:
 
 ### caniuse data
 
-API:  
-`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-1.0.json`  
+API:
+data-2.0.json has a better 'version_list' use this version NOT data-1.0.json!
+`http://jsonviewer.stack.hu/#http://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json`
 `https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json`
+
+~~`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-1.0.json`~~

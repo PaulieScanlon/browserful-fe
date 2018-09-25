@@ -1,19 +1,21 @@
 import * as React from 'react';
 
-import { fetchRepos } from '../utils/fetch';
+import { fetchCanIuseData2 } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { SideBar } from '../components/SideBar';
-import { spaceLg } from '../theme';
-import { P } from '../typography';
+import { spaceLg, spaceMd } from '../theme';
+import { BrowserCard } from '../components/BrowserCard';
 interface IProps {
   data: any;
+  isLoading: boolean;
+  hasErrored: boolean;
 }
 
 class Matrix extends React.Component<IProps> {
   static async getInitialProps() {
-    const res = await fetchRepos();
+    const res = await fetchCanIuseData2();
 
     return {
       isLoading: res.isLoading,
@@ -23,23 +25,32 @@ class Matrix extends React.Component<IProps> {
   }
 
   render() {
-    const { name, stargazers_count } = this.props.data;
+    const { agents } = this.props.data;
+
+    const desktopBrowsers = Object.keys(agents).map((agent, i) => {
+      if (agents[agent].type === 'desktop') {
+        return <BrowserCard key={i} data={agents[agent]} />;
+      }
+    });
+
+    const mobileBrowsers = Object.keys(agents).map((agent, i) => {
+      if (agents[agent].type === 'mobile') {
+        return <BrowserCard key={i} data={agents[agent]} />;
+      }
+    });
 
     return (
       <React.Fragment>
         <HeadTag />
         <AppBar showLogo={false} fixed={true} />
         <SideBar active={true}>
-          {/* @TODO is there a better way to wrap the containers so they always have the correct margin top */}
-          <Container style={{ marginTop: `${spaceLg}px` }}>
+          <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
             <Row>
-              <Col xs={12} sm={6}>
-                <P>left content</P>
+              <Col xs={12} sm={12} md={12} lg={6}>
+                {desktopBrowsers}
               </Col>
-              <Col xs={12} sm={6}>
-                <P>right content</P>
-                <P> name : {name}</P>
-                <P>stargazers_count: {stargazers_count}</P>
+              <Col xs={12} sm={12} md={12} lg={6}>
+                {mobileBrowsers}
               </Col>
             </Row>
           </Container>

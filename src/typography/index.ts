@@ -7,7 +7,7 @@ export const font = {
   fontFamily: `Lato, sans-serif`,
   fontWeight: 400,
   fontSize: '14px',
-  lineHeight: '16px',
+  lineHeight: '18px',
   textAlign: 'left',
   marginTop: 0,
   marginBottom: 20,
@@ -27,6 +27,12 @@ interface IProps {
    * @default "block"
    **/
   display?: string;
+  bold?: boolean;
+
+  marginTop?: string;
+  marginRight?: string;
+  marginBottom?: string;
+  marginLeft?: string;
 }
 
 export const P = styled.p<IProps>(
@@ -45,7 +51,7 @@ export const H1 = styled.h1<IProps>(
     label: 'h1',
     fontWeight: 700,
     fontSize: '32px',
-    lineHeight: '32px'
+    lineHeight: '36px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -59,7 +65,7 @@ export const H2 = styled.h2<IProps>(
     label: 'h2',
     fontWeight: 700,
     fontSize: '28px',
-    lineHeight: '28px'
+    lineHeight: '32px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -73,7 +79,7 @@ export const H3 = styled.h3<IProps>(
     label: 'h3',
     fontWeight: 700,
     fontSize: '24px',
-    lineHeight: '24px'
+    lineHeight: '28px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -87,7 +93,7 @@ export const H4 = styled.h4<IProps>(
     label: 'h4',
     fontWeight: 700,
     fontSize: '20px',
-    lineHeight: '20px'
+    lineHeight: '24px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -100,8 +106,39 @@ export const H5 = styled.h5<IProps>(
     ...(font as any),
     label: 'h5',
     fontWeight: 400,
-    fontSize: '18px',
+    fontSize: '16px',
+    lineHeight: '20px',
+    marginBottom: 0
+  },
+  ({ fontColour, display }) => ({
+    color: fontColour,
+    display: display
+  })
+);
+
+export const H6 = styled.h6<IProps>(
+  {
+    ...(font as any),
+    label: 'h6',
+    fontWeight: 400,
+    fontSize: '14px',
     lineHeight: '18px',
+    marginBottom: 0
+  },
+  ({ fontColour, display, bold, marginLeft }) => ({
+    color: fontColour,
+    display: display,
+    fontWeight: bold ? 700 : 400,
+    marginLeft: marginLeft
+  })
+);
+
+export const BrowserfulLogoText = styled.div<IProps>(
+  {
+    ...(font as any),
+    label: 'browserful-logo-text',
+    fontSize: '18px',
+    lineHeight: '22px',
     marginBottom: 0
   },
   ({ fontColour, display }) => ({

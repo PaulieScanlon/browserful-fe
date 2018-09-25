@@ -1,4 +1,10 @@
 const withTypescript = require('@zeit/next-typescript');
-module.exports = withTypescript({
-  useFileSystemPublicRoutes: false
-});
+const withImages = require('next-images');
+
+module.exports = withTypescript(
+  withImages({
+    webpack(config, options) {
+      return config;
+    }
+  })
+);

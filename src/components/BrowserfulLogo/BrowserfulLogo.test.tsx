@@ -9,7 +9,7 @@ import { colours } from '../../theme';
 import { BrowserfulLogo } from './';
 
 import { LogoWrapper, SvgWrapper } from './styles';
-import { H5 } from '../../typography';
+import { BrowserfulLogoText } from '../../typography';
 
 const shallowDefault = props => {
   return shallow(<BrowserfulLogo {...props} />);
@@ -37,8 +37,8 @@ describe('<BrowserfulLogo/>', () => {
   });
   it('renders text if showText:true', () => {
     const wrapper = mountDefault({ showText: true });
-    const h5 = wrapper.find(H5);
-    expect(h5).toHaveLength(1);
+    const browserfulLogoText = wrapper.find(BrowserfulLogoText);
+    expect(browserfulLogoText).toHaveLength(1);
   });
   it('renders logo with correct colour with logoColour', () => {
     const wrapper = mountDefault({ logoColour: colours.teal });
@@ -51,9 +51,9 @@ describe('<BrowserfulLogo/>', () => {
       showText: true,
       fontColour: colours.greyLight
     });
-    const h5 = wrapper.find(H5);
+    const browserfulLogoText = wrapper.find(BrowserfulLogoText);
     expect(wrapper.props().fontColour).toEqual(colours.greyLight);
-    expect(h5.props().fontColour).toEqual(colours.greyLight);
-    expect(h5).toHaveStyleRule('color', `${colours.greyLight}`);
+    expect(browserfulLogoText.props().fontColour).toEqual(colours.greyLight);
+    expect(browserfulLogoText).toHaveStyleRule('color', `${colours.greyLight}`);
   });
 });

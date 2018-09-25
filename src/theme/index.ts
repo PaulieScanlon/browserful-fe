@@ -17,8 +17,8 @@ export const colours = {
 
 //box-shadow stolen from here: https://codepen.io/sdthornton/pen/wBZdXq
 
-export const spaceLg = 20;
-export const spaceMd = 10;
+export const spaceLg = 30;
+export const spaceMd = 15;
 export const spaceSm = 5;
 
 export const appBarZindex = 998;
@@ -40,5 +40,5 @@ export const common = {
     '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
   materialBoxShadow5:
     '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
-  transition: 'all 0.25s ease-in-out'
+  transition: 'all .3s ease-out'
 };
