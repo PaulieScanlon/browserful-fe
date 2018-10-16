@@ -7,4 +7,9 @@ module.exports = routes()
     name: 'app/messages',
     pattern: '/app/messages',
     page: 'app-messages'
+  })
+  .add({
+    name: 'preview/matrix',
+    pattern: '/preview/matrix',
+    page: 'preview-matrix'
   });

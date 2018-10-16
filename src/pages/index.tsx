@@ -21,6 +21,10 @@ class Index extends React.Component<{}> {
                   /app/matrix
                 </RouteTag>
               </div>
+              <div style={{ marginBottom: '10px' }}>
+                This is the preview matrix page =>
+                <RouteTag route="preview/matrix">/preview/matrix</RouteTag>
+              </div>
               <div>
                 This is just a temporary page with some WIP Redux stuff =>
                 <RouteTag route="app/messages">/app/messages</RouteTag>
