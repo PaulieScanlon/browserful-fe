@@ -20,18 +20,29 @@ interface IProps {
   onChange: (value: number[]) => void;
 }
 
-const marks = {
-  1970: '1970',
-  2018: 'now'
-};
+// const marks = {
+//   1970: '1970',
+//   2018: 'now'
+// };
 
 const createMarks = (min: number, max: number) => {
-  const x = d3
-    .scaleLinear()
-    .domain([min, max])
-    .range([min, max]);
+  const x = d3.scaleLinear().domain([min, max]);
+  const ticks = x.ticks(10);
 
-  return x.ticks(9);
+  const marks = ticks.reduce(
+    (acc, curr) => ({
+      ...acc,
+      [curr]: curr
+    }),
+    {}
+  );
+
+  // const thing = Object.assign({ 2018: 2018 }, marks);
+
+  console.log(marks);
+
+  return marks;
+  // return Object.assign({ 2018: 2018 }, marks);
 };
 
 const RangeHandle: React.SFC<{}> = (props): any => {
@@ -50,7 +61,7 @@ export const RangeSlider: React.SFC<IProps> = ({
   sliderColour,
   onChange
 }: IProps) => {
-  createMarks(min, max);
+  // console.log(createMarks(min, max));
 
   return (
     <RangeSliderWrapper sliderColour={sliderColour}>
@@ -59,7 +70,8 @@ export const RangeSlider: React.SFC<IProps> = ({
         max={max}
         defaultValue={[min, max]}
         handle={RangeHandle}
-        marks={marks}
+        marks={createMarks(min, max)}
+        // marks={marks}
         // tipFormatter={value => `${value}%`}
         tipFormatter={value => value}
         // tipProps={{
