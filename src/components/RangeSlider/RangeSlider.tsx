@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
-const d3 = require('d3-scale');
 
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
@@ -16,20 +15,20 @@ import { colours } from '../../theme';
 interface IProps {
   min: number;
   max: number;
+  steps: number;
   sliderColour?: string;
   onChange: (value: number[]) => void;
 }
 
-// const marks = {
-//   1970: '1970',
-//   2018: 'now'
-// };
+const inclusiveRange = (min, max, steps) => {
+  return Array.from(
+    Array.from(Array(Math.ceil((max - min + 1) / steps)).keys()),
+    x => min + x * steps
+  );
+};
 
-const createMarks = (min: number, max: number) => {
-  const x = d3.scaleLinear().domain([min, max]);
-  const ticks = x.ticks(10);
-
-  const marks = ticks.reduce(
+const createMarks = (min: number, max: number, steps: number) => {
+  const marks = inclusiveRange(min, max, steps).reduce(
     (acc, curr) => ({
       ...acc,
       [curr]: curr
@@ -37,12 +36,7 @@ const createMarks = (min: number, max: number) => {
     {}
   );
 
-  // const thing = Object.assign({ 2018: 2018 }, marks);
-
-  console.log(marks);
-
   return marks;
-  // return Object.assign({ 2018: 2018 }, marks);
 };
 
 const RangeHandle: React.SFC<{}> = (props): any => {
@@ -58,11 +52,10 @@ const RangeHandle: React.SFC<{}> = (props): any => {
 export const RangeSlider: React.SFC<IProps> = ({
   min,
   max,
+  steps,
   sliderColour,
   onChange
 }: IProps) => {
-  // console.log(createMarks(min, max));
-
   return (
     <RangeSliderWrapper sliderColour={sliderColour}>
       <Range
@@ -70,13 +63,8 @@ export const RangeSlider: React.SFC<IProps> = ({
         max={max}
         defaultValue={[min, max]}
         handle={RangeHandle}
-        marks={createMarks(min, max)}
-        // marks={marks}
-        // tipFormatter={value => `${value}%`}
+        marks={createMarks(min, max, steps)}
         tipFormatter={value => value}
-        // tipProps={{
-        //   visible: true
-        // }}
         onChange={onChange}
       />
     </RangeSliderWrapper>

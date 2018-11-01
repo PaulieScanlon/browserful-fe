@@ -22,7 +22,12 @@ stories.add(
     'RangeSlider accepts input ranges for versions, global usage and release dates'
   )(() => (
     <div style={styles}>
-      <RangeSlider min={1970} max={2018} onChange={value => onChange(value)} />
+      <RangeSlider
+        min={1970}
+        max={2018}
+        steps={8}
+        onChange={value => onChange(value)}
+      />
     </div>
   ))
 );
@@ -32,8 +37,9 @@ stories.add(
   withInfo('RangeSlider can be themed by using the sliderColour prop')(() => (
     <div style={styles}>
       <RangeSlider
-        min={1970}
+        min={1980}
         max={2018}
+        steps={4}
         sliderColour={colours.teal}
         onChange={value => onChange(value)}
       />
@@ -46,8 +52,9 @@ stories.add(
   withInfo('RangeSlider can be themed by using the sliderColour prop')(() => (
     <div style={styles}>
       <RangeSlider
-        min={1970}
-        max={2018}
+        min={1990}
+        max={2020}
+        steps={5}
         sliderColour={colours.blue}
         onChange={value => onChange(value)}
       />
