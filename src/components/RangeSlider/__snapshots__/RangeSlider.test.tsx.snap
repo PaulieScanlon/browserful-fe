@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RangeSlider> renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RangeSlider
+    max={2018}
+    min={1970}
+    onChange={[Function]}
+    sliderColour="#ff5ca3"
+    steps={8}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <ComponentWrapper
+        defaultValue={
+          Array [
+            1970,
+            2018,
+          ]
+        }
+        handle={[Function]}
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        marks={
+          Object {
+            "1970": 1970,
+            "1978": 1978,
+            "1986": 1986,
+            "1994": 1994,
+            "2002": 2002,
+            "2010": 2010,
+            "2018": 2018,
+          }
+        }
+        max={2018}
+        min={1970}
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />,
+      "sliderColour": "#ff5ca3",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "defaultValue": Array [
+          1970,
+          2018,
+        ],
+        "handle": [Function],
+        "handleStyle": Array [
+          Object {},
+        ],
+        "marks": Object {
+          "1970": 1970,
+          "1978": 1978,
+          "1986": 1986,
+          "1994": 1994,
+          "2002": 2002,
+          "2010": 2010,
+          "2018": 2018,
+        },
+        "max": 2018,
+        "min": 1970,
+        "onChange": [Function],
+        "tipFormatter": [Function],
+        "tipProps": Object {},
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <ComponentWrapper
+          defaultValue={
+            Array [
+              1970,
+              2018,
+            ]
+          }
+          handle={[Function]}
+          handleStyle={
+            Array [
+              Object {},
+            ]
+          }
+          marks={
+            Object {
+              "1970": 1970,
+              "1978": 1978,
+              "1986": 1986,
+              "1994": 1994,
+              "2002": 2002,
+              "2010": 2010,
+              "2018": 2018,
+            }
+          }
+          max={2018}
+          min={1970}
+          onChange={[Function]}
+          tipFormatter={[Function]}
+          tipProps={Object {}}
+        />,
+        "sliderColour": "#ff5ca3",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "defaultValue": Array [
+            1970,
+            2018,
+          ],
+          "handle": [Function],
+          "handleStyle": Array [
+            Object {},
+          ],
+          "marks": Object {
+            "1970": 1970,
+            "1978": 1978,
+            "1986": 1986,
+            "1994": 1994,
+            "2002": 2002,
+            "2010": 2010,
+            "2018": 2018,
+          },
+          "max": 2018,
+          "min": 1970,
+          "onChange": [Function],
+          "tipFormatter": [Function],
+          "tipProps": Object {},
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
