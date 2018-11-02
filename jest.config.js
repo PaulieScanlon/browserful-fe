@@ -7,6 +7,9 @@ module.exports = {
     '^.+\\.tsx?$': 'babel-jest'
   },
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  moduleNameMapper: {
+    '\\.(css|less)$': 'identity-obj-proxy'
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: false,
   verbose: false,
