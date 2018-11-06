@@ -6,13 +6,14 @@ export const colours = {
   greyDark: '#333333',
   greyMid: '#404040',
   greyLight: '#cccccc',
-  greyUltraLight: 'dedede',
+  greyUltraLight: '#dedede',
   offWhite: '#f7f7f7',
   white: '#ffffff',
   greenLight: '#e8faf2',
   green: '#00b256',
   redLight: '#ffefef',
-  red: '#ff000f'
+  red: '#ff000f',
+  transparent: 'rgba(0,0,0,0)'
 };
 
 //box-shadow stolen from here: https://codepen.io/sdthornton/pen/wBZdXq

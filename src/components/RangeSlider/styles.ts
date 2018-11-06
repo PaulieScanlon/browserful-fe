@@ -18,6 +18,9 @@ const coreStyles = () =>
     .rc-slider {
       height: 24px;
       padding: 10px 0px;
+      width: 95%;
+      position: relative;
+      margin: 0 auto;
     }
 
     .rc-slider-rail,
@@ -51,4 +54,7 @@ const coreStyles = () =>
 export const RangeSliderWrapper = styled('span')`
   ${coreStyles};
   ${colourStyles};
+  position: relative;
+  display: block;
+  margin: 10px 0px 40px 0px;
 `;
