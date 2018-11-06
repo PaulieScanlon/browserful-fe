@@ -7,4 +7,9 @@ module.exports = routes()
     name: 'app/messages',
     pattern: '/app/messages',
     page: 'app-messages'
+  })
+  .add({
+    name: 'freeview/matrix',
+    pattern: '/freeview/matrix',
+    page: 'freeview-matrix'
   });
