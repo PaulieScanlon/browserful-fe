@@ -9,7 +9,7 @@ module.exports = routes()
     page: 'app-messages'
   })
   .add({
-    name: 'preview/matrix',
-    pattern: '/preview/matrix',
-    page: 'preview-matrix'
+    name: 'freeview/matrix',
+    pattern: '/freeview/matrix',
+    page: 'freeview-matrix'
   });

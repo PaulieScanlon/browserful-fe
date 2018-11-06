@@ -22,8 +22,8 @@ class Index extends React.Component<{}> {
                 </RouteTag>
               </div>
               <div style={{ marginBottom: '10px' }}>
-                This is the preview matrix page =>
-                <RouteTag route="preview/matrix">/preview/matrix</RouteTag>
+                This is the freeview matrix page =>
+                <RouteTag route="freeview/matrix">/freeview/matrix</RouteTag>
               </div>
               <div>
                 This is just a temporary page with some WIP Redux stuff =>
