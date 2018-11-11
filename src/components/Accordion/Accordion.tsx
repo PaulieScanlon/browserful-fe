@@ -11,31 +11,23 @@ import {
 interface IProps {
   maxHeight?: string;
   items: any;
-  variant?: string;
+  name?: string;
+  defaultChecked?: string | number;
 }
 
 export const Accordion: React.SFC<IProps> = ({
   maxHeight,
   items,
-  variant
+  name,
+  defaultChecked
 }: IProps) => {
-  let type = {};
-  if (variant === 'radio') {
-    type = {
-      type: 'radio',
-      name: 'accordion-group'
-    };
-  } else {
-    type = {
-      type: 'checkbox'
-    };
-  }
-
   const itemMarkup = items.map((item, i) => {
     return (
       <div key={`item-${i}`}>
         <Input
-          {...type}
+          type="radio"
+          name={name}
+          defaultChecked={i === defaultChecked}
           id={`panel-${item.title}-${i}`}
           maxHeight={maxHeight}
         />
@@ -52,5 +44,5 @@ export const Accordion: React.SFC<IProps> = ({
 
 Accordion.defaultProps = {
   maxHeight: '100px',
-  variant: 'radio'
+  defaultChecked: ''
 };

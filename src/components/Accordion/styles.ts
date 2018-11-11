@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { common, colours, spaceMd, spaceSm } from '../../theme';
+import { common, colours, spaceMd } from '../../theme';
 
 interface IProps {
   maxHeight: string;
@@ -22,9 +22,10 @@ export const Input = styled.input<IProps>(
 
     ':checked + label': {
       '&:after': {
-        content: `""`,
-        border: `1px solid ${colours.greyLight}`,
-        backgroundColor: `${colours.greyLight}`
+        content: `"•"`,
+        border: `1px solid ${colours.pink}`,
+        backgroundColor: `${colours.pink}`,
+        color: colours.pink
       }
     }
   },
@@ -46,17 +47,18 @@ export const Label = styled.label({
   borderBottom: `1px solid ${colours.greyLight}`,
   transition: `${common.transition}`,
   ':after': {
-    content: `""`,
+    content: `"•"`,
     position: 'absolute',
-    width: '16px',
-    height: '16px',
+    width: '20px',
+    height: '20px',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderRadius: '100%',
     right: `${spaceMd}px`,
     textAlign: 'center',
     border: `1px solid ${colours.greyLight}`,
-    transition: `${common.transition}`
+    transition: `${common.transition}`,
+    color: colours.greyLight
   }
 });
 

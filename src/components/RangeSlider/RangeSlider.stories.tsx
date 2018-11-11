@@ -6,7 +6,11 @@ import { action } from '@storybook/addon-actions';
 import { RangeSlider } from './RangeSlider';
 import { colours } from '../../theme';
 
-const stories = storiesOf('RangeSlider', module);
+const SliderDecorator = story => (
+  <div style={{ marginTop: '20px' }}>{story()}</div>
+);
+
+const stories = storiesOf('RangeSlider', module).addDecorator(SliderDecorator);
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);

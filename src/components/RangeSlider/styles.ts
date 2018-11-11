@@ -1,6 +1,5 @@
 import styled, { css } from 'react-emotion';
 import { colours, common } from '../../theme';
-import { spaceSm } from '../../theme/index';
 
 const colourStyles = props =>
   css`
@@ -35,19 +34,24 @@ const coreStyles = () =>
     }
 
     .rc-slider-handle {
-      width: 22px;
-      height: 22px;
-      margin-top: -9px;
-      margin-left: -12px;
-      border-color: ${colours.offWhite};
-      box-shadow: ${common.materialBoxShadow1};
+      width: 6px;
+      height: 16px;
+      margin-top: -5px;
+      margin-left: -3px;
+      border-radius: 0px;
+      border: none;
+    }
+
+    .rc-slider-handle:active {
+      border: none;
+      box-shadow: none;
     }
 
     .rc-slider-dot {
       display: none;
     }
     .rc-slider-mark-text {
-      margin-top: ${spaceSm}px;
+      margin-top: 10px;
     }
   `;
 
