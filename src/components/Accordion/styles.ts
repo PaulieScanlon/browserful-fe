@@ -22,9 +22,12 @@ export const Input = styled.input<IProps>(
 
     ':checked + label': {
       '&:after': {
-        content: `"•"`,
-        border: `1px solid ${colours.pink}`,
-        backgroundColor: `${colours.pink}`,
+        content: `""`,
+        width: '14px',
+        height: '14px',
+        borderWidth: '4px',
+        borderColor: `${colours.pink}`,
+        backgroundColor: `${colours.white}`,
         color: colours.pink
       }
     }
@@ -46,8 +49,9 @@ export const Label = styled.label({
   color: colours.greyDark,
   borderBottom: `1px solid ${colours.greyLight}`,
   transition: `${common.transition}`,
+  boxSizing: 'border-box',
   ':after': {
-    content: `"•"`,
+    content: `""`,
     position: 'absolute',
     width: '20px',
     height: '20px',
@@ -56,7 +60,7 @@ export const Label = styled.label({
     borderRadius: '100%',
     right: `${spaceMd}px`,
     textAlign: 'center',
-    border: `1px solid ${colours.greyLight}`,
+    borderColor: `${colours.greyLight}`,
     transition: `${common.transition}`,
     color: colours.greyLight
   }
