@@ -1,11 +1,14 @@
 import * as React from 'react';
 
 import { fetchCanIuseData2 } from '../utils/fetch';
+import { sliderData } from '../mock-data/slider.data';
+
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { SideBar } from '../components/SideBar';
 import { spaceLg, spaceMd } from '../theme';
+import { Accordion } from '../components/Accordion';
 import { BrowserCard } from '../components/BrowserCard';
 interface IProps {
   data: any;
@@ -45,6 +48,11 @@ class Matrix extends React.Component<IProps> {
         <AppBar showLogo={false} fixed={true} />
         <SideBar active={true}>
           <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
+            <Row>
+              <Col xs={12} sm={12} md={12} lg={6}>
+                <Accordion name="storybook-accordion" items={[...sliderData]} />
+              </Col>
+            </Row>
             <Row>
               <Col xs={12} sm={12} md={12} lg={6}>
                 {desktopBrowsers}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
-import { sliderItems } from './mock.data';
+import { sliderData } from '../../mock-data/slider.data';
 
 import { Accordion } from './Accordion';
 
@@ -12,7 +12,7 @@ stories.add(
   'default usage',
   withInfo(
     'Accordion defaults to type radio and is useful for one-of type selections. A unique name must be provided to act as the group name'
-  )(() => <Accordion name="storybook-accordion" items={[...sliderItems]} />)
+  )(() => <Accordion name="storybook-accordion" items={[...sliderData]} />)
 );
 
 stories.add(
@@ -23,7 +23,7 @@ stories.add(
     <Accordion
       defaultChecked={1}
       name="storybook-accordion"
-      items={[...sliderItems]}
+      items={[...sliderData]}
     />
   ))
 );

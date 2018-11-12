@@ -1,12 +1,12 @@
-import { RangeSlider } from '../RangeSlider';
-import { colours } from '../../theme';
+import { RangeSlider } from '../components/RangeSlider';
+import { colours } from '../theme';
 import { action } from '@storybook/addon-actions';
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
 };
 
-export const sliderItems = [
+export const sliderData = [
   {
     title: 'By Date',
     component: () => (
