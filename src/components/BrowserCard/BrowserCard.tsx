@@ -2,34 +2,27 @@ import * as React from 'react';
 
 import {
   BrowserCardWrapper,
-  BrowserCardHeader,
-  BrowserCardHeaderSection,
-  BrowserCardBody,
-  BrowserCardFooter
+  Label,
+  Input,
+  ContentWrapper,
+  Content
 } from './styles';
-
-import { H6 } from '../../typography';
-import { spaceSm } from '../../theme';
 
 import { BrowserLogo } from '../BrowserLogo';
 import { VersionChip } from '../VersionChip';
-import { ExpandChip } from '../ExpandChip';
 
 interface IProps {
   data: any;
-  onExpandClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
-  onVersionClick?: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    id: string
-  ) => void;
-  isExpanded?: boolean;
+  maxHeight?: string;
+  defaultChecked?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, id: string) => void;
 }
 
 export const BrowserCard: React.SFC<IProps> = ({
   data,
-  onExpandClick,
-  onVersionClick,
-  isExpanded
+  maxHeight,
+  defaultChecked,
+  onClick
 }: IProps) => {
   const { browser, version_list } = data;
 
@@ -41,39 +34,33 @@ export const BrowserCard: React.SFC<IProps> = ({
         version={parseInt(obj.version) || 0}
         isIncluded={obj.isIncluded}
         always={obj.always}
-        onClick={(event, id) => onVersionClick(event, id)}
+        onClick={(event, id) => onClick(event, id)}
       />
     );
   });
 
   return (
     <BrowserCardWrapper>
-      <BrowserCardHeader isExpanded={isExpanded}>
-        <BrowserCardHeaderSection>
-          <BrowserLogo browser={browser} />
-          <H6 marginLeft={`${spaceSm}px`} display="inline-flex">
-            {browser}
-          </H6>
-        </BrowserCardHeaderSection>
+      <Input
+        type="checkbox"
+        defaultChecked={defaultChecked}
+        id={`panel-${browser}`}
+        maxHeight={maxHeight}
+      />
 
-        <BrowserCardHeaderSection>
-          <ExpandChip
-            isExpanded={isExpanded}
-            onClick={event => onExpandClick(event)}
-          />
-        </BrowserCardHeaderSection>
-      </BrowserCardHeader>
-      <BrowserCardBody isExpanded={isExpanded}>
-        {versions}
-
-        <BrowserCardFooter>BrowserCardFooter</BrowserCardFooter>
-      </BrowserCardBody>
+      <Label htmlFor={`panel-${browser}`}>
+        <BrowserLogo browser={browser} />
+        {browser}
+      </Label>
+      <ContentWrapper>
+        <Content>{versions}</Content>
+      </ContentWrapper>
     </BrowserCardWrapper>
   );
 };
 
 BrowserCard.defaultProps = {
-  isExpanded: true,
-  onExpandClick: () => {},
-  onVersionClick: () => {}
+  maxHeight: '400px',
+  defaultChecked: false,
+  onClick: () => {}
 };

@@ -1,53 +1,87 @@
 import styled from 'react-emotion';
-import { common, colours, spaceLg, spaceMd } from '../../theme';
+import { common, colours, spaceMd } from '../../theme';
 
 interface IProps {
-  isExpanded?: boolean;
+  maxHeight: string;
 }
 
 export const BrowserCardWrapper = styled.div({
-  label: 'browser-card-wrapper',
-  backgroundColor: colours.white,
+  label: 'acorrdion-wrapper',
+  position: 'relative',
+  width: '100%',
   boxShadow: common.materialBoxShadow1,
-  marginBottom: `${spaceLg}px`
+  marginBottom: `${spaceMd}px`
 });
 
-export const BrowserCardHeader = styled.div<IProps>(
+export const Input = styled.input<IProps>(
   {
-    label: 'browser-card-header',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: `0 ${spaceMd}px`,
-    padding: `${spaceMd}px 0px`,
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid'
+    label: 'input',
+    position: 'absolute',
+    top: '-10px',
+    left: '-10px',
+    display: 'none',
+
+    ':checked + label': {
+      '&:after': {
+        content: `""`,
+        width: '14px',
+        height: '14px',
+        borderWidth: '4px',
+        borderColor: `${colours.pink}`,
+        backgroundColor: `${colours.white}`,
+        color: colours.pink
+      }
+    }
   },
-  ({ isExpanded }) => ({
-    borderBottomColor: isExpanded ? colours.greyLight : colours.white
+  ({ maxHeight }) => ({
+    ':checked ~ div': {
+      maxHeight: maxHeight
+    }
   })
 );
 
-export const BrowserCardHeaderSection = styled.div({
-  label: 'browser-card-header-section',
-  display: 'inline-flex',
-  alignItems: 'center'
+export const Label = styled.label({
+  label: 'label',
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  backgroundColor: 'white',
+  cursor: 'pointer',
+  padding: `${spaceMd}px`,
+  color: colours.greyDark,
+  borderBottom: `1px solid ${colours.greyLight}`,
+  transition: `${common.transition}`,
+  boxSizing: 'border-box',
+  img: {
+    marginRight: `${spaceMd}px`
+  },
+  ':after': {
+    content: `""`,
+    position: 'absolute',
+    width: '20px',
+    height: '20px',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderRadius: '100%',
+    right: `${spaceMd}px`,
+    textAlign: 'center',
+    borderColor: `${colours.greyLight}`,
+    transition: `${common.transition}`,
+    color: colours.greyLight
+  }
 });
 
-export const BrowserCardBody = styled.div<IProps>(
-  {
-    label: 'browser-card-body',
-    overflow: 'hidden'
-  },
-  ({ isExpanded }) => ({
-    height: isExpanded ? '100%' : '0px',
-    padding: isExpanded ? `${spaceMd}px ${spaceMd}px` : `0px ${spaceMd}px`
-  })
-);
+export const ContentWrapper = styled.div({
+  label: 'content-wrapper',
+  overflow: 'hidden',
+  maxHeight: '0px',
+  transition: `${common.transition}`,
+  padding: `0px ${spaceMd}px`,
+  backgroundColor: colours.white,
+  color: colours.greyDark
+});
 
-export const BrowserCardFooter = styled.div({
-  label: 'browser-card-footer',
-  margin: `${spaceMd}px 0px`,
-  paddingTop: `${spaceLg}px`,
-  borderTop: `1px solid ${colours.greenLight}`
+export const Content = styled.div({
+  label: 'content',
+  margin: `${common.paddingTB} 0px`
 });
