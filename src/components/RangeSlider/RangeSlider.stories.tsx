@@ -6,14 +6,14 @@ import { action } from '@storybook/addon-actions';
 import { RangeSlider } from './RangeSlider';
 import { colours } from '../../theme';
 
-const stories = storiesOf('RangeSlider', module);
+const SliderDecorator = story => (
+  <div style={{ marginTop: '20px' }}>{story()}</div>
+);
+
+const stories = storiesOf('RangeSlider', module).addDecorator(SliderDecorator);
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
-};
-
-const styles = {
-  marginTop: '25px'
 };
 
 stories.add(
@@ -21,43 +21,37 @@ stories.add(
   withInfo(
     'RangeSlider accepts input ranges for versions, global usage and release dates'
   )(() => (
-    <div style={styles}>
-      <RangeSlider
-        min={1970}
-        max={2018}
-        steps={8}
-        onChange={value => onChange(value)}
-      />
-    </div>
+    <RangeSlider
+      min={1970}
+      max={2018}
+      steps={8}
+      onChange={value => onChange(value)}
+    />
   ))
 );
 
 stories.add(
   'sliderColour: teal',
   withInfo('RangeSlider can be themed by using the sliderColour prop')(() => (
-    <div style={styles}>
-      <RangeSlider
-        min={1980}
-        max={2018}
-        steps={4}
-        sliderColour={colours.teal}
-        onChange={value => onChange(value)}
-      />
-    </div>
+    <RangeSlider
+      min={1980}
+      max={2018}
+      steps={4}
+      sliderColour={colours.teal}
+      onChange={value => onChange(value)}
+    />
   ))
 );
 
 stories.add(
   'sliderColour: blue',
   withInfo('RangeSlider can be themed by using the sliderColour prop')(() => (
-    <div style={styles}>
-      <RangeSlider
-        min={1990}
-        max={2020}
-        steps={5}
-        sliderColour={colours.blue}
-        onChange={value => onChange(value)}
-      />
-    </div>
+    <RangeSlider
+      min={1990}
+      max={2020}
+      steps={5}
+      sliderColour={colours.blue}
+      onChange={value => onChange(value)}
+    />
   ))
 );

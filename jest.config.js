@@ -11,6 +11,7 @@ module.exports = {
     '\\.(css|less)$': 'identity-obj-proxy'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  transformIgnorePatterns: ['js'],
   collectCoverage: false,
   verbose: false,
   watchPlugins: [
