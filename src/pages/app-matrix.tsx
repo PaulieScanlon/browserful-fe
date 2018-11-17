@@ -48,7 +48,7 @@ class Matrix extends React.Component<IProps> {
         <AppBar showLogo={false} fixed={true} />
         <SideBar active={true}>
           <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
-            <Row>
+            <Row style={{ marginBottom: `${spaceLg}px` }}>
               <Col xs={12} sm={12} md={12} lg={6}>
                 <Accordion name="storybook-accordion" items={[...sliderData]} />
               </Col>
