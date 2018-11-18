@@ -1,7 +1,6 @@
 import * as React from 'react';
-
+import Link from 'next/link';
 import { HeadTag } from '../components/HeadTag';
-import { RouteTag } from '../components/RouteTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { spaceLg } from '../theme';
@@ -16,18 +15,33 @@ class Index extends React.Component<{}> {
           <Row>
             <Col sm={12}>
               <div style={{ marginBottom: '10px' }}>
-                This is the main matrix page =>
-                <RouteTag route="app/matrix" params={{ id: 1 }}>
-                  /app/matrix
-                </RouteTag>
+                This is the{' '}
+                <Link href={{ pathname: '/app/matrix' }}>
+                  <a>app/matrix</a>
+                </Link>{' '}
+                page
               </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
               <div style={{ marginBottom: '10px' }}>
-                This is the freeview matrix page =>
-                <RouteTag route="freeview/matrix">/freeview/matrix</RouteTag>
+                This is the{' '}
+                <Link href={{ pathname: '/app/messages' }}>
+                  <a>app/messages</a>
+                </Link>{' '}
+                page
               </div>
-              <div>
-                This is just a temporary page with some WIP Redux stuff =>
-                <RouteTag route="app/messages">/app/messages</RouteTag>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <div style={{ marginBottom: '10px' }}>
+                This is the{' '}
+                <Link href="/freeview/matrix">
+                  <a>freeview/matrix</a>
+                </Link>{' '}
+                page
               </div>
             </Col>
           </Row>

@@ -24,14 +24,14 @@ stories.add(
 stories.add(
   'showLogo',
   withInfo('The showLogo prop controls the visibility of the Browserful logo')(
-    () => <AppBar showLogo={false} disableLink={true} />
+    () => <AppBar showLogo={false} />
   )
 );
 
 stories.add(
   'children: HTML',
   withInfo('Children can be HTML')(() => (
-    <AppBar disableLink={true}>
+    <AppBar>
       <span style={{ marginRight: `${spaceLg}px` }}>Hi, I'm an HTML child</span>
     </AppBar>
   ))
@@ -40,7 +40,7 @@ stories.add(
 stories.add(
   'children: React',
   withInfo('Children can be React components')(() => (
-    <AppBar disableLink={true}>
+    <AppBar>
       <span style={{ marginRight: `${spaceLg}px` }}>
         <Button onClick={event => onClick(event)}>Click me</Button>
       </span>

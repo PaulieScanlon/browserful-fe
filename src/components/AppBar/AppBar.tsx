@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { BrowserfulLogo } from '../BrowserfulLogo';
 import { AppBarWrapper } from './styles';
-import { RouteTag } from '../RouteTag';
+import Link from 'next/link';
 
 interface IProps extends React.Props<ChildNode> {
   showLogo?: boolean;
@@ -13,15 +13,16 @@ interface IProps extends React.Props<ChildNode> {
 export const AppBar: React.SFC<IProps> = ({
   showLogo,
   fixed,
-  disableLink,
   children
 }: IProps) => {
   return (
     <AppBarWrapper fixed={fixed}>
       {showLogo && (
-        <RouteTag route="/" disableLink={disableLink}>
-          <BrowserfulLogo />
-        </RouteTag>
+        <Link href="/">
+          <a>
+            <BrowserfulLogo />
+          </a>
+        </Link>
       )}
       {children}
     </AppBarWrapper>
