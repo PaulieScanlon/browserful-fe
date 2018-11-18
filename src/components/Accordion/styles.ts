@@ -9,74 +9,62 @@ export const AccordionWrapper = styled.div({
   label: 'acorrdion-wrapper',
   position: 'relative',
   width: '100%',
-  boxShadow: common.materialBoxShadow1
+  boxShadow: common.materialBoxShadow1,
+  backgroundColor: colours.white
 });
 
-export const Input = styled.input<IProps>(
+export const AccordionInput = styled.input<IProps>(
   {
-    label: 'input',
+    label: 'accordion-input',
     position: 'absolute',
     top: '-10px',
     left: '-10px',
     display: 'none',
 
     ':checked + label': {
+      color: colours.greyMid,
       '&:after': {
         content: `""`,
-        width: '14px',
-        height: '14px',
-        borderWidth: '4px',
-        borderColor: `${colours.pink}`,
-        backgroundColor: `${colours.white}`,
-        color: colours.pink
+        backgroundColor: colours.pink
       }
     }
   },
   ({ maxHeight }) => ({
-    ':checked ~ div': {
+    ':checked + label + div': {
       maxHeight: maxHeight
     }
   })
 );
 
-export const Label = styled.label({
-  label: 'label',
-  position: 'relative',
-  display: 'block',
-  backgroundColor: 'white',
-  cursor: 'pointer',
+export const AccordionLabel = styled.label({
+  label: 'accordion-label',
+  display: 'flex',
+  justifyContent: 'space-between',
   padding: `${spaceMd}px`,
-  color: colours.greyDark,
-  borderBottom: `1px solid ${colours.greyLight}`,
-  transition: `${common.transition}`,
+  cursor: 'pointer',
   boxSizing: 'border-box',
-  ':after': {
+  borderBottom: `1px solid ${colours.greyLight}`,
+  color: colours.greyLight,
+  transition: `${common.transition}`,
+  '&:after': {
     content: `""`,
-    position: 'absolute',
-    width: '20px',
-    height: '20px',
-    borderWidth: '1px',
-    borderStyle: 'solid',
+    width: '14px',
+    height: '14px',
     borderRadius: '100%',
-    right: `${spaceMd}px`,
-    textAlign: 'center',
-    borderColor: `${colours.greyLight}`,
-    transition: `${common.transition}`,
-    color: colours.greyLight
+    backgroundColor: colours.greyUltraLight,
+    transition: `${common.transition}`
   }
 });
 
-export const ContentWrapper = styled.div({
-  label: 'content-wrapper',
+export const AccordionContent = styled.div({
+  label: 'accordion-content',
   overflow: 'hidden',
   maxHeight: '0px',
-  transition: `${common.transition}`,
-  padding: `0px ${spaceMd}px`,
   backgroundColor: colours.offWhite,
-  color: colours.greyDark
+  transition: `${common.transition}`
 });
 
-export const Content = styled.div({
-  label: 'content',
-  padding: `${common.paddingTB} 0px`
+export const AccordionContentInner = styled.div({
+  padding: `${spaceMd}px`,
+  color: colours.greyMid
 });

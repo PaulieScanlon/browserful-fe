@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { fetchCanIuseData2 } from '../utils/fetch';
-import { sliderData } from '../mock-data/slider.data';
 
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { SideBar } from '../components/SideBar';
 import { spaceLg, spaceMd } from '../theme';
-import { Accordion } from '../components/Accordion';
+import { Accordion, AccordionItem } from '../components/Accordion';
+import { RangeSlider } from '../components/RangeSlider';
 import { BrowserCard } from '../components/BrowserCard';
 interface IProps {
   data: any;
@@ -50,7 +50,11 @@ class Matrix extends React.Component<IProps> {
           <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
             <Row style={{ marginBottom: `${spaceLg}px` }}>
               <Col xs={12} sm={12} md={12} lg={6}>
-                <Accordion name="storybook-accordion" items={[...sliderData]} />
+                <Accordion type="radio" name="storybook-accordion">
+                  <AccordionItem defaultChecked label="Item 1">
+                    <RangeSlider min={1970} max={2018} steps={8} />
+                  </AccordionItem>
+                </Accordion>
               </Col>
             </Row>
             <Row>

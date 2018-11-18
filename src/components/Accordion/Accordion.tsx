@@ -2,47 +2,65 @@ import * as React from 'react';
 
 import {
   AccordionWrapper,
-  Label,
-  Input,
-  ContentWrapper,
-  Content
+  AccordionLabel,
+  AccordionInput,
+  AccordionContent,
+  AccordionContentInner
 } from './styles';
 
 interface IProps {
   maxHeight?: string;
-  items: any;
+  type?: string;
   name?: string;
-  defaultChecked?: string | number;
+  children: React.ReactNode;
+}
+
+interface EProps extends IProps {
+  label: string;
+  defaultChecked?: boolean;
 }
 
 export const Accordion: React.SFC<IProps> = ({
-  maxHeight,
-  items,
+  type,
   name,
-  defaultChecked
+  children
 }: IProps) => {
-  const itemMarkup = items.map((item, i) => {
-    return (
-      <div key={`item-${i}`}>
-        <Input
-          type="radio"
-          name={name}
-          defaultChecked={i === defaultChecked}
-          id={`panel-${item.title}-${i}`}
-          maxHeight={maxHeight}
-        />
-        <Label htmlFor={`panel-${item.title}-${i}`}>{item.title}</Label>
-        <ContentWrapper>
-          <Content>{item.component()}</Content>
-        </ContentWrapper>
-      </div>
-    );
+  const _children = React.Children.map(children, child => {
+    return React.cloneElement(child as any, {
+      type: type,
+      name: name
+    });
   });
-
-  return <AccordionWrapper>{itemMarkup}</AccordionWrapper>;
+  return <AccordionWrapper>{_children}</AccordionWrapper>;
 };
 
-Accordion.defaultProps = {
-  maxHeight: '100px',
-  defaultChecked: ''
+export const AccordionItem: React.SFC<EProps> = ({
+  label,
+  defaultChecked,
+  maxHeight,
+  type,
+  name,
+  children
+}: EProps) => {
+  return (
+    <React.Fragment>
+      <AccordionInput
+        id={label}
+        type={type}
+        name={name}
+        defaultChecked={defaultChecked}
+        maxHeight={maxHeight ? maxHeight : '100px'}
+      />
+      <AccordionLabel htmlFor={label}>{label}</AccordionLabel>
+
+      <AccordionContent>
+        <AccordionContentInner>{children}</AccordionContentInner>
+      </AccordionContent>
+    </React.Fragment>
+  );
 };
+
+// Accordion.defaultProps = {
+//   maxHeight: '100px'
+//   // defaultChecked: false
+// };
