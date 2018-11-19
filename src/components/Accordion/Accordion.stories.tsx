@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import { RangeSlider } from '../RangeSlider';
 import { Accordion, AccordionItem } from './Accordion';
+import { colours } from '../../theme';
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
@@ -52,8 +53,38 @@ stories.add(
 );
 
 stories.add(
-  'renderChildren',
-  withInfo('...')(() => (
+  'selectColour',
+  withInfo(
+    'The selectColour controls the colour of the checkbox/radio background'
+  )(() => (
+    <Accordion type="radio" name="storybook-accordion">
+      <AccordionItem selectColour={colours.teal} label="Item 1">
+        child 1
+      </AccordionItem>
+      <AccordionItem label="Item 2">child 2</AccordionItem>
+      <AccordionItem selectColour={colours.blue} label="Item 3">
+        child 3
+      </AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
+  'browser',
+  withInfo(
+    'The browser prop is used to display any of the predefined BrowserLogos'
+  )(() => (
+    <Accordion type="checkbox" name="storybook-accordion">
+      <AccordionItem browser="Chrome" label="Item 1">
+        child 1
+      </AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
+  'content',
+  withInfo('Content can be anything, not just text')(() => (
     <Accordion type="radio" name="storybook-accordion">
       <AccordionItem defaultChecked label="Item 1">
         <RangeSlider

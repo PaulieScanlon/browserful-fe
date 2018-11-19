@@ -3,10 +3,15 @@ import * as React from 'react';
 import {
   AccordionWrapper,
   AccordionLabel,
+  AccordionText,
   AccordionInput,
   AccordionContent,
   AccordionContentInner
 } from './styles';
+
+import { BrowserLogo } from '../BrowserLogo';
+
+import { colours } from '../../theme';
 
 interface IProps {
   maxHeight?: string;
@@ -17,7 +22,9 @@ interface IProps {
 
 interface EProps extends IProps {
   label: string;
+  browser?: string;
   defaultChecked?: boolean;
+  selectColour?: string;
 }
 
 export const Accordion: React.SFC<IProps> = ({
@@ -36,7 +43,9 @@ export const Accordion: React.SFC<IProps> = ({
 
 export const AccordionItem: React.SFC<EProps> = ({
   label,
+  browser,
   defaultChecked,
+  selectColour,
   maxHeight,
   type,
   name,
@@ -49,9 +58,13 @@ export const AccordionItem: React.SFC<EProps> = ({
         type={type}
         name={name}
         defaultChecked={defaultChecked}
-        maxHeight={maxHeight ? maxHeight : '100px'}
+        maxHeight={maxHeight}
+        selectColour={selectColour}
       />
-      <AccordionLabel htmlFor={label}>{label}</AccordionLabel>
+      <AccordionLabel htmlFor={label}>
+        {browser && <BrowserLogo browser={browser} />}
+        <AccordionText>{label}</AccordionText>
+      </AccordionLabel>
 
       <AccordionContent>
         <AccordionContentInner>{children}</AccordionContentInner>
@@ -60,7 +73,8 @@ export const AccordionItem: React.SFC<EProps> = ({
   );
 };
 
-// Accordion.defaultProps = {
-//   maxHeight: '100px'
-//   // defaultChecked: false
-// };
+AccordionItem.defaultProps = {
+  maxHeight: '100px',
+  defaultChecked: false,
+  selectColour: colours.pink
+};
