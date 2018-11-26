@@ -56,7 +56,7 @@ describe('<SideBar />', () => {
     const sideBarNav = wrapper.find(SideBarNav);
     expect(sideBarNav).toHaveStyleRule(
       'margin-left',
-      `-${common.sideBarWidth}`
+      `-${common.sideBar.width}`
     );
   });
 });

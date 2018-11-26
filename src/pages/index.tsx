@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-import { spaceLg } from '../theme';
+import { scaffolding } from '../theme';
 
 class Index extends React.Component<{}> {
   render() {
@@ -11,7 +11,7 @@ class Index extends React.Component<{}> {
       <React.Fragment>
         <HeadTag />
         <AppBar />
-        <Container fluid style={{ marginTop: `${spaceLg}px` }}>
+        <Container fluid style={{ marginTop: `${scaffolding.gutterLg}` }}>
           <Row>
             <Col sm={12}>
               <div style={{ marginBottom: '10px' }}>

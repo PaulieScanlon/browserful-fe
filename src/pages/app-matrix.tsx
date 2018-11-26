@@ -6,12 +6,12 @@ import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { SideBar } from '../components/SideBar';
-import { spaceLg, spaceMd } from '../theme';
+
 import { Accordion, AccordionItem } from '../components/Accordion';
 import { RangeSlider } from '../components/RangeSlider';
 import { VersionGrid } from '../components/VersionGrid';
 
-import { common, colours } from '../theme';
+import { scaffolding, colours } from '../theme';
 
 interface IProps {
   data: any;
@@ -51,7 +51,7 @@ class Matrix extends React.Component<IProps> {
                 <VersionGrid data={agents[agent]} />
               </AccordionItem>
             </Accordion>
-            <div style={{ height: `${spaceLg}px` }} />
+            <div style={{ height: `${scaffolding.gutterLg}` }} />
           </React.Fragment>
         );
       }
@@ -75,7 +75,7 @@ class Matrix extends React.Component<IProps> {
                 <VersionGrid data={agents[agent]} />
               </AccordionItem>
             </Accordion>
-            <div style={{ height: `${spaceLg}px` }} />
+            <div style={{ height: `${scaffolding.gutterLg}` }} />
           </React.Fragment>
         );
       }
@@ -84,14 +84,19 @@ class Matrix extends React.Component<IProps> {
     return (
       <React.Fragment>
         <HeadTag />
-        <AppBar showLogo={false} fixed={true} />
+        <AppBar showLogo={false} fixed={true} width="100%" />
         <SideBar active={true}>
-          <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
-            <Row style={{ marginBottom: `${spaceLg}px` }}>
+          <Container
+            fluid
+            style={{
+              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
+            }}
+          >
+            <Row style={{ marginBottom: `${scaffolding.gutterLg}` }}>
               <Col xs={12} sm={12} md={12} lg={6}>
                 <Accordion type="radio" name="selectors-accordion">
                   <AccordionItem defaultChecked label="Versions">
-                    <RangeSlider min={0} max={80} steps={10} />
+                    <RangeSlider min={-10} max={2} steps={12} />
                   </AccordionItem>
                   <AccordionItem selectColour={colours.teal} label="Years">
                     <RangeSlider

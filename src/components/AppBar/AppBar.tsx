@@ -7,16 +7,17 @@ import Link from 'next/link';
 interface IProps extends React.Props<ChildNode> {
   showLogo?: boolean;
   fixed?: boolean;
-  disableLink?: boolean;
+  width?: string | null;
 }
 
 export const AppBar: React.SFC<IProps> = ({
   showLogo,
   fixed,
+  width,
   children
 }: IProps) => {
   return (
-    <AppBarWrapper fixed={fixed}>
+    <AppBarWrapper fixed={fixed} width={width}>
       {showLogo && (
         <Link href="/">
           <a>
@@ -32,5 +33,5 @@ export const AppBar: React.SFC<IProps> = ({
 AppBar.defaultProps = {
   showLogo: true,
   fixed: false,
-  disableLink: false
+  width: null
 };

@@ -1,7 +1,6 @@
 import styled from 'react-emotion';
-// https://bootstrapious.com/p/bootstrap-sidebar
 
-import { common, colours, sideBarZindex, spaceLg, spaceSm } from '../../theme';
+import { common, colours, scaffolding } from '../../theme';
 
 interface IProps {
   active: boolean;
@@ -16,25 +15,25 @@ export const SideBarWrapper = styled.div({
 export const SideBarNav = styled.nav<IProps>(
   {
     label: 'side-bar-nav',
-    width: common.sideBarWidth,
+    width: common.sideBar.width,
     position: 'fixed',
     top: '0px',
     left: '0px',
     height: '100vh',
-    zIndex: sideBarZindex,
+    zIndex: common.sideBar.zIndex,
     backgroundColor: colours.greyMid
   },
   ({ active }) => ({
-    marginLeft: active ? '0px' : `-${common.sideBarWidth}`
+    marginLeft: active ? '0px' : `-${common.sideBar.width}`
   })
 );
 
 export const SideBarHeader = styled.div({
   label: 'side-bar-header',
-  borderRadius: common.borderRadius,
-  padding: `${spaceSm}px 0px`,
+  borderRadius: '5px',
+  padding: `${scaffolding.gutterSm} 0px`,
   backgroundColor: colours.greyDark,
-  margin: `${spaceLg}px`,
+  margin: `${scaffolding.gutterLg}`,
   textAlign: 'center',
   // This is just to position the BrowserfulLogo
   'a, div': {
@@ -45,8 +44,8 @@ export const SideBarHeader = styled.div({
 
 export const SideBarContent = styled.div({
   label: 'side-bar-content',
-  marginTop: common.appBarHeight,
-  width: `calc(100% - ${common.sideBarWidth})`,
+  marginTop: common.appBar.height,
+  width: `calc(100% - ${common.sideBar.width})`,
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',

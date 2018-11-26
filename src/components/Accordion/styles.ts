@@ -1,5 +1,10 @@
 import styled from 'react-emotion';
-import { common, colours, spaceMd } from '../../theme';
+import {
+  colours,
+  scaffolding,
+  transitionBuilder,
+  materialBuilder
+} from '../../theme';
 
 interface IProps {
   maxHeight: string;
@@ -14,7 +19,7 @@ export const AccordionWrapper = styled.div({
   label: 'acorrdion-wrapper',
   position: 'relative',
   width: '100%',
-  boxShadow: common.materialBoxShadow1,
+  boxShadow: `${materialBuilder(1)}`,
   backgroundColor: colours.white
 });
 
@@ -49,25 +54,25 @@ export const AccordionLabel = styled.label({
   label: 'accordion-label',
   display: 'flex',
   alignItems: 'center',
-  padding: `0px ${spaceMd}px`,
+  padding: `0px ${scaffolding.gutterLg}`,
   cursor: 'pointer',
   boxSizing: 'border-box',
   borderBottom: `1px solid ${colours.greyLight}`,
   color: colours.greyLight,
-  transition: `${common.transition}`,
+  transition: `${transitionBuilder('color')}`,
   '&:after': {
     content: `""`,
     width: '20px',
     height: '20px',
     borderRadius: '100%',
     backgroundColor: colours.greyUltraLight,
-    transition: `${common.transition}`
+    transition: `${transitionBuilder('background-color')}`
   }
 });
 
 export const AccordionText = styled.span({
   label: 'accordion-text',
-  padding: `${spaceMd}px 0px`,
+  padding: `${scaffolding.gutterLg} 0px`,
   display: 'flex',
   flexGrow: 1
 });
@@ -78,7 +83,7 @@ export const AccordionContent = styled.div<EProps>(
     overflow: 'hidden',
     maxHeight: '0px',
     backgroundColor: colours.offWhite,
-    transition: `${common.transition}`
+    transition: `${transitionBuilder('max-height')}`
   },
   ({ backgroundColour }) => ({
     backgroundColor: backgroundColour
@@ -86,6 +91,6 @@ export const AccordionContent = styled.div<EProps>(
 );
 
 export const AccordionContentInner = styled.div({
-  padding: `${spaceMd}px`,
+  padding: `${scaffolding.gutterLg}`,
   color: colours.greyMid
 });
