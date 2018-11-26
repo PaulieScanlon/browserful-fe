@@ -7,7 +7,7 @@ import { updateMessage } from '../modules/annoucements/actions/update_message';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-import { spaceLg } from '../theme';
+import { scaffolding } from '../theme';
 import { P } from '../typography';
 interface IProps {
   message: string;
@@ -25,7 +25,7 @@ class Messages extends React.Component<IProps, IState> {
         <HeadTag />
         <AppBar />
 
-        <Container fluid style={{ marginTop: `${spaceLg}px` }}>
+        <Container fluid style={{ marginTop: `${scaffolding.gutterLg}` }}>
           <Row>
             <Col xs={12} sm={5}>
               <P>This is nothing, just testing Redux</P>

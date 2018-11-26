@@ -3,7 +3,7 @@ import { fetchCanIuseData2 } from '../utils/fetch';
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-import { spaceLg, spaceMd, common } from '../theme';
+import { scaffolding, common } from '../theme';
 
 import styled from 'react-emotion';
 
@@ -40,9 +40,14 @@ class Freeview extends React.Component<IProps> {
     return (
       <React.Fragment>
         <HeadTag />
-        <AppBar fixed={true} />
+        <AppBar fixed={true} width="100%" />
         <FreeviewContent>
-          <Container fluid style={{ margin: `${spaceLg}px ${spaceMd}px` }}>
+          <Container
+            fluid
+            style={{
+              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
+            }}
+          >
             <Row>
               <Col xs={12} sm={12} md={12} lg={6}>
                 This is the preivew page. Add some BrowserCards if you like.

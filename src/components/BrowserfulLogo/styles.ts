@@ -1,12 +1,9 @@
 import styled from 'react-emotion';
 
-import { spaceLg } from '../../theme';
-
 export const LogoWrapper = styled.div({
   label: 'logo-wrapper',
   display: 'inline-flex',
-  alignItems: 'center',
-  marginLeft: `${spaceLg}px`
+  alignItems: 'center'
 });
 
 export const SvgWrapper = styled.span({

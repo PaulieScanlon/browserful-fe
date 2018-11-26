@@ -3,8 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
-import { spaceLg } from '../../theme';
-
 import { AppBar } from './AppBar';
 import { Button } from '../Button';
 
@@ -30,20 +28,14 @@ stories.add(
 
 stories.add(
   'children: HTML',
-  withInfo('Children can be HTML')(() => (
-    <AppBar>
-      <span style={{ marginRight: `${spaceLg}px` }}>Hi, I'm an HTML child</span>
-    </AppBar>
-  ))
+  withInfo('Children can be HTML')(() => <AppBar>Hi, I'm an HTML child</AppBar>)
 );
 
 stories.add(
   'children: React',
   withInfo('Children can be React components')(() => (
     <AppBar>
-      <span style={{ marginRight: `${spaceLg}px` }}>
-        <Button onClick={event => onClick(event)}>Click me</Button>
-      </span>
+      <Button onClick={event => onClick(event)}>Click me</Button>
     </AppBar>
   ))
 );

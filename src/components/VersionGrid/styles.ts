@@ -1,10 +1,10 @@
 import styled from 'react-emotion';
-import { spaceSm } from '../../theme';
+import { scaffolding } from '../../theme';
 
 export const GridContent = styled.div({
   label: 'gird-content',
 
   '> * ': {
-    margin: `${spaceSm}px`
+    margin: `${scaffolding.gutterXs}`
   }
 });
