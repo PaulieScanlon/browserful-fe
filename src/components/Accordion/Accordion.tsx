@@ -2,47 +2,86 @@ import * as React from 'react';
 
 import {
   AccordionWrapper,
-  Label,
-  Input,
-  ContentWrapper,
-  Content
+  AccordionLabel,
+  AccordionText,
+  AccordionInput,
+  AccordionContent,
+  AccordionContentInner
 } from './styles';
+
+import { BrowserLogo } from '../BrowserLogo';
+
+import { colours } from '../../theme';
 
 interface IProps {
   maxHeight?: string;
-  items: any;
+  type?: string;
   name?: string;
-  defaultChecked?: string | number;
+  backgroundColour?: string;
+  children: React.ReactNode;
+}
+
+interface EProps extends IProps {
+  label: string;
+  browser?: string;
+  defaultChecked?: boolean;
+  selectColour?: string;
 }
 
 export const Accordion: React.SFC<IProps> = ({
   maxHeight,
-  items,
+  backgroundColour,
+  type,
   name,
-  defaultChecked
+  children
 }: IProps) => {
-  const itemMarkup = items.map((item, i) => {
-    return (
-      <div key={`item-${i}`}>
-        <Input
-          type="radio"
-          name={name}
-          defaultChecked={i === defaultChecked}
-          id={`panel-${item.title}-${i}`}
-          maxHeight={maxHeight}
-        />
-        <Label htmlFor={`panel-${item.title}-${i}`}>{item.title}</Label>
-        <ContentWrapper>
-          <Content>{item.component()}</Content>
-        </ContentWrapper>
-      </div>
-    );
+  const _children = React.Children.map(children, child => {
+    return React.cloneElement(child as any, {
+      maxHeight: maxHeight,
+      backgroundColour: backgroundColour,
+      type: type,
+      name: name
+    });
   });
-
-  return <AccordionWrapper>{itemMarkup}</AccordionWrapper>;
+  return <AccordionWrapper>{_children}</AccordionWrapper>;
 };
 
-Accordion.defaultProps = {
+export const AccordionItem: React.SFC<EProps> = ({
+  label,
+  browser,
+  defaultChecked,
+  selectColour,
+  backgroundColour,
+  maxHeight,
+  type,
+  name,
+  children
+}: EProps) => {
+  return (
+    <React.Fragment>
+      <AccordionInput
+        id={label}
+        type={type}
+        name={name}
+        defaultChecked={defaultChecked}
+        maxHeight={maxHeight}
+        selectColour={selectColour}
+      />
+      <AccordionLabel htmlFor={label}>
+        {browser && <BrowserLogo browser={browser} />}
+        <AccordionText>{label}</AccordionText>
+      </AccordionLabel>
+
+      <AccordionContent backgroundColour={backgroundColour}>
+        <AccordionContentInner>{children}</AccordionContentInner>
+      </AccordionContent>
+    </React.Fragment>
+  );
+};
+
+AccordionItem.defaultProps = {
   maxHeight: '100px',
-  defaultChecked: ''
+  defaultChecked: false,
+  selectColour: colours.pink,
+  backgroundColour: colours.offWhite
 };

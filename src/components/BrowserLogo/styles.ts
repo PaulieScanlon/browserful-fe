@@ -1,5 +1,7 @@
 import styled from 'react-emotion';
+import { spaceMd } from '../../theme';
 
 export const BrowserLogoImage = styled.img({
-  label: 'browser-logo-image'
+  label: 'browser-logo-image',
+  marginRight: `${spaceMd}px`
 });

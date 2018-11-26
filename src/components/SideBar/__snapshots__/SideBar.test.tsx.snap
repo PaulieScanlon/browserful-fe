@@ -25,16 +25,17 @@ ShallowWrapper {
           active={true}
         >
           <SideBarHeader>
-            <RouteTag
-              disableLink={false}
-              route="/"
+            <Link
+              href="/"
             >
-              <BrowserfulLogo
-                fontColour="#ffffff"
-                logoColour="#ff5ca3"
-                showText={true}
-              />
-            </RouteTag>
+              <a>
+                <BrowserfulLogo
+                  fontColour="#ffffff"
+                  logoColour="#ff5ca3"
+                  showText={true}
+                />
+              </a>
+            </Link>
           </SideBarHeader>
         </SideBarNav>,
         <SideBarContent />,
@@ -49,16 +50,17 @@ ShallowWrapper {
         "props": Object {
           "active": true,
           "children": <SideBarHeader>
-            <RouteTag
-              disableLink={false}
-              route="/"
+            <Link
+              href="/"
             >
-              <BrowserfulLogo
-                fontColour="#ffffff"
-                logoColour="#ff5ca3"
-                showText={true}
-              />
-            </RouteTag>
+              <a>
+                <BrowserfulLogo
+                  fontColour="#ffffff"
+                  logoColour="#ff5ca3"
+                  showText={true}
+                />
+              </a>
+            </Link>
           </SideBarHeader>,
         },
         "ref": null,
@@ -67,44 +69,60 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <RouteTag
-              disableLink={false}
-              route="/"
+            "children": <Link
+              href="/"
             >
-              <BrowserfulLogo
-                fontColour="#ffffff"
-                logoColour="#ff5ca3"
-                showText={true}
-              />
-            </RouteTag>,
+              <a>
+                <BrowserfulLogo
+                  fontColour="#ffffff"
+                  logoColour="#ff5ca3"
+                  showText={true}
+                />
+              </a>
+            </Link>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "function",
+            "nodeType": "class",
             "props": Object {
-              "children": <BrowserfulLogo
-                fontColour="#ffffff"
-                logoColour="#ff5ca3"
-                showText={true}
-              />,
-              "disableLink": false,
-              "route": "/",
+              "children": <a>
+                <BrowserfulLogo
+                  fontColour="#ffffff"
+                  logoColour="#ff5ca3"
+                  showText={true}
+                />
+              </a>,
+              "href": "/",
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "host",
               "props": Object {
-                "fontColour": "#ffffff",
-                "logoColour": "#ff5ca3",
-                "showText": true,
+                "children": <BrowserfulLogo
+                  fontColour="#ffffff"
+                  logoColour="#ff5ca3"
+                  showText={true}
+                />,
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "fontColour": "#ffffff",
+                  "logoColour": "#ff5ca3",
+                  "showText": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "a",
             },
             "type": [Function],
           },
@@ -137,16 +155,17 @@ ShallowWrapper {
             active={true}
           >
             <SideBarHeader>
-              <RouteTag
-                disableLink={false}
-                route="/"
+              <Link
+                href="/"
               >
-                <BrowserfulLogo
-                  fontColour="#ffffff"
-                  logoColour="#ff5ca3"
-                  showText={true}
-                />
-              </RouteTag>
+                <a>
+                  <BrowserfulLogo
+                    fontColour="#ffffff"
+                    logoColour="#ff5ca3"
+                    showText={true}
+                  />
+                </a>
+              </Link>
             </SideBarHeader>
           </SideBarNav>,
           <SideBarContent />,
@@ -161,16 +180,17 @@ ShallowWrapper {
           "props": Object {
             "active": true,
             "children": <SideBarHeader>
-              <RouteTag
-                disableLink={false}
-                route="/"
+              <Link
+                href="/"
               >
-                <BrowserfulLogo
-                  fontColour="#ffffff"
-                  logoColour="#ff5ca3"
-                  showText={true}
-                />
-              </RouteTag>
+                <a>
+                  <BrowserfulLogo
+                    fontColour="#ffffff"
+                    logoColour="#ff5ca3"
+                    showText={true}
+                  />
+                </a>
+              </Link>
             </SideBarHeader>,
           },
           "ref": null,
@@ -179,44 +199,60 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <RouteTag
-                disableLink={false}
-                route="/"
+              "children": <Link
+                href="/"
               >
-                <BrowserfulLogo
-                  fontColour="#ffffff"
-                  logoColour="#ff5ca3"
-                  showText={true}
-                />
-              </RouteTag>,
+                <a>
+                  <BrowserfulLogo
+                    fontColour="#ffffff"
+                    logoColour="#ff5ca3"
+                    showText={true}
+                  />
+                </a>
+              </Link>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "class",
               "props": Object {
-                "children": <BrowserfulLogo
-                  fontColour="#ffffff"
-                  logoColour="#ff5ca3"
-                  showText={true}
-                />,
-                "disableLink": false,
-                "route": "/",
+                "children": <a>
+                  <BrowserfulLogo
+                    fontColour="#ffffff"
+                    logoColour="#ff5ca3"
+                    showText={true}
+                  />
+                </a>,
+                "href": "/",
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "host",
                 "props": Object {
-                  "fontColour": "#ffffff",
-                  "logoColour": "#ff5ca3",
-                  "showText": true,
+                  "children": <BrowserfulLogo
+                    fontColour="#ffffff"
+                    logoColour="#ff5ca3"
+                    showText={true}
+                  />,
                 },
                 "ref": null,
-                "rendered": null,
-                "type": [Function],
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "fontColour": "#ffffff",
+                    "logoColour": "#ff5ca3",
+                    "showText": true,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "a",
               },
               "type": [Function],
             },

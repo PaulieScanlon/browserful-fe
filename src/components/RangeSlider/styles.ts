@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion';
-import { colours, common } from '../../theme';
+import { colours } from '../../theme';
 
 const colourStyles = props =>
   css`

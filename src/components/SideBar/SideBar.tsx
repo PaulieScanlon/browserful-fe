@@ -9,25 +9,23 @@ import {
 } from './styles';
 
 import { colours } from '../../theme';
-import { RouteTag } from '../RouteTag';
+import Link from 'next/link';
 
 interface IProps extends React.Props<ChildNode> {
   active?: boolean;
   disableLink?: boolean;
 }
 
-export const SideBar: React.SFC<IProps> = ({
-  active,
-  disableLink,
-  children
-}: IProps) => {
+export const SideBar: React.SFC<IProps> = ({ active, children }: IProps) => {
   return (
     <SideBarWrapper>
       <SideBarNav active={active}>
         <SideBarHeader>
-          <RouteTag route="/" disableLink={disableLink}>
-            <BrowserfulLogo fontColour={colours.white} />
-          </RouteTag>
+          <Link href="/">
+            <a>
+              <BrowserfulLogo fontColour={colours.white} />
+            </a>
+          </Link>
         </SideBarHeader>
       </SideBarNav>
       <SideBarContent>{children}</SideBarContent>

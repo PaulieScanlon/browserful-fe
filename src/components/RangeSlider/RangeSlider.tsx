@@ -17,7 +17,7 @@ interface IProps {
   max: number;
   steps: number;
   sliderColour?: string;
-  onChange: (value: number[]) => void;
+  onChange?: (value: number[]) => void;
 }
 
 const inclusiveRange = (min, max, steps) => {
