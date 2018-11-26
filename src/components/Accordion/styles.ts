@@ -1,9 +1,13 @@
 import styled from 'react-emotion';
-import { common, colours, spaceMd, spaceSm } from '../../theme';
+import { common, colours, spaceMd } from '../../theme';
 
 interface IProps {
   maxHeight: string;
   selectColour: string;
+}
+
+interface EProps {
+  backgroundColour?: string;
 }
 
 export const AccordionWrapper = styled.div({
@@ -68,13 +72,18 @@ export const AccordionText = styled.span({
   flexGrow: 1
 });
 
-export const AccordionContent = styled.div({
-  label: 'accordion-content',
-  overflow: 'hidden',
-  maxHeight: '0px',
-  backgroundColor: colours.offWhite,
-  transition: `${common.transition}`
-});
+export const AccordionContent = styled.div<EProps>(
+  {
+    label: 'accordion-content',
+    overflow: 'hidden',
+    maxHeight: '0px',
+    backgroundColor: colours.offWhite,
+    transition: `${common.transition}`
+  },
+  ({ backgroundColour }) => ({
+    backgroundColor: backgroundColour
+  })
+);
 
 export const AccordionContentInner = styled.div({
   padding: `${spaceMd}px`,

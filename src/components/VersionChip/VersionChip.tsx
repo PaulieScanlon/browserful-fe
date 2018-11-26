@@ -1,34 +1,47 @@
 import * as React from 'react';
 
-import { ChipButton } from './styles';
+import {
+  VersionLabel,
+  VersionText,
+  VersionInput,
+  VersionStyle
+} from './styles';
 
 interface IProps {
   browser: string;
   version: number;
+  onChange: (
+    event: React.ChangeEventHandler<HTMLInputElement>,
+    browser: string,
+    version: number
+  ) => void;
   isIncluded?: boolean;
-  always?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>, id: string) => void;
+  defaultChecked?: boolean;
 }
 
 export const VersionChip: React.SFC<IProps> = ({
-  browser,
   version,
+  browser,
+  onChange,
   isIncluded,
-  always,
-  onClick
+  defaultChecked
 }: IProps) => {
   return (
-    <ChipButton
-      isIncluded={isIncluded}
-      always={always}
-      onClick={event => onClick(event, `${browser}_${version}`)}
-    >
-      {version}
-    </ChipButton>
+    <VersionLabel htmlFor={browser}>
+      <VersionInput
+        defaultChecked={defaultChecked}
+        type="checkbox"
+        id={browser}
+        onChange={event => onChange(event as any, browser, version)}
+        isIncluded={isIncluded}
+      />
+      <VersionStyle />
+      <VersionText>{version}</VersionText>
+    </VersionLabel>
   );
 };
 
 VersionChip.defaultProps = {
   isIncluded: false,
-  always: false
+  defaultChecked: false
 };

@@ -4,11 +4,20 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
 import { RangeSlider } from '../RangeSlider';
+import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
+import { coverToBrowserfulData2 } from '../../modules/browserful-data-2.0';
+
+const data2Subset = require('../../mock-data/data-2.0.subset.json');
+
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
+};
+
+const onClick = (event, browser, version) => {
+  action('onClick')(event.currentTarget, browser, version);
 };
 
 const stories = storiesOf('Accordion', module);
@@ -83,15 +92,36 @@ stories.add(
 );
 
 stories.add(
-  'content',
-  withInfo('Content can be anything, not just text')(() => (
-    <Accordion type="radio" name="storybook-accordion">
+  'RangeSlider',
+  withInfo('Displaying RangeSlider in Accordion Item')(() => (
+    <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem defaultChecked label="Item 1">
         <RangeSlider
           min={1970}
           max={2018}
           steps={8}
           onChange={value => onChange(value)}
+        />
+      </AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
+  'VersionGrid',
+  withInfo('Displaying VersionGrid in Accordion Item')(() => (
+    <Accordion
+      maxHeight="500px"
+      backgroundColour={colours.white}
+      type="checkbox"
+      name="storybook-accordion"
+    >
+      <AccordionItem defaultChecked browser="Chrome" label="Chrome">
+        <VersionGrid
+          data={coverToBrowserfulData2(data2Subset).agents.chrome}
+          onClick={(event, browser, version) =>
+            onClick(event, browser, version)
+          }
         />
       </AccordionItem>
     </Accordion>

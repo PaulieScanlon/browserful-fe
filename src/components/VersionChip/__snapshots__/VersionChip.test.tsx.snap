@@ -4,10 +4,10 @@ exports[`<VersionChip /> renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <VersionChip
-    always={false}
     browser="Chrome"
-    isIncluded={true}
-    onClick={[Function]}
+    defaultChecked={false}
+    isIncluded={false}
+    onChange={[Function]}
     version={1}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -23,13 +23,59 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "always": false,
-      "children": 1,
-      "isIncluded": true,
-      "onClick": [Function],
+      "children": Array [
+        <VersionInput
+          defaultChecked={false}
+          id="Chrome"
+          isIncluded={false}
+          onChange={[Function]}
+          type="checkbox"
+        />,
+        <VersionStyle />,
+        <VersionText>
+          1
+        </VersionText>,
+      ],
+      "htmlFor": "Chrome",
     },
     "ref": null,
-    "rendered": 1,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "defaultChecked": false,
+          "id": "Chrome",
+          "isIncluded": false,
+          "onChange": [Function],
+          "type": "checkbox",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": 1,
+        },
+        "ref": null,
+        "rendered": 1,
+        "type": [Function],
+      },
+    ],
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -38,13 +84,59 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "always": false,
-        "children": 1,
-        "isIncluded": true,
-        "onClick": [Function],
+        "children": Array [
+          <VersionInput
+            defaultChecked={false}
+            id="Chrome"
+            isIncluded={false}
+            onChange={[Function]}
+            type="checkbox"
+          />,
+          <VersionStyle />,
+          <VersionText>
+            1
+          </VersionText>,
+        ],
+        "htmlFor": "Chrome",
       },
       "ref": null,
-      "rendered": 1,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "defaultChecked": false,
+            "id": "Chrome",
+            "isIncluded": false,
+            "onChange": [Function],
+            "type": "checkbox",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": 1,
+          },
+          "ref": null,
+          "rendered": 1,
+          "type": [Function],
+        },
+      ],
       "type": [Function],
     },
   ],

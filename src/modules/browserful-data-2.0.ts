@@ -10,11 +10,10 @@ export const coverToBrowserfulData2 = (data: caniuseData2) => {
         return {
           ...keys,
           isIncluded: false,
-          always: false
+          defaultChecked: false
         };
       }),
-      totalVersions: data.agents[agent].version_list.length,
-      isExpanded: true
+      totalVersions: data.agents[agent].version_list.length
     };
   });
 

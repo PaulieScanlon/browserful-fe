@@ -17,6 +17,7 @@ interface IProps {
   maxHeight?: string;
   type?: string;
   name?: string;
+  backgroundColour?: string;
   children: React.ReactNode;
 }
 
@@ -28,12 +29,16 @@ interface EProps extends IProps {
 }
 
 export const Accordion: React.SFC<IProps> = ({
+  maxHeight,
+  backgroundColour,
   type,
   name,
   children
 }: IProps) => {
   const _children = React.Children.map(children, child => {
     return React.cloneElement(child as any, {
+      maxHeight: maxHeight,
+      backgroundColour: backgroundColour,
       type: type,
       name: name
     });
@@ -46,6 +51,7 @@ export const AccordionItem: React.SFC<EProps> = ({
   browser,
   defaultChecked,
   selectColour,
+  backgroundColour,
   maxHeight,
   type,
   name,
@@ -66,7 +72,7 @@ export const AccordionItem: React.SFC<EProps> = ({
         <AccordionText>{label}</AccordionText>
       </AccordionLabel>
 
-      <AccordionContent>
+      <AccordionContent backgroundColour={backgroundColour}>
         <AccordionContentInner>{children}</AccordionContentInner>
       </AccordionContent>
     </React.Fragment>
@@ -76,5 +82,6 @@ export const AccordionItem: React.SFC<EProps> = ({
 AccordionItem.defaultProps = {
   maxHeight: '100px',
   defaultChecked: false,
-  selectColour: colours.pink
+  selectColour: colours.pink,
+  backgroundColour: colours.offWhite
 };
