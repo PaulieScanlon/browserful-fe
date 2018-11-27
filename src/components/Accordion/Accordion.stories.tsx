@@ -11,9 +11,7 @@ import { colours } from '../../theme';
 import browserslist from 'browserslist';
 import { friendlyIfy } from '../../utils/friendlyIfy';
 
-const mockData = friendlyIfy(
-  browserslist(browserslist(['last 999 Firefox versions']))
-);
+const mockData = friendlyIfy(browserslist(['last 999 Firefox versions']));
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);

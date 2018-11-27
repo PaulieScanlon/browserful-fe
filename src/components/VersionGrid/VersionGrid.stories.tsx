@@ -6,9 +6,7 @@ import { action } from '@storybook/addon-actions';
 import browserslist from 'browserslist';
 import { friendlyIfy } from '../../utils/friendlyIfy';
 
-const mockData = friendlyIfy(
-  browserslist(browserslist(['last 999 Chrome versions']))
-);
+const mockData = friendlyIfy(browserslist(['last 999 Chrome versions']));
 
 import { VersionGrid } from './VersionGrid';
 

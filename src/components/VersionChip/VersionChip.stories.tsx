@@ -8,9 +8,7 @@ import { VersionChip } from './VersionChip';
 import browserslist from 'browserslist';
 import { friendlyIfy } from '../../utils/friendlyIfy';
 
-const mockData = friendlyIfy(
-  browserslist(browserslist(['last 1 Chrome versions']))
-);
+const mockData = friendlyIfy(browserslist(['last 1 Chrome versions']));
 
 const stories = storiesOf('VersionChip', module);
 

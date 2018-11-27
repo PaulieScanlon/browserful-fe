@@ -7,9 +7,14 @@ import { updateBrowserlist } from '../modules/browserlist/actions/update_browser
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
+
+import { RangeSlider } from '../components/RangeSlider';
+import { Accordion, AccordionItem } from '../components/Accordion';
 import { scaffolding, common } from '../theme';
 
 import styled from 'react-emotion';
+
+import browserslist from 'browserslist';
 
 interface IProps {
   updateBrowserlist: any;
@@ -26,6 +31,13 @@ export const FreeviewContent = styled.div({
 });
 
 class Freeview extends React.Component<IProps> {
+  onChange(value: any) {
+    console.log(`> ${value[0] / 100}%, <${value[1] / 10}%`);
+    this.props.updateBrowserlist(
+      browserslist(`> ${value[0] / 100}%, <${value[1] / 10}%`)
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -40,9 +52,19 @@ class Freeview extends React.Component<IProps> {
           >
             <Row>
               <Col xs={12} sm={12} md={12} lg={12}>
-                This is the preivew page. Add some BrowserCards if you like.
-                Have a look at app-matrix.tsx in /src/pages. Check the console
-                for the data returned.
+                <Accordion type="checkbox" name="storybook-accordion">
+                  <AccordionItem
+                    defaultChecked
+                    label="Global Usage > {x}% < {x}%"
+                  >
+                    <RangeSlider
+                      min={0}
+                      max={1}
+                      steps={0.5}
+                      onChange={value => this.onChange(value)}
+                    />
+                  </AccordionItem>
+                </Accordion>
               </Col>
             </Row>
           </Container>

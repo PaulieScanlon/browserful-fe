@@ -7,9 +7,7 @@ import { friendlyIfy } from '../../utils/friendlyIfy';
 
 import { BrowserLogo } from './BrowserLogo';
 
-const mockData = friendlyIfy(
-  browserslist(browserslist(['last 999 Firefox versions']))
-);
+const mockData = friendlyIfy(browserslist(['last 999 Firefox versions']));
 
 const stories = storiesOf('BrowserLogo', module);
 

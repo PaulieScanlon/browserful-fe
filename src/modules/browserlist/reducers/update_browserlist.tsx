@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const initialState: IProps = {
-  result: friendlyIfy(browserslist(browserslist(['last 2 versions'])))
+  result: friendlyIfy(browserslist(['last 2 versions']))
 };
 
 export const reducer = (state = initialState, action) => {
