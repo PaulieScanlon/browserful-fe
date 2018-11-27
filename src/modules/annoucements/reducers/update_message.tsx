@@ -1,4 +1,4 @@
-import { UPDATE_MESSAGE } from '../type';
+import { UPDATE_MESSAGE } from '../types';
 
 interface IProps {
   message: string;
