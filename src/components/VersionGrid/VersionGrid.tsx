@@ -26,7 +26,7 @@ export const VersionGrid: React.SFC<IProps> = ({ data, onClick }: IProps) => {
         version={parseInt(obj.id)}
         isIncluded={obj.isIncluded}
         defaultChecked={obj.defaultChecked}
-        onChange={event => onClick(event, name, parseInt(obj.id))}
+        onChange={event => onClick(event, name, obj.id)}
       />
     );
   });

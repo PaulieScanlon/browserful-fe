@@ -87,7 +87,10 @@ stories.add(
     'The browser prop is used to display any of the predefined BrowserLogos'
   )(() => (
     <Accordion type="checkbox" name="storybook-accordion">
-      <AccordionItem browser="Chrome" label="Item 1">
+      <AccordionItem
+        browser={mockData[0].logo}
+        label={mockData[0].friendlyName}
+      >
         child 1
       </AccordionItem>
     </Accordion>
@@ -121,7 +124,7 @@ stories.add(
     >
       <AccordionItem
         defaultChecked
-        browser={mockData[0].name}
+        browser={mockData[0].logo}
         label={mockData[0].friendlyName}
       >
         <VersionGrid
