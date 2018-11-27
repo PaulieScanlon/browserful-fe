@@ -8,9 +8,12 @@ import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
-import { coverToBrowserfulData2 } from '../../modules/browserful-data-2.0';
+import browserslist from 'browserslist';
+import { friendlyIfy } from '../../utils/friendlyIfy';
 
-const data2Subset = require('../../mock-data/data-2.0.subset.json');
+const mockData = friendlyIfy(
+  browserslist(browserslist(['last 999 Firefox versions']))
+);
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
@@ -116,9 +119,13 @@ stories.add(
       type="checkbox"
       name="storybook-accordion"
     >
-      <AccordionItem defaultChecked browser="Chrome" label="Chrome">
+      <AccordionItem
+        defaultChecked
+        browser={mockData[0].name}
+        label={mockData[0].friendlyName}
+      >
         <VersionGrid
-          data={coverToBrowserfulData2(data2Subset).agents.chrome}
+          data={mockData[0]}
           onClick={(event, browser, version) =>
             onClick(event, browser, version)
           }

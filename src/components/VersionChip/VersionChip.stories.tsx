@@ -16,7 +16,7 @@ stories.add(
   withInfo('The browser and version prop are used on the onChange callback')(
     () => (
       <VersionChip
-        browser="Chrome"
+        browser="chrome"
         version={72}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
@@ -32,7 +32,7 @@ stories.add(
     () => (
       <VersionChip
         defaultChecked={true}
-        browser="Chrome"
+        browser="chrome"
         version={72}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
@@ -47,7 +47,7 @@ stories.add(
   withInfo('The isIncluded prop shows if a browser/version is included')(() => (
     <VersionChip
       isIncluded={true}
-      browser="Chrome"
+      browser="chrome"
       version={72}
       onChange={(event, browser, version) => onChange(event, browser, version)}
     />
@@ -61,7 +61,7 @@ stories.add(
       <VersionChip
         defaultChecked={true}
         isIncluded={true}
-        browser="Chrome"
+        browser="chrome"
         version={72}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)

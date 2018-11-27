@@ -16,22 +16,22 @@ interface IProps {
 }
 
 export const VersionGrid: React.SFC<IProps> = ({ data, onClick }: IProps) => {
-  const { version_list } = data;
+  const { name, versions } = data;
 
-  const versions = version_list.map((obj, i) => {
+  const versionChips = versions.map((obj, i) => {
     return (
       <VersionChip
         key={i}
-        browser={obj.browser}
-        version={parseInt(obj.version) || 0}
+        browser={`${name}-${obj.id}`}
+        version={parseInt(obj.id)}
         isIncluded={obj.isIncluded}
-        defaultChecked={obj.always}
-        onChange={event => onClick(event, obj.browser, obj.version)}
+        defaultChecked={obj.defaultChecked}
+        onChange={event => onClick(event, name, parseInt(obj.id))}
       />
     );
   });
 
-  return <GridContent>{versions}</GridContent>;
+  return <GridContent>{versionChips}</GridContent>;
 };
 
 VersionGrid.defaultProps = {

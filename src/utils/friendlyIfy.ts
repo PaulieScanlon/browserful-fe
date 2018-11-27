@@ -42,13 +42,18 @@ const friendlyName = {
 export const friendlyIfy = (browserlist: any) => {
   const matrix = browserlist.reduce((acc, br) => {
     const [name, version] = br.split(' ', 2);
-    acc[name] = [].concat(acc[name] || [], version);
+    acc[name] = [].concat(acc[name] || [], {
+      id: version,
+      isIncluded: true,
+      defaultChecked: false
+    });
     return acc;
   }, {});
 
   return Object.keys(matrix).map(br => {
     return {
-      name: friendlyName[br],
+      friendlyName: friendlyName[br],
+      name: br,
       logo: logos[br],
       versions: matrix[br]
     };
