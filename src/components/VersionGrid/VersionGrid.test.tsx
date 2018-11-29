@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { coverToBrowserfulData2 } from '../../modules/browserful-data-2.0';
+import browserslist from 'browserslist';
+import { createMatrix } from '../../utils/createMatrix';
 
-const data2Subset = require('../../mock-data/data-2.0.subset.json');
+const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
 
 import { VersionGrid } from './VersionGrid';
 import { VersionChip } from '../VersionChip';
@@ -13,7 +14,7 @@ const onClick = (event, browser, version) => {};
 const shallowDefault = () => {
   return shallow(
     <VersionGrid
-      data={coverToBrowserfulData2(data2Subset).agents.edge}
+      data={mockData[0]}
       onClick={(event, browser, version) => onClick(event, browser, version)}
     />
   );
@@ -30,7 +31,7 @@ describe('<VersionGrid />', () => {
     const testOnOnClick = jest.fn();
     const wrapper = shallow(
       <VersionGrid
-        data={coverToBrowserfulData2(data2Subset).agents.edge}
+        data={mockData[0]}
         onClick={(event, browser, version) =>
           testOnOnClick(event, browser, version)
         }

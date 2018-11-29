@@ -1,21 +1,40 @@
 import * as React from 'react';
-import { fetchCanIuseData2 } from '../utils/fetch';
+
+import browserslist from 'browserslist';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateBrowserlist } from '../modules/browserlist/actions/update_browserlist';
+import { updateGlobalUsage } from '../modules/globalUsage/actions/update_globalUsage';
+import { updateYearReleased } from '../modules/yearReleased/actions/update_yearReleased';
+import { updateLastVersions } from '../modules/lastVersions/actions/update_lastVersions';
+
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-import { scaffolding, common } from '../theme';
 
+import { CompoundSlider } from '../components/CompoundSlider';
+import { Accordion, AccordionItem } from '../components/Accordion';
+import { VersionGrid } from '../components/VersionGrid';
+import { scaffolding, common, colours } from '../theme';
+
+import { platform } from '../utils/createMatrix';
 import styled from 'react-emotion';
 
 interface IProps {
-  data: any;
-  isLoading: boolean;
-  hasErrored: boolean;
+  filtered: any;
+  globalUsage: string;
+  yearReleased: string;
+  lastVersions: string;
+  updateBrowserlist: any;
+  updateGlobalUsage: any;
+  updateYearReleased: any;
+  updateLastVersions: any;
 }
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
-  marginTop: common.appBarHeight,
+  marginTop: common.appBar.height,
   width: '100%',
   minHeight: '100vh',
   position: 'absolute',
@@ -24,19 +43,73 @@ export const FreeviewContent = styled.div({
 });
 
 class Freeview extends React.Component<IProps> {
-  static async getInitialProps() {
-    const res = await fetchCanIuseData2();
+  updateUsage(value: Array<number>) {
+    // console.log(`> ${value[0]}%`);
+    this.props.updateGlobalUsage(`${value[0]}%`);
+    this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
+  }
 
-    return {
-      isLoading: res.isLoading,
-      data: res.data,
-      hasErrored: res.hasErrored
-    };
+  updateYears(value: Array<number>) {
+    // console.log(`since ${value[0]}`);
+    this.props.updateYearReleased(value[0]);
+    this.props.updateBrowserlist(browserslist([`since ${value[0]}`]));
+  }
+
+  updateVersions(value: Array<number>) {
+    // console.log(`last ${value[0]} versions`);
+    this.props.updateLastVersions(value[0]);
+    this.props.updateBrowserlist(browserslist([`last ${value[0]} versions`]));
   }
 
   render() {
-    const { agents } = this.props.data;
-    console.log(agents);
+    const { globalUsage, lastVersions, yearReleased } = this.props;
+
+    const desktop = this.props.filtered.map((browser, i) => {
+      if (browser.platform === platform.DESKTOP) {
+        return (
+          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+            <Accordion
+              maxHeight="500px"
+              type="checkbox"
+              name={browser.friendlyName}
+              backgroundColour={colours.white}
+            >
+              <AccordionItem
+                label={browser.friendlyName}
+                browser={browser.logo}
+                defaultChecked={browser.defaultChecked}
+              >
+                <VersionGrid data={browser} />
+              </AccordionItem>
+            </Accordion>{' '}
+          </div>
+        );
+      }
+    });
+
+    const mobile = this.props.filtered.map((browser, i) => {
+      if (browser.platform === platform.MOBILE) {
+        return (
+          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+            <Accordion
+              maxHeight="500px"
+              type="checkbox"
+              name={browser.friendlyName}
+              backgroundColour={colours.white}
+            >
+              <AccordionItem
+                label={browser.friendlyName}
+                browser={browser.logo}
+                defaultChecked={browser.defaultChecked}
+              >
+                <VersionGrid data={browser} />
+              </AccordionItem>
+            </Accordion>
+          </div>
+        );
+      }
+    });
+
     return (
       <React.Fragment>
         <HeadTag />
@@ -48,11 +121,67 @@ class Freeview extends React.Component<IProps> {
               margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
             }}
           >
+            <Row
+              style={{
+                marginBottom: `${scaffolding.gutterLg}`
+              }}
+            >
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <Accordion
+                  maxHeight="200px"
+                  type="radio"
+                  name="controls-accordion"
+                >
+                  <AccordionItem
+                    defaultChecked
+                    label={`Global Usage > ${globalUsage}`}
+                  >
+                    <CompoundSlider
+                      onUpdate={values => this.updateUsage(values)}
+                      showHandleValue
+                      domain={[0, 1]}
+                      step={0.001}
+                      values={[0.02]}
+                      tickCount={14}
+                    />
+                  </AccordionItem>
+                  <AccordionItem
+                    label={`Year Released < ${yearReleased}`}
+                    selectColour={colours.teal}
+                  >
+                    <CompoundSlider
+                      onUpdate={values => this.updateYears(values)}
+                      sliderColour={colours.teal}
+                      showHandleValue
+                      domain={[2010, 2018]}
+                      step={1}
+                      values={[2015]}
+                      tickCount={8}
+                    />
+                  </AccordionItem>
+                  <AccordionItem
+                    label={`Last ${lastVersions} versions`}
+                    selectColour={colours.blue}
+                  >
+                    <CompoundSlider
+                      onUpdate={values => this.updateVersions(values)}
+                      sliderColour={colours.blue}
+                      showHandleValue
+                      domain={[1, 10]}
+                      step={1}
+                      values={[5]}
+                      tickCount={10}
+                    />
+                  </AccordionItem>
+                </Accordion>
+              </Col>
+            </Row>
             <Row>
-              <Col xs={12} sm={12} md={12} lg={6}>
-                This is the preivew page. Add some BrowserCards if you like.
-                Have a look at app-matrix.tsx in /src/pages. Check the console
-                for the data returned.
+              <Col xs={12} sm={6} md={6} lg={6}>
+                {desktop}
+              </Col>
+              <Col xs={12} sm={6} md={6} lg={6}>
+                {mobile}
               </Col>
             </Row>
           </Container>
@@ -62,4 +191,21 @@ class Freeview extends React.Component<IProps> {
   }
 }
 
-export default Freeview;
+const mapStateToProps = state => ({
+  filtered: state.browserlist.filtered,
+  globalUsage: state.globalUsage.value,
+  yearReleased: state.yearReleased.value,
+  lastVersions: state.lastVersions.value
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch),
+  updateGlobalUsage: bindActionCreators(updateGlobalUsage, dispatch),
+  updateYearReleased: bindActionCreators(updateYearReleased, dispatch),
+  updateLastVersions: bindActionCreators(updateLastVersions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Freeview);

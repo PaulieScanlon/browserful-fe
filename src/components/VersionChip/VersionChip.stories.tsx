@@ -5,6 +5,11 @@ import { action } from '@storybook/addon-actions';
 
 import { VersionChip } from './VersionChip';
 
+import browserslist from 'browserslist';
+import { createMatrix } from '../../utils/createMatrix';
+
+const mockData = createMatrix(browserslist(['last 1 Chrome versions']));
+
 const stories = storiesOf('VersionChip', module);
 
 const onChange = (event, browser, version) => {
@@ -16,8 +21,8 @@ stories.add(
   withInfo('The browser and version prop are used on the onChange callback')(
     () => (
       <VersionChip
-        browser="Chrome"
-        version={72}
+        browser={mockData[0].name}
+        version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
         }
@@ -32,8 +37,8 @@ stories.add(
     () => (
       <VersionChip
         defaultChecked={true}
-        browser="Chrome"
-        version={72}
+        browser={mockData[0].name}
+        version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
         }
@@ -47,8 +52,8 @@ stories.add(
   withInfo('The isIncluded prop shows if a browser/version is included')(() => (
     <VersionChip
       isIncluded={true}
-      browser="Chrome"
-      version={72}
+      browser={mockData[0].name}
+      version={mockData[0].versions[0].id}
       onChange={(event, browser, version) => onChange(event, browser, version)}
     />
   ))
@@ -61,8 +66,8 @@ stories.add(
       <VersionChip
         defaultChecked={true}
         isIncluded={true}
-        browser="Chrome"
-        version={72}
+        browser={mockData[0].name}
+        version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
         }

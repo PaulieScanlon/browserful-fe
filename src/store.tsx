@@ -1,16 +1,19 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
-import { reducer as announcementReducer } from './modules/annoucements/reducers/update_message';
-// import { reducer as rawDataReducer } from './states/rawData/reducer'
+
+import { reducer as browserlistReducer } from './modules/browserlist/reducers/update_browserlist';
+import { reducer as globalUsageReducer } from './modules/globalUsage/reducers/update_globalUsage';
+import { reducer as lastVersionsReducer } from './modules/lastVersions/reducers/update_lastVersions';
+import { reducer as yearReleasedReducer } from './modules/yearReleased/reducers/update_yearReleased';
 
 export const initStore = initialState => {
   return createStore(
     combineReducers({
-      announcement: announcementReducer
-      // rawData: rawDataReducer @TODO see if api calls can then dispatch a store action
-      //https://github.com/lexich/redux-api/issues/183
-      //https://github.com/kirill-konshin/next-redux-wrapper/issues/64
+      browserlist: browserlistReducer,
+      globalUsage: globalUsageReducer,
+      lastVersions: lastVersionsReducer,
+      yearReleased: yearReleasedReducer
     }),
     initialState,
     composeWithDevTools(applyMiddleware(thunkMiddleware))

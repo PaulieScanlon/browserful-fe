@@ -3,14 +3,15 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
-import { RangeSlider } from '../RangeSlider';
+import { CompoundSlider } from '../CompoundSlider';
 import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
-import { coverToBrowserfulData2 } from '../../modules/browserful-data-2.0';
+import browserslist from 'browserslist';
+import { createMatrix } from '../../utils/createMatrix';
 
-const data2Subset = require('../../mock-data/data-2.0.subset.json');
+const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);
@@ -39,6 +40,19 @@ stories.add(
   'type:checkbox',
   withInfo(`Use type="checkbox" for multiple selection`)(() => (
     <Accordion type="checkbox" name="storybook-accordion">
+      <AccordionItem label="Item 1">child 1</AccordionItem>
+      <AccordionItem label="Item 2">child 2</AccordionItem>
+      <AccordionItem label="Item 3">child 3</AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
+  'maxHeight',
+  withInfo(
+    'The maxHeight prop can be used for taller content, defaults to 100px'
+  )(() => (
+    <Accordion maxHeight="200px" type="radio" name="storybook-accordion">
       <AccordionItem label="Item 1">child 1</AccordionItem>
       <AccordionItem label="Item 2">child 2</AccordionItem>
       <AccordionItem label="Item 3">child 3</AccordionItem>
@@ -84,7 +98,10 @@ stories.add(
     'The browser prop is used to display any of the predefined BrowserLogos'
   )(() => (
     <Accordion type="checkbox" name="storybook-accordion">
-      <AccordionItem browser="Chrome" label="Item 1">
+      <AccordionItem
+        browser={mockData[0].logo}
+        label={mockData[0].friendlyName}
+      >
         child 1
       </AccordionItem>
     </Accordion>
@@ -92,16 +109,11 @@ stories.add(
 );
 
 stories.add(
-  'RangeSlider',
-  withInfo('Displaying RangeSlider in Accordion Item')(() => (
+  'CompoundSlider',
+  withInfo('Displaying CompoundSlider in Accordion Item')(() => (
     <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem defaultChecked label="Item 1">
-        <RangeSlider
-          min={1970}
-          max={2018}
-          steps={8}
-          onChange={value => onChange(value)}
-        />
+        <CompoundSlider domain={[0, 10]} step={1} values={[5]} tickCount={10} />
       </AccordionItem>
     </Accordion>
   ))
@@ -116,9 +128,13 @@ stories.add(
       type="checkbox"
       name="storybook-accordion"
     >
-      <AccordionItem defaultChecked browser="Chrome" label="Chrome">
+      <AccordionItem
+        defaultChecked
+        browser={mockData[0].logo}
+        label={mockData[0].friendlyName}
+      >
         <VersionGrid
-          data={coverToBrowserfulData2(data2Subset).agents.chrome}
+          data={mockData[0]}
           onClick={(event, browser, version) =>
             onClick(event, browser, version)
           }
