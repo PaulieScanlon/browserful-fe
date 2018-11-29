@@ -1,21 +1,20 @@
-import { UPDATE_MESSAGE } from '../types';
+import { UPDATE_LASTVERSIONS } from '../types';
 
 interface IProps {
-  message: string;
+  value: any;
 }
 
 const initialState: IProps = {
-  message: 'Initial Message'
+  value: '5'
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_MESSAGE:
+    case UPDATE_LASTVERSIONS:
       return {
         ...state,
-        message: action.message
+        value: action.value
       };
-
     default:
       return state;
   }

@@ -1,1 +1,1 @@
-export const UPDATE_BROWSERLIST = '[List] update';
+export const UPDATE_BROWSERLIST = '[BrowserList] update';

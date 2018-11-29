@@ -5,6 +5,9 @@ import browserslist from 'browserslist';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateBrowserlist } from '../modules/browserlist/actions/update_browserlist';
+import { updateGlobalUsage } from '../modules/globalUsage/actions/update_globalUsage';
+import { updateYearReleased } from '../modules/yearReleased/actions/update_yearReleased';
+import { updateLastVersions } from '../modules/lastVersions/actions/update_lastVersions';
 
 import { HeadTag } from '../components/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
@@ -20,7 +23,13 @@ import styled from 'react-emotion';
 
 interface IProps {
   filtered: any;
+  globalUsage: string;
+  yearReleased: string;
+  lastVersions: string;
   updateBrowserlist: any;
+  updateGlobalUsage: any;
+  updateYearReleased: any;
+  updateLastVersions: any;
 }
 
 export const FreeviewContent = styled.div({
@@ -34,12 +43,27 @@ export const FreeviewContent = styled.div({
 });
 
 class Freeview extends React.Component<IProps> {
-  onUpdate(value: Array<number>) {
+  updateUsage(value: Array<number>) {
     // console.log(`> ${value[0]}%`);
+    this.props.updateGlobalUsage(`${value[0]}%`);
     this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
   }
 
+  updateYears(value: Array<number>) {
+    // console.log(`since ${value[0]}`);
+    this.props.updateYearReleased(value[0]);
+    this.props.updateBrowserlist(browserslist([`since ${value[0]}`]));
+  }
+
+  updateVersions(value: Array<number>) {
+    // console.log(`last ${value[0]} versions`);
+    this.props.updateLastVersions(value[0]);
+    this.props.updateBrowserlist(browserslist([`last ${value[0]} versions`]));
+  }
+
   render() {
+    const { globalUsage, lastVersions, yearReleased } = this.props;
+
     const desktop = this.props.filtered.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {
         return (
@@ -105,17 +129,48 @@ class Freeview extends React.Component<IProps> {
               <Col xs={12} sm={12} md={6} lg={6}>
                 <Accordion
                   maxHeight="200px"
-                  type="checkbox"
-                  name="storybook-accordion"
+                  type="radio"
+                  name="controls-accordion"
                 >
-                  <AccordionItem defaultChecked label="Global Usage > {x}%">
+                  <AccordionItem
+                    defaultChecked
+                    label={`Global Usage > ${globalUsage}`}
+                  >
                     <CompoundSlider
-                      onUpdate={values => this.onUpdate(values)}
+                      onUpdate={values => this.updateUsage(values)}
                       showHandleValue
                       domain={[0, 1]}
                       step={0.001}
                       values={[0.02]}
                       tickCount={14}
+                    />
+                  </AccordionItem>
+                  <AccordionItem
+                    label={`Year Released < ${yearReleased}`}
+                    selectColour={colours.teal}
+                  >
+                    <CompoundSlider
+                      onUpdate={values => this.updateYears(values)}
+                      sliderColour={colours.teal}
+                      showHandleValue
+                      domain={[2010, 2018]}
+                      step={1}
+                      values={[2015]}
+                      tickCount={8}
+                    />
+                  </AccordionItem>
+                  <AccordionItem
+                    label={`Last ${lastVersions} versions`}
+                    selectColour={colours.blue}
+                  >
+                    <CompoundSlider
+                      onUpdate={values => this.updateVersions(values)}
+                      sliderColour={colours.blue}
+                      showHandleValue
+                      domain={[1, 10]}
+                      step={1}
+                      values={[5]}
+                      tickCount={10}
                     />
                   </AccordionItem>
                 </Accordion>
@@ -137,11 +192,17 @@ class Freeview extends React.Component<IProps> {
 }
 
 const mapStateToProps = state => ({
-  filtered: state.browserlist.filtered
+  filtered: state.browserlist.filtered,
+  globalUsage: state.globalUsage.value,
+  yearReleased: state.yearReleased.value,
+  lastVersions: state.lastVersions.value
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch)
+  updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch),
+  updateGlobalUsage: bindActionCreators(updateGlobalUsage, dispatch),
+  updateYearReleased: bindActionCreators(updateYearReleased, dispatch),
+  updateLastVersions: bindActionCreators(updateLastVersions, dispatch)
 });
 
 export default connect(
