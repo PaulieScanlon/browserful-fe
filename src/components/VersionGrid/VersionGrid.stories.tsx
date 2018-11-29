@@ -4,9 +4,9 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
 import browserslist from 'browserslist';
-import { friendlyIfy } from '../../utils/friendlyIfy';
+import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = friendlyIfy(browserslist(['last 999 Chrome versions']));
+const mockData = createMatrix(browserslist(['last 999 Chrome versions']));
 
 import { VersionGrid } from './VersionGrid';
 

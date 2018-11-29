@@ -1,5 +1,5 @@
 import { UPDATE_BROWSERLIST } from '../types';
 
-export const updateBrowserlist = (result: string) => dispatch => {
-  return dispatch({ type: UPDATE_BROWSERLIST, result });
+export const updateBrowserlist = (filtered: string) => dispatch => {
+  return dispatch({ type: UPDATE_BROWSERLIST, filtered });
 };

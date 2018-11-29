@@ -2,9 +2,9 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import browserslist from 'browserslist';
-import { friendlyIfy } from '../../utils/friendlyIfy';
+import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = friendlyIfy(browserslist(['last 999 Firefox versions']));
+const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
 
 import { VersionGrid } from './VersionGrid';
 import { VersionChip } from '../VersionChip';

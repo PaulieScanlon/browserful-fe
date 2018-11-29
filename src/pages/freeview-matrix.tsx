@@ -15,11 +15,11 @@ import { Accordion, AccordionItem } from '../components/Accordion';
 import { VersionGrid } from '../components/VersionGrid';
 import { scaffolding, common, colours } from '../theme';
 
-import { platform } from '../utils/friendlyIfy';
+import { platform } from '../utils/createMatrix';
 import styled from 'react-emotion';
 
 interface IProps {
-  result: any;
+  filtered: any;
   updateBrowserlist: any;
 }
 
@@ -40,7 +40,7 @@ class Freeview extends React.Component<IProps> {
   }
 
   render() {
-    const desktop = this.props.result.map((browser, i) => {
+    const desktop = this.props.filtered.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {
         return (
           <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
@@ -63,7 +63,7 @@ class Freeview extends React.Component<IProps> {
       }
     });
 
-    const mobile = this.props.result.map((browser, i) => {
+    const mobile = this.props.filtered.map((browser, i) => {
       if (browser.platform === platform.MOBILE) {
         return (
           <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
@@ -102,7 +102,7 @@ class Freeview extends React.Component<IProps> {
                 marginBottom: `${scaffolding.gutterLg}`
               }}
             >
-              <Col xs={12} sm={12} md={12} lg={12}>
+              <Col xs={12} sm={12} md={6} lg={6}>
                 <Accordion
                   maxHeight="200px"
                   type="checkbox"
@@ -137,7 +137,7 @@ class Freeview extends React.Component<IProps> {
 }
 
 const mapStateToProps = state => ({
-  result: state.browserlist.result
+  filtered: state.browserlist.filtered
 });
 
 const mapDispatchToProps = dispatch => ({

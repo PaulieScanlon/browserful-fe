@@ -9,9 +9,9 @@ import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
 import browserslist from 'browserslist';
-import { friendlyIfy } from '../../utils/friendlyIfy';
+import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = friendlyIfy(browserslist(['last 999 Firefox versions']));
+const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
 
 const onChange = value => {
   action('onChange')('min: ', value[0], 'max: ', value[1]);

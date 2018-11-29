@@ -1,3 +1,5 @@
+import browserslist from 'browserslist';
+
 export enum platform {
   MOBILE = 'mobile',
   DESKTOP = 'desktop'
@@ -37,7 +39,7 @@ const config = {
   baidu: {
     name: 'Baidu',
     logo: 'baidu-browser',
-    platform: platform.DESKTOP
+    platform: platform.MOBILE
   },
   chrome: {
     name: 'Chrome',
@@ -96,8 +98,18 @@ const config = {
   }
 };
 
-export const friendlyIfy = (browserlist: any) => {
-  const matrix = browserlist.reduce((acc, br) => {
+// const unfiltered = browserslist('> 0%').reduce((acc, br) => {
+//   const [name, version] = br.split(' ', 2);
+//   acc[name] = [].concat(acc[name] || [], {
+//     id: version,
+//     isIncluded: false,
+//     defaultChecked: false
+//   });
+//   return acc;
+// }, {});
+
+export const createMatrix = (filtered: any) => {
+  const matrix = filtered.reduce((acc, br) => {
     const [name, version] = br.split(' ', 2);
     acc[name] = [].concat(acc[name] || [], {
       id: version,

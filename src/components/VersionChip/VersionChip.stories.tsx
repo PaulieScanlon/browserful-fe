@@ -6,9 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { VersionChip } from './VersionChip';
 
 import browserslist from 'browserslist';
-import { friendlyIfy } from '../../utils/friendlyIfy';
+import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = friendlyIfy(browserslist(['last 1 Chrome versions']));
+const mockData = createMatrix(browserslist(['last 1 Chrome versions']));
 
 const stories = storiesOf('VersionChip', module);
 
