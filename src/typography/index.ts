@@ -1,10 +1,14 @@
 import styled from 'react-emotion';
 import { colours } from '../theme';
 
+export const fontFamily = {
+  fontFamily: `Lato, sans-serif`
+};
+
 export const font = {
   color: `${colours.greyDark}`,
   display: 'block',
-  fontFamily: `Lato, sans-serif`,
+  ...fontFamily,
   fontWeight: 400,
   fontSize: '14px',
   lineHeight: '18px',

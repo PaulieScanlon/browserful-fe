@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
-import { RangeSlider } from '../RangeSlider';
+import { CompoundSlider } from '../CompoundSlider';
 import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
@@ -40,6 +40,19 @@ stories.add(
   'type:checkbox',
   withInfo(`Use type="checkbox" for multiple selection`)(() => (
     <Accordion type="checkbox" name="storybook-accordion">
+      <AccordionItem label="Item 1">child 1</AccordionItem>
+      <AccordionItem label="Item 2">child 2</AccordionItem>
+      <AccordionItem label="Item 3">child 3</AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
+  'maxHeight',
+  withInfo(
+    'The maxHeight prop can be used for taller content, defaults to 100px'
+  )(() => (
+    <Accordion maxHeight="200px" type="radio" name="storybook-accordion">
       <AccordionItem label="Item 1">child 1</AccordionItem>
       <AccordionItem label="Item 2">child 2</AccordionItem>
       <AccordionItem label="Item 3">child 3</AccordionItem>
@@ -96,16 +109,11 @@ stories.add(
 );
 
 stories.add(
-  'RangeSlider',
-  withInfo('Displaying RangeSlider in Accordion Item')(() => (
+  'CompoundSlider',
+  withInfo('Displaying CompoundSlider in Accordion Item')(() => (
     <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem defaultChecked label="Item 1">
-        <RangeSlider
-          min={1970}
-          max={2018}
-          steps={8}
-          onChange={value => onChange(value)}
-        />
+        <CompoundSlider domain={[0, 10]} step={1} values={[5]} tickCount={10} />
       </AccordionItem>
     </Accordion>
   ))

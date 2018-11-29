@@ -8,7 +8,8 @@ interface IProps {
 }
 
 const initialState: IProps = {
-  result: friendlyIfy(browserslist(['last 2 versions']))
+  result: friendlyIfy(browserslist(['> 0.02%'])) // the initial query here should match the setting on the slider
+  // result: friendlyIfy(browserslist(['last 2 versions']))
 };
 
 export const reducer = (state = initialState, action) => {
