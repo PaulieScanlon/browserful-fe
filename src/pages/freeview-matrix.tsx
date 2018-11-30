@@ -23,9 +23,9 @@ import styled from 'react-emotion';
 
 interface IProps {
   filtered: any;
-  globalUsage: number;
-  yearReleased: number;
-  lastVersions: number;
+  globalUsage: number | string;
+  yearReleased: number | string;
+  lastVersions: number | string;
   updateBrowserlist: any;
   updateGlobalUsage: any;
   updateYearReleased: any;
@@ -45,7 +45,7 @@ export const FreeviewContent = styled.div({
 class Freeview extends React.Component<IProps> {
   changeUsage(value: Array<number>) {
     this.props.updateGlobalUsage(value[0]);
-    this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
+    this.props.updateBrowserlist(browserslist([`>= ${value[0]}%`]));
   }
 
   changeYears(value: Array<number>) {
@@ -75,6 +75,7 @@ class Freeview extends React.Component<IProps> {
                 label={browser.friendlyName}
                 logo={browser.logo}
                 percent={browser.percent}
+                showBar
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
@@ -99,6 +100,7 @@ class Freeview extends React.Component<IProps> {
                 label={browser.friendlyName}
                 logo={browser.logo}
                 percent={browser.percent}
+                showBar
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
@@ -125,7 +127,7 @@ class Freeview extends React.Component<IProps> {
                 marginBottom: `${scaffolding.gutterLg}`
               }}
             >
-              <Col xs={12} sm={12} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 <Accordion
                   maxHeight="200px"
                   type="radio"
@@ -169,20 +171,20 @@ class Freeview extends React.Component<IProps> {
                       onChange={values => this.changeVersions(values)}
                       sliderColour={colours.blue}
                       showHandleValue
-                      domain={[0, 10]}
+                      domain={[1, 20]}
                       step={1}
                       values={[5]}
-                      tickCount={10}
+                      tickCount={20}
                     />
                   </AccordionItem>
                 </Accordion>
               </Col>
             </Row>
             <Row>
-              <Col xs={12} sm={12} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 {desktop}
               </Col>
-              <Col xs={12} sm={12} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 {mobile}
               </Col>
             </Row>

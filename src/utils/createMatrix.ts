@@ -25,7 +25,10 @@ const setIsIncluded = (filteredVersions: any, unfiltered: any) => {
 
 const getVersionsPercentage = (filteredVersions: any, unfiltered: any) => {
   if (filteredVersions) {
-    return Math.round((filteredVersions.length / unfiltered.length) * 100);
+    const percent = Math.round(
+      (filteredVersions.length / unfiltered.length) * 100
+    );
+    return percent > 100 ? 100 : percent;
   }
 };
 

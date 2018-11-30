@@ -1,5 +1,9 @@
 import styled from 'react-emotion';
-import { scaffolding } from '../../theme';
+import { scaffolding, colours, transitionBuilder } from '../../theme';
+
+interface IProps {
+  width?: number | string;
+}
 
 export const LabelWrapper = styled.div({
   label: 'label-wrapper',
@@ -17,5 +21,28 @@ export const LabelText = styled.span({
 
 export const BoldText = styled.span({
   label: 'bold-text',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  marginRight: scaffolding.gutterLg
 });
+
+export const BarChartWrapper = styled.div({
+  label: 'bar-chart-wrapper',
+  position: 'relative',
+  height: '6px',
+  width: '10%',
+  maxWidth: '100px',
+  backgroundColor: colours.offWhite
+});
+
+export const BarChart = styled.div<IProps>(
+  {
+    label: 'bar-chart',
+    position: 'absolute',
+    height: '100%',
+    backgroundColor: colours.green,
+    transition: transitionBuilder('width')
+  },
+  ({ width }) => ({
+    width: `${width}%`
+  })
+);

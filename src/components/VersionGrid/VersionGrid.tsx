@@ -23,7 +23,8 @@ export const VersionGrid: React.SFC<IProps> = ({ data, onClick }: IProps) => {
       <VersionChip
         key={i}
         browser={`${name}-${obj.id}`}
-        version={parseInt(obj.id)}
+        // @TODO, this string replace should probs happen in the util function
+        version={obj.id.replace('-', '\n')}
         isIncluded={obj.isIncluded}
         defaultChecked={obj.defaultChecked}
         onChange={event => onClick(event, name, obj.id)}

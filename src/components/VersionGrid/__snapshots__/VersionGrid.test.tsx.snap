@@ -42,7 +42,7 @@ ShallowWrapper {
           defaultChecked={false}
           isIncluded={false}
           onChange={[Function]}
-          version={69}
+          version="69"
         />,
       ],
     },
@@ -57,7 +57,7 @@ ShallowWrapper {
           "defaultChecked": false,
           "isIncluded": false,
           "onChange": [Function],
-          "version": 69,
+          "version": "69",
         },
         "ref": null,
         "rendered": null,
@@ -78,7 +78,7 @@ ShallowWrapper {
             defaultChecked={false}
             isIncluded={false}
             onChange={[Function]}
-            version={69}
+            version="69"
           />,
         ],
       },
@@ -93,7 +93,7 @@ ShallowWrapper {
             "defaultChecked": false,
             "isIncluded": false,
             "onChange": [Function],
-            "version": 69,
+            "version": "69",
           },
           "ref": null,
           "rendered": null,

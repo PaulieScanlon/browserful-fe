@@ -25,6 +25,7 @@ interface EProps extends IProps {
   logo?: string;
   percent?: number | string;
   statistic?: number | string;
+  showBar?: boolean;
   defaultChecked?: boolean;
   selectColour?: string;
 }
@@ -52,6 +53,7 @@ export const AccordionItem: React.SFC<EProps> = ({
   logo,
   percent,
   statistic,
+  showBar,
   defaultChecked,
   selectColour,
   backgroundColour,
@@ -76,6 +78,7 @@ export const AccordionItem: React.SFC<EProps> = ({
           logo={logo}
           percent={percent}
           statistic={statistic}
+          showBar={showBar}
         />
       </AccordionLabel>
 

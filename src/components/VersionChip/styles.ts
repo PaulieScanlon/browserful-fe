@@ -30,12 +30,21 @@ export const VersionLabel = styled.label({
   alignItems: 'center'
 });
 
-export const VersionText = styled.span({
-  fontSize: '12px',
-  position: 'absolute',
-  fontFamily: `${font.fontFamily}`,
-  color: colours.greyDark
-});
+export const VersionText = styled.span<IProps>(
+  {
+    fontSize: '12px',
+    lineHeight: '14px',
+    position: 'absolute',
+    fontFamily: `${font.fontFamily}`,
+    textAlign: 'center',
+    whiteSpace: 'pre-wrap',
+    textTransform: 'capitalize'
+  },
+  ({ isIncluded }) => ({
+    fontWeight: isIncluded ? 'bold' : 'normal',
+    color: isIncluded ? colours.green : colours.red
+  })
+);
 
 export const VersionInput = styled.input<IProps>(
   {
