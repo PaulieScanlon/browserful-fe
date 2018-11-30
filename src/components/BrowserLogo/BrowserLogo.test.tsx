@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { BrowserLogo } from '../BrowserLogo';
 
 const mountDefault = props => {
-  return mount(<BrowserLogo browser="chrome" />);
+  return mount(<BrowserLogo logo="chrome" />);
 };
 
 // @TODO using next-images and the require method inline makes this un-testable

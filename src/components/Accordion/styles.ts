@@ -70,13 +70,6 @@ export const AccordionLabel = styled.label({
   }
 });
 
-export const AccordionText = styled.span({
-  label: 'accordion-text',
-  padding: `${scaffolding.gutterLg} 0px`,
-  display: 'flex',
-  flexGrow: 1
-});
-
 export const AccordionContent = styled.div<EProps>(
   {
     label: 'accordion-content',

@@ -23,9 +23,9 @@ import styled from 'react-emotion';
 
 interface IProps {
   filtered: any;
-  globalUsage: string;
-  yearReleased: string;
-  lastVersions: string;
+  globalUsage: number;
+  yearReleased: number;
+  lastVersions: number;
   updateBrowserlist: any;
   updateGlobalUsage: any;
   updateYearReleased: any;
@@ -44,7 +44,7 @@ export const FreeviewContent = styled.div({
 
 class Freeview extends React.Component<IProps> {
   changeUsage(value: Array<number>) {
-    this.props.updateGlobalUsage(`${value[0]}%`);
+    this.props.updateGlobalUsage(value[0]);
     this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
   }
 
@@ -73,7 +73,8 @@ class Freeview extends React.Component<IProps> {
             >
               <AccordionItem
                 label={browser.friendlyName}
-                browser={browser.logo}
+                logo={browser.logo}
+                percent={browser.percent}
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
@@ -96,7 +97,8 @@ class Freeview extends React.Component<IProps> {
             >
               <AccordionItem
                 label={browser.friendlyName}
-                browser={browser.logo}
+                logo={browser.logo}
+                percent={browser.percent}
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
@@ -131,7 +133,8 @@ class Freeview extends React.Component<IProps> {
                 >
                   <AccordionItem
                     defaultChecked
-                    label={`Global Usage > ${globalUsage}`}
+                    label="Global Usage"
+                    percent={globalUsage}
                   >
                     <CompoundSlider
                       onChange={values => this.changeUsage(values)}
@@ -143,7 +146,8 @@ class Freeview extends React.Component<IProps> {
                     />
                   </AccordionItem>
                   <AccordionItem
-                    label={`Year Released < ${yearReleased}`}
+                    label="Year Released"
+                    statistic={yearReleased}
                     selectColour={colours.teal}
                   >
                     <CompoundSlider
@@ -157,7 +161,8 @@ class Freeview extends React.Component<IProps> {
                     />
                   </AccordionItem>
                   <AccordionItem
-                    label={`Last ${lastVersions} versions`}
+                    label="Last versions"
+                    statistic={lastVersions}
                     selectColour={colours.blue}
                   >
                     <CompoundSlider
@@ -174,10 +179,10 @@ class Freeview extends React.Component<IProps> {
               </Col>
             </Row>
             <Row>
-              <Col xs={12} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={6} lg={6}>
                 {desktop}
               </Col>
-              <Col xs={12} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={6} lg={6}>
                 {mobile}
               </Col>
             </Row>

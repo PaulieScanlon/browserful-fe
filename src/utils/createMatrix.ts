@@ -12,7 +12,7 @@ const unfiltered = browserslist(['last 999 versions']).reduce((acc, br) => {
   return acc;
 }, {});
 
-const compareVersions = (filteredVersions: any, unfiltered: any) => {
+const setIsIncluded = (filteredVersions: any, unfiltered: any) => {
   return unfiltered.map(version => {
     return {
       ...version,
@@ -21,6 +21,12 @@ const compareVersions = (filteredVersions: any, unfiltered: any) => {
         : false
     };
   });
+};
+
+const getVersionsPercentage = (filteredVersions: any, unfiltered: any) => {
+  if (filteredVersions) {
+    return Math.round((filteredVersions.length / unfiltered.length) * 100);
+  }
 };
 
 export const createMatrix = (filtered: any) => {
@@ -33,10 +39,11 @@ export const createMatrix = (filtered: any) => {
   return Object.keys(unfiltered).map(br => {
     return {
       friendlyName: browserDetails[br].name,
+      percent: getVersionsPercentage(filteredVersions[br], unfiltered[br]),
       name: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,
-      versions: compareVersions(filteredVersions[br], unfiltered[br]),
+      versions: setIsIncluded(filteredVersions[br], unfiltered[br]),
       defaultChecked: true
     };
   });

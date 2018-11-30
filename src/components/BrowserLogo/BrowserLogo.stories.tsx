@@ -14,6 +14,6 @@ const stories = storiesOf('BrowserLogo', module);
 stories.add(
   'usage',
   withInfo('BrowserLogo is the bitmap browser logo to display')(() => (
-    <BrowserLogo browser={mockData[0].logo} />
+    <BrowserLogo logo={mockData[0].logo} />
   ))
 );

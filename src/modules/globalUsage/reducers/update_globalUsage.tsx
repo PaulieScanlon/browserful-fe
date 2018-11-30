@@ -1,11 +1,11 @@
 import { UPDATE_GLOBALUSAGE } from '../types';
 
 interface IProps {
-  value: any;
+  value: number;
 }
 
 const initialState: IProps = {
-  value: '0.02%'
+  value: 0.02
 };
 
 export const reducer = (state = initialState, action) => {
