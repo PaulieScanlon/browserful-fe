@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { BrowserLogoImage } from './styles';
+import { BrowserImage } from './styles';
 
 interface IProps {
-  browser: string;
+  logo: string;
 }
 
-export const BrowserLogo: React.SFC<IProps> = ({ browser }: IProps) => {
-  return (
-    <BrowserLogoImage alt={browser} src={require(`./images/${browser}.png`)} />
-  );
+export const BrowserLogo: React.SFC<IProps> = ({ logo }: IProps) => {
+  return <BrowserImage alt={logo} src={require(`./images/${logo}.png`)} />;
 };

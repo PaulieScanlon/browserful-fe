@@ -18,14 +18,14 @@ import { Accordion, AccordionItem } from '../components/Accordion';
 import { VersionGrid } from '../components/VersionGrid';
 import { scaffolding, common, colours } from '../theme';
 
-import { platform } from '../utils/createMatrix';
+import { platform } from '../utils/browserDetails';
 import styled from 'react-emotion';
 
 interface IProps {
   filtered: any;
-  globalUsage: string;
-  yearReleased: string;
-  lastVersions: string;
+  globalUsage: number | string;
+  yearReleased: number | string;
+  lastVersions: number | string;
   updateBrowserlist: any;
   updateGlobalUsage: any;
   updateYearReleased: any;
@@ -43,20 +43,17 @@ export const FreeviewContent = styled.div({
 });
 
 class Freeview extends React.Component<IProps> {
-  updateUsage(value: Array<number>) {
-    // console.log(`> ${value[0]}%`);
-    this.props.updateGlobalUsage(`${value[0]}%`);
-    this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
+  changeUsage(value: Array<number>) {
+    this.props.updateGlobalUsage(value[0]);
+    this.props.updateBrowserlist(browserslist([`>= ${value[0]}%`]));
   }
 
-  updateYears(value: Array<number>) {
-    // console.log(`since ${value[0]}`);
+  changeYears(value: Array<number>) {
     this.props.updateYearReleased(value[0]);
     this.props.updateBrowserlist(browserslist([`since ${value[0]}`]));
   }
 
-  updateVersions(value: Array<number>) {
-    // console.log(`last ${value[0]} versions`);
+  changeVersions(value: Array<number>) {
     this.props.updateLastVersions(value[0]);
     this.props.updateBrowserlist(browserslist([`last ${value[0]} versions`]));
   }
@@ -76,12 +73,14 @@ class Freeview extends React.Component<IProps> {
             >
               <AccordionItem
                 label={browser.friendlyName}
-                browser={browser.logo}
+                logo={browser.logo}
+                percent={browser.percent}
+                showBar
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
               </AccordionItem>
-            </Accordion>{' '}
+            </Accordion>
           </div>
         );
       }
@@ -99,7 +98,9 @@ class Freeview extends React.Component<IProps> {
             >
               <AccordionItem
                 label={browser.friendlyName}
-                browser={browser.logo}
+                logo={browser.logo}
+                percent={browser.percent}
+                showBar
                 defaultChecked={browser.defaultChecked}
               >
                 <VersionGrid data={browser} />
@@ -126,7 +127,7 @@ class Freeview extends React.Component<IProps> {
                 marginBottom: `${scaffolding.gutterLg}`
               }}
             >
-              <Col xs={12} sm={12} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 <Accordion
                   maxHeight="200px"
                   type="radio"
@@ -134,10 +135,11 @@ class Freeview extends React.Component<IProps> {
                 >
                   <AccordionItem
                     defaultChecked
-                    label={`Global Usage > ${globalUsage}`}
+                    label="Global Usage"
+                    percent={globalUsage}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateUsage(values)}
+                      onChange={values => this.changeUsage(values)}
                       showHandleValue
                       domain={[0, 1]}
                       step={0.001}
@@ -146,11 +148,12 @@ class Freeview extends React.Component<IProps> {
                     />
                   </AccordionItem>
                   <AccordionItem
-                    label={`Year Released < ${yearReleased}`}
+                    label="Year Released"
+                    statistic={yearReleased}
                     selectColour={colours.teal}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateYears(values)}
+                      onChange={values => this.changeYears(values)}
                       sliderColour={colours.teal}
                       showHandleValue
                       domain={[2010, 2018]}
@@ -160,27 +163,28 @@ class Freeview extends React.Component<IProps> {
                     />
                   </AccordionItem>
                   <AccordionItem
-                    label={`Last ${lastVersions} versions`}
+                    label="Last versions"
+                    statistic={lastVersions}
                     selectColour={colours.blue}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateVersions(values)}
+                      onChange={values => this.changeVersions(values)}
                       sliderColour={colours.blue}
                       showHandleValue
-                      domain={[1, 10]}
+                      domain={[1, 20]}
                       step={1}
                       values={[5]}
-                      tickCount={10}
+                      tickCount={20}
                     />
                   </AccordionItem>
                 </Accordion>
               </Col>
             </Row>
             <Row>
-              <Col xs={12} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 {desktop}
               </Col>
-              <Col xs={12} sm={6} md={6} lg={6}>
+              <Col xs={12} sm={12} md={12} lg={6}>
                 {mobile}
               </Col>
             </Row>

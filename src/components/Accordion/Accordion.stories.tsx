@@ -11,10 +11,10 @@ import { colours } from '../../theme';
 import browserslist from 'browserslist';
 import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
+const mockData = createMatrix(browserslist(['last 999 versions']));
 
-const onChange = value => {
-  action('onChange')('min: ', value[0], 'max: ', value[1]);
+const onChange = values => {
+  action('onChange')(values[0]);
 };
 
 const onClick = (event, browser, version) => {
@@ -99,8 +99,9 @@ stories.add(
   )(() => (
     <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem
-        browser={mockData[0].logo}
+        logo={mockData[0].logo}
         label={mockData[0].friendlyName}
+        percent={mockData[0].percent}
       >
         child 1
       </AccordionItem>
@@ -111,9 +112,15 @@ stories.add(
 stories.add(
   'CompoundSlider',
   withInfo('Displaying CompoundSlider in Accordion Item')(() => (
-    <Accordion type="checkbox" name="storybook-accordion">
+    <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
       <AccordionItem defaultChecked label="Item 1">
-        <CompoundSlider domain={[0, 10]} step={1} values={[5]} tickCount={10} />
+        <CompoundSlider
+          domain={[0, 10]}
+          step={1}
+          values={[5]}
+          tickCount={10}
+          onChange={values => onChange(values)}
+        />
       </AccordionItem>
     </Accordion>
   ))
@@ -130,7 +137,7 @@ stories.add(
     >
       <AccordionItem
         defaultChecked
-        browser={mockData[0].logo}
+        logo={mockData[0].logo}
         label={mockData[0].friendlyName}
       >
         <VersionGrid

@@ -1,11 +1,11 @@
 import { UPDATE_YEARRELEASED } from '../types';
 
 interface IProps {
-  value: any;
+  value: number;
 }
 
 const initialState: IProps = {
-  value: '2015'
+  value: 2015
 };
 
 export const reducer = (state = initialState, action) => {

@@ -9,7 +9,7 @@ import {
 
 interface IProps {
   browser: string;
-  version: number | string;
+  version: any;
   onChange: (
     event: React.ChangeEventHandler<HTMLInputElement>,
     browser: string,
@@ -36,7 +36,7 @@ export const VersionChip: React.SFC<IProps> = ({
         isIncluded={isIncluded}
       />
       <VersionStyle />
-      <VersionText>{version || 'x'}</VersionText>
+      <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
     </VersionLabel>
   );
 };

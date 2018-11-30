@@ -1,11 +1,11 @@
 import { UPDATE_LASTVERSIONS } from '../types';
 
 interface IProps {
-  value: any;
+  value: number;
 }
 
 const initialState: IProps = {
-  value: '5'
+  value: 5
 };
 
 export const reducer = (state = initialState, action) => {

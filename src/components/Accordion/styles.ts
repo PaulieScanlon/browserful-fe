@@ -62,19 +62,12 @@ export const AccordionLabel = styled.label({
   transition: `${transitionBuilder('color')}`,
   '&:after': {
     content: `""`,
-    width: '20px',
-    height: '20px',
+    width: '16px',
+    height: '16px',
     borderRadius: '100%',
     backgroundColor: colours.greyUltraLight,
     transition: `${transitionBuilder('background-color')}`
   }
-});
-
-export const AccordionText = styled.span({
-  label: 'accordion-text',
-  padding: `${scaffolding.gutterLg} 0px`,
-  display: 'flex',
-  flexGrow: 1
 });
 
 export const AccordionContent = styled.div<EProps>(

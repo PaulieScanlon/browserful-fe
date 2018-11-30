@@ -32,7 +32,9 @@ ShallowWrapper {
           type="checkbox"
         />,
         <VersionStyle />,
-        <VersionText>
+        <VersionText
+          isIncluded={false}
+        >
           1
         </VersionText>,
       ],
@@ -70,6 +72,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": 1,
+          "isIncluded": false,
         },
         "ref": null,
         "rendered": 1,
@@ -93,7 +96,9 @@ ShallowWrapper {
             type="checkbox"
           />,
           <VersionStyle />,
-          <VersionText>
+          <VersionText
+            isIncluded={false}
+          >
             1
           </VersionText>,
         ],
@@ -131,6 +136,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": 1,
+            "isIncluded": false,
           },
           "ref": null,
           "rendered": 1,

@@ -3,13 +3,12 @@ import * as React from 'react';
 import {
   AccordionWrapper,
   AccordionLabel,
-  AccordionText,
   AccordionInput,
   AccordionContent,
   AccordionContentInner
 } from './styles';
 
-import { BrowserLogo } from '../BrowserLogo';
+import { DetailsLabel } from '../DetailsLabel';
 
 import { colours } from '../../theme';
 
@@ -23,7 +22,10 @@ interface IProps {
 
 interface EProps extends IProps {
   label: string;
-  browser?: string;
+  logo?: string;
+  percent?: number | string;
+  statistic?: number | string;
+  showBar?: boolean;
   defaultChecked?: boolean;
   selectColour?: string;
 }
@@ -48,7 +50,10 @@ export const Accordion: React.SFC<IProps> = ({
 
 export const AccordionItem: React.SFC<EProps> = ({
   label,
-  browser,
+  logo,
+  percent,
+  statistic,
+  showBar,
   defaultChecked,
   selectColour,
   backgroundColour,
@@ -68,8 +73,13 @@ export const AccordionItem: React.SFC<EProps> = ({
         selectColour={selectColour}
       />
       <AccordionLabel htmlFor={label}>
-        {browser && <BrowserLogo browser={browser} />}
-        <AccordionText>{label}</AccordionText>
+        <DetailsLabel
+          label={label}
+          logo={logo}
+          percent={percent}
+          statistic={statistic}
+          showBar={showBar}
+        />
       </AccordionLabel>
 
       <AccordionContent backgroundColour={backgroundColour}>

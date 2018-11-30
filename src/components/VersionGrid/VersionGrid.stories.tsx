@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import browserslist from 'browserslist';
 import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = createMatrix(browserslist(['last 999 Chrome versions']));
+const mockData = createMatrix(browserslist(['last 999 versions']));
 
 import { VersionGrid } from './VersionGrid';
 
@@ -20,7 +20,7 @@ stories.add(
   'default usage',
   withInfo('VersionGrid displays versionChips and a other stuff..')(() => (
     <VersionGrid
-      data={mockData[0]}
+      data={mockData[9]}
       onClick={(event, browser, version) => onClick(event, browser, version)}
     />
   ))
