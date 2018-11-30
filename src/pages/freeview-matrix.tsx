@@ -19,6 +19,7 @@ import { VersionGrid } from '../components/VersionGrid';
 import { scaffolding, common, colours } from '../theme';
 
 import { platform } from '../utils/browserDetails';
+import { escapeCGI } from '../utils/uri';
 import styled from 'react-emotion';
 
 interface IProps {
@@ -46,16 +47,19 @@ class Freeview extends React.Component<IProps> {
   changeUsage(value: Array<number>) {
     this.props.updateGlobalUsage(value[0]);
     this.props.updateBrowserlist(browserslist([`>= ${value[0]}%`]));
+    location.hash = escapeCGI(`>= ${value[0]}%`);
   }
 
   changeYears(value: Array<number>) {
     this.props.updateYearReleased(value[0]);
     this.props.updateBrowserlist(browserslist([`since ${value[0]}`]));
+    location.hash = escapeCGI(`since ${value[0]}`);
   }
 
   changeVersions(value: Array<number>) {
     this.props.updateLastVersions(value[0]);
     this.props.updateBrowserlist(browserslist([`last ${value[0]} versions`]));
+    location.hash = escapeCGI(`last ${value[0]} versions`);
   }
 
   render() {

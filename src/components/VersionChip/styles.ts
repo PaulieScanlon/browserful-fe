@@ -64,9 +64,9 @@ export const VersionInput = styled.input<IProps>(
 
 export const VersionStyle = styled.span({
   label: 'version-style',
+  borderRadius: '100%',
   width: '40px',
   height: '40px',
-  borderRadius: '20px',
   borderStyle: 'solid',
   boxSizing: 'border-box',
   outline: 'none'
