@@ -81,7 +81,7 @@ class Freeview extends React.Component<IProps> {
               >
                 <VersionGrid data={browser} />
               </AccordionItem>
-            </Accordion>{' '}
+            </Accordion>
           </div>
         );
       }
@@ -167,7 +167,7 @@ class Freeview extends React.Component<IProps> {
                       onUpdate={values => this.updateVersions(values)}
                       sliderColour={colours.blue}
                       showHandleValue
-                      domain={[1, 10]}
+                      domain={[0, 10]}
                       step={1}
                       values={[5]}
                       tickCount={10}

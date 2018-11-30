@@ -36,7 +36,7 @@ export const VersionChip: React.SFC<IProps> = ({
         isIncluded={isIncluded}
       />
       <VersionStyle />
-      <VersionText>{version || 'x'}</VersionText>
+      <VersionText>{version.toString()}</VersionText>
     </VersionLabel>
   );
 };
