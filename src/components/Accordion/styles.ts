@@ -62,6 +62,8 @@ export const AccordionLabel = styled.label({
   transition: `${transitionBuilder('color')}`,
   '&:after': {
     content: `""`,
+    position: 'absolute',
+    right: scaffolding.gutterLg,
     width: '16px',
     height: '16px',
     borderRadius: '100%',
