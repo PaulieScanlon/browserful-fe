@@ -18,7 +18,7 @@ import { Accordion, AccordionItem } from '../components/Accordion';
 import { VersionGrid } from '../components/VersionGrid';
 import { scaffolding, common, colours } from '../theme';
 
-import { platform } from '../utils/createMatrix';
+import { platform } from '../utils/browserDetails';
 import styled from 'react-emotion';
 
 interface IProps {
@@ -43,20 +43,17 @@ export const FreeviewContent = styled.div({
 });
 
 class Freeview extends React.Component<IProps> {
-  updateUsage(value: Array<number>) {
-    // console.log(`> ${value[0]}%`);
+  changeUsage(value: Array<number>) {
     this.props.updateGlobalUsage(`${value[0]}%`);
     this.props.updateBrowserlist(browserslist([`> ${value[0]}%`]));
   }
 
-  updateYears(value: Array<number>) {
-    // console.log(`since ${value[0]}`);
+  changeYears(value: Array<number>) {
     this.props.updateYearReleased(value[0]);
     this.props.updateBrowserlist(browserslist([`since ${value[0]}`]));
   }
 
-  updateVersions(value: Array<number>) {
-    // console.log(`last ${value[0]} versions`);
+  changeVersions(value: Array<number>) {
     this.props.updateLastVersions(value[0]);
     this.props.updateBrowserlist(browserslist([`last ${value[0]} versions`]));
   }
@@ -137,7 +134,7 @@ class Freeview extends React.Component<IProps> {
                     label={`Global Usage > ${globalUsage}`}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateUsage(values)}
+                      onChange={values => this.changeUsage(values)}
                       showHandleValue
                       domain={[0, 1]}
                       step={0.001}
@@ -150,7 +147,7 @@ class Freeview extends React.Component<IProps> {
                     selectColour={colours.teal}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateYears(values)}
+                      onChange={values => this.changeYears(values)}
                       sliderColour={colours.teal}
                       showHandleValue
                       domain={[2010, 2018]}
@@ -164,7 +161,7 @@ class Freeview extends React.Component<IProps> {
                     selectColour={colours.blue}
                   >
                     <CompoundSlider
-                      onUpdate={values => this.updateVersions(values)}
+                      onChange={values => this.changeVersions(values)}
                       sliderColour={colours.blue}
                       showHandleValue
                       domain={[0, 10]}
