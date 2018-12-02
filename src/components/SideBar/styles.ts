@@ -21,7 +21,7 @@ export const SideBarNav = styled.nav<IProps>(
     left: '0px',
     height: '100vh',
     zIndex: common.sideBar.zIndex,
-    backgroundColor: colours.greyMid
+    backgroundColor: common.sideBar.colour
   },
   ({ active }) => ({
     marginLeft: active ? '0px' : `-${common.sideBar.width}`

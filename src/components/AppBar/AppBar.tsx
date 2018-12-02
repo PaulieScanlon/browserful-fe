@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Link from 'next/link';
 
+import { RouterLink } from '../../common/RouterLink';
 import { BrowserfulLogo } from '../BrowserfulLogo';
 import { AppBarWrapper } from './styles';
-import Link from 'next/link';
 
 interface IProps extends React.Props<ChildNode> {
   showLogo?: boolean;
@@ -20,7 +21,7 @@ export const AppBar: React.SFC<IProps> = ({
     <AppBarWrapper fixed={fixed} width={width}>
       {showLogo && (
         <Link href="/">
-          <a>
+          <a className={`${RouterLink}`}>
             <BrowserfulLogo />
           </a>
         </Link>

@@ -12,9 +12,9 @@ interface IProps {
 export const ButtonElement = styled.button<IProps>(
   {
     label: 'button-element',
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent: 'center',
-    padding: `${scaffolding.gutterLg} ${scaffolding.gutterXl}`,
+    padding: `${scaffolding.gutterSm} ${scaffolding.gutterLg}`,
     fontSize: font.fontSize,
     fontFamily: font.fontFamily,
     border: 0,
@@ -25,6 +25,6 @@ export const ButtonElement = styled.button<IProps>(
   ({ fontColour, backgroundColour, grow }) => ({
     color: fontColour,
     backgroundColor: backgroundColour,
-    flexGrow: grow ? 1 : 0
+    width: grow ? '100%' : 'auto'
   })
 );

@@ -20,12 +20,6 @@ describe('<Button />', () => {
     expect(wrapper).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
-  it('calls function onClick', () => {
-    const testOnClick = jest.fn();
-    const wrapper = shallow(<Button onClick={event => testOnClick(event)} />);
-    wrapper.simulate('click');
-    expect(testOnClick).toHaveBeenCalledTimes(1);
-  });
   it('has correct styles for backgroundColor', () => {
     const wrapper = shallowDefault({ backgroundColour: colours.teal });
     expect(wrapper).toHaveStyleRule('background-color', `${colours.teal}`);

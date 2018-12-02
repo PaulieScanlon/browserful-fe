@@ -15,6 +15,13 @@ stories.add(
 );
 
 stories.add(
+  'text',
+  withInfo(
+    'The text prop can be used to display text instead of the Browserful text'
+  )(() => <BrowserfulLogo text="Sign up" />)
+);
+
+stories.add(
   'showText',
   withInfo('The showText prop controls the visibility of the Browserful text')(
     () => <BrowserfulLogo showText={false} />

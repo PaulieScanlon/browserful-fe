@@ -1,22 +1,20 @@
 import * as React from 'react';
-import { ReactChild } from 'react';
 
 import { colours } from '../../theme';
 
 import { ButtonElement } from './styles';
 
-interface IProps extends React.Props<ReactChild> {
+interface IProps {
   fontColour?: string;
   backgroundColour?: string;
   grow?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children: React.ReactNode;
 }
 
 export const Button: React.SFC<IProps> = ({
   fontColour,
   backgroundColour,
   grow,
-  onClick,
   children
 }: IProps) => {
   return (
@@ -24,7 +22,6 @@ export const Button: React.SFC<IProps> = ({
       fontColour={fontColour}
       backgroundColour={backgroundColour}
       grow={grow}
-      onClick={event => onClick(event)}
     >
       {children}
     </ButtonElement>
