@@ -6,12 +6,14 @@ import { BrowserfulLogoText } from '../../typography';
 import { LogoWrapper, SvgWrapper } from './styles';
 
 interface IProps {
+  text?: string;
   showText?: boolean;
   fontColour?: string;
   logoColour?: string;
 }
 
 export const BrowserfulLogo: React.SFC<IProps> = ({
+  text,
   showText,
   fontColour,
   logoColour
@@ -35,7 +37,7 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
 
       {showText && (
         <BrowserfulLogoText display="inline-flex" fontColour={fontColour}>
-          Browserful
+          {text}
         </BrowserfulLogoText>
       )}
     </LogoWrapper>
@@ -43,6 +45,7 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
 };
 
 BrowserfulLogo.defaultProps = {
+  text: 'Browserful',
   showText: true,
   logoColour: `${colours.pink}`,
   fontColour: `${colours.greyMid}`

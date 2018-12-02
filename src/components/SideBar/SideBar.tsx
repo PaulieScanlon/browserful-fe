@@ -1,5 +1,6 @@
 import * as React from 'react';
-
+import Link from 'next/link';
+import { RouterLink } from '../../common/RouterLink';
 import { BrowserfulLogo } from '../BrowserfulLogo';
 import {
   SideBarWrapper,
@@ -9,7 +10,6 @@ import {
 } from './styles';
 
 import { colours } from '../../theme';
-import Link from 'next/link';
 
 interface IProps extends React.Props<ChildNode> {
   active?: boolean;
@@ -22,7 +22,7 @@ export const SideBar: React.SFC<IProps> = ({ active, children }: IProps) => {
       <SideBarNav active={active}>
         <SideBarHeader>
           <Link href="/">
-            <a>
+            <a className={`${RouterLink}`}>
               <BrowserfulLogo fontColour={colours.white} />
             </a>
           </Link>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import browserslist from 'browserslist';
+import styled from 'react-emotion';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,7 +21,6 @@ import { scaffolding, common, colours } from '../theme';
 
 import { platform } from '../utils/browserDetails';
 import { escapeCGI } from '../utils/uri';
-import styled from 'react-emotion';
 
 interface IProps {
   filtered: any;
@@ -40,7 +40,7 @@ export const FreeviewContent = styled.div({
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',
-  right: '0px'
+  left: '0px'
 });
 
 class Freeview extends React.Component<IProps> {

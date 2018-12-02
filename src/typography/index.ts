@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { colours } from '../theme';
+import { colours, scaffolding } from '../theme';
 
 export const fontFamily = {
   fontFamily: `Lato, sans-serif`
@@ -14,7 +14,7 @@ export const font = {
   lineHeight: '18px',
   textAlign: 'left',
   marginTop: 0,
-  marginBottom: 20,
+  marginBottom: scaffolding.gutterSm,
   maxWidth: '100%'
 };
 
@@ -42,7 +42,8 @@ interface IProps {
 export const P = styled.p<IProps>(
   {
     ...(font as any),
-    label: 'p'
+    label: 'p',
+    color: colours.greyMid
   },
   ({ fontColour }) => ({
     color: fontColour
@@ -54,8 +55,8 @@ export const H1 = styled.h1<IProps>(
     ...(font as any),
     label: 'h1',
     fontWeight: 700,
-    fontSize: '32px',
-    lineHeight: '36px'
+    fontSize: '40px',
+    lineHeight: '44px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -68,8 +69,8 @@ export const H2 = styled.h2<IProps>(
     ...(font as any),
     label: 'h2',
     fontWeight: 700,
-    fontSize: '28px',
-    lineHeight: '32px'
+    fontSize: '32px',
+    lineHeight: '36px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -82,8 +83,8 @@ export const H3 = styled.h3<IProps>(
     ...(font as any),
     label: 'h3',
     fontWeight: 700,
-    fontSize: '24px',
-    lineHeight: '28px'
+    fontSize: '28px',
+    lineHeight: '32px'
   },
   ({ fontColour, display }) => ({
     color: fontColour,
@@ -95,7 +96,7 @@ export const H4 = styled.h4<IProps>(
   {
     ...(font as any),
     label: 'h4',
-    fontWeight: 700,
+    fontWeight: 400,
     fontSize: '20px',
     lineHeight: '24px'
   },
