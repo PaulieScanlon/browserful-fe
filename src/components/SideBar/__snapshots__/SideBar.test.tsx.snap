@@ -28,11 +28,14 @@ ShallowWrapper {
             <Link
               href="/"
             >
-              <a>
+              <a
+                className="css-euxw9m-RouterLink"
+              >
                 <BrowserfulLogo
                   fontColour="#ffffff"
                   logoColour="#ff5ca3"
                   showText={true}
+                  text="Browserful"
                 />
               </a>
             </Link>
@@ -53,11 +56,14 @@ ShallowWrapper {
             <Link
               href="/"
             >
-              <a>
+              <a
+                className="css-euxw9m-RouterLink"
+              >
                 <BrowserfulLogo
                   fontColour="#ffffff"
                   logoColour="#ff5ca3"
                   showText={true}
+                  text="Browserful"
                 />
               </a>
             </Link>
@@ -72,11 +78,14 @@ ShallowWrapper {
             "children": <Link
               href="/"
             >
-              <a>
+              <a
+                className="css-euxw9m-RouterLink"
+              >
                 <BrowserfulLogo
                   fontColour="#ffffff"
                   logoColour="#ff5ca3"
                   showText={true}
+                  text="Browserful"
                 />
               </a>
             </Link>,
@@ -87,11 +96,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <a>
+              "children": <a
+                className="css-euxw9m-RouterLink"
+              >
                 <BrowserfulLogo
                   fontColour="#ffffff"
                   logoColour="#ff5ca3"
                   showText={true}
+                  text="Browserful"
                 />
               </a>,
               "href": "/",
@@ -106,7 +118,9 @@ ShallowWrapper {
                   fontColour="#ffffff"
                   logoColour="#ff5ca3"
                   showText={true}
+                  text="Browserful"
                 />,
+                "className": "css-euxw9m-RouterLink",
               },
               "ref": null,
               "rendered": Object {
@@ -117,6 +131,7 @@ ShallowWrapper {
                   "fontColour": "#ffffff",
                   "logoColour": "#ff5ca3",
                   "showText": true,
+                  "text": "Browserful",
                 },
                 "ref": null,
                 "rendered": null,
@@ -158,11 +173,14 @@ ShallowWrapper {
               <Link
                 href="/"
               >
-                <a>
+                <a
+                  className="css-euxw9m-RouterLink"
+                >
                   <BrowserfulLogo
                     fontColour="#ffffff"
                     logoColour="#ff5ca3"
                     showText={true}
+                    text="Browserful"
                   />
                 </a>
               </Link>
@@ -183,11 +201,14 @@ ShallowWrapper {
               <Link
                 href="/"
               >
-                <a>
+                <a
+                  className="css-euxw9m-RouterLink"
+                >
                   <BrowserfulLogo
                     fontColour="#ffffff"
                     logoColour="#ff5ca3"
                     showText={true}
+                    text="Browserful"
                   />
                 </a>
               </Link>
@@ -202,11 +223,14 @@ ShallowWrapper {
               "children": <Link
                 href="/"
               >
-                <a>
+                <a
+                  className="css-euxw9m-RouterLink"
+                >
                   <BrowserfulLogo
                     fontColour="#ffffff"
                     logoColour="#ff5ca3"
                     showText={true}
+                    text="Browserful"
                   />
                 </a>
               </Link>,
@@ -217,11 +241,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <a>
+                "children": <a
+                  className="css-euxw9m-RouterLink"
+                >
                   <BrowserfulLogo
                     fontColour="#ffffff"
                     logoColour="#ff5ca3"
                     showText={true}
+                    text="Browserful"
                   />
                 </a>,
                 "href": "/",
@@ -236,7 +263,9 @@ ShallowWrapper {
                     fontColour="#ffffff"
                     logoColour="#ff5ca3"
                     showText={true}
+                    text="Browserful"
                   />,
+                  "className": "css-euxw9m-RouterLink",
                 },
                 "ref": null,
                 "rendered": Object {
@@ -247,6 +276,7 @@ ShallowWrapper {
                     "fontColour": "#ffffff",
                     "logoColour": "#ff5ca3",
                     "showText": true,
+                    "text": "Browserful",
                   },
                   "ref": null,
                   "rendered": null,
