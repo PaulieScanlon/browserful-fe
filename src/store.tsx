@@ -3,17 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
 import { reducer as browserlistReducer } from './modules/browserlist/reducers/update_browserlist';
-import { reducer as globalUsageReducer } from './modules/globalUsage/reducers/update_globalUsage';
-import { reducer as lastVersionsReducer } from './modules/lastVersions/reducers/update_lastVersions';
-import { reducer as yearReleasedReducer } from './modules/yearReleased/reducers/update_yearReleased';
+import { reducer as ui } from './modules/ui/reducers/update_ui';
 
 export const initStore = initialState => {
   return createStore(
     combineReducers({
       browserlist: browserlistReducer,
-      globalUsage: globalUsageReducer,
-      lastVersions: lastVersionsReducer,
-      yearReleased: yearReleasedReducer
+      ui: ui
     }),
     initialState,
     composeWithDevTools(applyMiddleware(thunkMiddleware))
