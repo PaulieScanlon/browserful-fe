@@ -25,7 +25,7 @@ import { actionBuilder } from '../utils/actionBuilder';
 import { urlSetter } from '../utils/urlSetter';
 import { urlGetter } from '../utils/urlGetter';
 
-import { scaffolding, common, colours } from '../theme';
+import { scaffolding, common } from '../theme';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',

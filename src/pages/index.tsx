@@ -92,7 +92,7 @@ class Index extends React.Component<{}> {
                       Get started
                     </H4>
                     <P style={{ marginBottom: scaffolding.gutterXl }}>
-                      Give the beta a whirl and create your own shareable
+                      Give Browserful a whirl and create your own shareable
                       matrix.
                     </P>
                     <Link href="/freeview/matrix?yearReleased#since+2013">
