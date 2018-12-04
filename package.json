@@ -6,7 +6,7 @@
     "test:watch": "jest --watch",
     "dev": "node server.js -p 3030",
     "build": "next build src",
-    "start": "next start src -p $PORT",
+    "start": "node server.js -p $PORT",
     "heroku-postbuild": "npm run build",
     "storybook": "start-storybook -p 6060",
     "build-storybook": "build-storybook",
