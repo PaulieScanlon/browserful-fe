@@ -1,12 +1,15 @@
 import {
   UPDATE_QUERY,
+  UPDATE_QUERYCOLOUR,
   UPDATE_GLOBALUSAGE,
   UPDATE_YEARRELEASED,
   UPDATE_LASTVERSIONS
 } from '../types';
+import { colours } from '../../../theme';
 
 interface IProps {
   queryType: string;
+  queryColour: string;
   globalUsage: number;
   yearReleased: number;
   lastVersions: number;
@@ -14,7 +17,8 @@ interface IProps {
 
 const initialState: IProps = {
   queryType: '',
-  globalUsage: 0.01,
+  queryColour: colours.pink,
+  globalUsage: 0.2,
   yearReleased: 2015,
   lastVersions: 5
 };
@@ -25,6 +29,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         queryType: action.queryType
+      };
+
+    case UPDATE_QUERYCOLOUR:
+      return {
+        ...state,
+        queryColour: action.queryColour
       };
 
     case UPDATE_GLOBALUSAGE:

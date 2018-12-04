@@ -161,7 +161,9 @@ stories.add(
         logo={mockData[0].logo}
         id={mockData[0].friendlyName}
         label={mockData[0].friendlyName}
-        percent={mockData[0].percent}
+        value={{
+          amount: mockData[0].percent
+        }}
       >
         child 1
       </AccordionItem>

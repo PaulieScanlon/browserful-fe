@@ -1,88 +1,98 @@
 import * as React from 'react';
-
-// import browserslist from 'browserslist';
 import styled from 'react-emotion';
+import browserslist from 'browserslist';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  updateQuery,
+  updateQueryColour,
+  updateGlobalUsage,
+  updateYearReleased,
+  updateLastVersions
+} from '../modules/ui/actions/update_ui';
 import { updateBrowserlist } from '../modules/browserlist/actions/update_browserlist';
 
 import { HeadTag } from '../components/HeadTag';
-import { Container, Row, Col } from 'react-grid-system';
+import { Container } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 
-// import { CompoundSlider } from '../components/CompoundSlider';
-import { Accordion, AccordionItem } from '../components/Accordion';
-import { VersionGrid } from '../components/VersionGrid';
+import { ControlCards } from '../features/ControlCards/';
+import { BrowserCards } from '../features/BrowserCards/';
+
+import { queryBuilder } from '../utils/queryBuilder';
+import { actionBuilder } from '../utils/actionBuilder';
+import { urlSetter } from '../utils/urlSetter';
+import { urlGetter } from '../utils/urlGetter';
+
 import { scaffolding, common, colours } from '../theme';
-
-import { platform } from '../utils/browserDetails';
-
-interface IProps {
-  filtered: any;
-}
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
   marginTop: common.appBar.height,
   width: '100%',
+  heigt: '100%',
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',
   left: '0px'
 });
 
-class Freeview extends React.Component<IProps> {
-  render() {
-    const desktop = this.props.filtered.map((browser, i) => {
-      if (browser.platform === platform.DESKTOP) {
-        return (
-          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-            <Accordion
-              maxHeight="500px"
-              type="checkbox"
-              name={browser.friendlyName}
-              backgroundColour={colours.white}
-            >
-              <AccordionItem
-                id={browser.friendlyName}
-                logo={browser.logo}
-                percent={browser.percent}
-                showBar
-                defaultChecked={browser.defaultChecked}
-              >
-                <VersionGrid data={browser} />
-              </AccordionItem>
-            </Accordion>
-          </div>
-        );
-      }
-    });
+interface IProps {
+  filtered: any;
+  ui: any;
+  updateBrowserlist: any;
+  updateQuery: any;
+  updateQueryColour: any;
+  updateGlobalUsage: any;
+  updateYearReleased: any;
+  updateLastVersions: any;
+}
 
-    const mobile = this.props.filtered.map((browser, i) => {
-      if (browser.platform === platform.MOBILE) {
-        return (
-          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-            <Accordion
-              maxHeight="500px"
-              type="checkbox"
-              name={browser.friendlyName}
-              backgroundColour={colours.white}
-            >
-              <AccordionItem
-                id={browser.friendlyName}
-                logo={browser.logo}
-                percent={browser.percent}
-                showBar
-                defaultChecked={browser.defaultChecked}
-              >
-                <VersionGrid data={browser} />
-              </AccordionItem>
-            </Accordion>
-          </div>
-        );
-      }
+interface IState {
+  loaded: boolean;
+}
+
+class Matrix extends React.Component<IProps, IState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false
+    };
+  }
+
+  componentDidMount() {
+    this.props.updateQuery(urlGetter().queryType);
+    this.props[actionBuilder(urlGetter().queryType)](urlGetter().values);
+    this.props.updateBrowserlist(
+      browserslist([
+        `${queryBuilder(urlGetter().queryType, urlGetter().values)}`
+      ])
+    );
+
+    this.setState({
+      loaded: true
     });
+  }
+
+  accordionOnChange(queryType: string, queryColour: string) {
+    this.props.updateQuery(queryType);
+    this.props.updateQueryColour(queryColour);
+    urlSetter(queryType, this.props.ui[queryType]);
+  }
+
+  sliderOnChange(values: any) {
+    this.props[actionBuilder(this.props.ui.queryType)](values);
+    this.props.updateBrowserlist(
+      browserslist([`${queryBuilder(this.props.ui.queryType, values)}`])
+    );
+
+    urlSetter(this.props.ui.queryType, this.props.ui[this.props.ui.queryType]);
+  }
+
+  render() {
+    const { ui, filtered } = this.props;
+    const { loaded } = this.state;
 
     return (
       <React.Fragment>
@@ -95,21 +105,18 @@ class Freeview extends React.Component<IProps> {
               margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
             }}
           >
-            <Row
-              style={{
-                marginBottom: `${scaffolding.gutterLg}`
-              }}
-            >
-              <Col xs={12} sm={12} md={12} lg={6} />
-            </Row>
-            <Row>
-              <Col xs={12} sm={12} md={12} lg={6}>
-                {desktop}
-              </Col>
-              <Col xs={12} sm={12} md={12} lg={6}>
-                {mobile}
-              </Col>
-            </Row>
+            {loaded && (
+              <ControlCards
+                ui={ui}
+                accordionOnChange={(id, selectColour) =>
+                  this.accordionOnChange(id, selectColour)
+                }
+                sliderOnChange={value => this.sliderOnChange(value)}
+              />
+            )}
+            {loaded && (
+              <BrowserCards filtered={filtered} queryColour={ui.queryColour} />
+            )}
           </Container>
         </FreeviewContent>
       </React.Fragment>
@@ -118,14 +125,20 @@ class Freeview extends React.Component<IProps> {
 }
 
 const mapStateToProps = state => ({
+  ui: state.ui,
   filtered: state.browserlist.filtered
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToPRops = dispatch => ({
+  updateQuery: bindActionCreators(updateQuery, dispatch),
+  updateQueryColour: bindActionCreators(updateQueryColour, dispatch),
+  updateGlobalUsage: bindActionCreators(updateGlobalUsage, dispatch),
+  updateYearReleased: bindActionCreators(updateYearReleased, dispatch),
+  updateLastVersions: bindActionCreators(updateLastVersions, dispatch),
   updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch)
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Freeview);
+  mapDispatchToPRops
+)(Matrix);

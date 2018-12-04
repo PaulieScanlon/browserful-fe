@@ -1,5 +1,6 @@
 import {
   UPDATE_QUERY,
+  UPDATE_QUERYCOLOUR,
   UPDATE_GLOBALUSAGE,
   UPDATE_YEARRELEASED,
   UPDATE_LASTVERSIONS
@@ -7,6 +8,10 @@ import {
 
 export const updateQuery = (queryType: string) => dispatch => {
   return dispatch({ type: UPDATE_QUERY, queryType });
+};
+
+export const updateQueryColour = (queryColour: string) => dispatch => {
+  return dispatch({ type: UPDATE_QUERYCOLOUR, queryColour });
 };
 
 export const updateGlobalUsage = (globalUsage: number) => dispatch => {

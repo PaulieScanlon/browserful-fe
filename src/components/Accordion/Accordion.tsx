@@ -24,8 +24,11 @@ interface EProps extends IProps {
   label?: string;
   id: string;
   logo?: string;
-  percent?: number | string;
-  statistic?: number | string;
+  // value?: string | number;
+  value?: {
+    amount: string | number;
+    suffix?: string;
+  };
   showBar?: boolean;
   defaultChecked?: boolean;
   selectColour?: string;
@@ -54,8 +57,7 @@ export const AccordionItem: React.SFC<EProps> = ({
   label,
   id,
   logo,
-  percent,
-  statistic,
+  value,
   showBar,
   defaultChecked,
   selectColour,
@@ -81,8 +83,7 @@ export const AccordionItem: React.SFC<EProps> = ({
         <DetailsLabel
           label={label ? label : id}
           logo={logo}
-          percent={percent}
-          statistic={statistic}
+          value={value}
           showBar={showBar}
         />
       </AccordionLabel>

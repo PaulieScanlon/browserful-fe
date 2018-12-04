@@ -13,27 +13,34 @@ import {
 interface IProps {
   label: string;
   logo?: string;
-  percent?: number | string;
-  statistic?: number | string;
+  // value?: string | number;
+  value?: {
+    amount: string | number;
+    suffix?: string;
+  };
   showBar?: boolean;
 }
 
 export const DetailsLabel: React.SFC<IProps> = ({
   label,
   logo,
-  percent,
-  statistic,
+  value,
   showBar
 }: IProps) => {
   return (
     <LabelWrapper>
       {logo && <BrowserLogo logo={logo} />}
       <LabelText>{label}</LabelText>
-      {percent && <BoldText>{percent}%</BoldText>}
-      {statistic && <BoldText>{statistic}</BoldText>}
-      {showBar && percent && (
+      {value && (
+        <BoldText>
+          {value.amount}
+          {value.suffix}
+        </BoldText>
+      )}
+
+      {showBar && value && (
         <BarChartWrapper>
-          <BarChart width={percent} />
+          <BarChart width={value.amount} />
         </BarChartWrapper>
       )}
     </LabelWrapper>

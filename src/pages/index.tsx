@@ -95,7 +95,7 @@ class Index extends React.Component<{}> {
                       Give the beta a whirl and create your own shareable
                       matrix.
                     </P>
-                    <Link href="/freeview/matrix">
+                    <Link href="/freeview/matrix?yearReleased#since+2013">
                       <a className={`${RouterLink}`}>
                         <Button grow backgroundColour={colours.teal}>
                           Try for free

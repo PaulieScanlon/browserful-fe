@@ -21,22 +21,15 @@ stories.add(
 );
 
 stories.add(
-  'percent',
+  'value',
   withInfo(
-    'The percent prop is used to display the percent of versions covered'
-  )(() => <DetailsLabel label="Chrome" percent={66} />)
-);
-
-stories.add(
-  'statistic',
-  withInfo(
-    'The statistic prop is used to display the statistic without an added %'
-  )(() => <DetailsLabel label="Chrome" statistic={66} />)
+    'The value prop is used to display the value of versions covered. Optional suffix can be used to denote value type'
+  )(() => <DetailsLabel label="Chrome" value={{ amount: 66, suffix: '%' }} />)
 );
 
 stories.add(
   'showBar',
-  withInfo('The showBar prop is used visualise the percent value')(() => (
-    <DetailsLabel label="Chrome" percent={66} showBar />
+  withInfo('The showBar prop is used visualise the value value')(() => (
+    <DetailsLabel label="Chrome" value={{ amount: 66 }} showBar />
   ))
 );
