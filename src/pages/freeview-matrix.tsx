@@ -45,7 +45,7 @@ class Freeview extends React.Component<IProps> {
               backgroundColour={colours.white}
             >
               <AccordionItem
-                label={browser.friendlyName}
+                id={browser.friendlyName}
                 logo={browser.logo}
                 percent={browser.percent}
                 showBar
@@ -70,7 +70,7 @@ class Freeview extends React.Component<IProps> {
               backgroundColour={colours.white}
             >
               <AccordionItem
-                label={browser.friendlyName}
+                id={browser.friendlyName}
                 logo={browser.logo}
                 percent={browser.percent}
                 showBar

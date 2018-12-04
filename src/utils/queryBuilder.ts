@@ -1,23 +1,15 @@
-import changeCase from 'change-case';
-import { escapeCGI } from './uri';
+import { queryStrings } from '../utils/queryStrings';
 
-const queryDetails = (queryType, values) => {
+export const queryDetails = (queryType, values) => {
   const constructed = {
-    globalUsage: `>= ${values}%`,
-    yearReleased: `since ${values}`,
-    lastVersions: `last ${values} versions`
+    [queryStrings.GLOBAL_USAGE]: `>= ${values}%`,
+    [queryStrings.YEAR_RELEASED]: `since ${values}`,
+    [queryStrings.LAST_VERSIONS]: `last ${values} versions`
   };
 
   return constructed[queryType];
 };
 
 export const queryBuilder = (queryType: string, values: number) => {
-  history.replaceState({}, '', `?${queryType}`);
-  location.hash = escapeCGI(queryDetails(queryType, values));
-
-  return {
-    action: `update${changeCase.pascalCase(queryType)}`,
-    browserQuery: queryDetails(queryType, values),
-    values: values
-  };
+  return queryDetails(queryType, values);
 };
