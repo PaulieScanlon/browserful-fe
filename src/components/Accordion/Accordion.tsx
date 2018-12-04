@@ -21,13 +21,18 @@ interface IProps {
 }
 
 interface EProps extends IProps {
-  label: string;
+  label?: string;
+  id: string;
   logo?: string;
-  percent?: number | string;
-  statistic?: number | string;
+  // value?: string | number;
+  value?: {
+    amount: string | number;
+    suffix?: string;
+  };
   showBar?: boolean;
   defaultChecked?: boolean;
   selectColour?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Accordion: React.SFC<IProps> = ({
@@ -50,9 +55,9 @@ export const Accordion: React.SFC<IProps> = ({
 
 export const AccordionItem: React.SFC<EProps> = ({
   label,
+  id,
   logo,
-  percent,
-  statistic,
+  value,
   showBar,
   defaultChecked,
   selectColour,
@@ -60,24 +65,25 @@ export const AccordionItem: React.SFC<EProps> = ({
   maxHeight,
   type,
   name,
+  onChange,
   children
 }: EProps) => {
   return (
     <React.Fragment>
       <AccordionInput
-        id={label}
+        id={id}
         type={type}
         name={name}
         defaultChecked={defaultChecked}
         maxHeight={maxHeight}
         selectColour={selectColour}
+        onChange={event => onChange(event)}
       />
-      <AccordionLabel htmlFor={label}>
+      <AccordionLabel htmlFor={id}>
         <DetailsLabel
-          label={label}
+          label={label ? label : id}
           logo={logo}
-          percent={percent}
-          statistic={statistic}
+          value={value}
           showBar={showBar}
         />
       </AccordionLabel>
@@ -93,5 +99,6 @@ AccordionItem.defaultProps = {
   maxHeight: '100px',
   defaultChecked: false,
   selectColour: colours.pink,
-  backgroundColour: colours.offWhite
+  backgroundColour: colours.offWhite,
+  onChange: () => {}
 };

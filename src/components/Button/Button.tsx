@@ -9,19 +9,23 @@ interface IProps {
   backgroundColour?: string;
   grow?: boolean;
   children: React.ReactNode;
+  // @TODO can IPRops extends HTML Button so onClick doesn't need to be defined?
+  onClick?: any;
 }
 
 export const Button: React.SFC<IProps> = ({
   fontColour,
   backgroundColour,
   grow,
-  children
+  children,
+  onClick
 }: IProps) => {
   return (
     <ButtonElement
       fontColour={fontColour}
       backgroundColour={backgroundColour}
       grow={grow}
+      onClick={onClick}
     >
       {children}
     </ButtonElement>

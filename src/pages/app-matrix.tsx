@@ -11,10 +11,6 @@ interface IProps {}
 
 class Matrix extends React.Component<IProps> {
   render() {
-    const desktopBrowsers = <div>Desktop Browsers</div>;
-
-    const mobileBrowsers = <div>Mobile Browsers</div>;
-
     return (
       <React.Fragment>
         <HeadTag />
@@ -28,10 +24,7 @@ class Matrix extends React.Component<IProps> {
           >
             <Row>
               <Col xs={12} sm={12} md={12} lg={6}>
-                {desktopBrowsers}
-              </Col>
-              <Col xs={12} sm={12} md={12} lg={6}>
-                {mobileBrowsers}
+                Nothing to see here
               </Col>
             </Row>
           </Container>

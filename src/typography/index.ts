@@ -14,7 +14,7 @@ export const font = {
   lineHeight: '18px',
   textAlign: 'left',
   marginTop: 0,
-  marginBottom: scaffolding.gutterSm,
+  marginBottom: scaffolding.gutterLg,
   maxWidth: '100%'
 };
 
