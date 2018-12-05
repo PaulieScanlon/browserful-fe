@@ -24,7 +24,6 @@ interface EProps extends IProps {
   label?: string;
   id: string;
   logo?: string;
-  // value?: string | number;
   value?: {
     amount: string | number;
     suffix?: string;

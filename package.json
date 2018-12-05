@@ -9,8 +9,8 @@
     "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "next build src",
     "storybook": "start-storybook -p 6060",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "storybook:build": "build-storybook",
+    "storybook:deploy": "storybook-to-ghpages"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
