@@ -26,7 +26,6 @@ import { queryBuilder } from '../utils/queryBuilder';
 import { actionBuilder } from '../utils/actionBuilder';
 import { urlSetter } from '../utils/urlSetter';
 import { urlGetter } from '../utils/urlGetter';
-import { escapeUri } from '../utils/urlEncode';
 import { scaffolding, common } from '../theme';
 
 export const FreeviewContent = styled.div({

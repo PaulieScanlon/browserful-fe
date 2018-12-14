@@ -25,16 +25,14 @@ export const VersionLabel = styled.label({
   label: 'version-label',
   position: 'relative',
   display: 'inline-flex',
-  cursor: 'pointer',
-  justifyContent: 'center',
-  alignItems: 'center'
+  alignSelf: 'center',
+  cursor: 'pointer'
 });
 
 export const VersionText = styled.span<IProps>(
   {
     fontSize: '12px',
     lineHeight: '14px',
-    position: 'absolute',
     fontFamily: `${font.fontFamily}`,
     textAlign: 'center',
     whiteSpace: 'pre-wrap',
@@ -49,21 +47,24 @@ export const VersionText = styled.span<IProps>(
 export const VersionInput = styled.input<IProps>(
   {
     label: 'verion-input',
-    position: 'absolute',
     display: 'none'
   },
   ({ isIncluded }: IProps) => ({
-    ':checked + span': {
+    ':checked + div': {
       ...getStyleRules(isIncluded, true)
     },
-    '+ span': {
+    '+ div': {
       ...getStyleRules(isIncluded, false)
     }
   })
 );
 
-export const VersionStyle = styled.span({
+export const VersionStyle = styled.div({
   label: 'version-style',
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  position: 'relative',
   borderRadius: '100%',
   width: '40px',
   height: '40px',

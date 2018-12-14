@@ -35,8 +35,9 @@ export const VersionChip: React.SFC<IProps> = ({
         onChange={event => onChange(event as any, browser, version)}
         isIncluded={isIncluded}
       />
-      <VersionStyle />
-      <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
+      <VersionStyle>
+        <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
+      </VersionStyle>
     </VersionLabel>
   );
 };
