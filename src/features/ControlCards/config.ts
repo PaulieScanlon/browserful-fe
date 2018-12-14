@@ -1,9 +1,9 @@
-import { queryStrings } from './queryStrings';
-import { colours } from '../theme';
+import { queryTypes } from '../../utils/queryStrings';
+import { colours } from '../../theme';
 
-export const accordionSliderConfig = [
-  {
-    id: queryStrings.GLOBAL_USAGE,
+export const config = {
+  [queryTypes.GLOBAL_USAGE]: {
+    id: queryTypes.GLOBAL_USAGE,
     label: 'Global Usage',
     selectColour: colours.pink,
     valueSuffix: '%',
@@ -15,8 +15,8 @@ export const accordionSliderConfig = [
     }
   },
 
-  {
-    id: queryStrings.YEAR_RELEASED,
+  [queryTypes.YEAR_RELEASED]: {
+    id: queryTypes.YEAR_RELEASED,
     label: 'Year Released',
     selectColour: colours.teal,
     valueSuffix: '',
@@ -27,8 +27,9 @@ export const accordionSliderConfig = [
       tickCount: 8
     }
   },
-  {
-    id: queryStrings.LAST_VERSIONS,
+
+  [queryTypes.LAST_VERSIONS]: {
+    id: queryTypes.LAST_VERSIONS,
     label: 'Last Versions',
     selectColour: colours.blue,
     valueSuffix: '',
@@ -39,4 +40,4 @@ export const accordionSliderConfig = [
       tickCount: 20
     }
   }
-];
+};

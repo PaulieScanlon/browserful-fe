@@ -1,4 +1,4 @@
-const unescapeCGI = (str: string) => {
+export const unescapeCGI = (str: string) => {
   return decodeURI(str.replace(/\+/g, '%20'));
 };
 

@@ -1,10 +1,10 @@
-import { queryStrings } from '../utils/queryStrings';
+import { queryTypes } from '../utils/queryStrings';
 
 export const queryDetails = (queryType, values) => {
   const constructed = {
-    [queryStrings.GLOBAL_USAGE]: `>= ${values}%`,
-    [queryStrings.YEAR_RELEASED]: `since ${values}`,
-    [queryStrings.LAST_VERSIONS]: `last ${values} versions`
+    [queryTypes.GLOBAL_USAGE]: `>= ${values}%`,
+    [queryTypes.YEAR_RELEASED]: `since ${values}`,
+    [queryTypes.LAST_VERSIONS]: `last ${values} versions`
   };
 
   return constructed[queryType];

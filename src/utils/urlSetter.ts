@@ -1,6 +1,6 @@
 import { queryDetails } from './queryBuilder';
 
-const escapeCGI = (str: string) => {
+export const escapeCGI = (str: string) => {
   return encodeURI(str).replace(/%20/g, '+');
 };
 
