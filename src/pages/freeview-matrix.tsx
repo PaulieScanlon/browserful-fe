@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import styled from 'react-emotion';
 import browserslist from 'browserslist';
 
@@ -25,7 +26,7 @@ import { queryBuilder } from '../utils/queryBuilder';
 import { actionBuilder } from '../utils/actionBuilder';
 import { urlSetter } from '../utils/urlSetter';
 import { urlGetter } from '../utils/urlGetter';
-
+import { escapeUri } from '../utils/urlEncode';
 import { scaffolding, common } from '../theme';
 
 export const FreeviewContent = styled.div({
@@ -79,6 +80,7 @@ class Matrix extends React.Component<IProps, IState> {
   accordionOnChange(queryType: string, queryColour: string) {
     this.props.updateQuery(queryType);
     this.props.updateQueryColour(queryColour);
+
     urlSetter(queryType, this.props.ui[queryType]);
   }
 
@@ -87,6 +89,7 @@ class Matrix extends React.Component<IProps, IState> {
     this.props.updateBrowserlist(
       browserslist([`${queryBuilder(this.props.ui.queryType, value)}`])
     );
+
     urlSetter(this.props.ui.queryType, value);
   }
 

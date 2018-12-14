@@ -1,7 +1,3 @@
-export const unescapeCGI = (str: string) => {
-  return decodeURI(str.replace(/\+/g, '%20'));
-};
-
 import { queryParams } from './queryStrings';
 
 export const urlGetter = () => {
