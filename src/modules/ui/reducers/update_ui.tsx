@@ -7,6 +7,9 @@ import {
 } from '../types';
 import { colours } from '../../../theme';
 
+import { queryTypes } from '../../../utils/queryStrings';
+import { config } from '../../../features/ControlCards/config';
+
 interface IProps {
   queryType: string;
   queryColour: string;
@@ -18,9 +21,9 @@ interface IProps {
 const initialState: IProps = {
   queryType: '',
   queryColour: colours.pink,
-  globalUsage: 0.2,
-  yearReleased: 2015,
-  lastVersions: 5
+  globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
+  yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
+  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue
 };
 
 export const reducer = (state = initialState, action) => {

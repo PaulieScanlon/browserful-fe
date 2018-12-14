@@ -10,5 +10,5 @@ export enum queryTypes {
 }
 
 export enum queryDefaults {
-  GLOBAL_USAGE = '?qt=globalUsage&sv=0.2%'
+  GLOBAL_USAGE = '?qt=globalUsage&sv=0.2'
 }
