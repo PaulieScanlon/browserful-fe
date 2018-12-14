@@ -8,7 +8,7 @@ export const config = {
     selectColour: colours.pink,
     valueSuffix: '%',
     slider: {
-      defaultValue: 0.2,
+      defaultValue: 0.3,
       sliderColour: colours.pink,
       domain: [0, 1],
       step: 0.001,

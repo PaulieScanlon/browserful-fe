@@ -8,7 +8,3 @@ export enum queryTypes {
   YEAR_RELEASED = 'yearReleased',
   LAST_VERSIONS = 'lastVersions'
 }
-
-export enum queryDefaults {
-  GLOBAL_USAGE = '?qt=globalUsage&sv=0.2'
-}

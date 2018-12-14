@@ -1,4 +1,5 @@
-import { queryParams, queryTypes, queryDefaults } from './queryStrings';
+import { queryParams, queryTypes } from './queryStrings';
+import { queryDefault } from './queryDefault';
 import { config } from '../features/ControlCards/config';
 
 const clamp = (min, max, value) => {
@@ -9,7 +10,6 @@ const clamp = (min, max, value) => {
 };
 
 export const urlValidator = () => {
-  // TODO this should probs be the Router location not window locatoin
   const wls = window.location.search;
 
   const urlParams = new URLSearchParams(wls);
@@ -36,5 +36,5 @@ export const urlValidator = () => {
     }
   }
 
-  return queryDefaults.GLOBAL_USAGE;
+  return queryDefault.GLOBAL_USAGE;
 };

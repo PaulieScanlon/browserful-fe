@@ -2,16 +2,23 @@ import browserslist from 'browserslist';
 import { createMatrix } from '../../../utils/createMatrix';
 
 import { UPDATE_BROWSERLIST } from '../types';
+import { queryBuilder } from '../../../utils/queryBuilder';
+import { queryTypes } from '../../../utils/queryStrings';
+import { config } from '../../../features/ControlCards/config';
 
 interface IProps {
   filtered: any;
 }
 
 const initialState: IProps = {
-  // the initial query here should match the setting on the sliders
-  filtered: createMatrix(browserslist(['> 0.02%']))
-  // filtered: createMatrix(browserslist(['since 2015']))
-  // filtered: createMatrix(browserslist(['last 5 versions']))
+  filtered: createMatrix(
+    browserslist(
+      queryBuilder(
+        queryTypes.GLOBAL_USAGE,
+        config[queryTypes.GLOBAL_USAGE].slider.defaultValue
+      )
+    )
+  )
 };
 
 export const reducer = (state = initialState, action) => {
