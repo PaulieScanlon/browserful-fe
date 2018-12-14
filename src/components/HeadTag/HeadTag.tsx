@@ -14,7 +14,7 @@ export const HeadTag: React.SFC = () => {
       <meta
         key="og:image"
         property="og:image"
-        content="/static/images/opengraph.jpg"
+        content="http://www.browserful.com/static/images/opengraph.jpg"
       />
       <meta
         key="og:description"
