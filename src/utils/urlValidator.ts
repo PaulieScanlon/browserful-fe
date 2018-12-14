@@ -9,6 +9,7 @@ const clamp = (min, max, value) => {
 };
 
 export const urlValidator = () => {
+  // TODO this should probs be the Router location not window locatoin
   const wls = window.location.search;
 
   const urlParams = new URLSearchParams(wls);
