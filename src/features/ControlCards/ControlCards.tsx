@@ -4,7 +4,7 @@ import { Row, Col } from 'react-grid-system';
 
 import { Accordion, AccordionItem } from '../../components/Accordion';
 import { CompoundSlider } from '../../components/CompoundSlider';
-import { accordionSliderConfig } from '../../utils/accordionSliderConfig';
+import { config } from './config';
 
 interface IProps {
   ui: any;
@@ -17,7 +17,8 @@ export const ControlCards: React.SFC<IProps> = ({
   sliderOnChange,
   accordionOnChange
 }: IProps) => {
-  const accordionItems = accordionSliderConfig.map((item, index) => {
+  const accordionItems = Object.keys(config).map((key, index) => {
+    const item = config[key];
     return (
       <AccordionItem
         onChange={event =>

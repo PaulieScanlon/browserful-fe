@@ -7,6 +7,7 @@ module.exports = {
     '^.+\\.tsx?$': 'babel-jest'
   },
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  testURL: 'https://www.browserful.com/freeview/matrix',
   moduleNameMapper: {
     '\\.(css|less)$': 'identity-obj-proxy'
   },

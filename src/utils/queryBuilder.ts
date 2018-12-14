@@ -1,15 +1,15 @@
-import { queryStrings } from '../utils/queryStrings';
+import { queryTypes } from '../utils/queryStrings';
 
-export const queryDetails = (queryType, values) => {
+export const queryDetails = (qt: string, sv: number) => {
   const constructed = {
-    [queryStrings.GLOBAL_USAGE]: `>= ${values}%`,
-    [queryStrings.YEAR_RELEASED]: `since ${values}`,
-    [queryStrings.LAST_VERSIONS]: `last ${values} versions`
+    [queryTypes.GLOBAL_USAGE]: `>= ${sv}%`,
+    [queryTypes.YEAR_RELEASED]: `since ${sv}`,
+    [queryTypes.LAST_VERSIONS]: `last ${sv} versions`
   };
 
-  return constructed[queryType];
+  return constructed[qt];
 };
 
-export const queryBuilder = (queryType: string, values: number) => {
-  return queryDetails(queryType, values);
+export const queryBuilder = (qt: string, sv: number) => {
+  return queryDetails(qt, sv);
 };

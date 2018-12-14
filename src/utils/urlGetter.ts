@@ -1,17 +1,19 @@
-const unescapeCGI = (str: string) => {
+export const unescapeCGI = (str: string) => {
   return decodeURI(str.replace(/\+/g, '%20'));
 };
 
+import { queryParams } from './queryStrings';
+
 export const urlGetter = () => {
-  // TODO need to validate the queryType and ...
-  const queryType = location.search.replace(/[\?]/g, '');
-  // TODO need to check if the query param is value it has a corresponding value that works with slider
-  const values = Number(
-    unescapeCGI(location.hash.slice(1)).replace(/[^\d.-]/g, '')
-  );
+  const wls = window.location.search;
+
+  const urlParams = new URLSearchParams(wls);
+
+  const qt = urlParams.getAll(queryParams.QUERY_TYPE);
+  const sv = urlParams.getAll(queryParams.SLIDER_VALUES);
 
   return {
-    queryType: queryType,
-    values: values
+    qt: qt.toString(),
+    sv: Number(sv.toString())
   };
 };

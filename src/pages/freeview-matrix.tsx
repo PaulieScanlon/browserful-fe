@@ -20,6 +20,7 @@ import { AppBar } from '../components/AppBar';
 import { ControlCards } from '../features/ControlCards/';
 import { BrowserCards } from '../features/BrowserCards/';
 
+import { urlValidator } from '../utils/urlValidator';
 import { queryBuilder } from '../utils/queryBuilder';
 import { actionBuilder } from '../utils/actionBuilder';
 import { urlSetter } from '../utils/urlSetter';
@@ -62,12 +63,12 @@ class Matrix extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
-    this.props.updateQuery(urlGetter().queryType);
-    this.props[actionBuilder(urlGetter().queryType)](urlGetter().values);
+    history.replaceState({}, '', `${urlValidator()}`);
+    this.props.updateQuery(urlGetter().qt);
+    this.props[actionBuilder(urlGetter().qt)](urlGetter().sv);
+
     this.props.updateBrowserlist(
-      browserslist([
-        `${queryBuilder(urlGetter().queryType, urlGetter().values)}`
-      ])
+      browserslist([`${queryBuilder(urlGetter().qt, urlGetter().sv)}`])
     );
 
     this.setState({
@@ -81,12 +82,11 @@ class Matrix extends React.Component<IProps, IState> {
     urlSetter(queryType, this.props.ui[queryType]);
   }
 
-  sliderOnChange(values: any) {
-    this.props[actionBuilder(this.props.ui.queryType)](values);
+  sliderOnChange(value: any) {
+    this.props[actionBuilder(this.props.ui.queryType)](value);
     this.props.updateBrowserlist(
-      browserslist([`${queryBuilder(this.props.ui.queryType, values)}`])
+      browserslist([`${queryBuilder(this.props.ui.queryType, value)}`])
     );
-
     urlSetter(this.props.ui.queryType, this.props.ui[this.props.ui.queryType]);
   }
 

@@ -1,10 +1,11 @@
-import { queryDetails } from './queryBuilder';
-
-const escapeCGI = (str: string) => {
+export const escapeCGI = (str: string) => {
   return encodeURI(str).replace(/%20/g, '+');
 };
 
-export const urlSetter = (queryType: string, values: number) => {
-  history.replaceState({}, '', `?${queryType}`);
-  location.hash = escapeCGI(queryDetails(queryType, values));
+export const urlSetter = (qt: string, sv: number) => {
+  const urlParams = new URLSearchParams();
+
+  urlParams.set('qt', qt);
+  urlParams.set('sv', sv.toString());
+  history.replaceState({}, '', `?${urlParams}`);
 };
