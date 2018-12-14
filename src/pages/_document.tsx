@@ -23,6 +23,22 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${
+              process.env.GA_KEY
+            }`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GA_KEY}');
+          `
+            }}
+          />
           <link
             rel="icon"
             type="image/png"
