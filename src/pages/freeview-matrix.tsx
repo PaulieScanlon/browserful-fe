@@ -87,7 +87,7 @@ class Matrix extends React.Component<IProps, IState> {
     this.props.updateBrowserlist(
       browserslist([`${queryBuilder(this.props.ui.queryType, value)}`])
     );
-    urlSetter(this.props.ui.queryType, this.props.ui[this.props.ui.queryType]);
+    urlSetter(this.props.ui.queryType, value);
   }
 
   render() {
