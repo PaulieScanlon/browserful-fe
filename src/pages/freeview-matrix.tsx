@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import styled from 'react-emotion';
 
 import { connect } from 'react-redux';
@@ -13,14 +12,13 @@ import {
 import { HeadTag } from '../components/HeadTag';
 import { Container } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
+import { scaffolding, common } from '../theme';
 
-import { ControlCards } from '../features/ControlCards/';
+import ControlCards from '../features/ControlCards/ControlCards';
 import BrowserCards from '../features/BrowserCards/BrowserCards';
 
 import { urlValidator } from '../utils/urlValidator';
-import { urlSetter } from '../utils/urlSetter';
 import { urlGetter } from '../utils/urlGetter';
-import { scaffolding, common } from '../theme';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
@@ -34,7 +32,6 @@ export const FreeviewContent = styled.div({
 });
 
 interface IProps {
-  ui: any;
   updateQuery: any;
   updateValue: any;
   updateBrowserQuery: any;
@@ -63,22 +60,7 @@ class Matrix extends React.Component<IProps, IState> {
     });
   }
 
-  accordionOnChange(queryType: string, queryColour: string) {
-    this.props.updateQuery(queryType, queryColour);
-
-    urlSetter(queryType, this.props.ui[queryType]);
-  }
-
-  sliderOnChange(value: any) {
-    this.props.updateValue(this.props.ui.queryType, value);
-    this.props.updateBrowserQuery(this.props.ui.queryType, value);
-
-    urlSetter(this.props.ui.queryType, value);
-  }
-
   render() {
-    const { ui } = this.props;
-
     const { loaded } = this.state;
 
     return (
@@ -92,15 +74,7 @@ class Matrix extends React.Component<IProps, IState> {
               margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
             }}
           >
-            {loaded && (
-              <ControlCards
-                ui={ui}
-                accordionOnChange={(id, selectColour) =>
-                  this.accordionOnChange(id, selectColour)
-                }
-                sliderOnChange={value => this.sliderOnChange(value)}
-              />
-            )}
+            {loaded && <ControlCards />}
             {loaded && <BrowserCards />}
           </Container>
         </FreeviewContent>
@@ -109,10 +83,6 @@ class Matrix extends React.Component<IProps, IState> {
   }
 }
 
-const mapStateToProps = state => ({
-  ui: state.ui
-});
-
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
   updateValue: bindActionCreators(updateValue, dispatch),
@@ -120,6 +90,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Matrix);

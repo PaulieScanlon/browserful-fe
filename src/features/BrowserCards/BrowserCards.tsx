@@ -13,7 +13,6 @@ interface IProps {
   browserList: any;
   queryColour: string;
 }
-
 class BrowserCards extends React.Component<IProps, {}> {
   render() {
     const { browserList, queryColour } = this.props;
