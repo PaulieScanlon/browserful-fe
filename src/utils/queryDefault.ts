@@ -4,5 +4,5 @@ import { queryTypes } from './queryStrings';
 export const queryDefault = {
   GLOBAL_USAGE: `?qt=${queryTypes.GLOBAL_USAGE}&sv=${
     config[queryTypes.GLOBAL_USAGE].slider.defaultValue
-  }`
+  }&exc=not%20ie%208,not%20%20ie%209`
 };

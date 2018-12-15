@@ -1,46 +1,43 @@
 import * as React from 'react';
 
+import { RadioLabel, RadioInput, RadioStyle, RadioText } from './styles';
 import { colours } from '../../theme';
-import { SwitchLabel, SwitchInput, SwitchSlider, SwitchText } from './styles';
 
 interface IProps {
   id: string;
   name?: string;
-  type?: string;
   defaultChecked?: boolean;
   selectColour?: string;
   children?: React.ReactChild;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ToggleSwitch: React.SFC<IProps> = ({
+export const RadioButton: React.SFC<IProps> = ({
   id,
   name,
-  type,
   defaultChecked,
   selectColour,
   onChange,
   children
 }: IProps) => {
   return (
-    <SwitchLabel htmlFor={id}>
-      <SwitchInput
+    <RadioLabel htmlFor={id}>
+      <RadioInput
         id={id}
         name={name}
-        type={type}
         defaultChecked={defaultChecked}
+        type="radio"
         selectColour={selectColour}
         onChange={event => onChange(event)}
       />
-      <SwitchSlider />
-      <SwitchText>{children}</SwitchText>
-    </SwitchLabel>
+      <RadioStyle />
+      <RadioText>{children}</RadioText>
+    </RadioLabel>
   );
 };
 
-ToggleSwitch.defaultProps = {
-  defaultChecked: false,
-  type: 'checkbox',
+RadioButton.defaultProps = {
   selectColour: colours.pink,
+  defaultChecked: false,
   onChange: () => {}
 };

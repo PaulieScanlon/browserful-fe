@@ -67,8 +67,12 @@ class Matrix extends React.Component<IProps, IState> {
     this.props.updateQuery(urlGetter().qt);
     this.props[actionBuilder(urlGetter().qt)](urlGetter().sv);
 
+    //TODO update somewhere in state a excluded array of strings
+
     this.props.updateBrowserlist(
-      browserslist([`${queryBuilder(urlGetter().qt, urlGetter().sv)}`])
+      browserslist(
+        `${queryBuilder(urlGetter().qt, urlGetter().sv, urlGetter().exc)}`
+      )
     );
 
     this.setState({
@@ -86,7 +90,9 @@ class Matrix extends React.Component<IProps, IState> {
   sliderOnChange(value: any) {
     this.props[actionBuilder(this.props.ui.queryType)](value);
     this.props.updateBrowserlist(
-      browserslist([`${queryBuilder(this.props.ui.queryType, value)}`])
+      browserslist(
+        `${queryBuilder(this.props.ui.queryType, value, urlGetter().exc)}`
+      )
     );
 
     urlSetter(this.props.ui.queryType, value);

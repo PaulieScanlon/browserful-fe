@@ -30,6 +30,13 @@ stories.add(
 );
 
 stories.add(
+  'type',
+  withInfo(
+    'the type prop can be used so the ToggleSwitch can act as a radio input'
+  )(() => <ToggleSwitch id="storybook-togggle-switch" type="radio" />)
+);
+
+stories.add(
   'defaultChecked',
   withInfo(
     'The defaultChecked is used to start an ToggleSwtich checked/selected'
@@ -43,4 +50,11 @@ stories.add(
       <ToggleSwitch id="storybook-togggle-switch" selectColour={colours.teal} />
     )
   )
+);
+
+stories.add(
+  'children',
+  withInfo('Children can be used to render label text')(() => (
+    <ToggleSwitch id="storybook-togggle-switch">Label text</ToggleSwitch>
+  ))
 );

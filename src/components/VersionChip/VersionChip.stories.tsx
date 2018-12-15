@@ -21,7 +21,7 @@ stories.add(
   withInfo('The browser and version prop are used on the onChange callback')(
     () => (
       <VersionChip
-        browser={mockData[0].name}
+        browser={mockData[0].friendlyName}
         version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
@@ -37,7 +37,7 @@ stories.add(
     () => (
       <VersionChip
         defaultChecked={true}
-        browser={mockData[0].name}
+        browser={mockData[0].friendlyName}
         version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
@@ -52,7 +52,7 @@ stories.add(
   withInfo('The isIncluded prop shows if a browser/version is included')(() => (
     <VersionChip
       isIncluded={true}
-      browser={mockData[0].name}
+      browser={mockData[0].friendlyName}
       version={mockData[0].versions[0].id}
       onChange={(event, browser, version) => onChange(event, browser, version)}
     />
@@ -66,7 +66,7 @@ stories.add(
       <VersionChip
         defaultChecked={true}
         isIncluded={true}
-        browser={mockData[0].name}
+        browser={mockData[0].friendlyName}
         version={mockData[0].versions[0].id}
         onChange={(event, browser, version) =>
           onChange(event, browser, version)
