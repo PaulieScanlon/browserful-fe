@@ -15,7 +15,7 @@ import { Container } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 
 import { ControlCards } from '../features/ControlCards/';
-import { BrowserCards } from '../features/BrowserCards/';
+import BrowserCards from '../features/BrowserCards/BrowserCards';
 
 import { urlValidator } from '../utils/urlValidator';
 import { urlSetter } from '../utils/urlSetter';
@@ -39,7 +39,6 @@ interface IProps {
   updateValue: any;
   updateBrowserQuery: any;
 }
-
 interface IState {
   loaded: boolean;
 }
@@ -102,12 +101,7 @@ class Matrix extends React.Component<IProps, IState> {
                 sliderOnChange={value => this.sliderOnChange(value)}
               />
             )}
-            {loaded && (
-              <BrowserCards
-                browserList={ui.browserList}
-                queryColour={ui.queryColour}
-              />
-            )}
+            {loaded && <BrowserCards />}
           </Container>
         </FreeviewContent>
       </React.Fragment>
