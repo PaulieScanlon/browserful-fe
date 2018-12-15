@@ -1,18 +1,14 @@
 import * as React from 'react';
 
 import styled from 'react-emotion';
-import browserslist from 'browserslist';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   updateQuery,
-  updateQueryColour,
-  updateGlobalUsage,
-  updateYearReleased,
-  updateLastVersions
+  updateValue,
+  updateBrowserQuery
 } from '../modules/ui/actions/update_ui';
-import { updateBrowserlist } from '../modules/browserlist/actions/update_browserlist';
 
 import { HeadTag } from '../components/HeadTag';
 import { Container } from 'react-grid-system';
@@ -22,8 +18,6 @@ import { ControlCards } from '../features/ControlCards/';
 import { BrowserCards } from '../features/BrowserCards/';
 
 import { urlValidator } from '../utils/urlValidator';
-import { queryBuilder } from '../utils/queryBuilder';
-import { actionBuilder } from '../utils/actionBuilder';
 import { urlSetter } from '../utils/urlSetter';
 import { urlGetter } from '../utils/urlGetter';
 import { scaffolding, common } from '../theme';
@@ -40,14 +34,10 @@ export const FreeviewContent = styled.div({
 });
 
 interface IProps {
-  filtered: any;
   ui: any;
-  updateBrowserlist: any;
   updateQuery: any;
-  updateQueryColour: any;
-  updateGlobalUsage: any;
-  updateYearReleased: any;
-  updateLastVersions: any;
+  updateValue: any;
+  updateBrowserQuery: any;
 }
 
 interface IState {
@@ -64,16 +54,10 @@ class Matrix extends React.Component<IProps, IState> {
 
   componentDidMount() {
     history.replaceState({}, '', `${urlValidator()}`);
+
     this.props.updateQuery(urlGetter().qt);
-    this.props[actionBuilder(urlGetter().qt)](urlGetter().sv);
-
-    //TODO update somewhere in state a excluded array of strings
-
-    this.props.updateBrowserlist(
-      browserslist(
-        `${queryBuilder(urlGetter().qt, urlGetter().sv, urlGetter().exc)}`
-      )
-    );
+    this.props.updateValue(urlGetter().qt, urlGetter().sv);
+    this.props.updateBrowserQuery(urlGetter().qt, urlGetter().sv);
 
     this.setState({
       loaded: true
@@ -81,25 +65,21 @@ class Matrix extends React.Component<IProps, IState> {
   }
 
   accordionOnChange(queryType: string, queryColour: string) {
-    this.props.updateQuery(queryType);
-    this.props.updateQueryColour(queryColour);
+    this.props.updateQuery(queryType, queryColour);
 
     urlSetter(queryType, this.props.ui[queryType]);
   }
 
   sliderOnChange(value: any) {
-    this.props[actionBuilder(this.props.ui.queryType)](value);
-    this.props.updateBrowserlist(
-      browserslist(
-        `${queryBuilder(this.props.ui.queryType, value, urlGetter().exc)}`
-      )
-    );
+    this.props.updateValue(this.props.ui.queryType, value);
+    this.props.updateBrowserQuery(this.props.ui.queryType, value);
 
     urlSetter(this.props.ui.queryType, value);
   }
 
   render() {
-    const { ui, filtered } = this.props;
+    const { ui } = this.props;
+
     const { loaded } = this.state;
 
     return (
@@ -123,7 +103,10 @@ class Matrix extends React.Component<IProps, IState> {
               />
             )}
             {loaded && (
-              <BrowserCards filtered={filtered} queryColour={ui.queryColour} />
+              <BrowserCards
+                browserList={ui.browserList}
+                queryColour={ui.queryColour}
+              />
             )}
           </Container>
         </FreeviewContent>
@@ -133,20 +116,16 @@ class Matrix extends React.Component<IProps, IState> {
 }
 
 const mapStateToProps = state => ({
-  ui: state.ui,
-  filtered: state.browserlist.filtered
+  ui: state.ui
 });
 
-const mapDispatchToPRops = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
-  updateQueryColour: bindActionCreators(updateQueryColour, dispatch),
-  updateGlobalUsage: bindActionCreators(updateGlobalUsage, dispatch),
-  updateYearReleased: bindActionCreators(updateYearReleased, dispatch),
-  updateLastVersions: bindActionCreators(updateLastVersions, dispatch),
-  updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch)
+  updateValue: bindActionCreators(updateValue, dispatch),
+  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch)
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToPRops
+  mapDispatchToProps
 )(Matrix);

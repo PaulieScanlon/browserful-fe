@@ -9,15 +9,15 @@ import { H4 } from '../../typography';
 import { platform } from '../../utils/browserDetails';
 
 interface IProps {
-  filtered: any;
+  browserList: any;
   queryColour: string;
 }
 
 export const BrowserCards: React.SFC<IProps> = ({
-  filtered,
+  browserList,
   queryColour
 }: IProps) => {
-  const desktop = filtered.map((browser, i) => {
+  const desktop = browserList.map((browser, i) => {
     if (browser.platform === platform.DESKTOP) {
       return (
         <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
@@ -46,7 +46,7 @@ export const BrowserCards: React.SFC<IProps> = ({
     }
   });
 
-  const mobile = filtered.map((browser, i) => {
+  const mobile = browserList.map((browser, i) => {
     if (browser.platform === platform.MOBILE) {
       return (
         <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>

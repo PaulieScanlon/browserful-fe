@@ -1,13 +1,11 @@
-import {
-  UPDATE_QUERY,
-  UPDATE_QUERYCOLOUR,
-  UPDATE_GLOBALUSAGE,
-  UPDATE_YEARRELEASED,
-  UPDATE_LASTVERSIONS
-} from '../types';
+import browserslist from 'browserslist';
+import { createMatrix } from '../../../utils/createMatrix';
+
+import { UPDATE_QUERY, UPDATE_VALUE, UPDATE_BROWSERQUERY } from '../types';
 import { colours } from '../../../theme';
 
 import { queryTypes } from '../../../utils/queryStrings';
+import { queryBuilder } from '../../../utils/queryBuilder';
 import { config } from '../../../features/ControlCards/config';
 
 interface IProps {
@@ -16,6 +14,8 @@ interface IProps {
   globalUsage: number;
   yearReleased: number;
   lastVersions: number;
+  browserQuery: string;
+  browserList: any;
 }
 
 const initialState: IProps = {
@@ -23,7 +23,19 @@ const initialState: IProps = {
   queryColour: colours.pink,
   globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
   yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
-  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue
+  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
+  browserQuery: queryBuilder(
+    queryTypes.GLOBAL_USAGE,
+    config[queryTypes.GLOBAL_USAGE].slider.defaultValue
+  ),
+  browserList: createMatrix(
+    browserslist(
+      queryBuilder(
+        queryTypes.GLOBAL_USAGE,
+        config[queryTypes.GLOBAL_USAGE].slider.defaultValue
+      )
+    )
+  )
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,31 +43,23 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_QUERY:
       return {
         ...state,
-        queryType: action.queryType
-      };
-
-    case UPDATE_QUERYCOLOUR:
-      return {
-        ...state,
+        queryType: action.queryType,
         queryColour: action.queryColour
       };
 
-    case UPDATE_GLOBALUSAGE:
+    case UPDATE_VALUE:
       return {
         ...state,
-        globalUsage: action.globalUsage
+        [action.queryType]: action.value
       };
 
-    case UPDATE_YEARRELEASED:
+    case UPDATE_BROWSERQUERY:
       return {
         ...state,
-        yearReleased: action.yearReleased
-      };
-
-    case UPDATE_LASTVERSIONS:
-      return {
-        ...state,
-        lastVersions: action.lastVersions
+        browserQuery: queryBuilder(action.queryType, action.value),
+        browserList: createMatrix(
+          browserslist(queryBuilder(action.queryType, action.value))
+        )
       };
 
     default:

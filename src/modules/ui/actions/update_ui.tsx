@@ -1,27 +1,27 @@
-import {
-  UPDATE_QUERY,
-  UPDATE_QUERYCOLOUR,
-  UPDATE_GLOBALUSAGE,
-  UPDATE_YEARRELEASED,
-  UPDATE_LASTVERSIONS
-} from '../types';
+import { UPDATE_QUERY, UPDATE_VALUE, UPDATE_BROWSERQUERY } from '../types';
 
-export const updateQuery = (queryType: string) => dispatch => {
-  return dispatch({ type: UPDATE_QUERY, queryType });
+export const updateQuery = (
+  queryType: string,
+  queryColour: string
+) => dispatch => {
+  return dispatch({ type: UPDATE_QUERY, queryType, queryColour });
 };
 
-export const updateQueryColour = (queryColour: string) => dispatch => {
-  return dispatch({ type: UPDATE_QUERYCOLOUR, queryColour });
+export const updateValue = (queryType: string, value: number) => dispatch => {
+  return dispatch({
+    type: UPDATE_VALUE,
+    queryType,
+    value
+  });
 };
 
-export const updateGlobalUsage = (globalUsage: number) => dispatch => {
-  return dispatch({ type: UPDATE_GLOBALUSAGE, globalUsage });
-};
-
-export const updateYearReleased = (yearReleased: number) => dispatch => {
-  return dispatch({ type: UPDATE_YEARRELEASED, yearReleased });
-};
-
-export const updateLastVersions = (lastVersions: number) => dispatch => {
-  return dispatch({ type: UPDATE_LASTVERSIONS, lastVersions });
+export const updateBrowserQuery = (
+  queryType: string,
+  value: number
+) => dispatch => {
+  return dispatch({
+    type: UPDATE_BROWSERQUERY,
+    queryType,
+    value
+  });
 };
