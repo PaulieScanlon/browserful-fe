@@ -7,27 +7,44 @@ interface IProps {
   isIncluded: boolean;
 }
 
-const getStyleRules = (isIncluded, checked) => {
+const getStyleRules = isIncluded => {
   if (isIncluded) {
     return {
-      borderColor: checked ? colours.green : colours.transparent,
       backgroundColor: colours.greenLight
     };
-  } else {
-    return {
-      borderColor: checked ? colours.red : colours.transparent,
-      backgroundColor: colours.redLight
-    };
   }
+
+  return {
+    backgroundColor: colours.redLight
+  };
 };
 
-export const VersionLabel = styled.label({
-  label: 'version-label',
-  position: 'relative',
-  display: 'inline-flex',
-  alignSelf: 'center',
-  cursor: 'pointer'
-});
+export const VersionButton = styled.button<IProps>(
+  {
+    label: 'version-button',
+    position: 'relative',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    borderRadius: '100%',
+    border: 'none',
+    cursor: 'pointer',
+    width: '40px',
+    height: '40px',
+    outline: 'none',
+    fontSize: '12px',
+    lineHeight: '14px',
+    fontFamily: `${font.fontFamily}`,
+    textAlign: 'center',
+    ':focus': {
+      span: {
+        display: 'block'
+      }
+    }
+  },
+  ({ isIncluded }) => ({
+    ...getStyleRules(isIncluded)
+  })
+);
 
 export const VersionText = styled.span<IProps>(
   {
@@ -44,31 +61,9 @@ export const VersionText = styled.span<IProps>(
   })
 );
 
-export const VersionInput = styled.input<IProps>(
-  {
-    label: 'verion-input',
-    display: 'none'
-  },
-  ({ isIncluded }: IProps) => ({
-    ':checked + div': {
-      ...getStyleRules(isIncluded, true)
-    },
-    '+ div': {
-      ...getStyleRules(isIncluded, false)
-    }
-  })
-);
-
-export const VersionStyle = styled.div({
-  label: 'version-style',
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-  borderRadius: '100%',
-  width: '40px',
-  height: '40px',
-  borderStyle: 'solid',
-  boxSizing: 'border-box',
-  outline: 'none'
+export const PopoverWrapper = styled.span({
+  label: 'popover-wrapper',
+  position: 'absolute',
+  display: 'none',
+  top: '-130px'
 });

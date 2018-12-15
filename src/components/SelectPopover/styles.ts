@@ -6,7 +6,8 @@ export const SelectWrapper = styled.div({
   position: 'relative',
   display: 'inline-flex',
   flexDirection: 'column',
-  boxShadow: materialBuilder(1)
+  minWidth: '220px',
+  boxShadow: materialBuilder(2)
 });
 
 export const InnerWrapper = styled.div({

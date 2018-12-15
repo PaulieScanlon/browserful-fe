@@ -6,8 +6,7 @@ const unfiltered = browserslist(['last 999 versions']).reduce((acc, br) => {
   const [name, version] = br.split(' ', 2);
   acc[name] = [].concat(acc[name] || [], {
     id: version,
-    isIncluded: false,
-    defaultChecked: false
+    isIncluded: false
   });
   return acc;
 }, {});

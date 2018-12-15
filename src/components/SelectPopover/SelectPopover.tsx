@@ -6,10 +6,7 @@ import { colours } from '../../theme';
 
 import { SelectWrapper, InnerWrapper, Arrow, SelectHeader } from './styles';
 
-interface IProps {
-  browser: string;
-  version: number;
-  name: string;
+export interface SelectPopoverChangeProps {
   onAutoChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     browser: string,
@@ -25,6 +22,12 @@ interface IProps {
     browser: string,
     version: number | string
   ) => void;
+}
+
+interface IProps extends SelectPopoverChangeProps {
+  browser: string;
+  version: number;
+  name: string;
 }
 
 export const SelectPopover: React.SFC<IProps> = ({

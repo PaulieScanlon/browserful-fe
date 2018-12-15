@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 import { transitionBuilder, colours, scaffolding } from '../../theme';
-
+import { font } from '../../typography';
 interface IProps {
   selectColour: string;
 }
@@ -61,6 +61,9 @@ export const SwitchSlider = styled.span({
 export const SwitchText = styled.small({
   label: 'radio-text',
   fontSize: '14px',
+  lineHeight: '16px',
+  fontFamily: `${font.fontFamily}`,
+  textAlign: 'center',
   margin: `0px ${scaffolding.gutterSm}`,
   color: colours.greyLight
 });

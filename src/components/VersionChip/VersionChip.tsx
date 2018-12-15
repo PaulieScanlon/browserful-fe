@@ -1,48 +1,49 @@
 import * as React from 'react';
 
-import {
-  VersionLabel,
-  VersionText,
-  VersionInput,
-  VersionStyle
-} from './styles';
+import { VersionButton, VersionText, PopoverWrapper } from './styles';
+import { SelectPopover } from '../SelectPopover';
 
-interface IProps {
+import { SelectPopoverChangeProps } from '../SelectPopover';
+
+interface IProps extends SelectPopoverChangeProps {
   browser: string;
   version: any;
-  onChange: (
-    event: React.ChangeEventHandler<HTMLInputElement>,
-    browser: string,
-    version: number | string
-  ) => void;
   isIncluded?: boolean;
-  defaultChecked?: boolean;
 }
 
 export const VersionChip: React.SFC<IProps> = ({
-  version,
   browser,
-  onChange,
+  version,
   isIncluded,
-  defaultChecked
-}: IProps) => {
+  onAutoChange,
+  onIncludeChange,
+  onExcludeChange
+}) => {
   return (
-    <VersionLabel htmlFor={browser}>
-      <VersionInput
-        defaultChecked={defaultChecked}
-        type="checkbox"
-        id={browser}
-        onChange={event => onChange(event as any, browser, version)}
-        isIncluded={isIncluded}
-      />
-      <VersionStyle>
-        <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
-      </VersionStyle>
-    </VersionLabel>
+    <VersionButton isIncluded={isIncluded}>
+      <PopoverWrapper>
+        <SelectPopover
+          browser={browser}
+          version={version}
+          name={`popover-${browser}-${version}`}
+          onAutoChange={(event, browser, version) =>
+            onAutoChange(event, browser, version)
+          }
+          onIncludeChange={(event, browser, version) =>
+            onIncludeChange(event, browser, version)
+          }
+          onExcludeChange={(event, browser, version) =>
+            onExcludeChange(event, browser, version)
+          }
+        />
+      </PopoverWrapper>
+      <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
+    </VersionButton>
   );
 };
 
 VersionChip.defaultProps = {
-  isIncluded: false,
-  defaultChecked: false
+  onAutoChange: () => {},
+  onIncludeChange: () => {},
+  onExcludeChange: () => {}
 };

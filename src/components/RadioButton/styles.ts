@@ -1,5 +1,6 @@
 import styled from 'react-emotion';
 import { colours, scaffolding } from '../../theme';
+import { font } from '../../typography';
 
 interface IProps {
   selectColour: string;
@@ -47,6 +48,9 @@ export const RadioStyle = styled.span({
 export const RadioText = styled.small({
   label: 'radio-text',
   fontSize: '14px',
+  lineHeight: '16px',
+  fontFamily: `${font.fontFamily}`,
+  textAlign: 'center',
   margin: `0px ${scaffolding.gutterSm}`,
   color: colours.greyLight
 });
