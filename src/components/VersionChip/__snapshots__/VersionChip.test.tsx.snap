@@ -5,9 +5,10 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <VersionChip
     browser="Chrome"
-    defaultChecked={false}
-    isIncluded={false}
+    onAutoChange={[Function]}
     onChange={[Function]}
+    onExcludeChange={[Function]}
+    onIncludeChange={[Function]}
     version={1}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -24,21 +25,21 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <VersionInput
-          defaultChecked={false}
-          id="Chrome"
-          isIncluded={false}
-          onChange={[Function]}
-          type="checkbox"
-        />,
-        <VersionStyle />,
-        <VersionText
-          isIncluded={false}
-        >
+        <PopoverWrapper>
+          <SelectPopover
+            browser="Chrome"
+            name="popover-Chrome-1"
+            onAutoChange={[Function]}
+            onExcludeChange={[Function]}
+            onIncludeChange={[Function]}
+            version={1}
+          />
+        </PopoverWrapper>,
+        <VersionText>
           1
         </VersionText>,
       ],
-      "htmlFor": "Chrome",
+      "isIncluded": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -47,23 +48,32 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "defaultChecked": false,
-          "id": "Chrome",
-          "isIncluded": false,
-          "onChange": [Function],
-          "type": "checkbox",
+          "children": <SelectPopover
+            browser="Chrome"
+            name="popover-Chrome-1"
+            onAutoChange={[Function]}
+            onExcludeChange={[Function]}
+            onIncludeChange={[Function]}
+            version={1}
+          />,
         },
         "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "browser": "Chrome",
+            "name": "popover-Chrome-1",
+            "onAutoChange": [Function],
+            "onExcludeChange": [Function],
+            "onIncludeChange": [Function],
+            "version": 1,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         "type": [Function],
       },
       Object {
@@ -72,7 +82,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": 1,
-          "isIncluded": false,
+          "isIncluded": undefined,
         },
         "ref": null,
         "rendered": 1,
@@ -88,21 +98,21 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <VersionInput
-            defaultChecked={false}
-            id="Chrome"
-            isIncluded={false}
-            onChange={[Function]}
-            type="checkbox"
-          />,
-          <VersionStyle />,
-          <VersionText
-            isIncluded={false}
-          >
+          <PopoverWrapper>
+            <SelectPopover
+              browser="Chrome"
+              name="popover-Chrome-1"
+              onAutoChange={[Function]}
+              onExcludeChange={[Function]}
+              onIncludeChange={[Function]}
+              version={1}
+            />
+          </PopoverWrapper>,
+          <VersionText>
             1
           </VersionText>,
         ],
-        "htmlFor": "Chrome",
+        "isIncluded": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -111,23 +121,32 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "defaultChecked": false,
-            "id": "Chrome",
-            "isIncluded": false,
-            "onChange": [Function],
-            "type": "checkbox",
+            "children": <SelectPopover
+              browser="Chrome"
+              name="popover-Chrome-1"
+              onAutoChange={[Function]}
+              onExcludeChange={[Function]}
+              onIncludeChange={[Function]}
+              version={1}
+            />,
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "browser": "Chrome",
+              "name": "popover-Chrome-1",
+              "onAutoChange": [Function],
+              "onExcludeChange": [Function],
+              "onIncludeChange": [Function],
+              "version": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {
@@ -136,7 +155,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": 1,
-            "isIncluded": false,
+            "isIncluded": undefined,
           },
           "ref": null,
           "rendered": 1,

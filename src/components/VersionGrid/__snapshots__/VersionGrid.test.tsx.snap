@@ -6,22 +6,24 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <VersionGrid
     data={
       Object {
+        "browser": "and_chr",
         "defaultChecked": true,
         "friendlyName": "Chrome (Android)",
         "logo": "chrome-for-android",
-        "name": "and_chr",
         "percent": undefined,
         "platform": "mobile",
+        "queryName": "ChromeAndroid",
         "versions": Array [
           Object {
-            "defaultChecked": false,
             "id": "69",
             "isIncluded": false,
           },
         ],
       }
     }
-    onClick={[Function]}
+    onAutoChange={[Function]}
+    onExcludeChange={[Function]}
+    onIncludeChange={[Function]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -38,10 +40,11 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <VersionChip
-          browser="and_chr-69"
-          defaultChecked={false}
+          browser="ChromeAndroid"
           isIncluded={false}
-          onChange={[Function]}
+          onAutoChange={[Function]}
+          onExcludeChange={[Function]}
+          onIncludeChange={[Function]}
           version="69"
         />,
       ],
@@ -53,10 +56,11 @@ ShallowWrapper {
         "key": "0",
         "nodeType": "function",
         "props": Object {
-          "browser": "and_chr-69",
-          "defaultChecked": false,
+          "browser": "ChromeAndroid",
           "isIncluded": false,
-          "onChange": [Function],
+          "onAutoChange": [Function],
+          "onExcludeChange": [Function],
+          "onIncludeChange": [Function],
           "version": "69",
         },
         "ref": null,
@@ -74,10 +78,11 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <VersionChip
-            browser="and_chr-69"
-            defaultChecked={false}
+            browser="ChromeAndroid"
             isIncluded={false}
-            onChange={[Function]}
+            onAutoChange={[Function]}
+            onExcludeChange={[Function]}
+            onIncludeChange={[Function]}
             version="69"
           />,
         ],
@@ -89,10 +94,11 @@ ShallowWrapper {
           "key": "0",
           "nodeType": "function",
           "props": Object {
-            "browser": "and_chr-69",
-            "defaultChecked": false,
+            "browser": "ChromeAndroid",
             "isIncluded": false,
-            "onChange": [Function],
+            "onAutoChange": [Function],
+            "onExcludeChange": [Function],
+            "onIncludeChange": [Function],
             "version": "69",
           },
           "ref": null,
