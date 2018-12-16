@@ -41,6 +41,7 @@ ShallowWrapper {
       "children": Array [
         <VersionChip
           browser="ChromeAndroid"
+          hasOverride={false}
           isIncluded={false}
           onAutoChange={[Function]}
           onExcludeChange={[Function]}
@@ -57,6 +58,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "browser": "ChromeAndroid",
+          "hasOverride": false,
           "isIncluded": false,
           "onAutoChange": [Function],
           "onExcludeChange": [Function],
@@ -79,6 +81,7 @@ ShallowWrapper {
         "children": Array [
           <VersionChip
             browser="ChromeAndroid"
+            hasOverride={false}
             isIncluded={false}
             onAutoChange={[Function]}
             onExcludeChange={[Function]}
@@ -95,6 +98,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "browser": "ChromeAndroid",
+            "hasOverride": false,
             "isIncluded": false,
             "onAutoChange": [Function],
             "onExcludeChange": [Function],

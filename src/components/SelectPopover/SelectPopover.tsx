@@ -28,12 +28,16 @@ interface IProps extends SelectPopoverChangeProps {
   browser: string;
   version: number;
   name: string;
+  isIncluded: boolean;
+  hasOverride: boolean;
 }
 
 export const SelectPopover: React.SFC<IProps> = ({
   browser,
   version,
   name,
+  isIncluded,
+  hasOverride,
   onAutoChange,
   onIncludeChange,
   onExcludeChange
@@ -47,16 +51,17 @@ export const SelectPopover: React.SFC<IProps> = ({
               id={`auto ${browser} ${version}`}
               name={name}
               type="radio"
-              defaultChecked
+              defaultChecked={!hasOverride ? true : false}
               onChange={event => onAutoChange(browser, version, event)}
             >
-              Automatically filter
+              Automatic mode
             </ToggleSwitch>
           </SelectHeader>
 
           <RadioButton
             id={`include ${browser} ${version}`}
             name={name}
+            defaultChecked={isIncluded && hasOverride}
             selectColour={colours.green}
             onChange={event => onIncludeChange(browser, version, event)}
           >
@@ -65,6 +70,7 @@ export const SelectPopover: React.SFC<IProps> = ({
           <RadioButton
             id={`exclude ${browser} ${version}`}
             name={name}
+            defaultChecked={!isIncluded && hasOverride}
             selectColour={colours.red}
             onChange={event => onExcludeChange(browser, version, event)}
           >

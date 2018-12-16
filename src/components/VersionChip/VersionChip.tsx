@@ -9,22 +9,26 @@ interface IProps extends SelectPopoverChangeProps {
   browser: string;
   version: any;
   isIncluded?: boolean;
+  hasOverride?: boolean;
 }
 
 export const VersionChip: React.SFC<IProps> = ({
   browser,
   version,
   isIncluded,
+  hasOverride,
   onAutoChange,
   onIncludeChange,
   onExcludeChange
 }) => {
   return (
-    <VersionButton isIncluded={isIncluded}>
+    <VersionButton isIncluded={isIncluded} hasOverride={hasOverride}>
       <PopoverWrapper>
         <SelectPopover
           browser={browser}
           version={version}
+          isIncluded={isIncluded}
+          hasOverride={hasOverride}
           name={`popover-${browser}-${version}`}
           onAutoChange={(browser, version, event) =>
             onAutoChange(browser, version, event)
@@ -43,6 +47,8 @@ export const VersionChip: React.SFC<IProps> = ({
 };
 
 VersionChip.defaultProps = {
+  isIncluded: false,
+  hasOverride: false,
   onAutoChange: () => {},
   onIncludeChange: () => {},
   onExcludeChange: () => {}

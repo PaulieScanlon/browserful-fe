@@ -33,23 +33,41 @@ export const updateBrowserQuery = (
   });
 };
 
-export const updateAuto = (browser: string) => dispatch => {
+export const updateAuto = (
+  incQuery: Array<String>,
+  excQuery: Array<String>,
+  query: string
+) => dispatch => {
   return dispatch({
     type: UPDATE_AUTO,
-    browser
+    incQuery,
+    excQuery,
+    query
   });
 };
 
-export const updateIncluded = (browser: string) => dispatch => {
+export const updateIncluded = (
+  incQuery: Array<String>,
+  excQuery: Array<String>,
+  query: string
+) => dispatch => {
   return dispatch({
     type: UPDATE_INCLUDED,
-    browser
+    incQuery,
+    excQuery,
+    query
   });
 };
 
-export const updateExcluded = (browser: string) => dispatch => {
+export const updateExcluded = (
+  incQuery: Array<String>,
+  excQuery: Array<String>,
+  query: string
+) => dispatch => {
   return dispatch({
     type: UPDATE_EXCLUDED,
-    browser
+    incQuery,
+    excQuery,
+    query
   });
 };

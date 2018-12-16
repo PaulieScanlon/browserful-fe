@@ -1,5 +1,7 @@
 import browserslist from 'browserslist';
 import { createMatrix } from '../../../utils/createMatrix';
+import { arrayAdd } from '../../../utils/arrayAdd';
+import { arrayRemove } from '../../../utils/arrayRemove';
 
 import {
   UPDATE_QUERY,
@@ -23,7 +25,8 @@ interface IProps {
   lastVersions: number;
   browserQuery: string;
   browserList: any;
-  tempList: object;
+  incQuery: Array<String>;
+  excQuery: Array<String>;
 }
 
 const initialState: IProps = {
@@ -44,7 +47,8 @@ const initialState: IProps = {
       )
     )
   ),
-  tempList: {}
+  incQuery: [],
+  excQuery: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -74,22 +78,22 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_AUTO:
       return {
         ...state,
-        // TODO remove it if it's been added already
-        tempList: action.browser
+        incQuery: arrayRemove(action.incQuery, action.query),
+        excQuery: arrayRemove(action.excQuery, action.query)
       };
 
     case UPDATE_INCLUDED:
       return {
         ...state,
-        // TODO add it to the included list
-        tempList: action.browser
+        incQuery: arrayAdd(action.incQuery, action.query),
+        excQuery: arrayRemove(action.excQuery, action.query)
       };
 
     case UPDATE_EXCLUDED:
       return {
         ...state,
-        // TODO add it to the excluded list
-        tempList: action.browser
+        excQuery: arrayAdd(action.excQuery, action.query),
+        incQuery: arrayRemove(action.incQuery, action.query)
       };
 
     default:

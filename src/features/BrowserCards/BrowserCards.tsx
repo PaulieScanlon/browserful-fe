@@ -19,21 +19,35 @@ import { platform } from '../../utils/browserDetails';
 interface IProps {
   browserList: any;
   queryColour: string;
+  incQuery: Array<String>;
+  excQuery: Array<String>;
   updateAuto: any;
   updateIncluded: any;
   updateExcluded: any;
 }
 class BrowserCards extends React.Component<IProps, {}> {
   onAutoChange(browser: string, version: number | string) {
-    console.log('onAutoChange: ', `${browser} ${version}`);
+    this.props.updateAuto(
+      this.props.incQuery,
+      this.props.excQuery,
+      `${browser} ${version}`
+    );
   }
 
   onIncludeChange(browser: string, version: number | string) {
-    console.log('onIncludeChange: ', `${browser} ${version}`);
+    this.props.updateIncluded(
+      this.props.incQuery,
+      this.props.excQuery,
+      `${browser} ${version}`
+    );
   }
 
   onExcludeChange(browser: string, version: number | string) {
-    console.log('onExcludeChange: ', `${browser} ${version}`);
+    this.props.updateExcluded(
+      this.props.incQuery,
+      this.props.excQuery,
+      `${browser} ${version}`
+    );
   }
 
   render() {
@@ -140,7 +154,9 @@ class BrowserCards extends React.Component<IProps, {}> {
 
 const mapStateToProps = state => ({
   browserList: state.ui.browserList,
-  queryColour: state.ui.queryColour
+  queryColour: state.ui.queryColour,
+  incQuery: state.ui.incQuery,
+  excQuery: state.ui.excQuery
 });
 
 const mapDispatchToProps = dispatch => ({

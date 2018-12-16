@@ -5,6 +5,8 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <VersionChip
     browser="Chrome"
+    hasOverride={false}
+    isIncluded={false}
     onAutoChange={[Function]}
     onChange={[Function]}
     onExcludeChange={[Function]}
@@ -28,6 +30,8 @@ ShallowWrapper {
         <PopoverWrapper>
           <SelectPopover
             browser="Chrome"
+            hasOverride={false}
+            isIncluded={false}
             name="popover-Chrome-1"
             onAutoChange={[Function]}
             onExcludeChange={[Function]}
@@ -35,11 +39,14 @@ ShallowWrapper {
             version={1}
           />
         </PopoverWrapper>,
-        <VersionText>
+        <VersionText
+          isIncluded={false}
+        >
           1
         </VersionText>,
       ],
-      "isIncluded": undefined,
+      "hasOverride": false,
+      "isIncluded": false,
     },
     "ref": null,
     "rendered": Array [
@@ -50,6 +57,8 @@ ShallowWrapper {
         "props": Object {
           "children": <SelectPopover
             browser="Chrome"
+            hasOverride={false}
+            isIncluded={false}
             name="popover-Chrome-1"
             onAutoChange={[Function]}
             onExcludeChange={[Function]}
@@ -64,6 +73,8 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "browser": "Chrome",
+            "hasOverride": false,
+            "isIncluded": false,
             "name": "popover-Chrome-1",
             "onAutoChange": [Function],
             "onExcludeChange": [Function],
@@ -82,7 +93,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": 1,
-          "isIncluded": undefined,
+          "isIncluded": false,
         },
         "ref": null,
         "rendered": 1,
@@ -101,6 +112,8 @@ ShallowWrapper {
           <PopoverWrapper>
             <SelectPopover
               browser="Chrome"
+              hasOverride={false}
+              isIncluded={false}
               name="popover-Chrome-1"
               onAutoChange={[Function]}
               onExcludeChange={[Function]}
@@ -108,11 +121,14 @@ ShallowWrapper {
               version={1}
             />
           </PopoverWrapper>,
-          <VersionText>
+          <VersionText
+            isIncluded={false}
+          >
             1
           </VersionText>,
         ],
-        "isIncluded": undefined,
+        "hasOverride": false,
+        "isIncluded": false,
       },
       "ref": null,
       "rendered": Array [
@@ -123,6 +139,8 @@ ShallowWrapper {
           "props": Object {
             "children": <SelectPopover
               browser="Chrome"
+              hasOverride={false}
+              isIncluded={false}
               name="popover-Chrome-1"
               onAutoChange={[Function]}
               onExcludeChange={[Function]}
@@ -137,6 +155,8 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "browser": "Chrome",
+              "hasOverride": false,
+              "isIncluded": false,
               "name": "popover-Chrome-1",
               "onAutoChange": [Function],
               "onExcludeChange": [Function],
@@ -155,7 +175,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": 1,
-            "isIncluded": undefined,
+            "isIncluded": false,
           },
           "ref": null,
           "rendered": 1,
