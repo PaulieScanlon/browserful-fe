@@ -8,19 +8,19 @@ import { SelectWrapper, InnerWrapper, Arrow, SelectHeader } from './styles';
 
 export interface SelectPopoverChangeProps {
   onAutoChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
     browser: string,
-    version: number | string
+    version: number | string,
+    event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
   onIncludeChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
     browser: string,
-    version: number | string
+    version: number | string,
+    event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
   onExcludeChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
     browser: string,
-    version: number | string
+    version: number | string,
+    event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
 }
 
@@ -48,7 +48,7 @@ export const SelectPopover: React.SFC<IProps> = ({
               name={name}
               type="radio"
               defaultChecked
-              onChange={event => onAutoChange(event, browser, version)}
+              onChange={event => onAutoChange(browser, version, event)}
             >
               Automatically filter
             </ToggleSwitch>
@@ -58,7 +58,7 @@ export const SelectPopover: React.SFC<IProps> = ({
             id={`include ${browser} ${version}`}
             name={name}
             selectColour={colours.green}
-            onChange={event => onIncludeChange(event, browser, version)}
+            onChange={event => onIncludeChange(browser, version, event)}
           >
             Always Include
           </RadioButton>
@@ -66,7 +66,7 @@ export const SelectPopover: React.SFC<IProps> = ({
             id={`exclude ${browser} ${version}`}
             name={name}
             selectColour={colours.red}
-            onChange={event => onExcludeChange(event, browser, version)}
+            onChange={event => onExcludeChange(browser, version, event)}
           >
             Always Exclude
           </RadioButton>

@@ -4,30 +4,38 @@ import { GridContent } from './styles';
 
 import { VersionChip } from '../VersionChip';
 
-interface IProps {
+import { SelectPopoverChangeProps } from '../SelectPopover';
+
+interface IProps extends SelectPopoverChangeProps {
   data: any;
   maxHeight?: string;
-  defaultChecked?: boolean;
-  onClick?: (
-    event: React.ChangeEventHandler<HTMLInputElement>,
-    browser: string,
-    version: number
-  ) => void;
 }
 
-export const VersionGrid: React.SFC<IProps> = ({ data, onClick }: IProps) => {
-  const { name, versions } = data;
+export const VersionGrid: React.SFC<IProps> = ({
+  data,
+  onAutoChange,
+  onIncludeChange,
+  onExcludeChange
+}: IProps) => {
+  const { queryName, versions } = data;
 
   const versionChips = versions.map((obj, i) => {
     return (
       <VersionChip
         key={i}
-        browser={`${name}-${obj.id}`}
+        browser={queryName}
         // @TODO, this string replace should probs happen in the util function
-        version={obj.id.replace('-', '\n')}
+        version={obj.id}
         isIncluded={obj.isIncluded}
-        defaultChecked={obj.defaultChecked}
-        onChange={event => onClick(event, name, obj.id)}
+        onAutoChange={(browser, version, event) =>
+          onAutoChange(browser, version, event)
+        }
+        onIncludeChange={(browser, version, event) =>
+          onIncludeChange(browser, version, event)
+        }
+        onExcludeChange={(browser, version, event) =>
+          onExcludeChange(browser, version, event)
+        }
       />
     );
   });
@@ -36,5 +44,7 @@ export const VersionGrid: React.SFC<IProps> = ({ data, onClick }: IProps) => {
 };
 
 VersionGrid.defaultProps = {
-  onClick: () => {}
+  onAutoChange: () => {},
+  onIncludeChange: () => {},
+  onExcludeChange: () => {}
 };

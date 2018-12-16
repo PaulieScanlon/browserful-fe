@@ -40,9 +40,10 @@ export const createMatrix = (filtered: any) => {
 
   return Object.keys(unfiltered).map(br => {
     return {
-      friendlyName: browserDetails[br].name,
+      friendlyName: browserDetails[br].friendlyName,
+      queryName: browserDetails[br].queryName,
       percent: getVersionsPercentage(filteredVersions[br], unfiltered[br]),
-      name: br,
+      browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,
       versions: setIsIncluded(filteredVersions[br], unfiltered[br]),

@@ -65,5 +65,6 @@ export const PopoverWrapper = styled.span({
   label: 'popover-wrapper',
   position: 'absolute',
   display: 'none',
-  top: '-130px'
+  top: '-130px',
+  zIndex: 2
 });

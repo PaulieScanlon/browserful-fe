@@ -26,14 +26,14 @@ export const VersionChip: React.SFC<IProps> = ({
           browser={browser}
           version={version}
           name={`popover-${browser}-${version}`}
-          onAutoChange={(event, browser, version) =>
-            onAutoChange(event, browser, version)
+          onAutoChange={(browser, version, event) =>
+            onAutoChange(browser, version, event)
           }
-          onIncludeChange={(event, browser, version) =>
-            onIncludeChange(event, browser, version)
+          onIncludeChange={(browser, version, event) =>
+            onIncludeChange(browser, version, event)
           }
-          onExcludeChange={(event, browser, version) =>
-            onExcludeChange(event, browser, version)
+          onExcludeChange={(browser, version, event) =>
+            onExcludeChange(browser, version, event)
           }
         />
       </PopoverWrapper>

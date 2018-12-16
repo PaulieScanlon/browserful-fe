@@ -1,4 +1,11 @@
-import { UPDATE_QUERY, UPDATE_VALUE, UPDATE_BROWSERQUERY } from '../types';
+import {
+  UPDATE_QUERY,
+  UPDATE_VALUE,
+  UPDATE_BROWSERQUERY,
+  UPDATE_AUTO,
+  UPDATE_INCLUDED,
+  UPDATE_EXCLUDED
+} from '../types';
 
 export const updateQuery = (
   queryType: string,
@@ -23,5 +30,26 @@ export const updateBrowserQuery = (
     type: UPDATE_BROWSERQUERY,
     queryType,
     value
+  });
+};
+
+export const updateAuto = (browser: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_AUTO,
+    browser
+  });
+};
+
+export const updateIncluded = (browser: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_INCLUDED,
+    browser
+  });
+};
+
+export const updateExcluded = (browser: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_EXCLUDED,
+    browser
   });
 };

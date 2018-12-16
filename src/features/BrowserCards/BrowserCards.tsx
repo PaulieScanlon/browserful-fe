@@ -1,5 +1,12 @@
 import * as React from 'react';
+
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  updateAuto,
+  updateIncluded,
+  updateExcluded
+} from '../../modules/ui/actions/update_ui';
 
 import { Row, Col } from 'react-grid-system';
 
@@ -12,8 +19,23 @@ import { platform } from '../../utils/browserDetails';
 interface IProps {
   browserList: any;
   queryColour: string;
+  updateAuto: any;
+  updateIncluded: any;
+  updateExcluded: any;
 }
 class BrowserCards extends React.Component<IProps, {}> {
+  onAutoChange(browser: string, version: number | string) {
+    console.log('onAutoChange: ', `${browser} ${version}`);
+  }
+
+  onIncludeChange(browser: string, version: number | string) {
+    console.log('onIncludeChange: ', `${browser} ${version}`);
+  }
+
+  onExcludeChange(browser: string, version: number | string) {
+    console.log('onExcludeChange: ', `${browser} ${version}`);
+  }
+
   render() {
     const { browserList, queryColour } = this.props;
 
@@ -38,7 +60,18 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid data={browser} />
+                <VersionGrid
+                  data={browser}
+                  onAutoChange={(browser, version) =>
+                    this.onAutoChange(browser, version)
+                  }
+                  onIncludeChange={(browser, version) =>
+                    this.onIncludeChange(browser, version)
+                  }
+                  onExcludeChange={(browser, version) =>
+                    this.onExcludeChange(browser, version)
+                  }
+                />
               </AccordionItem>
             </Accordion>
           </div>
@@ -67,7 +100,18 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid data={browser} />
+                <VersionGrid
+                  data={browser}
+                  onAutoChange={(browser, version) =>
+                    this.onAutoChange(browser, version)
+                  }
+                  onIncludeChange={(browser, version) =>
+                    this.onIncludeChange(browser, version)
+                  }
+                  onExcludeChange={(browser, version) =>
+                    this.onExcludeChange(browser, version)
+                  }
+                />
               </AccordionItem>
             </Accordion>
           </div>
@@ -99,4 +143,13 @@ const mapStateToProps = state => ({
   queryColour: state.ui.queryColour
 });
 
-export default connect(mapStateToProps)(BrowserCards);
+const mapDispatchToProps = dispatch => ({
+  updateAuto: bindActionCreators(updateAuto, dispatch),
+  updateIncluded: bindActionCreators(updateIncluded, dispatch),
+  updateExcluded: bindActionCreators(updateExcluded, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BrowserCards);
