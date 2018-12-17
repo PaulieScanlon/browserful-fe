@@ -21,6 +21,8 @@ interface IProps {
   globalUsage: number;
   yearReleased: number;
   lastVersions: number;
+  incQuery: Array<String>;
+  excQuery: Array<String>;
   updateQuery: any;
   updateValue: any;
   updateBrowserQuery: any;
@@ -34,10 +36,21 @@ class ControlCards extends React.Component<IProps, {}> {
   }
 
   sliderOnChange(value: any) {
-    this.props.updateValue(this.props.queryType, value);
-    this.props.updateBrowserQuery(this.props.queryType, value);
+    const {
+      updateValue,
+      updateBrowserQuery,
+      queryType,
+      incQuery,
+      excQuery
+    } = this.props;
 
-    urlSetter(this.props.queryType, value);
+    console.log('sliderOnChange / incQuery: ', incQuery);
+    console.log('sliderOnChange / excQuery: ', excQuery);
+
+    updateValue(queryType, value);
+    updateBrowserQuery(queryType, value, incQuery, excQuery);
+
+    urlSetter(queryType, value);
   }
 
   render() {
@@ -89,7 +102,9 @@ const mapStateToProps = state => ({
   queryType: state.ui.queryType,
   globalUsage: state.ui.globalUsage,
   yearReleased: state.ui.yearReleased,
-  lastVersions: state.ui.lastVersions
+  lastVersions: state.ui.lastVersions,
+  incQuery: state.ui.incQuery,
+  excQuery: state.ui.excQuery
 });
 
 const mapDispatchToProps = dispatch => ({

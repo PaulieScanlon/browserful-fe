@@ -24,9 +24,9 @@ export const VersionGrid: React.SFC<IProps> = ({
       <VersionChip
         key={i}
         browser={queryName}
-        // @TODO, this string replace should probs happen in the util function
         version={obj.id}
         isIncluded={obj.isIncluded}
+        hasOverride={obj.hasOverride}
         onAutoChange={(browser, version, event) =>
           onAutoChange(browser, version, event)
         }

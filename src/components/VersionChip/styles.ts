@@ -2,22 +2,38 @@ import styled from 'react-emotion';
 
 import { font } from '../../typography';
 import { colours } from '../../theme';
-
+import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
-  hasOverride: boolean;
+  hasOverride: string;
 }
 
 const getStyleRules = (isIncluded, hasOverride) => {
+  if (hasOverride && hasOverride === overrideTypes.IS_INCLUDED) {
+    return {
+      color: colours.green,
+      borderColor: colours.green,
+      backgroundColor: colours.greenLight
+    };
+  }
+
+  if (hasOverride && hasOverride === overrideTypes.IS_EXCLUDED) {
+    return {
+      color: colours.red,
+      borderColor: colours.red,
+      backgroundColor: colours.redLight
+    };
+  }
+
   if (isIncluded) {
     return {
-      borderColor: hasOverride ? colours.green : colours.transparent,
+      color: colours.green,
       backgroundColor: colours.greenLight
     };
   }
 
   return {
-    borderColor: hasOverride ? colours.red : colours.transparent,
+    color: colours.red,
     backgroundColor: colours.redLight
   };
 };
@@ -37,10 +53,12 @@ export const VersionButton = styled.button<IProps>(
     fontSize: '12px',
     lineHeight: '14px',
     fontFamily: `${font.fontFamily}`,
+    fontWeight: 'normal',
     textAlign: 'center',
     borderStyle: 'solid',
     borderWidth: '2px',
-
+    borderColor: colours.transparent,
+    backgroundColor: colours.greyUltraLight,
     ':focus': {
       span: {
         display: 'block'
@@ -48,24 +66,20 @@ export const VersionButton = styled.button<IProps>(
     }
   },
   ({ isIncluded, hasOverride }) => ({
-    ...getStyleRules(isIncluded, hasOverride)
+    ...getStyleRules(isIncluded, hasOverride),
+    fontWeight: hasOverride ? 'bold' : 'normal'
   })
 );
 
-export const VersionText = styled.span<{ isIncluded: boolean }>(
-  {
-    fontSize: '12px',
-    lineHeight: '14px',
-    fontFamily: `${font.fontFamily}`,
-    textAlign: 'center',
-    whiteSpace: 'pre-wrap',
-    textTransform: 'capitalize'
-  },
-  ({ isIncluded }) => ({
-    fontWeight: isIncluded ? 'bold' : 'normal',
-    color: isIncluded ? colours.green : colours.red
-  })
-);
+export const VersionText = styled.span({
+  fontSize: '12px',
+  lineHeight: '14px',
+  fontFamily: `${font.fontFamily}`,
+  textAlign: 'center',
+  whiteSpace: 'pre-wrap',
+  textTransform: 'capitalize',
+  color: 'inherit'
+});
 
 export const PopoverWrapper = styled.span({
   label: 'popover-wrapper',

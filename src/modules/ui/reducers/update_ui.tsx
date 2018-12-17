@@ -1,4 +1,3 @@
-import browserslist from 'browserslist';
 import { createMatrix } from '../../../utils/createMatrix';
 import { arrayAdd } from '../../../utils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayRemove';
@@ -35,18 +34,8 @@ const initialState: IProps = {
   globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
   yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
   lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
-  browserQuery: queryBuilder(
-    queryTypes.GLOBAL_USAGE,
-    config[queryTypes.GLOBAL_USAGE].slider.defaultValue
-  ),
-  browserList: createMatrix(
-    browserslist(
-      queryBuilder(
-        queryTypes.GLOBAL_USAGE,
-        config[queryTypes.GLOBAL_USAGE].slider.defaultValue
-      )
-    )
-  ),
+  browserQuery: '',
+  browserList: [],
   incQuery: [],
   excQuery: []
 };
@@ -69,9 +58,21 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_BROWSERQUERY:
       return {
         ...state,
-        browserQuery: queryBuilder(action.queryType, action.value),
+        browserQuery: queryBuilder(
+          action.queryType,
+          action.value,
+          action.incQuery,
+          action.excQuery
+        ),
         browserList: createMatrix(
-          browserslist(queryBuilder(action.queryType, action.value))
+          queryBuilder(
+            action.queryType,
+            action.value,
+            action.incQuery,
+            action.excQuery
+          ),
+          action.incQuery,
+          action.excQuery
         )
       };
 

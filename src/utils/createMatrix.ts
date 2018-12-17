@@ -11,13 +11,18 @@ const unfiltered = browserslist(['last 999 versions']).reduce((acc, br) => {
   return acc;
 }, {});
 
-const setIsIncluded = (filteredVersions: any, unfiltered: any) => {
+const setIsIncluded = (
+  filteredVersions: any,
+  unfiltered: any,
+  hasOverride: boolean
+) => {
   return unfiltered.map(version => {
     return {
       ...version,
       isIncluded: filteredVersions
         ? filteredVersions.includes(version.id)
-        : false
+        : false,
+      hasOverride: hasOverride
     };
   });
 };
@@ -31,8 +36,15 @@ const getVersionsPercentage = (filteredVersions: any, unfiltered: any) => {
   }
 };
 
-export const createMatrix = (filtered: any) => {
-  const filteredVersions = filtered.reduce((acc, br) => {
+export const createMatrix = (
+  queryBuilder: string,
+  incQuery: Array<String>,
+  excQuery: Array<String>
+) => {
+  // console.log('incQuery: ', incQuery);
+  // console.log('excQuery: ', excQuery);
+
+  const filteredVersions = browserslist(`${queryBuilder}`).reduce((acc, br) => {
     const [name, version] = br.split(' ', 2);
     acc[name] = [].concat(acc[name] || [], version);
     return acc;
@@ -46,7 +58,8 @@ export const createMatrix = (filtered: any) => {
       browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,
-      versions: setIsIncluded(filteredVersions[br], unfiltered[br]),
+      // TODO pass true or false depending the browser version is in either of the inc or exc array
+      versions: setIsIncluded(filteredVersions[br], unfiltered[br], false),
       defaultChecked: true
     };
   });

@@ -7,9 +7,9 @@ import { SelectPopoverChangeProps } from '../SelectPopover';
 
 interface IProps extends SelectPopoverChangeProps {
   browser: string;
-  version: any;
+  version: number | string;
   isIncluded?: boolean;
-  hasOverride?: boolean;
+  hasOverride?: string;
 }
 
 export const VersionChip: React.SFC<IProps> = ({
@@ -27,7 +27,6 @@ export const VersionChip: React.SFC<IProps> = ({
         <SelectPopover
           browser={browser}
           version={version}
-          isIncluded={isIncluded}
           hasOverride={hasOverride}
           name={`popover-${browser}-${version}`}
           onAutoChange={(browser, version, event) =>
@@ -41,14 +40,13 @@ export const VersionChip: React.SFC<IProps> = ({
           }
         />
       </PopoverWrapper>
-      <VersionText isIncluded={isIncluded}>{version || 0}</VersionText>
+      <VersionText>{version || 0}</VersionText>
     </VersionButton>
   );
 };
 
 VersionChip.defaultProps = {
   isIncluded: false,
-  hasOverride: false,
   onAutoChange: () => {},
   onIncludeChange: () => {},
   onExcludeChange: () => {}

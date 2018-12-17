@@ -24,12 +24,16 @@ export const updateValue = (queryType: string, value: number) => dispatch => {
 
 export const updateBrowserQuery = (
   queryType: string,
-  value: number
+  value: number,
+  incQuery: Array<String>,
+  excQuery: Array<String>
 ) => dispatch => {
   return dispatch({
     type: UPDATE_BROWSERQUERY,
     queryType,
-    value
+    value,
+    incQuery,
+    excQuery
   });
 };
 

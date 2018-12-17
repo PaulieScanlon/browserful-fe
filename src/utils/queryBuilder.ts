@@ -1,13 +1,22 @@
 import { queryTypes } from '../utils/queryStrings';
 
-// const included = [''];
-// const excluded = ['not ie 8, not ie 9'];
+export const queryBuilder = (
+  qt: string,
+  sv: number,
+  iq: Array<String>,
+  eq: Array<String>
+) => {
+  // console.log('iq: ', iq);
+  // console.log('eq: ', eq);
 
-export const queryBuilder = (qt: string, sv: number) => {
+  const excQuery = eq.map(query => {
+    return query ? `not ${query},` : '';
+  });
+
   const constructed = {
-    [queryTypes.GLOBAL_USAGE]: `>=${sv}%`,
-    [queryTypes.YEAR_RELEASED]: `since ${sv}`,
-    [queryTypes.LAST_VERSIONS]: `last ${sv} versions`
+    [queryTypes.GLOBAL_USAGE]: `>=${sv}%, ${iq}, ${excQuery}`,
+    [queryTypes.YEAR_RELEASED]: `since ${sv}, ${iq}, ${excQuery}`,
+    [queryTypes.LAST_VERSIONS]: `last ${sv} versions, ${iq}, ${excQuery}`
   };
 
   return constructed[qt];

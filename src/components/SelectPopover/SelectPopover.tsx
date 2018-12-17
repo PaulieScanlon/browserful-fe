@@ -5,6 +5,7 @@ import { RadioButton } from '../RadioButton';
 import { colours } from '../../theme';
 
 import { SelectWrapper, InnerWrapper, Arrow, SelectHeader } from './styles';
+import { overrideTypes } from '../VersionChip/types';
 
 export interface SelectPopoverChangeProps {
   onAutoChange?: (
@@ -26,17 +27,15 @@ export interface SelectPopoverChangeProps {
 
 interface IProps extends SelectPopoverChangeProps {
   browser: string;
-  version: number;
+  version: number | string;
   name: string;
-  isIncluded: boolean;
-  hasOverride: boolean;
+  hasOverride?: string;
 }
 
 export const SelectPopover: React.SFC<IProps> = ({
   browser,
   version,
   name,
-  isIncluded,
   hasOverride,
   onAutoChange,
   onIncludeChange,
@@ -61,7 +60,9 @@ export const SelectPopover: React.SFC<IProps> = ({
           <RadioButton
             id={`include ${browser} ${version}`}
             name={name}
-            defaultChecked={isIncluded && hasOverride}
+            defaultChecked={
+              hasOverride === overrideTypes.IS_INCLUDED ? true : false
+            }
             selectColour={colours.green}
             onChange={event => onIncludeChange(browser, version, event)}
           >
@@ -70,7 +71,9 @@ export const SelectPopover: React.SFC<IProps> = ({
           <RadioButton
             id={`exclude ${browser} ${version}`}
             name={name}
-            defaultChecked={!isIncluded && hasOverride}
+            defaultChecked={
+              hasOverride === overrideTypes.IS_EXCLUDED ? true : false
+            }
             selectColour={colours.red}
             onChange={event => onExcludeChange(browser, version, event)}
           >

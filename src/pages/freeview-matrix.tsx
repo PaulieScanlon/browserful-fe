@@ -51,9 +51,11 @@ class Matrix extends React.Component<IProps, IState> {
   componentDidMount() {
     history.replaceState({}, '', `${urlValidator()}`);
 
-    this.props.updateQuery(urlGetter().qt);
-    this.props.updateValue(urlGetter().qt, urlGetter().sv);
-    this.props.updateBrowserQuery(urlGetter().qt, urlGetter().sv);
+    const { updateQuery, updateValue, updateBrowserQuery } = this.props;
+
+    updateQuery(urlGetter().qt);
+    updateValue(urlGetter().qt, urlGetter().sv);
+    updateBrowserQuery(urlGetter().qt, urlGetter().sv, ['Opera 9'], ['IE 9']);
 
     this.setState({
       loaded: true

@@ -5,11 +5,6 @@ import { action } from '@storybook/addon-actions';
 
 import { SelectPopover } from './SelectPopover';
 
-import browserslist from 'browserslist';
-import { createMatrix } from '../../utils/createMatrix';
-
-const mockData = createMatrix(browserslist(['last 1 Chrome versions']));
-
 const onAutoChange = (browser, version, event) => {
   action('onAutoChange')(browser, version, event.currentTarget);
 };
@@ -29,27 +24,20 @@ stories.add(
   withInfo(
     'SelectPopover is x3 HTML radio inputs and requires the following props: browser, version and a name which acts as the group name'
   )(() => (
-    <SelectPopover
-      browser={mockData[0].queryName}
-      version={mockData[0].versions[0].id}
-      name="storybook-popover"
-      isIncluded={false}
-      hasOverride={false}
-    />
+    <SelectPopover browser="Chrome" version="70" name="storybook-popover" />
   ))
 );
 
 stories.add(
-  'isIncluded & hasOverride',
+  'hasOverride: isIncluded',
   withInfo(
     'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
   )(() => (
     <SelectPopover
-      browser={mockData[0].queryName}
-      version={mockData[0].versions[0].id}
+      hasOverride="isIncluded"
+      browser="Chrome"
+      version="70"
       name="storybook-popover"
-      isIncluded={true}
-      hasOverride={true}
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
       }
@@ -64,14 +52,15 @@ stories.add(
 );
 
 stories.add(
-  'onAutoChange',
-  withInfo('onAutoChange fires when the ToggleSwitch onChange fires')(() => (
+  'hasOverride: isExcluded',
+  withInfo(
+    'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
+  )(() => (
     <SelectPopover
-      browser={mockData[0].queryName}
-      version={mockData[0].versions[0].id}
+      hasOverride="isExcluded"
+      browser="Chrome"
+      version="70"
       name="storybook-popover"
-      isIncluded={false}
-      hasOverride={false}
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
       }
@@ -86,49 +75,23 @@ stories.add(
 );
 
 stories.add(
-  'onIncludeChange',
-  withInfo('onIncludeChange fires when the include RadioButton onChange fires')(
-    () => (
-      <SelectPopover
-        browser={mockData[0].queryName}
-        version={mockData[0].versions[0].id}
-        name="storybook-popover"
-        isIncluded={true}
-        hasOverride={false}
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
-    )
-  )
-);
-
-stories.add(
-  'onExcludeChange',
-  withInfo('onExcludeChange fires when the exclude RadioButton onChange fires')(
-    () => (
-      <SelectPopover
-        browser={mockData[0].queryName}
-        version={mockData[0].versions[0].id}
-        name="storybook-popover"
-        isIncluded={false}
-        hasOverride={false}
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
-    )
-  )
+  'on[x]Change',
+  withInfo(
+    'There are x3 onChange listerns: onAutoChange, onIncludeChange,  onExcludeChange, which fire when a ToggleSwitch or RadioButton onChange fires'
+  )(() => (
+    <SelectPopover
+      browser="Chrome"
+      version="70"
+      name="storybook-popover"
+      onAutoChange={(event, browser, version) =>
+        onAutoChange(event, browser, version)
+      }
+      onIncludeChange={(event, browser, version) =>
+        onIncludeChange(event, browser, version)
+      }
+      onExcludeChange={(event, browser, version) =>
+        onExcludeChange(event, browser, version)
+      }
+    />
+  ))
 );
