@@ -5,7 +5,6 @@ import { GridContent } from './styles';
 import { VersionChip } from '../VersionChip';
 
 import { SelectPopoverChangeProps } from '../SelectPopover';
-
 interface IProps extends SelectPopoverChangeProps {
   data: any;
   maxHeight?: string;

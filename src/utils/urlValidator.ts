@@ -1,8 +1,8 @@
 import { queryParams, queryTypes } from './queryStrings';
 import { queryDefault } from './queryDefault';
-import { config } from '../features/ControlCards/config';
+import { config } from '../features/ControlSliders/config';
 
-const clamp = (min, max, value) => {
+const clamp = (min: number, max: number, value: number | string) => {
   if (value >= min && value <= max) {
     return true;
   }
@@ -16,6 +16,8 @@ export const urlValidator = () => {
 
   const qt = urlParams.getAll(queryParams.QUERY_TYPE);
   const sv = urlParams.getAll(queryParams.SLIDER_VALUES);
+  const incq = urlParams.getAll(queryParams.INCLUDED_QUERY);
+  const excq = urlParams.getAll(queryParams.EXCLUDED_QUERY);
 
   const queryType = () => {
     try {
@@ -36,5 +38,5 @@ export const urlValidator = () => {
     }
   }
 
-  return queryDefault.GLOBAL_USAGE;
+  return `${queryDefault.LAST_VERSIONS}${incq}${excq}`;
 };

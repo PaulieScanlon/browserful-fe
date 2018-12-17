@@ -3,20 +3,15 @@ import { queryTypes } from '../utils/queryStrings';
 export const queryBuilder = (
   qt: string,
   sv: number,
-  iq: Array<String>,
-  eq: Array<String>
+  incq: Array<String>,
+  excq: Array<String>
 ) => {
-  // console.log('qt: ', qt);
-  // console.log('sv: ', sv);
-  // console.log('iq: ', iq);
-  // console.log('eq: ', eq);
-
-  const excQuery = eq.map(query => {
-    return query ? ` not ${query}` : '';
+  const incQuery = incq.map(query => {
+    return query ? ` ${query}` : '';
   });
 
-  const incQuery = iq.map(query => {
-    return query ? ` ${query}` : '';
+  const excQuery = excq.map(query => {
+    return query.length > 0 ? ` not ${query}` : '';
   });
 
   const combinedQuery = incQuery.concat(...excQuery);

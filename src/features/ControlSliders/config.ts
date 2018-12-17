@@ -2,14 +2,28 @@ import { queryTypes } from '../../utils/queryStrings';
 import { colours } from '../../theme';
 
 export const config = {
+  [queryTypes.LAST_VERSIONS]: {
+    id: queryTypes.LAST_VERSIONS,
+    label: 'Last Versions',
+    selectColour: colours.pink,
+    valueSuffix: '',
+    slider: {
+      defaultValue: 5,
+      sliderColour: colours.pink,
+      domain: [1, 20],
+      step: 1,
+      tickCount: 20
+    }
+  },
+
   [queryTypes.GLOBAL_USAGE]: {
     id: queryTypes.GLOBAL_USAGE,
     label: 'Global Usage',
-    selectColour: colours.pink,
+    selectColour: colours.blue,
     valueSuffix: '%',
     slider: {
       defaultValue: 0.3,
-      sliderColour: colours.pink,
+      sliderColour: colours.blue,
       domain: [0, 1],
       step: 0.001,
       tickCount: 14
@@ -27,20 +41,6 @@ export const config = {
       domain: [2010, 2018],
       step: 1,
       tickCount: 8
-    }
-  },
-
-  [queryTypes.LAST_VERSIONS]: {
-    id: queryTypes.LAST_VERSIONS,
-    label: 'Last Versions',
-    selectColour: colours.blue,
-    valueSuffix: '',
-    slider: {
-      defaultValue: 5,
-      sliderColour: colours.blue,
-      domain: [1, 20],
-      step: 1,
-      tickCount: 20
     }
   }
 };

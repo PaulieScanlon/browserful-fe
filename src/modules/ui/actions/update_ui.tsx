@@ -4,7 +4,8 @@ import {
   UPDATE_BROWSERQUERY,
   UPDATE_AUTO,
   UPDATE_INCLUDED,
-  UPDATE_EXCLUDED
+  UPDATE_EXCLUDED,
+  UPDATE_INC_EXC_QUERY
 } from '../types';
 
 export const updateQuery = (
@@ -73,5 +74,16 @@ export const updateExcluded = (
     incQuery,
     excQuery,
     query
+  });
+};
+
+export const updateIncExcQuery = (
+  incQuery: Array<String>,
+  excQuery: Array<String>
+) => dispatch => {
+  return dispatch({
+    type: UPDATE_INC_EXC_QUERY,
+    incQuery,
+    excQuery
   });
 };

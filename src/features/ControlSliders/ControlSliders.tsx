@@ -2,19 +2,15 @@ import * as React from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  updateQuery,
-  updateValue,
-  updateBrowserQuery
-} from '../../modules/ui/actions/update_ui';
+import { updateQuery, updateValue } from '../../modules/ui/actions/update_ui';
 
 import { Row, Col } from 'react-grid-system';
 
 import { Accordion, AccordionItem } from '../../components/Accordion';
 import { CompoundSlider } from '../../components/CompoundSlider';
-import { config } from './config';
-
+import { queryParams } from '../../utils/queryStrings';
 import { urlSetter } from '../../utils/urlSetter';
+import { config } from './config';
 
 interface IProps {
   queryType: string;
@@ -23,61 +19,60 @@ interface IProps {
   lastVersions: number;
   incQuery: Array<String>;
   excQuery: Array<String>;
+  browserQuery: string;
   updateQuery: any;
   updateValue: any;
-  updateBrowserQuery: any;
 }
 
-class ControlCards extends React.Component<IProps, {}> {
+class ControlSliders extends React.Component<IProps, {}> {
   accordionOnChange(queryType: string, queryColour: string) {
-    this.props.updateQuery(queryType, queryColour);
+    const { updateQuery } = this.props;
 
-    urlSetter(queryType, this.props[queryType]);
+    urlSetter(queryParams.QUERY_TYPE, queryType);
+    urlSetter(queryParams.SLIDER_VALUES, this.props[queryType]);
+
+    updateQuery(queryType, queryColour);
   }
 
   sliderOnChange(value: any) {
-    const {
-      updateValue,
-      updateBrowserQuery,
-      queryType,
-      incQuery,
-      excQuery
-    } = this.props;
+    const { updateValue, queryType } = this.props;
+
+    urlSetter(queryParams.SLIDER_VALUES, value);
 
     updateValue(queryType, value);
-    updateBrowserQuery(queryType, value, incQuery, excQuery);
-
-    urlSetter(queryType, value);
   }
 
   render() {
     const { queryType } = this.props;
 
     const accordionItems = Object.keys(config).map((key, index) => {
-      const item = config[key];
+      const accordionName = config[key];
       return (
         <AccordionItem
           onChange={event =>
-            this.accordionOnChange(event.currentTarget.id, item.selectColour)
+            this.accordionOnChange(
+              event.currentTarget.id,
+              accordionName.selectColour
+            )
           }
           key={index}
-          id={item.id}
-          label={item.label}
+          id={accordionName.id}
+          label={accordionName.label}
           value={{
-            amount: this.props[item.id],
-            suffix: item.valueSuffix
+            amount: this.props[accordionName.id],
+            suffix: accordionName.valueSuffix
           }}
-          selectColour={item.selectColour}
-          defaultChecked={queryType === item.id ? true : false}
+          selectColour={accordionName.selectColour}
+          defaultChecked={queryType === accordionName.id ? true : false}
         >
           <CompoundSlider
             onChange={values => this.sliderOnChange(values[0])}
             showHandleValue
-            sliderColour={item.slider.sliderColour}
-            domain={item.slider.domain}
-            step={item.slider.step}
-            values={[this.props[item.id]]}
-            tickCount={item.slider.tickCount}
+            sliderColour={accordionName.slider.sliderColour}
+            domain={accordionName.slider.domain}
+            step={accordionName.slider.step}
+            values={[this.props[accordionName.id]]}
+            tickCount={accordionName.slider.tickCount}
           />
         </AccordionItem>
       );
@@ -101,16 +96,16 @@ const mapStateToProps = state => ({
   yearReleased: state.ui.yearReleased,
   lastVersions: state.ui.lastVersions,
   incQuery: state.ui.incQuery,
-  excQuery: state.ui.excQuery
+  excQuery: state.ui.excQuery,
+  browserQuery: state.ui.browserQuery
 });
 
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
-  updateValue: bindActionCreators(updateValue, dispatch),
-  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch)
+  updateValue: bindActionCreators(updateValue, dispatch)
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ControlCards);
+)(ControlSliders);

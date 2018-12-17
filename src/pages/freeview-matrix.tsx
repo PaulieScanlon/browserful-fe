@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import {
   updateQuery,
   updateValue,
+  updateIncExcQuery,
   updateBrowserQuery
 } from '../modules/ui/actions/update_ui';
 
@@ -14,17 +15,17 @@ import { Container } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
 import { scaffolding, common } from '../theme';
 
-import ControlCards from '../features/ControlCards/ControlCards';
+import ControlSliders from '../features/ControlSliders/ControlSliders';
 import BrowserCards from '../features/BrowserCards/BrowserCards';
-
+import { queryParams } from '../utils/queryStrings';
 import { urlValidator } from '../utils/urlValidator';
 import { urlGetter } from '../utils/urlGetter';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
-  marginTop: common.appBar.height,
+  margin: `${common.appBar.height} auto`,
   width: '100%',
-  heigt: '100%',
+  height: '100%',
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',
@@ -34,12 +35,12 @@ export const FreeviewContent = styled.div({
 interface IProps {
   updateQuery: any;
   updateValue: any;
+  updateIncExcQuery: any;
   updateBrowserQuery: any;
 }
 interface IState {
   loaded: boolean;
 }
-
 class Matrix extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
@@ -51,11 +52,39 @@ class Matrix extends React.Component<IProps, IState> {
   componentDidMount() {
     history.replaceState({}, '', `${urlValidator()}`);
 
-    const { updateQuery, updateValue, updateBrowserQuery } = this.props;
+    const {
+      updateQuery,
+      updateValue,
+      updateBrowserQuery,
+      updateIncExcQuery
+    } = this.props;
 
-    updateQuery(urlGetter().qt);
-    updateValue(urlGetter().qt, urlGetter().sv);
-    updateBrowserQuery(urlGetter().qt, urlGetter().sv, [''], ['']);
+    updateQuery(urlGetter()[queryParams.QUERY_TYPE]);
+
+    updateValue(
+      urlGetter()[queryParams.QUERY_TYPE],
+      urlGetter()[queryParams.SLIDER_VALUES]
+    );
+
+    updateIncExcQuery(
+      urlGetter()
+        [queryParams.INCLUDED_QUERY].toString()
+        .split(','),
+      urlGetter()
+        [queryParams.EXCLUDED_QUERY].toString()
+        .split(',')
+    );
+
+    updateBrowserQuery(
+      urlGetter()[queryParams.QUERY_TYPE],
+      urlGetter()[queryParams.SLIDER_VALUES],
+      urlGetter()
+        [queryParams.INCLUDED_QUERY].toString()
+        .split(','),
+      urlGetter()
+        [queryParams.EXCLUDED_QUERY].toString()
+        .split(',')
+    );
 
     this.setState({
       loaded: true
@@ -71,12 +100,11 @@ class Matrix extends React.Component<IProps, IState> {
         <AppBar fixed={true} width="100%" />
         <FreeviewContent>
           <Container
-            fluid
             style={{
-              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
+              margin: `${scaffolding.gutterLg} auto`
             }}
           >
-            {loaded && <ControlCards />}
+            {loaded && <ControlSliders />}
             {loaded && <BrowserCards />}
           </Container>
         </FreeviewContent>
@@ -88,6 +116,7 @@ class Matrix extends React.Component<IProps, IState> {
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
   updateValue: bindActionCreators(updateValue, dispatch),
+  updateIncExcQuery: bindActionCreators(updateIncExcQuery, dispatch),
   updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch)
 });
 

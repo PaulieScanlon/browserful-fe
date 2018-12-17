@@ -1,7 +1,8 @@
 export enum queryParams {
   QUERY_TYPE = 'qt',
   SLIDER_VALUES = 'sv',
-  EXCLUDED = 'exc'
+  EXCLUDED_QUERY = 'excq',
+  INCLUDED_QUERY = 'incq'
 }
 
 export enum queryTypes {

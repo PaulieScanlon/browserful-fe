@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import browserslist from 'browserslist';
 import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = createMatrix(browserslist(['last 999 Firefox versions']));
+const mockData = createMatrix('last 2 Firefox versions', [], []);
 
 import { VersionGrid } from './VersionGrid';
 

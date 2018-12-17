@@ -1,4 +1,3 @@
-import { createMatrix } from '../../../utils/createMatrix';
 import { arrayAdd } from '../../../utils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayRemove';
 
@@ -8,14 +7,14 @@ import {
   UPDATE_BROWSERQUERY,
   UPDATE_AUTO,
   UPDATE_INCLUDED,
-  UPDATE_EXCLUDED
+  UPDATE_EXCLUDED,
+  UPDATE_INC_EXC_QUERY
 } from '../types';
 import { colours } from '../../../theme';
 
 import { queryTypes } from '../../../utils/queryStrings';
 import { queryBuilder } from '../../../utils/queryBuilder';
-import { config } from '../../../features/ControlCards/config';
-
+import { config } from '../../../features/ControlSliders/config';
 interface IProps {
   queryType: string;
   queryColour: string;
@@ -23,7 +22,6 @@ interface IProps {
   yearReleased: number;
   lastVersions: number;
   browserQuery: string;
-  browserList: any;
   incQuery: Array<String>;
   excQuery: Array<String>;
 }
@@ -35,36 +33,35 @@ const initialState: IProps = {
   yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
   lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
   browserQuery: '',
-  browserList: [],
   incQuery: [],
   excQuery: []
 };
 
 export const reducer = (state = initialState, action) => {
-  // console.log('action.type: ', action.type);
-  // console.log('action.queryType: ', action.queryType);
-  // console.log('action.queryColour: ', action.queryColour);
-  // console.log('action.value: ', action.value);
-  // console.log('action.incQuery: ', action.incQuery);
-  // console.log('action.excQuery: ', action.excQuery);
-  // console.log('');
-  // console.log('state', state);
-  // console.log('state.queryType: ', state.queryType);
-  // console.log('state.value: ', state[state.queryType]);
-  // console.log('');
-
   switch (action.type) {
     case UPDATE_QUERY:
       return {
         ...state,
         queryType: action.queryType,
-        queryColour: action.queryColour
+        queryColour: action.queryColour,
+        browserQuery: queryBuilder(
+          action.queryType,
+          state[action.queryType],
+          state.incQuery,
+          state.excQuery
+        )
       };
 
     case UPDATE_VALUE:
       return {
         ...state,
-        [action.queryType]: action.value
+        [action.queryType]: action.value,
+        browserQuery: queryBuilder(
+          state.queryType,
+          action.value,
+          state.incQuery,
+          state.excQuery
+        )
       };
 
     case UPDATE_BROWSERQUERY:
@@ -73,16 +70,6 @@ export const reducer = (state = initialState, action) => {
         browserQuery: queryBuilder(
           action.queryType,
           action.value,
-          action.incQuery,
-          action.excQuery
-        ),
-        browserList: createMatrix(
-          queryBuilder(
-            action.queryType,
-            action.value,
-            action.incQuery,
-            action.excQuery
-          ),
           action.incQuery,
           action.excQuery
         )
@@ -98,16 +85,6 @@ export const reducer = (state = initialState, action) => {
           state[state.queryType],
           arrayRemove(action.incQuery, action.query),
           arrayRemove(action.excQuery, action.query)
-        ),
-        browserList: createMatrix(
-          queryBuilder(
-            state.queryType,
-            state[state.queryType],
-            arrayRemove(action.incQuery, action.query),
-            arrayRemove(action.excQuery, action.query)
-          ),
-          arrayRemove(action.incQuery, action.query),
-          arrayRemove(action.excQuery, action.query)
         )
       };
 
@@ -119,16 +96,6 @@ export const reducer = (state = initialState, action) => {
         browserQuery: queryBuilder(
           state.queryType,
           state[state.queryType],
-          arrayAdd(action.incQuery, action.query),
-          arrayRemove(action.excQuery, action.query)
-        ),
-        browserList: createMatrix(
-          queryBuilder(
-            state.queryType,
-            state[state.queryType],
-            arrayAdd(action.incQuery, action.query),
-            arrayRemove(action.excQuery, action.query)
-          ),
           arrayAdd(action.incQuery, action.query),
           arrayRemove(action.excQuery, action.query)
         )
@@ -144,17 +111,14 @@ export const reducer = (state = initialState, action) => {
           state[state.queryType],
           arrayRemove(action.incQuery, action.query),
           arrayAdd(action.excQuery, action.query)
-        ),
-        browserList: createMatrix(
-          queryBuilder(
-            state.queryType,
-            state[state.queryType],
-            arrayRemove(action.incQuery, action.query),
-            arrayAdd(action.excQuery, action.query)
-          ),
-          arrayRemove(action.incQuery, action.query),
-          arrayAdd(action.excQuery, action.query)
         )
+      };
+
+    case UPDATE_INC_EXC_QUERY:
+      return {
+        ...state,
+        incQuery: action.incQuery,
+        excQuery: action.excQuery
       };
 
     default:

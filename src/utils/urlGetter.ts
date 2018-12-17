@@ -7,11 +7,13 @@ export const urlGetter = () => {
 
   const qt = urlParams.getAll(queryParams.QUERY_TYPE);
   const sv = urlParams.getAll(queryParams.SLIDER_VALUES);
-  const exc = urlParams.getAll(queryParams.EXCLUDED);
+  const incq = urlParams.getAll(queryParams.INCLUDED_QUERY);
+  const excq = urlParams.getAll(queryParams.EXCLUDED_QUERY);
 
   return {
     qt: qt.toString(),
     sv: Number(sv.toString()),
-    exc: exc
+    incq: incq,
+    excq: excq
   };
 };

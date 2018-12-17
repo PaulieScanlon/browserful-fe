@@ -2,7 +2,7 @@ import browserslist from 'browserslist';
 
 import { browserDetails } from './browserDetails';
 
-const unfiltered = browserslist(['last 999 versions']).reduce((acc, br) => {
+const unfiltered = browserslist(['last 20 versions']).reduce((acc, br) => {
   const [name, version] = br.split(' ', 2);
   acc[name] = [].concat(acc[name] || [], {
     queryName: `${browserDetails[name].queryName} ${version}`,
@@ -34,13 +34,14 @@ const getVersionsStatus = (
   });
 };
 
-const getVersionsPercentage = (filteredVersions: any, unfiltered: any) => {
-  if (filteredVersions) {
-    const percent = Math.floor(
-      (filteredVersions.length / unfiltered.length) * 100
-    );
-    return percent > 100 ? 100 : percent;
-  }
+const getVersionsPercentage = (updatedVersions: any) => {
+  const percent =
+    (updatedVersions.filter((version: any) => version.isIncluded === true)
+      .length /
+      updatedVersions.length) *
+    100;
+
+  return Math.round(percent);
 };
 
 export const createMatrix = (
@@ -58,7 +59,14 @@ export const createMatrix = (
     return {
       friendlyName: browserDetails[br].friendlyName,
       queryName: browserDetails[br].queryName,
-      percent: getVersionsPercentage(filteredVersions[br], unfiltered[br]),
+      percent: getVersionsPercentage(
+        getVersionsStatus(
+          filteredVersions[br],
+          unfiltered[br],
+          incQuery,
+          excQuery
+        )
+      ),
       browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,

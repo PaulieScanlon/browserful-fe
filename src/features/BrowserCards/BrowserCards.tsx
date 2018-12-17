@@ -3,7 +3,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  updateBrowserQuery,
   updateAuto,
   updateIncluded,
   updateExcluded
@@ -15,44 +14,65 @@ import { Accordion, AccordionItem } from '../../components/Accordion';
 import { scaffolding, colours } from '../../theme';
 import { VersionGrid } from '../../components/VersionGrid';
 import { H4 } from '../../typography';
+
 import { platform } from '../../utils/browserDetails';
+import { createMatrix } from '../../utils/createMatrix';
+import { queryParams } from '../../utils/queryStrings';
+import { urlSetter } from '../../utils/urlSetter';
+import { arrayAdd } from '../../utils/arrayAdd';
+import { arrayRemove } from '../../utils/arrayRemove';
 
 interface IProps {
   queryType: string;
   queryColour: string;
   incQuery: Array<String>;
   excQuery: Array<String>;
-  browserList: any;
+  browserQuery: string;
   updateAuto: any;
   updateIncluded: any;
   updateExcluded: any;
-  updateBrowserQuery: any;
 }
 class BrowserCards extends React.Component<IProps, {}> {
   onAutoChange(browser: string, version: number | string) {
     const { incQuery, excQuery } = this.props;
-    this.props.updateAuto(incQuery, excQuery, `${browser} ${version}`);
+    const queryName = `${browser} ${version}`;
+    this.props.updateAuto(incQuery, excQuery, queryName);
+    urlSetter(
+      queryParams.INCLUDED_QUERY,
+      arrayRemove(incQuery, queryName).join()
+    );
+    urlSetter(
+      queryParams.EXCLUDED_QUERY,
+      arrayRemove(excQuery, queryName).join()
+    );
   }
 
   onIncludeChange(browser: string, version: number | string) {
     const { incQuery, excQuery } = this.props;
-    this.props.updateIncluded(incQuery, excQuery, `${browser} ${version}`);
+    const queryName = `${browser} ${version}`;
+
+    this.props.updateIncluded(incQuery, excQuery, queryName);
+    urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, queryName).join());
   }
 
   onExcludeChange(browser: string, version: number | string) {
     const { incQuery, excQuery } = this.props;
-    this.props.updateExcluded(incQuery, excQuery, `${browser} ${version}`);
+    const queryName = `${browser} ${version}`;
+    this.props.updateExcluded(incQuery, excQuery, queryName);
+    urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, queryName).join());
   }
 
   render() {
-    const { browserList, queryColour } = this.props;
+    const { browserQuery, incQuery, excQuery, queryColour } = this.props;
+
+    const browserList = createMatrix(browserQuery, incQuery, excQuery);
 
     const desktop = browserList.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {
         return (
           <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
             <Accordion
-              maxHeight="500px"
+              maxHeight="400px"
               type="checkbox"
               name={browser.friendlyName}
               backgroundColour={colours.white}
@@ -148,14 +168,16 @@ class BrowserCards extends React.Component<IProps, {}> {
 
 const mapStateToProps = state => ({
   queryType: state.ui.queryType,
+  globalUsage: state.ui.globalUsage,
+  yearReleased: state.ui.yearReleased,
+  lastVersions: state.ui.lastVersions,
   queryColour: state.ui.queryColour,
   incQuery: state.ui.incQuery,
   excQuery: state.ui.excQuery,
-  browserList: state.ui.browserList
+  browserQuery: state.ui.browserQuery
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),
   updateExcluded: bindActionCreators(updateExcluded, dispatch)
