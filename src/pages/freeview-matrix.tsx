@@ -55,7 +55,7 @@ class Matrix extends React.Component<IProps, IState> {
 
     updateQuery(urlGetter().qt);
     updateValue(urlGetter().qt, urlGetter().sv);
-    updateBrowserQuery(urlGetter().qt, urlGetter().sv, ['Opera 9'], ['IE 9']);
+    updateBrowserQuery(urlGetter().qt, urlGetter().sv, [''], ['']);
 
     this.setState({
       loaded: true

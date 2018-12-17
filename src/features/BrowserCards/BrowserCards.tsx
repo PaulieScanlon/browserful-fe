@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  updateBrowserQuery,
   updateAuto,
   updateIncluded,
   updateExcluded
@@ -17,37 +18,30 @@ import { H4 } from '../../typography';
 import { platform } from '../../utils/browserDetails';
 
 interface IProps {
-  browserList: any;
+  queryType: string;
   queryColour: string;
   incQuery: Array<String>;
   excQuery: Array<String>;
+  browserList: any;
   updateAuto: any;
   updateIncluded: any;
   updateExcluded: any;
+  updateBrowserQuery: any;
 }
 class BrowserCards extends React.Component<IProps, {}> {
   onAutoChange(browser: string, version: number | string) {
-    this.props.updateAuto(
-      this.props.incQuery,
-      this.props.excQuery,
-      `${browser} ${version}`
-    );
+    const { incQuery, excQuery } = this.props;
+    this.props.updateAuto(incQuery, excQuery, `${browser} ${version}`);
   }
 
   onIncludeChange(browser: string, version: number | string) {
-    this.props.updateIncluded(
-      this.props.incQuery,
-      this.props.excQuery,
-      `${browser} ${version}`
-    );
+    const { incQuery, excQuery } = this.props;
+    this.props.updateIncluded(incQuery, excQuery, `${browser} ${version}`);
   }
 
   onExcludeChange(browser: string, version: number | string) {
-    this.props.updateExcluded(
-      this.props.incQuery,
-      this.props.excQuery,
-      `${browser} ${version}`
-    );
+    const { incQuery, excQuery } = this.props;
+    this.props.updateExcluded(incQuery, excQuery, `${browser} ${version}`);
   }
 
   render() {
@@ -153,13 +147,15 @@ class BrowserCards extends React.Component<IProps, {}> {
 }
 
 const mapStateToProps = state => ({
-  browserList: state.ui.browserList,
+  queryType: state.ui.queryType,
   queryColour: state.ui.queryColour,
   incQuery: state.ui.incQuery,
-  excQuery: state.ui.excQuery
+  excQuery: state.ui.excQuery,
+  browserList: state.ui.browserList
 });
 
 const mapDispatchToProps = dispatch => ({
+  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),
   updateExcluded: bindActionCreators(updateExcluded, dispatch)

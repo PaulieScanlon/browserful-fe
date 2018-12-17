@@ -5,16 +5,19 @@ import { browserDetails } from './browserDetails';
 const unfiltered = browserslist(['last 999 versions']).reduce((acc, br) => {
   const [name, version] = br.split(' ', 2);
   acc[name] = [].concat(acc[name] || [], {
+    queryName: `${browserDetails[name].queryName} ${version}`,
     id: version,
-    isIncluded: false
+    isIncluded: false,
+    hasOverride: false
   });
   return acc;
 }, {});
 
-const setIsIncluded = (
+const getVersionsStatus = (
   filteredVersions: any,
   unfiltered: any,
-  hasOverride: boolean
+  incQuery: Array<String>,
+  excQuery: Array<String>
 ) => {
   return unfiltered.map(version => {
     return {
@@ -22,7 +25,11 @@ const setIsIncluded = (
       isIncluded: filteredVersions
         ? filteredVersions.includes(version.id)
         : false,
-      hasOverride: hasOverride
+      hasOverride: incQuery.includes(version.queryName)
+        ? 'isIncluded'
+        : false || excQuery.includes(version.queryName)
+        ? 'isExcluded'
+        : false
     };
   });
 };
@@ -37,14 +44,11 @@ const getVersionsPercentage = (filteredVersions: any, unfiltered: any) => {
 };
 
 export const createMatrix = (
-  queryBuilder: string,
+  builtQuery: string,
   incQuery: Array<String>,
   excQuery: Array<String>
 ) => {
-  // console.log('incQuery: ', incQuery);
-  // console.log('excQuery: ', excQuery);
-
-  const filteredVersions = browserslist(`${queryBuilder}`).reduce((acc, br) => {
+  const filteredVersions = browserslist(`${builtQuery}`).reduce((acc, br) => {
     const [name, version] = br.split(' ', 2);
     acc[name] = [].concat(acc[name] || [], version);
     return acc;
@@ -58,8 +62,12 @@ export const createMatrix = (
       browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,
-      // TODO pass true or false depending the browser version is in either of the inc or exc array
-      versions: setIsIncluded(filteredVersions[br], unfiltered[br], false),
+      versions: getVersionsStatus(
+        filteredVersions[br],
+        unfiltered[br],
+        incQuery,
+        excQuery
+      ),
       defaultChecked: true
     };
   });

@@ -41,6 +41,18 @@ const initialState: IProps = {
 };
 
 export const reducer = (state = initialState, action) => {
+  // console.log('action.type: ', action.type);
+  // console.log('action.queryType: ', action.queryType);
+  // console.log('action.queryColour: ', action.queryColour);
+  // console.log('action.value: ', action.value);
+  // console.log('action.incQuery: ', action.incQuery);
+  // console.log('action.excQuery: ', action.excQuery);
+  // console.log('');
+  // console.log('state', state);
+  // console.log('state.queryType: ', state.queryType);
+  // console.log('state.value: ', state[state.queryType]);
+  // console.log('');
+
   switch (action.type) {
     case UPDATE_QUERY:
       return {
@@ -80,21 +92,69 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         incQuery: arrayRemove(action.incQuery, action.query),
-        excQuery: arrayRemove(action.excQuery, action.query)
+        excQuery: arrayRemove(action.excQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayRemove(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        ),
+        browserList: createMatrix(
+          queryBuilder(
+            state.queryType,
+            state[state.queryType],
+            arrayRemove(action.incQuery, action.query),
+            arrayRemove(action.excQuery, action.query)
+          ),
+          arrayRemove(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        )
       };
 
     case UPDATE_INCLUDED:
       return {
         ...state,
         incQuery: arrayAdd(action.incQuery, action.query),
-        excQuery: arrayRemove(action.excQuery, action.query)
+        excQuery: arrayRemove(action.excQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayAdd(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        ),
+        browserList: createMatrix(
+          queryBuilder(
+            state.queryType,
+            state[state.queryType],
+            arrayAdd(action.incQuery, action.query),
+            arrayRemove(action.excQuery, action.query)
+          ),
+          arrayAdd(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        )
       };
 
     case UPDATE_EXCLUDED:
       return {
         ...state,
         excQuery: arrayAdd(action.excQuery, action.query),
-        incQuery: arrayRemove(action.incQuery, action.query)
+        incQuery: arrayRemove(action.incQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayRemove(action.incQuery, action.query),
+          arrayAdd(action.excQuery, action.query)
+        ),
+        browserList: createMatrix(
+          queryBuilder(
+            state.queryType,
+            state[state.queryType],
+            arrayRemove(action.incQuery, action.query),
+            arrayAdd(action.excQuery, action.query)
+          ),
+          arrayRemove(action.incQuery, action.query),
+          arrayAdd(action.excQuery, action.query)
+        )
       };
 
     default:

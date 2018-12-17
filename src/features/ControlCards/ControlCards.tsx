@@ -44,9 +44,6 @@ class ControlCards extends React.Component<IProps, {}> {
       excQuery
     } = this.props;
 
-    console.log('sliderOnChange / incQuery: ', incQuery);
-    console.log('sliderOnChange / excQuery: ', excQuery);
-
     updateValue(queryType, value);
     updateBrowserQuery(queryType, value, incQuery, excQuery);
 

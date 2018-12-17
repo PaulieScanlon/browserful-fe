@@ -63,6 +63,7 @@ export const SwitchText = styled.small({
   fontSize: '14px',
   lineHeight: '16px',
   fontFamily: `${font.fontFamily}`,
+  fontWeight: 'normal',
   textAlign: 'center',
   margin: `0px ${scaffolding.gutterSm}`,
   color: colours.greyLight
