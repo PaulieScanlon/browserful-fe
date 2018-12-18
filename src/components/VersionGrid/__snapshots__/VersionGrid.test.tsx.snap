@@ -10,13 +10,15 @@ ShallowWrapper {
         "defaultChecked": true,
         "friendlyName": "Chrome (Android)",
         "logo": "chrome-for-android",
-        "percent": undefined,
+        "percent": 0,
         "platform": "mobile",
         "queryName": "ChromeAndroid",
         "versions": Array [
           Object {
+            "hasOverride": false,
             "id": "69",
             "isIncluded": false,
+            "queryName": "ChromeAndroid 69",
           },
         ],
       }
