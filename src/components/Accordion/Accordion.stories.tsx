@@ -8,10 +8,9 @@ import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
-import browserslist from 'browserslist';
 import { createMatrix } from '../../utils/createMatrix';
 
-const mockData = createMatrix(browserslist(['last 999 versions']));
+const mockData = createMatrix('last 2 versions', [], []);
 
 const sliderOnChange = values => {
   action('sliderOnChange')(values[0]);
@@ -19,10 +18,6 @@ const sliderOnChange = values => {
 
 const accordionOnChange = event => {
   action('accordionOnChange')(event.currentTarget.id);
-};
-
-const onClick = (event, browser, version) => {
-  action('onClick')(event.currentTarget, browser, version);
 };
 
 const stories = storiesOf('Accordion', module);
@@ -203,12 +198,7 @@ stories.add(
         id={mockData[0].friendlyName}
         label={mockData[0].friendlyName}
       >
-        <VersionGrid
-          data={mockData[0]}
-          onClick={(event, browser, version) =>
-            onClick(event, browser, version)
-          }
-        />
+        <VersionGrid data={mockData[0]} />
       </AccordionItem>
     </Accordion>
   ))

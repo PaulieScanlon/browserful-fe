@@ -1,5 +1,8 @@
 export const UPDATE_QUERY = '[Query] update';
-export const UPDATE_QUERYCOLOUR = '[Query Colour] update';
-export const UPDATE_GLOBALUSAGE = '[Global Usage] update';
-export const UPDATE_YEARRELEASED = '[Year Released] update';
-export const UPDATE_LASTVERSIONS = '[Last Verions] update';
+export const UPDATE_VALUE = '[Value] update';
+export const UPDATE_BROWSERQUERY = '[BrowserQuery] update';
+export const UPDATE_INC_EXC_QUERY = '[IncQuer / ExcQuery] update';
+
+export const UPDATE_AUTO = '[Auto] update';
+export const UPDATE_INCLUDED = '[Included] update';
+export const UPDATE_EXCLUDED = '[Excluded] update';

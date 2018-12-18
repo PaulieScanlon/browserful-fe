@@ -1,8 +1,9 @@
-export const urlSetter = (qt: string, sv: number) => {
-  const urlParams = new URLSearchParams();
+export const urlSetter = (param: string, value: string) => {
+  const wls = window.location.search;
 
-  urlParams.set('qt', qt);
-  urlParams.set('sv', sv.toString());
+  const urlParams = new URLSearchParams(wls);
+
+  urlParams.set(`${param}`, value);
 
   history.replaceState({}, '', `?${urlParams}`);
 };

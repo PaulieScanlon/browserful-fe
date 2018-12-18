@@ -1,38 +1,31 @@
 import * as React from 'react';
-
 import styled from 'react-emotion';
-import browserslist from 'browserslist';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   updateQuery,
-  updateQueryColour,
-  updateGlobalUsage,
-  updateYearReleased,
-  updateLastVersions
+  updateValue,
+  updateIncExcQuery,
+  updateBrowserQuery
 } from '../modules/ui/actions/update_ui';
-import { updateBrowserlist } from '../modules/browserlist/actions/update_browserlist';
 
 import { HeadTag } from '../components/HeadTag';
 import { Container } from 'react-grid-system';
 import { AppBar } from '../components/AppBar';
-
-import { ControlCards } from '../features/ControlCards/';
-import { BrowserCards } from '../features/BrowserCards/';
-
-import { urlValidator } from '../utils/urlValidator';
-import { queryBuilder } from '../utils/queryBuilder';
-import { actionBuilder } from '../utils/actionBuilder';
-import { urlSetter } from '../utils/urlSetter';
-import { urlGetter } from '../utils/urlGetter';
 import { scaffolding, common } from '../theme';
+
+import ControlSliders from '../features/ControlSliders/ControlSliders';
+import BrowserCards from '../features/BrowserCards/BrowserCards';
+import { queryParams } from '../utils/queryStrings';
+import { urlValidator } from '../utils/urlValidator';
+import { urlGetter } from '../utils/urlGetter';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
-  marginTop: common.appBar.height,
+  margin: `${common.appBar.height} auto`,
   width: '100%',
-  heigt: '100%',
+  height: '100%',
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',
@@ -40,20 +33,14 @@ export const FreeviewContent = styled.div({
 });
 
 interface IProps {
-  filtered: any;
-  ui: any;
-  updateBrowserlist: any;
   updateQuery: any;
-  updateQueryColour: any;
-  updateGlobalUsage: any;
-  updateYearReleased: any;
-  updateLastVersions: any;
+  updateValue: any;
+  updateIncExcQuery: any;
+  updateBrowserQuery: any;
 }
-
 interface IState {
   loaded: boolean;
 }
-
 class Matrix extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
@@ -64,11 +51,39 @@ class Matrix extends React.Component<IProps, IState> {
 
   componentDidMount() {
     history.replaceState({}, '', `${urlValidator()}`);
-    this.props.updateQuery(urlGetter().qt);
-    this.props[actionBuilder(urlGetter().qt)](urlGetter().sv);
 
-    this.props.updateBrowserlist(
-      browserslist([`${queryBuilder(urlGetter().qt, urlGetter().sv)}`])
+    const {
+      updateQuery,
+      updateValue,
+      updateBrowserQuery,
+      updateIncExcQuery
+    } = this.props;
+
+    updateQuery(urlGetter()[queryParams.QUERY_TYPE]);
+
+    updateValue(
+      urlGetter()[queryParams.QUERY_TYPE],
+      urlGetter()[queryParams.SLIDER_VALUES]
+    );
+
+    updateIncExcQuery(
+      urlGetter()
+        [queryParams.INCLUDED_QUERY].toString()
+        .split(','),
+      urlGetter()
+        [queryParams.EXCLUDED_QUERY].toString()
+        .split(',')
+    );
+
+    updateBrowserQuery(
+      urlGetter()[queryParams.QUERY_TYPE],
+      urlGetter()[queryParams.SLIDER_VALUES],
+      urlGetter()
+        [queryParams.INCLUDED_QUERY].toString()
+        .split(','),
+      urlGetter()
+        [queryParams.EXCLUDED_QUERY].toString()
+        .split(',')
     );
 
     this.setState({
@@ -76,24 +91,7 @@ class Matrix extends React.Component<IProps, IState> {
     });
   }
 
-  accordionOnChange(queryType: string, queryColour: string) {
-    this.props.updateQuery(queryType);
-    this.props.updateQueryColour(queryColour);
-
-    urlSetter(queryType, this.props.ui[queryType]);
-  }
-
-  sliderOnChange(value: any) {
-    this.props[actionBuilder(this.props.ui.queryType)](value);
-    this.props.updateBrowserlist(
-      browserslist([`${queryBuilder(this.props.ui.queryType, value)}`])
-    );
-
-    urlSetter(this.props.ui.queryType, value);
-  }
-
   render() {
-    const { ui, filtered } = this.props;
     const { loaded } = this.state;
 
     return (
@@ -102,23 +100,12 @@ class Matrix extends React.Component<IProps, IState> {
         <AppBar fixed={true} width="100%" />
         <FreeviewContent>
           <Container
-            fluid
             style={{
-              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
+              margin: `${scaffolding.gutterLg} auto`
             }}
           >
-            {loaded && (
-              <ControlCards
-                ui={ui}
-                accordionOnChange={(id, selectColour) =>
-                  this.accordionOnChange(id, selectColour)
-                }
-                sliderOnChange={value => this.sliderOnChange(value)}
-              />
-            )}
-            {loaded && (
-              <BrowserCards filtered={filtered} queryColour={ui.queryColour} />
-            )}
+            {loaded && <ControlSliders />}
+            {loaded && <BrowserCards />}
           </Container>
         </FreeviewContent>
       </React.Fragment>
@@ -126,21 +113,14 @@ class Matrix extends React.Component<IProps, IState> {
   }
 }
 
-const mapStateToProps = state => ({
-  ui: state.ui,
-  filtered: state.browserlist.filtered
-});
-
-const mapDispatchToPRops = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
-  updateQueryColour: bindActionCreators(updateQueryColour, dispatch),
-  updateGlobalUsage: bindActionCreators(updateGlobalUsage, dispatch),
-  updateYearReleased: bindActionCreators(updateYearReleased, dispatch),
-  updateLastVersions: bindActionCreators(updateLastVersions, dispatch),
-  updateBrowserlist: bindActionCreators(updateBrowserlist, dispatch)
+  updateValue: bindActionCreators(updateValue, dispatch),
+  updateIncExcQuery: bindActionCreators(updateIncExcQuery, dispatch),
+  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch)
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToPRops
+  null,
+  mapDispatchToProps
 )(Matrix);

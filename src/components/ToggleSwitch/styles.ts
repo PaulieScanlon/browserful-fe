@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
-import { transitionBuilder, colours } from '../../theme';
-
+import { transitionBuilder, colours, scaffolding } from '../../theme';
+import { font } from '../../typography';
 interface IProps {
   selectColour: string;
 }
@@ -8,17 +8,20 @@ interface IProps {
 export const SwitchLabel = styled.label({
   label: 'switch-label',
   position: 'relative',
-  display: 'inline-block',
-  width: '42px',
-  height: '24px'
+  display: 'inline-flex',
+  flexDirecton: 'row',
+  alignItems: 'center',
+  cursor: 'pointer',
+  userSelect: 'none'
 });
 
 export const SwitchInput = styled.input<IProps>(
   {
     label: 'switch-input',
-    opacity: 0,
-    width: '0px',
-    height: '0px',
+    position: 'absolute',
+    top: '-10px',
+    left: '-10px',
+    display: 'none',
     ':checked + span': {
       ':before': {
         transform: 'translateX(16px)'
@@ -34,12 +37,11 @@ export const SwitchInput = styled.input<IProps>(
 
 export const SwitchSlider = styled.span({
   label: 'switch-slider',
-  position: 'absolute',
-  cursor: 'pointer',
+  position: 'relative',
+  display: 'inline-block',
   borderRadius: '32px',
-  top: '0px',
-  left: '0px',
-  bottom: '0px',
+  width: '42px',
+  height: '24px',
   right: '0px',
   backgroundColor: colours.greyUltraLight,
   transition: transitionBuilder('all'),
@@ -54,4 +56,15 @@ export const SwitchSlider = styled.span({
     backgroundColor: colours.white,
     transition: transitionBuilder('all')
   }
+});
+
+export const SwitchText = styled.small({
+  label: 'radio-text',
+  fontSize: '14px',
+  lineHeight: '16px',
+  fontFamily: `${font.fontFamily}`,
+  fontWeight: 'normal',
+  textAlign: 'center',
+  margin: `0px ${scaffolding.gutterSm}`,
+  color: colours.greyLight
 });

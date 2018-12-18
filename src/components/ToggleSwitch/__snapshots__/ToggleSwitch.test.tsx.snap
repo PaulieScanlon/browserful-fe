@@ -8,6 +8,7 @@ ShallowWrapper {
     id="test-togggle-switch"
     onChange={[Function]}
     selectColour="#ff5ca3"
+    type="checkbox"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -31,7 +32,9 @@ ShallowWrapper {
           type="checkbox"
         />,
         <SwitchSlider />,
+        <SwitchText />,
       ],
+      "htmlFor": "test-togggle-switch",
     },
     "ref": null,
     "rendered": Array [
@@ -42,6 +45,7 @@ ShallowWrapper {
         "props": Object {
           "defaultChecked": false,
           "id": "test-togggle-switch",
+          "name": undefined,
           "onChange": [Function],
           "selectColour": "#ff5ca3",
           "type": "checkbox",
@@ -55,6 +59,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": undefined,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -77,7 +92,9 @@ ShallowWrapper {
             type="checkbox"
           />,
           <SwitchSlider />,
+          <SwitchText />,
         ],
+        "htmlFor": "test-togggle-switch",
       },
       "ref": null,
       "rendered": Array [
@@ -88,6 +105,7 @@ ShallowWrapper {
           "props": Object {
             "defaultChecked": false,
             "id": "test-togggle-switch",
+            "name": undefined,
             "onChange": [Function],
             "selectColour": "#ff5ca3",
             "type": "checkbox",
@@ -101,6 +119,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": undefined,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

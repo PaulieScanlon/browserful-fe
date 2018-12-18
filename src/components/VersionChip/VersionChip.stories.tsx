@@ -1,77 +1,198 @@
 import * as React from 'react';
+import styled from 'react-emotion';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
 import { VersionChip } from './VersionChip';
 
-import browserslist from 'browserslist';
-import { createMatrix } from '../../utils/createMatrix';
+const onAutoChange = (browser, version, event) => {
+  action('onAutoChange')(browser, version, event.currentTarget);
+};
 
-const mockData = createMatrix(browserslist(['last 1 Chrome versions']));
+const onIncludeChange = (browser, version, event) => {
+  action('onIncludeChange')(browser, version, event.currentTarget);
+};
+
+const onExcludeChange = (browser, version, event) => {
+  action('onExcludeChange')(browser, version, event.currentTarget);
+};
 
 const stories = storiesOf('VersionChip', module);
 
-const onChange = (event, browser, version) => {
-  action('onChange')(event.currentTarget, browser, version);
-};
+const StoryDiv = styled.div({
+  label: 'story-div',
+  height: '170px',
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'center'
+});
 
 stories.add(
   'default usage',
-  withInfo('The browser and version prop are used on the onChange callback')(
-    () => (
+  withInfo(
+    'The browser and version prop are used for the on[x]Change callbacks'
+  )(() => (
+    <StoryDiv>
       <VersionChip
-        browser={mockData[0].name}
-        version={mockData[0].versions[0].id}
-        onChange={(event, browser, version) =>
-          onChange(event, browser, version)
+        browser="Chrome"
+        version="70"
+        onAutoChange={(event, browser, version) =>
+          onAutoChange(event, browser, version)
+        }
+        onIncludeChange={(event, browser, version) =>
+          onIncludeChange(event, browser, version)
+        }
+        onExcludeChange={(event, browser, version) =>
+          onExcludeChange(event, browser, version)
         }
       />
-    )
-  )
-);
-
-stories.add(
-  '!isIncluded & defaultChecked',
-  withInfo('The defaultChecked prop is the checked status of the checkbox')(
-    () => (
-      <VersionChip
-        defaultChecked={true}
-        browser={mockData[0].name}
-        version={mockData[0].versions[0].id}
-        onChange={(event, browser, version) =>
-          onChange(event, browser, version)
-        }
-      />
-    )
-  )
-);
-
-stories.add(
-  'isIncluded',
-  withInfo('The isIncluded prop shows if a browser/version is included')(() => (
-    <VersionChip
-      isIncluded={true}
-      browser={mockData[0].name}
-      version={mockData[0].versions[0].id}
-      onChange={(event, browser, version) => onChange(event, browser, version)}
-    />
+    </StoryDiv>
   ))
 );
 
 stories.add(
-  'isIncluded & defaultChecked',
-  withInfo('The defaultChecked prop is the checked status of the checkbox')(
-    () => (
+  'isIncluded: true',
+  withInfo(
+    'The isIncluded prop is used to denote if a browser/version is included or excluded'
+  )(() => (
+    <StoryDiv>
       <VersionChip
-        defaultChecked={true}
         isIncluded={true}
-        browser={mockData[0].name}
-        version={mockData[0].versions[0].id}
-        onChange={(event, browser, version) =>
-          onChange(event, browser, version)
+        browser="Chrome"
+        version="70"
+        onAutoChange={(event, browser, version) =>
+          onAutoChange(event, browser, version)
+        }
+        onIncludeChange={(event, browser, version) =>
+          onIncludeChange(event, browser, version)
+        }
+        onExcludeChange={(event, browser, version) =>
+          onExcludeChange(event, browser, version)
         }
       />
+    </StoryDiv>
+  ))
+);
+
+stories.add(
+  'isIncluded: false',
+  withInfo(
+    'The isIncluded prop is used to denote if a browser/version is included or excluded'
+  )(() => (
+    <StoryDiv>
+      <VersionChip
+        isIncluded={false}
+        browser="Chrome"
+        version="70"
+        onAutoChange={(event, browser, version) =>
+          onAutoChange(event, browser, version)
+        }
+        onIncludeChange={(event, browser, version) =>
+          onIncludeChange(event, browser, version)
+        }
+        onExcludeChange={(event, browser, version) =>
+          onExcludeChange(event, browser, version)
+        }
+      />
+    </StoryDiv>
+  ))
+);
+
+stories.add(
+  'hasOverride: isIncluded',
+  withInfo(
+    'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
+  )(() => (
+    <StoryDiv>
+      <VersionChip
+        hasOverride="isIncluded"
+        browser="Chrome"
+        version="70"
+        onAutoChange={(event, browser, version) =>
+          onAutoChange(event, browser, version)
+        }
+        onIncludeChange={(event, browser, version) =>
+          onIncludeChange(event, browser, version)
+        }
+        onExcludeChange={(event, browser, version) =>
+          onExcludeChange(event, browser, version)
+        }
+      />
+    </StoryDiv>
+  ))
+);
+
+stories.add(
+  'hasOverride: isExcluded',
+  withInfo(
+    'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
+  )(() => (
+    <StoryDiv>
+      <VersionChip
+        hasOverride="isExcluded"
+        browser="Chrome"
+        version="70"
+        onAutoChange={(event, browser, version) =>
+          onAutoChange(event, browser, version)
+        }
+        onIncludeChange={(event, browser, version) =>
+          onIncludeChange(event, browser, version)
+        }
+        onExcludeChange={(event, browser, version) =>
+          onExcludeChange(event, browser, version)
+        }
+      />
+    </StoryDiv>
+  ))
+);
+
+stories.add(
+  'functional test A',
+  withInfo('regardless of if isIncluded, hasOverride should always override')(
+    () => (
+      <StoryDiv>
+        <VersionChip
+          isIncluded={false}
+          hasOverride="isIncluded"
+          browser="Chrome"
+          version="70"
+          onAutoChange={(event, browser, version) =>
+            onAutoChange(event, browser, version)
+          }
+          onIncludeChange={(event, browser, version) =>
+            onIncludeChange(event, browser, version)
+          }
+          onExcludeChange={(event, browser, version) =>
+            onExcludeChange(event, browser, version)
+          }
+        />
+      </StoryDiv>
+    )
+  )
+);
+
+stories.add(
+  'functional test B',
+  withInfo('regardless of if isIncluded, hasOverride should always override')(
+    () => (
+      <StoryDiv>
+        <VersionChip
+          isIncluded={true}
+          hasOverride="isExcluded"
+          browser="Chrome"
+          version="70"
+          onAutoChange={(event, browser, version) =>
+            onAutoChange(event, browser, version)
+          }
+          onIncludeChange={(event, browser, version) =>
+            onIncludeChange(event, browser, version)
+          }
+          onExcludeChange={(event, browser, version) =>
+            onExcludeChange(event, browser, version)
+          }
+        />
+      </StoryDiv>
     )
   )
 );

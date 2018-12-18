@@ -17,36 +17,27 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <title>
-        Browserful
-      </title>,
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": "Browserful",
-      },
-      "ref": null,
-      "rendered": "Browserful",
-      "type": "title",
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": <title>
+      "children": Array [
+        <title>
           Browserful
         </title>,
-      },
-      "ref": null,
-      "rendered": Object {
+        <meta
+          content="Last 5 versions, > 0.1%, not dead. This is confusing. Browserful isn’t!"
+          property="og:title"
+        />,
+        <meta
+          content="http://www.browserful.com/static/images/opengraph.jpg"
+          property="og:image"
+        />,
+        <meta
+          content="Using our easy to use sliders you can configure a matrix to show exactly which browsers you support and which browsers you don’t."
+          property="og:description"
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -57,6 +48,119 @@ ShallowWrapper {
         "rendered": "Browserful",
         "type": "title",
       },
+      Object {
+        "instance": null,
+        "key": "og:title",
+        "nodeType": "host",
+        "props": Object {
+          "content": "Last 5 versions, > 0.1%, not dead. This is confusing. Browserful isn’t!",
+          "property": "og:title",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "meta",
+      },
+      Object {
+        "instance": null,
+        "key": "og:image",
+        "nodeType": "host",
+        "props": Object {
+          "content": "http://www.browserful.com/static/images/opengraph.jpg",
+          "property": "og:image",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "meta",
+      },
+      Object {
+        "instance": null,
+        "key": "og:description",
+        "nodeType": "host",
+        "props": Object {
+          "content": "Using our easy to use sliders you can configure a matrix to show exactly which browsers you support and which browsers you don’t.",
+          "property": "og:description",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "meta",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <title>
+            Browserful
+          </title>,
+          <meta
+            content="Last 5 versions, > 0.1%, not dead. This is confusing. Browserful isn’t!"
+            property="og:title"
+          />,
+          <meta
+            content="http://www.browserful.com/static/images/opengraph.jpg"
+            property="og:image"
+          />,
+          <meta
+            content="Using our easy to use sliders you can configure a matrix to show exactly which browsers you support and which browsers you don’t."
+            property="og:description"
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Browserful",
+          },
+          "ref": null,
+          "rendered": "Browserful",
+          "type": "title",
+        },
+        Object {
+          "instance": null,
+          "key": "og:title",
+          "nodeType": "host",
+          "props": Object {
+            "content": "Last 5 versions, > 0.1%, not dead. This is confusing. Browserful isn’t!",
+            "property": "og:title",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "meta",
+        },
+        Object {
+          "instance": null,
+          "key": "og:image",
+          "nodeType": "host",
+          "props": Object {
+            "content": "http://www.browserful.com/static/images/opengraph.jpg",
+            "property": "og:image",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "meta",
+        },
+        Object {
+          "instance": null,
+          "key": "og:description",
+          "nodeType": "host",
+          "props": Object {
+            "content": "Using our easy to use sliders you can configure a matrix to show exactly which browsers you support and which browsers you don’t.",
+            "property": "og:description",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "meta",
+        },
+      ],
       "type": [Function],
     },
   ],

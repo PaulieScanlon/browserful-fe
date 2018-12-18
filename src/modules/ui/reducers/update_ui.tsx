@@ -1,21 +1,29 @@
+import { arrayAdd } from '../../../utils/arrayAdd';
+import { arrayRemove } from '../../../utils/arrayRemove';
+
 import {
   UPDATE_QUERY,
-  UPDATE_QUERYCOLOUR,
-  UPDATE_GLOBALUSAGE,
-  UPDATE_YEARRELEASED,
-  UPDATE_LASTVERSIONS
+  UPDATE_VALUE,
+  UPDATE_BROWSERQUERY,
+  UPDATE_AUTO,
+  UPDATE_INCLUDED,
+  UPDATE_EXCLUDED,
+  UPDATE_INC_EXC_QUERY
 } from '../types';
 import { colours } from '../../../theme';
 
 import { queryTypes } from '../../../utils/queryStrings';
-import { config } from '../../../features/ControlCards/config';
-
+import { queryBuilder } from '../../../utils/queryBuilder';
+import { config } from '../../../features/ControlSliders/config';
 interface IProps {
   queryType: string;
   queryColour: string;
   globalUsage: number;
   yearReleased: number;
   lastVersions: number;
+  browserQuery: string;
+  incQuery: Array<String>;
+  excQuery: Array<String>;
 }
 
 const initialState: IProps = {
@@ -23,7 +31,10 @@ const initialState: IProps = {
   queryColour: colours.pink,
   globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
   yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
-  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue
+  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
+  browserQuery: '',
+  incQuery: [],
+  excQuery: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,31 +42,83 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_QUERY:
       return {
         ...state,
-        queryType: action.queryType
+        queryType: action.queryType,
+        queryColour: action.queryColour,
+        browserQuery: queryBuilder(
+          action.queryType,
+          state[action.queryType],
+          state.incQuery,
+          state.excQuery
+        )
       };
 
-    case UPDATE_QUERYCOLOUR:
+    case UPDATE_VALUE:
       return {
         ...state,
-        queryColour: action.queryColour
+        [action.queryType]: action.value,
+        browserQuery: queryBuilder(
+          state.queryType,
+          action.value,
+          state.incQuery,
+          state.excQuery
+        )
       };
 
-    case UPDATE_GLOBALUSAGE:
+    case UPDATE_BROWSERQUERY:
       return {
         ...state,
-        globalUsage: action.globalUsage
+        browserQuery: queryBuilder(
+          action.queryType,
+          action.value,
+          action.incQuery,
+          action.excQuery
+        )
       };
 
-    case UPDATE_YEARRELEASED:
+    case UPDATE_AUTO:
       return {
         ...state,
-        yearReleased: action.yearReleased
+        incQuery: arrayRemove(action.incQuery, action.query),
+        excQuery: arrayRemove(action.excQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayRemove(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        )
       };
 
-    case UPDATE_LASTVERSIONS:
+    case UPDATE_INCLUDED:
       return {
         ...state,
-        lastVersions: action.lastVersions
+        incQuery: arrayAdd(action.incQuery, action.query),
+        excQuery: arrayRemove(action.excQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayAdd(action.incQuery, action.query),
+          arrayRemove(action.excQuery, action.query)
+        )
+      };
+
+    case UPDATE_EXCLUDED:
+      return {
+        ...state,
+        excQuery: arrayAdd(action.excQuery, action.query),
+        incQuery: arrayRemove(action.incQuery, action.query),
+        browserQuery: queryBuilder(
+          state.queryType,
+          state[state.queryType],
+          arrayRemove(action.incQuery, action.query),
+          arrayAdd(action.excQuery, action.query)
+        )
+      };
+
+    case UPDATE_INC_EXC_QUERY:
+      return {
+        ...state,
+        incQuery: action.incQuery,
+        excQuery: action.excQuery
       };
 
     default:

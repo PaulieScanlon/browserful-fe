@@ -5,92 +5,110 @@ export enum platform {
 
 export const browserDetails = {
   and_chr: {
-    name: 'Chrome (Android)',
+    friendlyName: 'Chrome (Android)',
+    queryName: 'ChromeAndroid',
     logo: 'chrome-for-android',
     platform: platform.MOBILE
   },
   and_ff: {
-    name: 'Firefox (Android)',
+    friendlyName: 'Firefox (Android)',
+    queryName: 'FirefoxAndroid',
     logo: 'firefox-for-android',
     platform: platform.MOBILE
   },
   and_qq: {
-    name: 'QQ (Android)',
+    friendlyName: 'QQ (Android)',
+    queryName: 'QQAndroid',
     logo: 'qq-browser',
     platform: platform.MOBILE
   },
   and_uc: {
-    name: 'UC Browser (Android)',
+    friendlyName: 'UC Browser (Android)',
+    queryName: 'UCAndroid',
     logo: 'uc-browser-for-android',
     platform: platform.MOBILE
   },
   android: {
-    name: 'Android',
+    friendlyName: 'Android',
+    queryName: 'Android',
     logo: 'android-browser',
     platform: platform.MOBILE
   },
   bb: {
-    name: 'BlackBerry',
+    friendlyName: 'BlackBerry',
+    queryName: 'BlackBerry',
     logo: 'blackberry-browser',
     platform: platform.MOBILE
   },
   baidu: {
-    name: 'Baidu',
+    friendlyName: 'Baidu',
+    queryName: 'Baidu',
     logo: 'baidu-browser',
     platform: platform.MOBILE
   },
   chrome: {
-    name: 'Chrome',
+    friendlyName: 'Chrome',
+    queryName: 'Chrome',
     logo: 'chrome',
     platform: platform.DESKTOP
   },
   edge: {
-    name: 'Edge',
+    friendlyName: 'Edge',
+    queryName: 'Edge',
     logo: 'edge',
     platform: platform.DESKTOP
   },
   firefox: {
-    name: 'Firefox',
+    friendlyName: 'Firefox',
+    queryName: 'Firefox',
     logo: 'firefox',
     platform: platform.DESKTOP
   },
   ie: {
-    name: 'Internet Explorer',
+    friendlyName: 'Internet Explorer',
+    queryName: 'Explorer',
     logo: 'ie',
     platform: platform.DESKTOP
   },
   ie_mob: {
-    name: 'Internet Explorer Mobile',
+    friendlyName: 'Internet Explorer Mobile',
+    queryName: 'ExplorerMobile',
     logo: 'ie-mobile',
     platform: platform.MOBILE
   },
   ios_saf: {
-    name: 'Safari (iOS)',
+    friendlyName: 'Safari (iOS)',
+    queryName: 'iOS',
     logo: 'i-os-safari',
     platform: platform.MOBILE
   },
   op_mini: {
-    name: 'Opera Mini',
+    friendlyName: 'Opera Mini',
+    queryName: 'OperaMini',
     logo: 'opera-mini',
     platform: platform.MOBILE
   },
   op_mob: {
-    name: 'Opera Mobile',
+    friendlyName: 'Opera Mobile',
+    queryName: 'OperaMobile',
     logo: 'opera-mobile',
     platform: platform.MOBILE
   },
   opera: {
-    name: 'Opera',
+    friendlyName: 'Opera',
+    queryName: 'Opera',
     logo: 'opera',
     platform: platform.DESKTOP
   },
   safari: {
-    name: 'Safari',
+    friendlyName: 'Safari',
+    queryName: 'Safari',
     logo: 'safari',
     platform: platform.DESKTOP
   },
   samsung: {
-    name: 'Samsung Internet',
+    friendlyName: 'Samsung Internet',
+    queryName: 'Samsung',
     logo: 'samsung-internet',
     platform: platform.MOBILE
   }
