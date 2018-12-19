@@ -61,6 +61,7 @@ export const AccordionLabel = styled.label({
   borderBottom: `1px solid ${colours.greyLight}`,
   color: colours.greyLight,
   transition: `${transitionBuilder('color')}`,
+  WebkitTapHighlightColor: colours.transparent,
   '&:after': {
     content: `""`,
     position: 'absolute',

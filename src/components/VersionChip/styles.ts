@@ -59,7 +59,8 @@ export const VersionButton = styled.button<IProps>(
     borderWidth: '2px',
     borderColor: colours.transparent,
     backgroundColor: colours.greyUltraLight,
-    ':focus': {
+    WebkitTapHighlightColor: colours.transparent,
+    ':active, :focus': {
       span: {
         display: 'block'
       }
