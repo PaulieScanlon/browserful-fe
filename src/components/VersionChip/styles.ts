@@ -73,6 +73,7 @@ export const VersionButton = styled.button<IProps>(
 );
 
 export const VersionText = styled.span({
+  label: 'verstion-text',
   fontSize: '12px',
   lineHeight: '14px',
   fontFamily: `${font.fontFamily}`,
@@ -80,12 +81,4 @@ export const VersionText = styled.span({
   whiteSpace: 'pre-wrap',
   textTransform: 'capitalize',
   color: 'inherit'
-});
-
-export const PopoverWrapper = styled.span({
-  label: 'popover-wrapper',
-  position: 'absolute',
-  display: 'none',
-  top: '-130px',
-  zIndex: 2
 });

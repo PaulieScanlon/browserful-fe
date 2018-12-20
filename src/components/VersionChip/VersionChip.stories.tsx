@@ -6,19 +6,17 @@ import { action } from '@storybook/addon-actions';
 
 import { VersionChip } from './VersionChip';
 
-const onAutoChange = (browser, version, event) => {
-  action('onAutoChange')(browser, version, event.currentTarget);
-};
-
-const onIncludeChange = (browser, version, event) => {
-  action('onIncludeChange')(browser, version, event.currentTarget);
-};
-
-const onExcludeChange = (browser, version, event) => {
-  action('onExcludeChange')(browser, version, event.currentTarget);
-};
-
 const stories = storiesOf('VersionChip', module);
+
+import { createMatrix } from '../../utils/createMatrix';
+const mockData = createMatrix('last 2 versions', [''], [''])[7];
+
+const commonProps = {
+  friendlyName: mockData.friendlyName,
+  queryName: mockData.queryName,
+  version: mockData.versions[0].id,
+  logo: mockData.logo
+};
 
 const StoryDiv = styled.div({
   label: 'story-div',
@@ -34,19 +32,7 @@ stories.add(
     'The browser and version prop are used for the on[x]Change callbacks'
   )(() => (
     <StoryDiv>
-      <VersionChip
-        browser="Chrome"
-        version="70"
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
+      <VersionChip {...commonProps} />
     </StoryDiv>
   ))
 );
@@ -57,20 +43,7 @@ stories.add(
     'The isIncluded prop is used to denote if a browser/version is included or excluded'
   )(() => (
     <StoryDiv>
-      <VersionChip
-        isIncluded={true}
-        browser="Chrome"
-        version="70"
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
+      <VersionChip isIncluded={true} {...commonProps} />
     </StoryDiv>
   ))
 );
@@ -81,20 +54,7 @@ stories.add(
     'The isIncluded prop is used to denote if a browser/version is included or excluded'
   )(() => (
     <StoryDiv>
-      <VersionChip
-        isIncluded={false}
-        browser="Chrome"
-        version="70"
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
+      <VersionChip isIncluded={false} {...commonProps} />
     </StoryDiv>
   ))
 );
@@ -105,20 +65,7 @@ stories.add(
     'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
   )(() => (
     <StoryDiv>
-      <VersionChip
-        hasOverride="isIncluded"
-        browser="Chrome"
-        version="70"
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
+      <VersionChip hasOverride="isIncluded" {...commonProps} />
     </StoryDiv>
   ))
 );
@@ -129,20 +76,7 @@ stories.add(
     'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
   )(() => (
     <StoryDiv>
-      <VersionChip
-        hasOverride="isExcluded"
-        browser="Chrome"
-        version="70"
-        onAutoChange={(event, browser, version) =>
-          onAutoChange(event, browser, version)
-        }
-        onIncludeChange={(event, browser, version) =>
-          onIncludeChange(event, browser, version)
-        }
-        onExcludeChange={(event, browser, version) =>
-          onExcludeChange(event, browser, version)
-        }
-      />
+      <VersionChip hasOverride="isExcluded" {...commonProps} />
     </StoryDiv>
   ))
 );
@@ -152,21 +86,7 @@ stories.add(
   withInfo('regardless of if isIncluded, hasOverride should always override')(
     () => (
       <StoryDiv>
-        <VersionChip
-          isIncluded={false}
-          hasOverride="isIncluded"
-          browser="Chrome"
-          version="70"
-          onAutoChange={(event, browser, version) =>
-            onAutoChange(event, browser, version)
-          }
-          onIncludeChange={(event, browser, version) =>
-            onIncludeChange(event, browser, version)
-          }
-          onExcludeChange={(event, browser, version) =>
-            onExcludeChange(event, browser, version)
-          }
-        />
+        <VersionChip isIncluded={false} {...commonProps} />
       </StoryDiv>
     )
   )
@@ -177,21 +97,7 @@ stories.add(
   withInfo('regardless of if isIncluded, hasOverride should always override')(
     () => (
       <StoryDiv>
-        <VersionChip
-          isIncluded={true}
-          hasOverride="isExcluded"
-          browser="Chrome"
-          version="70"
-          onAutoChange={(event, browser, version) =>
-            onAutoChange(event, browser, version)
-          }
-          onIncludeChange={(event, browser, version) =>
-            onIncludeChange(event, browser, version)
-          }
-          onExcludeChange={(event, browser, version) =>
-            onExcludeChange(event, browser, version)
-          }
-        />
+        <VersionChip isIncluded={true} {...commonProps} />
       </StoryDiv>
     )
   )

@@ -51,3 +51,25 @@ stories.add(
     <RadioButton id="storybook-radio-button">Label text</RadioButton>
   ))
 );
+
+stories.add(
+  'flexDirection',
+  withInfo('flexDirection is any valid css flex-direction value')(() => (
+    <RadioButton flexDirection="row-reverse" id="storybook-radio-button">
+      Label text
+    </RadioButton>
+  ))
+);
+
+stories.add(
+  'functional test',
+  withInfo(
+    `ToggleSwitch defaults to flex-grow 1 and justify-content space between to fill it's container and places the label and the input at either end`
+  )(() => (
+    <div style={{ display: 'flex', width: '200px' }}>
+      <RadioButton flexDirection="row-reverse" id="storybook-radio-button">
+        Label text
+      </RadioButton>
+    </div>
+  ))
+);

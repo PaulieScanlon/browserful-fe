@@ -88,18 +88,7 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid
-                  data={browser}
-                  onAutoChange={(browser, version) =>
-                    this.onAutoChange(browser, version)
-                  }
-                  onIncludeChange={(browser, version) =>
-                    this.onIncludeChange(browser, version)
-                  }
-                  onExcludeChange={(browser, version) =>
-                    this.onExcludeChange(browser, version)
-                  }
-                />
+                <VersionGrid data={browser} />
               </AccordionItem>
             </Accordion>
           </div>
@@ -128,18 +117,7 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid
-                  data={browser}
-                  onAutoChange={(browser, version) =>
-                    this.onAutoChange(browser, version)
-                  }
-                  onIncludeChange={(browser, version) =>
-                    this.onIncludeChange(browser, version)
-                  }
-                  onExcludeChange={(browser, version) =>
-                    this.onExcludeChange(browser, version)
-                  }
-                />
+                <VersionGrid data={browser} />
               </AccordionItem>
             </Accordion>
           </div>

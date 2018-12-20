@@ -1,53 +1,114 @@
 import * as React from 'react';
 
-import { VersionButton, VersionText, PopoverWrapper } from './styles';
-import { SelectPopover } from '../SelectPopover';
+import { Modal } from '../Modal';
+import { OverrideSelect } from '../OverrideSelect/';
 
-import { SelectPopoverChangeProps } from '../SelectPopover';
+import { VersionButton, VersionText } from './styles';
 
-interface IProps extends SelectPopoverChangeProps {
-  browser: string;
+interface IProps {
+  friendlyName: string;
+  queryName: string;
   version: number | string;
+  logo: string;
   isIncluded?: boolean;
   hasOverride?: string;
 }
 
-export const VersionChip: React.SFC<IProps> = ({
-  browser,
-  version,
-  isIncluded,
-  hasOverride,
-  onAutoChange,
-  onIncludeChange,
-  onExcludeChange
-}) => {
-  return (
-    <VersionButton isIncluded={isIncluded} hasOverride={hasOverride}>
-      <PopoverWrapper>
-        <SelectPopover
-          browser={browser}
-          version={version}
-          hasOverride={hasOverride}
-          name={`popover-${browser}-${version}`}
-          onAutoChange={(browser, version, event) =>
-            onAutoChange(browser, version, event)
-          }
-          onIncludeChange={(browser, version, event) =>
-            onIncludeChange(browser, version, event)
-          }
-          onExcludeChange={(browser, version, event) =>
-            onExcludeChange(browser, version, event)
-          }
-        />
-      </PopoverWrapper>
-      <VersionText>{version || 0}</VersionText>
-    </VersionButton>
-  );
-};
+interface IState {
+  isModalOpen: boolean;
+}
 
-VersionChip.defaultProps = {
-  isIncluded: false,
-  onAutoChange: () => {},
-  onIncludeChange: () => {},
-  onExcludeChange: () => {}
-};
+export class VersionChip extends React.Component<IProps, IState> {
+  static defauptProps = {
+    isIncluded: false
+  };
+
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      isModalOpen: false
+    };
+  }
+
+  showModal(event: React.MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    this.setState({
+      isModalOpen: true
+    });
+  }
+
+  lightboxClick(event: React.MouseEvent<HTMLDivElement>) {
+    event.stopPropagation();
+    if (event.currentTarget.id === 'modal') {
+      this.setState({
+        isModalOpen: false
+      });
+      console.log('was the modal');
+    }
+  }
+
+  hideModal(event: React.MouseEvent<HTMLDivElement>) {}
+
+  render() {
+    const {
+      friendlyName,
+      queryName,
+      version,
+      logo,
+      isIncluded,
+      hasOverride
+    } = this.props;
+    const { isModalOpen } = this.state;
+    return (
+      <React.Fragment>
+        {isModalOpen && (
+          <Modal onClick={event => this.lightboxClick(event)}>
+            <OverrideSelect
+              friendlyName={friendlyName}
+              queryName={queryName}
+              version={version}
+              logo={logo}
+              name={queryName}
+            />
+          </Modal>
+        )}
+
+        <VersionButton
+          isIncluded={isIncluded}
+          hasOverride={hasOverride}
+          onClick={event => this.showModal(event)}
+        >
+          <VersionText>{version || 0}</VersionText>
+        </VersionButton>
+      </React.Fragment>
+    );
+  }
+}
+
+// import * as React from 'react';
+
+// import { VersionButton, VersionText } from './styles';
+
+// interface IProps {
+//   browser: string;
+//   version: number | string;
+//   isIncluded?: boolean;
+//   hasOverride?: string;
+// }
+
+// export const VersionChip: React.SFC<IProps> = ({
+//   browser,
+//   version,
+//   isIncluded,
+//   hasOverride
+// }) => {
+//   return (
+//     <VersionButton isIncluded={isIncluded} hasOverride={hasOverride}>
+//       <VersionText>{version || 0}</VersionText>
+//     </VersionButton>
+//   );
+// };
+
+// VersionChip.defaultProps = {
+//   isIncluded: false
+// };

@@ -1,5 +1,6 @@
 import styled from 'react-emotion';
 import { scaffolding, colours, transitionBuilder } from '../../theme';
+import { font } from '../../typography';
 
 interface IProps {
   width?: number | string;
@@ -15,7 +16,9 @@ export const LabelWrapper = styled.div({
 
 export const LabelText = styled.span({
   label: 'label-text',
-  color: 'inherit',
+  fontFamily: font.fontFamily,
+  fontSize: '16px',
+  lineHeight: '18px',
   marginRight: scaffolding.gutterLg
 });
 

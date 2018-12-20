@@ -13,7 +13,8 @@ export const colours = {
   green: '#00b256',
   redLight: '#ffefef',
   red: '#ff000f',
-  transparent: 'rgba(0,0,0,0)'
+  transparent: 'rgba(0,0,0,0)',
+  lightBox: 'rgba(50, 50, 50, 0.8)'
 };
 
 export const scaffolding = {
@@ -38,6 +39,9 @@ export const materialBuilder = (level: number) => {
 };
 
 export const common = {
+  modal: {
+    zIndex: 997
+  },
   appBar: {
     height: '72px',
     zIndex: 998

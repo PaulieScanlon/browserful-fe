@@ -3,18 +3,27 @@ import { colours, scaffolding } from '../../theme';
 import { font } from '../../typography';
 
 interface IProps {
-  selectColour: string;
+  selectColour?: string;
+  flexDirection?: string;
 }
 
-export const RadioLabel = styled.label({
-  label: 'radio-label',
-  position: 'relative',
-  display: 'inline-flex',
-  flexDirecton: 'row',
-  alignItems: 'center',
-  cursor: 'pointer',
-  userSelect: 'none'
-});
+export const RadioLabel = styled.label<IProps>(
+  {
+    label: 'radio-label',
+    position: 'relative',
+    display: 'inline-flex',
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: `${scaffolding.gutterSm} 0px`,
+    cursor: 'pointer',
+    userSelect: 'none',
+    WebkitTapHighlightColor: colours.transparent
+  },
+  ({ flexDirection }: any) => ({
+    flexDirection: flexDirection
+  })
+);
 
 export const RadioInput = styled.input<IProps>(
   {

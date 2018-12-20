@@ -58,3 +58,25 @@ stories.add(
     <ToggleSwitch id="storybook-togggle-switch">Label text</ToggleSwitch>
   ))
 );
+
+stories.add(
+  'flexDirection',
+  withInfo('flexDirection is any valid css flex-direction value')(() => (
+    <ToggleSwitch flexDirection="row-reverse" id="storybook-togggle-switch">
+      Label text
+    </ToggleSwitch>
+  ))
+);
+
+stories.add(
+  'functional test',
+  withInfo(
+    `ToggleSwitch defaults to flex-grow 1 and justify-content space between to fill it's container and places the label and the input at either end`
+  )(() => (
+    <div style={{ display: 'flex', width: '200px' }}>
+      <ToggleSwitch flexDirection="row-reverse" id="storybook-togggle-switch">
+        Label text
+      </ToggleSwitch>
+    </div>
+  ))
+);

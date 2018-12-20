@@ -8,6 +8,7 @@ interface IProps {
   name?: string;
   defaultChecked?: boolean;
   selectColour?: string;
+  flexDirection?: string;
   children?: React.ReactChild;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -17,11 +18,12 @@ export const RadioButton: React.SFC<IProps> = ({
   name,
   defaultChecked,
   selectColour,
+  flexDirection,
   onChange,
   children
 }: IProps) => {
   return (
-    <RadioLabel htmlFor={id}>
+    <RadioLabel htmlFor={id} flexDirection={flexDirection}>
       <RadioInput
         id={id}
         name={name}
@@ -38,6 +40,7 @@ export const RadioButton: React.SFC<IProps> = ({
 
 RadioButton.defaultProps = {
   selectColour: colours.pink,
+  flexDirection: 'row',
   defaultChecked: false,
   onChange: () => {}
 };
