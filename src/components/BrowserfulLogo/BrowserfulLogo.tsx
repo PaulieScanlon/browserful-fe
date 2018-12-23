@@ -36,9 +36,7 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
       </SvgWrapper>
 
       {showText && (
-        <BrowserfulLogoText display="inline-flex" fontColour={fontColour}>
-          {text}
-        </BrowserfulLogoText>
+        <BrowserfulLogoText fontColour={fontColour}>{text}</BrowserfulLogoText>
       )}
     </LogoWrapper>
   );

@@ -6,7 +6,8 @@ import {
   ModalTrigger,
   ModalContent,
   ModalClose,
-  ModalLightbox
+  ModalLightbox,
+  CloseText
 } from './styles';
 
 interface IProps {
@@ -31,7 +32,8 @@ export class Modal extends React.Component<IProps, IState> {
   }
 
   showModal() {
-    document.body.style.overflowY = 'hidden';
+    document.body.style.overflow = 'hidden';
+
     this.setState({
       isModalOpen: true
     });
@@ -43,7 +45,8 @@ export class Modal extends React.Component<IProps, IState> {
       | React.MouseEvent<HTMLButtonElement>
   ) {
     event.stopPropagation();
-    document.body.style.overflowY = 'auto';
+    document.body.style.overflow = 'auto';
+
     if (
       event.currentTarget.id === controlTypes.LIGHTBOX ||
       event.currentTarget.id === controlTypes.CLOSE
@@ -76,7 +79,7 @@ export class Modal extends React.Component<IProps, IState> {
                   id={controlTypes.CLOSE}
                   onClick={event => this.hideModal(event)}
                 >
-                  x
+                  <CloseText>X</CloseText>
                 </ModalClose>
               </ModalContent>
             </ModalWrapper>,

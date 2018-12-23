@@ -53,20 +53,25 @@ export const ModalClose = styled.button({
   top: '-10px',
   right: '-10px',
   borderRadius: '100%',
+  display: 'flex',
+  justifyContent: 'center',
   border: 'none',
   cursor: 'pointer',
   width: '26px',
   height: '26px',
   outline: 'none',
-  fontSize: '14px',
-  lineHeight: '16px',
-  textAlign: 'center',
-  display: 'table-cell',
-  verticalAlign: 'middle',
-  fontFamily: `${font.fontFamily}`,
-  fontWeight: 'normal',
+  padding: '0px',
   borderColor: colours.transparent,
   backgroundColor: colours.greyUltraLight,
   color: colours.greyMid,
   WebkitTapHighlightColor: colours.transparent
+});
+
+export const CloseText = styled.span({
+  label: 'close-text',
+  fontSize: '14px',
+  lineHeight: '16px',
+  textAlign: 'center',
+  fontFamily: `${font.fontFamily}`,
+  fontWeight: 'normal'
 });
