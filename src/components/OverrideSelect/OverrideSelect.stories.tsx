@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
-import { SelectPopover } from './SelectPopover';
+import { OverrideSelect } from './OverrideSelect';
 
 const onAutoChange = (browser, version, event) => {
   action('onAutoChange')(browser, version, event.currentTarget);
@@ -17,15 +17,23 @@ const onExcludeChange = (browser, version, event) => {
   action('onExcludeChange')(browser, version, event.currentTarget);
 };
 
-const stories = storiesOf('SelectPopover', module);
+import { createMatrix } from '../../utils/createMatrix';
+const mockData = createMatrix('last 2 versions', [''], [''])[7];
+
+const commonProps = {
+  friendlyName: mockData.friendlyName,
+  queryName: mockData.queryName,
+  version: mockData.versions[0].id,
+  logo: mockData.logo
+};
+
+const stories = storiesOf('OverrideSelect', module);
 
 stories.add(
   'default usage',
   withInfo(
-    'SelectPopover is x3 HTML radio inputs and requires the following props: browser, version and a name which acts as the group name'
-  )(() => (
-    <SelectPopover browser="Chrome" version="70" name="storybook-popover" />
-  ))
+    'OverrideSelect is x3 HTML radio inputs and requires the following props: browser, version and a name which acts as the group name'
+  )(() => <OverrideSelect {...commonProps} name="storybook-override-select" />)
 );
 
 stories.add(
@@ -33,11 +41,10 @@ stories.add(
   withInfo(
     'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
   )(() => (
-    <SelectPopover
+    <OverrideSelect
+      {...commonProps}
       hasOverride="isIncluded"
-      browser="Chrome"
-      version="70"
-      name="storybook-popover"
+      name="storybook-override-select"
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
       }
@@ -56,11 +63,10 @@ stories.add(
   withInfo(
     'The hasOverride prop is used to denote if a browser/version is manually included or excluded'
   )(() => (
-    <SelectPopover
+    <OverrideSelect
+      {...commonProps}
       hasOverride="isExcluded"
-      browser="Chrome"
-      version="70"
-      name="storybook-popover"
+      name="storybook-override-select"
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
       }
@@ -79,10 +85,9 @@ stories.add(
   withInfo(
     'There are x3 onChange listerns: onAutoChange, onIncludeChange,  onExcludeChange, which fire when a ToggleSwitch or RadioButton onChange fires'
   )(() => (
-    <SelectPopover
-      browser="Chrome"
-      version="70"
-      name="storybook-popover"
+    <OverrideSelect
+      {...commonProps}
+      name="storybook-override-select"
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
       }

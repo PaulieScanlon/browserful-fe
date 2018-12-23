@@ -4,7 +4,6 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
 import { CompoundSlider } from '../CompoundSlider';
-import { VersionGrid } from '../VersionGrid';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
 
@@ -178,27 +177,6 @@ stories.add(
           tickCount={10}
           onChange={values => sliderOnChange(values)}
         />
-      </AccordionItem>
-    </Accordion>
-  ))
-);
-
-stories.add(
-  'VersionGrid',
-  withInfo('Displaying VersionGrid in Accordion Item')(() => (
-    <Accordion
-      maxHeight="500px"
-      backgroundColour={colours.white}
-      type="checkbox"
-      name="storybook-accordion"
-    >
-      <AccordionItem
-        defaultChecked
-        logo={mockData[0].logo}
-        id={mockData[0].friendlyName}
-        label={mockData[0].friendlyName}
-      >
-        <VersionGrid data={mockData[0]} />
       </AccordionItem>
     </Accordion>
   ))

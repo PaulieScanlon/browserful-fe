@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 
 import { font } from '../../typography';
-import { colours } from '../../theme';
+import { colours, scaffolding } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
@@ -44,6 +44,7 @@ export const VersionButton = styled.button<IProps>(
     position: 'relative',
     display: 'inline-flex',
     justifyContent: 'center',
+    margin: '4px',
     borderRadius: '100%',
     border: 'none',
     cursor: 'pointer',
@@ -73,6 +74,7 @@ export const VersionButton = styled.button<IProps>(
 );
 
 export const VersionText = styled.span({
+  label: 'verstion-text',
   fontSize: '12px',
   lineHeight: '14px',
   fontFamily: `${font.fontFamily}`,
@@ -80,12 +82,4 @@ export const VersionText = styled.span({
   whiteSpace: 'pre-wrap',
   textTransform: 'capitalize',
   color: 'inherit'
-});
-
-export const PopoverWrapper = styled.span({
-  label: 'popover-wrapper',
-  position: 'absolute',
-  display: 'none',
-  top: '-130px',
-  zIndex: 2
 });

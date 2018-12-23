@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ToggleSwitch
     defaultChecked={false}
+    flexDirection="row"
     id="test-togggle-switch"
     onChange={[Function]}
     selectColour="#ff5ca3"
@@ -34,6 +35,7 @@ ShallowWrapper {
         <SwitchSlider />,
         <SwitchText />,
       ],
+      "flexDirection": "row",
       "htmlFor": "test-togggle-switch",
     },
     "ref": null,
@@ -94,6 +96,7 @@ ShallowWrapper {
           <SwitchSlider />,
           <SwitchText />,
         ],
+        "flexDirection": "row",
         "htmlFor": "test-togggle-switch",
       },
       "ref": null,

@@ -9,6 +9,7 @@ interface IProps {
   type?: string;
   defaultChecked?: boolean;
   selectColour?: string;
+  flexDirection?: string;
   children?: React.ReactChild;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -19,11 +20,12 @@ export const ToggleSwitch: React.SFC<IProps> = ({
   type,
   defaultChecked,
   selectColour,
+  flexDirection,
   onChange,
   children
 }: IProps) => {
   return (
-    <SwitchLabel htmlFor={id}>
+    <SwitchLabel htmlFor={id} flexDirection={flexDirection}>
       <SwitchInput
         id={id}
         name={name}
@@ -42,5 +44,6 @@ ToggleSwitch.defaultProps = {
   defaultChecked: false,
   type: 'checkbox',
   selectColour: colours.pink,
+  flexDirection: 'row',
   onChange: () => {}
 };
