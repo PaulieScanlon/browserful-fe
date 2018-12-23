@@ -142,12 +142,12 @@ export const BrowserfulLogoText = styled.div<IProps>(
   {
     ...(font as any),
     label: 'browserful-logo-text',
+    display: 'inline-flex',
     fontSize: '18px',
     lineHeight: '22px',
     marginBottom: 0
   },
-  ({ fontColour, display }) => ({
-    color: fontColour,
-    display: display
+  ({ fontColour }) => ({
+    color: fontColour
   })
 );
