@@ -24,6 +24,13 @@ export const scaffolding = {
   gutterXs: '4px'
 };
 
+export const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px'
+};
+
 export const transitionBuilder = (value: string) => `${value} .3s ease-out`;
 
 export const materialBuilder = (level: number) => {

@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { scaffolding, materialBuilder, colours } from '../../theme';
+import { scaffolding, colours, breakpoints } from '../../theme';
 
 export const OverrideWrapper = styled.div({
   label: 'overrid-wrapper',
@@ -7,9 +7,10 @@ export const OverrideWrapper = styled.div({
   display: 'inline-flex',
   flexDirection: 'column',
   padding: `0px ${scaffolding.gutterLg} ${scaffolding.gutterSm}`,
-  width: '300px',
-  backgroundColor: colours.white,
-  boxShadow: materialBuilder(1)
+  maxWidth: breakpoints.sm,
+  width: '100%',
+  boxSizing: 'border-box',
+  backgroundColor: colours.white
 });
 
 export const DetailsBorder = styled.div({

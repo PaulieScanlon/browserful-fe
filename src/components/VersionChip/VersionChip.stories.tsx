@@ -12,10 +12,7 @@ import { createMatrix } from '../../utils/createMatrix';
 const mockData = createMatrix('last 2 versions', [''], [''])[7];
 
 const commonProps = {
-  friendlyName: mockData.friendlyName,
-  queryName: mockData.queryName,
-  version: mockData.versions[0].id,
-  logo: mockData.logo
+  version: mockData.versions[0].id
 };
 
 const StoryDiv = styled.div({
@@ -86,7 +83,11 @@ stories.add(
   withInfo('regardless of if isIncluded, hasOverride should always override')(
     () => (
       <StoryDiv>
-        <VersionChip isIncluded={false} {...commonProps} />
+        <VersionChip
+          isIncluded={false}
+          hasOverride="isIncluded"
+          {...commonProps}
+        />
       </StoryDiv>
     )
   )
@@ -97,7 +98,11 @@ stories.add(
   withInfo('regardless of if isIncluded, hasOverride should always override')(
     () => (
       <StoryDiv>
-        <VersionChip isIncluded={true} {...commonProps} />
+        <VersionChip
+          isIncluded={true}
+          hasOverride="isExcluded"
+          {...commonProps}
+        />
       </StoryDiv>
     )
   )
