@@ -12,7 +12,10 @@ import { Row, Col } from 'react-grid-system';
 
 import { Accordion, AccordionItem } from '../../components/Accordion';
 import { scaffolding, colours } from '../../theme';
-import { VersionGrid } from '../../components/VersionGrid';
+import { Modal } from '../../components/Modal';
+import { VersionChip } from '../../components/VersionChip';
+import { OverrideSelect } from '../../components/OverrideSelect';
+
 import { H4 } from '../../typography';
 
 import { platform } from '../../utils/browserDetails';
@@ -33,9 +36,9 @@ interface IProps {
   updateExcluded: any;
 }
 class BrowserCards extends React.Component<IProps, {}> {
-  onAutoChange(browser: string, version: number | string) {
+  onAutoChange(queryName: string) {
     const { incQuery, excQuery } = this.props;
-    const queryName = `${browser} ${version}`;
+
     this.props.updateAuto(incQuery, excQuery, queryName);
     urlSetter(
       queryParams.INCLUDED_QUERY,
@@ -47,17 +50,16 @@ class BrowserCards extends React.Component<IProps, {}> {
     );
   }
 
-  onIncludeChange(browser: string, version: number | string) {
+  onIncludeChange(queryName: string) {
     const { incQuery, excQuery } = this.props;
-    const queryName = `${browser} ${version}`;
 
     this.props.updateIncluded(incQuery, excQuery, queryName);
     urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, queryName).join());
   }
 
-  onExcludeChange(browser: string, version: number | string) {
+  onExcludeChange(queryName: string) {
     const { incQuery, excQuery } = this.props;
-    const queryName = `${browser} ${version}`;
+
     this.props.updateExcluded(incQuery, excQuery, queryName);
     urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, queryName).join());
   }
@@ -88,7 +90,39 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid data={browser} />
+                {browser.versions.map((version: any, index: number) => {
+                  return (
+                    <Modal
+                      key={index}
+                      renderTrigger={() => (
+                        <VersionChip
+                          version={version.id}
+                          isIncluded={version.isIncluded}
+                          hasOverride={version.hasOverride}
+                        />
+                      )}
+                      renderContent={() => (
+                        <OverrideSelect
+                          name={browser.friendlyName}
+                          friendlyName={browser.friendlyName}
+                          queryName={version.queryName}
+                          version={version.id}
+                          logo={browser.logo}
+                          hasOverride={version.hasOverride}
+                          onAutoChange={queryName =>
+                            this.onAutoChange(queryName)
+                          }
+                          onIncludeChange={queryName =>
+                            this.onIncludeChange(queryName)
+                          }
+                          onExcludeChange={queryName =>
+                            this.onExcludeChange(queryName)
+                          }
+                        />
+                      )}
+                    />
+                  );
+                })}
               </AccordionItem>
             </Accordion>
           </div>
@@ -117,7 +151,39 @@ class BrowserCards extends React.Component<IProps, {}> {
                 selectColour={queryColour}
                 defaultChecked={browser.defaultChecked}
               >
-                <VersionGrid data={browser} />
+                {browser.versions.map((version: any, index: number) => {
+                  return (
+                    <Modal
+                      key={index}
+                      renderTrigger={() => (
+                        <VersionChip
+                          version={version.id}
+                          isIncluded={version.isIncluded}
+                          hasOverride={version.hasOverride}
+                        />
+                      )}
+                      renderContent={() => (
+                        <OverrideSelect
+                          name={browser.friendlyName}
+                          friendlyName={browser.friendlyName}
+                          queryName={version.queryName}
+                          version={version.id}
+                          logo={browser.logo}
+                          hasOverride={version.hasOverride}
+                          onAutoChange={queryName =>
+                            this.onAutoChange(queryName)
+                          }
+                          onIncludeChange={queryName =>
+                            this.onIncludeChange(queryName)
+                          }
+                          onExcludeChange={queryName =>
+                            this.onExcludeChange(queryName)
+                          }
+                        />
+                      )}
+                    />
+                  );
+                })}
               </AccordionItem>
             </Accordion>
           </div>

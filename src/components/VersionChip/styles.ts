@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 
 import { font } from '../../typography';
-import { colours } from '../../theme';
+import { colours, scaffolding } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
@@ -44,6 +44,7 @@ export const VersionButton = styled.button<IProps>(
     position: 'relative',
     display: 'inline-flex',
     justifyContent: 'center',
+    margin: '4px',
     borderRadius: '100%',
     border: 'none',
     cursor: 'pointer',

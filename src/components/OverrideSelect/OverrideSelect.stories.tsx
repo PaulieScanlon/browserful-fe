@@ -32,7 +32,7 @@ const stories = storiesOf('OverrideSelect', module);
 stories.add(
   'default usage',
   withInfo(
-    '///// TODO THIS NEEDS TO BE A CONNECTED COMPONENT TO PASS THE ONCHANGE VALUES ON TO REDUX /////   OverrideSelect is x3 HTML radio inputs and requires the following props: browser, version and a name which acts as the group name'
+    'OverrideSelect is x3 HTML radio inputs and requires the following props: browser, version and a name which acts as the group name'
   )(() => <OverrideSelect {...commonProps} name="storybook-override-select" />)
 );
 
@@ -43,6 +43,7 @@ stories.add(
   )(() => (
     <OverrideSelect
       {...commonProps}
+      hasOverride="isIncluded"
       name="storybook-override-select"
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)
@@ -64,6 +65,7 @@ stories.add(
   )(() => (
     <OverrideSelect
       {...commonProps}
+      hasOverride="isExcluded"
       name="storybook-override-select"
       onAutoChange={(event, browser, version) =>
         onAutoChange(event, browser, version)

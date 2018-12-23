@@ -23,7 +23,8 @@ export const ModalWrapper = styled.div({
 
 export const ModalTrigger = styled.div({
   label: 'modal-trigger',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  display: 'inline-flex'
 });
 
 export const ModalLightbox = styled.div({

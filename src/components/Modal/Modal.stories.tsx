@@ -41,7 +41,7 @@ stories.add(
         renderContent={() => (
           <OverrideSelect
             {...commonProps}
-            name="storybook-override-select"
+            name={commonProps.friendlyName}
             onAutoChange={(queryName, version, event) =>
               onAutoChange(queryName, version, event)
             }
