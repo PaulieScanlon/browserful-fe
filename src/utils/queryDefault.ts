@@ -1,4 +1,4 @@
-import { config } from '../features/ControlSliders/config';
+import { config } from '../features/SliderControls/config';
 import { queryTypes } from './queryStrings';
 
 export const queryDefault = {
