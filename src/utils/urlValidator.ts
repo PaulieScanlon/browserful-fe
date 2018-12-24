@@ -1,6 +1,6 @@
 import { queryParams, queryTypes } from './queryStrings';
 import { queryDefault } from './queryDefault';
-import { config } from '../features/ControlSliders/config';
+import { config } from '../features/SliderControls/config';
 import { incQueryBuilder, excQueryBuilder } from './queryBuilder';
 import browserslist from 'browserslist';
 

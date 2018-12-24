@@ -5,14 +5,14 @@ import styled from 'react-emotion';
 
 import { RouterLink } from '../common/RouterLink';
 
-import { HeadTag } from '../components/HeadTag';
+import { HeadTag } from '../ui/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
-import { AppBar } from '../components/AppBar';
-import { H1, H4, P } from '../typography';
-import { BrowserfulLogo } from '../components/BrowserfulLogo';
+import { AppBar } from '../ui/AppBar';
+import { H1, H4, P } from '../ui/Typography';
+import { BrowserfulLogo } from '../ui/BrowserfulLogo';
 
 import { common, scaffolding, colours } from '../theme';
-import { Button } from '../components/Button';
+import { Button } from '../ui/Button';
 
 export const LandingContent = styled.div({
   label: 'landking-content',

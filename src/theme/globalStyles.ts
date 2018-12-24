@@ -1,5 +1,5 @@
 import { injectGlobal } from 'react-emotion';
-import { font } from '../typography';
+import { font } from '../ui/Typography';
 import { colours } from '../theme';
 
 injectGlobal`
