@@ -1,4 +1,4 @@
-import { ControlSliders } from '../components';
+import { SliderControls } from '../components';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ControlSliders);
+)(SliderControls);

@@ -20,7 +20,7 @@ interface IProps {
   updateValue: any;
 }
 
-export class ControlSliders extends React.Component<IProps, {}> {
+export class SliderControls extends React.Component<IProps, {}> {
   accordionOnChange(queryType: string, queryColour: string) {
     const { updateQuery } = this.props;
 

@@ -40,8 +40,7 @@ export const AccordionInput = styled.input<IProps>(
   },
   ({ maxHeight, selectColour }) => ({
     ':checked + label + div': {
-      maxHeight: maxHeight,
-      overflow: 'visible'
+      maxHeight: maxHeight
     },
     ':checked + label': {
       '&:after': {

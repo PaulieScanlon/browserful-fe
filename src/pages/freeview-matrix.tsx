@@ -15,8 +15,8 @@ import { Container } from 'react-grid-system';
 import { AppBar } from '../ui/AppBar';
 import { scaffolding, common } from '../theme';
 
-import ControlSliders from '../features/ControlSliders/containers';
-import BrowserCards from '../features/BrowserCards/containers';
+import SliderControls from '../features/SliderControls/containers';
+import BrowserControls from '../features/BrowserControls/containers';
 import { queryParams } from '../utils/queryStrings';
 import { urlValidator } from '../utils/urlValidator';
 import { urlGetter } from '../utils/urlGetter';
@@ -104,8 +104,8 @@ class Matrix extends React.Component<IProps, IState> {
               margin: `${scaffolding.gutterLg} auto`
             }}
           >
-            {loaded && <ControlSliders />}
-            {loaded && <BrowserCards />}
+            {loaded && <SliderControls />}
+            {loaded && <BrowserControls />}
           </Container>
         </FreeviewContent>
       </React.Fragment>

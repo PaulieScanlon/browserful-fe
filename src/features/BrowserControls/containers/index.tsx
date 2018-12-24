@@ -1,4 +1,4 @@
-import { BrowserCards } from '../components';
+import { BrowserControls } from '../components';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BrowserCards);
+)(BrowserControls);
