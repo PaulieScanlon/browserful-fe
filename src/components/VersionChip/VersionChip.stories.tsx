@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'react-emotion';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { action } from '@storybook/addon-actions';
 
 import { VersionChip } from './VersionChip';
 

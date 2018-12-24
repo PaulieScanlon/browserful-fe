@@ -14,9 +14,9 @@ const onClick = event => {
 
 stories.add(
   'default usage',
-  withInfo(
-    'AppBar houses the Browserful Logo and other things... The disableLink prop disables the a `Link` which is part of `next-routes'
-  )(() => <AppBar disableLink={true} />)
+  withInfo('AppBar houses the Browserful Logo and other things.')(() => (
+    <AppBar />
+  ))
 );
 
 stories.add(

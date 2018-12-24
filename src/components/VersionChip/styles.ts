@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 
 import { font } from '../../typography';
-import { colours, scaffolding } from '../../theme';
+import { colours } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
@@ -38,19 +38,18 @@ const getStyleRules = (isIncluded, hasOverride) => {
   };
 };
 
-export const VersionButton = styled.button<IProps>(
+export const VersionChipWrapper = styled.span<IProps>(
   {
-    label: 'version-button',
+    label: 'version-chip-wrapper',
     position: 'relative',
     display: 'inline-flex',
     justifyContent: 'center',
+    alignItems: 'center',
     margin: '4px',
     borderRadius: '100%',
-    border: 'none',
     cursor: 'pointer',
     width: '40px',
     height: '40px',
-    outline: 'none',
     fontSize: '12px',
     lineHeight: '14px',
     fontFamily: `${font.fontFamily}`,
@@ -60,7 +59,6 @@ export const VersionButton = styled.button<IProps>(
     borderWidth: '2px',
     borderColor: colours.transparent,
     backgroundColor: colours.greyUltraLight,
-    WebkitTapHighlightColor: colours.transparent,
     ':active, :focus': {
       span: {
         display: 'block'

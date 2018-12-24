@@ -13,7 +13,6 @@ import { colours } from '../../theme';
 
 interface IProps extends React.Props<ChildNode> {
   active?: boolean;
-  disableLink?: boolean;
 }
 
 export const SideBar: React.SFC<IProps> = ({ active, children }: IProps) => {
@@ -34,6 +33,5 @@ export const SideBar: React.SFC<IProps> = ({ active, children }: IProps) => {
 };
 
 SideBar.defaultProps = {
-  active: true,
-  disableLink: false
+  active: true
 };

@@ -2,7 +2,7 @@ import browserslist from 'browserslist';
 
 import { browserDetails } from './browserDetails';
 
-const unfiltered = browserslist(['last 20 versions']).reduce((acc, br) => {
+const unfiltered = browserslist('last 20 versions').reduce((acc, br) => {
   const [name, version] = br.split(' ', 2);
   acc[name] = [].concat(acc[name] || [], {
     queryName: `${browserDetails[name].queryName} ${version}`,

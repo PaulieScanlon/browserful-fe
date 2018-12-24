@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { VersionButton, VersionText } from './styles';
+import { VersionChipWrapper, VersionText } from './styles';
 
 interface IProps {
   version: number | string;
@@ -14,9 +14,9 @@ export const VersionChip: React.SFC<IProps> = ({
   hasOverride
 }) => {
   return (
-    <VersionButton isIncluded={isIncluded} hasOverride={hasOverride}>
+    <VersionChipWrapper isIncluded={isIncluded} hasOverride={hasOverride}>
       <VersionText>{version || 0}</VersionText>
-    </VersionButton>
+    </VersionChipWrapper>
   );
 };
 
