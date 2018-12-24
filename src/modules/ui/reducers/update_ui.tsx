@@ -14,7 +14,7 @@ import { colours } from '../../../theme';
 
 import { queryTypes } from '../../../utils/queryStrings';
 import { queryBuilder } from '../../../utils/queryBuilder';
-import { config } from '../../../features/ControlSliders/config';
+import { config } from '../../../features/SliderControls/config';
 interface IProps {
   queryType: string;
   queryColour: string;
