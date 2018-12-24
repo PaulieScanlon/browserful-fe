@@ -50,7 +50,6 @@ ShallowWrapper {
           </svg>
         </SvgWrapper>,
         <BrowserfulLogoText
-          display="inline-flex"
           fontColour="#666666"
         >
           Browserful
@@ -170,7 +169,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "Browserful",
-          "display": "inline-flex",
           "fontColour": "#666666",
         },
         "ref": null,
@@ -214,7 +212,6 @@ ShallowWrapper {
             </svg>
           </SvgWrapper>,
           <BrowserfulLogoText
-            display="inline-flex"
             fontColour="#666666"
           >
             Browserful
@@ -334,7 +331,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "Browserful",
-            "display": "inline-flex",
             "fontColour": "#666666",
           },
           "ref": null,
