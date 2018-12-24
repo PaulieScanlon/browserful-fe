@@ -6,7 +6,7 @@ import {
   common,
   scaffolding
 } from '../../theme';
-import { font } from '../../typography';
+import { font } from '../../ui/Typography';
 
 export const ModalWrapper = styled.div({
   label: 'modal-wrapper',

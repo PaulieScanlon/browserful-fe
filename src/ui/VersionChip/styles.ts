@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-import { font } from '../../typography';
+import { font } from '../../ui/Typography';
 import { colours } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {

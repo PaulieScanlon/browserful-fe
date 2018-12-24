@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { colours } from '../../theme';
 
-import { BrowserfulLogoText } from '../../typography';
+import { BrowserfulLogoText } from '../../ui/Typography';
 import { LogoWrapper, SvgWrapper } from './styles';
 
 interface IProps {

@@ -9,7 +9,7 @@ import { colours } from '../../theme';
 import { BrowserfulLogo } from './';
 
 import { LogoWrapper, SvgWrapper } from './styles';
-import { BrowserfulLogoText } from '../../typography';
+import { BrowserfulLogoText } from '../../ui/Typography';
 
 const shallowDefault = props => {
   return shallow(<BrowserfulLogo {...props} />);
@@ -46,7 +46,7 @@ describe('<BrowserfulLogo/>', () => {
     expect(wrapper.props().logoColour).toEqual(colours.teal);
     expect(svg.props().style.fill).toEqual(colours.teal);
   });
-  it('renders typography with correct colour with fontColour', () => {
+  it('renders ui/Typography with correct colour with fontColour', () => {
     const wrapper = mountDefault({
       showText: true,
       fontColour: colours.greyLight

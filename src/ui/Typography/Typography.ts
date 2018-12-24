@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { colours, scaffolding } from '../theme';
+import { colours, scaffolding } from '../../theme';
 
 export const fontFamily = {
   fontFamily: `Lato, sans-serif`

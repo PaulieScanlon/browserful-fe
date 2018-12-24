@@ -1,29 +1,21 @@
 import * as React from 'react';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import {
-  updateAuto,
-  updateIncluded,
-  updateExcluded
-} from '../../modules/ui/actions/update_ui';
-
 import { Row, Col } from 'react-grid-system';
 
-import { Accordion, AccordionItem } from '../../components/Accordion';
-import { scaffolding, colours } from '../../theme';
-import { Modal } from '../../components/Modal';
-import { VersionChip } from '../../components/VersionChip';
-import { OverrideSelect } from '../../components/OverrideSelect';
+import { Accordion, AccordionItem } from '../../../ui/Accordion';
+import { scaffolding, colours } from '../../../theme';
+import { Modal } from '../../../ui/Modal';
+import { VersionChip } from '../../../ui/VersionChip';
+import { OverrideSelect } from '../../../ui/OverrideSelect';
 
-import { H4 } from '../../typography';
+import { H4 } from '../../../ui/Typography';
 
-import { platform } from '../../utils/browserDetails';
-import { createMatrix } from '../../utils/createMatrix';
-import { queryParams } from '../../utils/queryStrings';
-import { urlSetter } from '../../utils/urlSetter';
-import { arrayAdd } from '../../utils/arrayAdd';
-import { arrayRemove } from '../../utils/arrayRemove';
+import { platform } from '../../../utils/browserDetails';
+import { createMatrix } from '../../../utils/createMatrix';
+import { queryParams } from '../../../utils/queryStrings';
+import { urlSetter } from '../../../utils/urlSetter';
+import { arrayAdd } from '../../../utils/arrayAdd';
+import { arrayRemove } from '../../../utils/arrayRemove';
 
 interface IProps {
   queryType: string;
@@ -35,7 +27,7 @@ interface IProps {
   updateIncluded: any;
   updateExcluded: any;
 }
-class BrowserCards extends React.Component<IProps, {}> {
+export class BrowserCards extends React.Component<IProps, {}> {
   onAutoChange(queryName: string) {
     const { incQuery, excQuery } = this.props;
 
@@ -209,25 +201,3 @@ class BrowserCards extends React.Component<IProps, {}> {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  queryType: state.ui.queryType,
-  globalUsage: state.ui.globalUsage,
-  yearReleased: state.ui.yearReleased,
-  lastVersions: state.ui.lastVersions,
-  queryColour: state.ui.queryColour,
-  incQuery: state.ui.incQuery,
-  excQuery: state.ui.excQuery,
-  browserQuery: state.ui.browserQuery
-});
-
-const mapDispatchToProps = dispatch => ({
-  updateAuto: bindActionCreators(updateAuto, dispatch),
-  updateIncluded: bindActionCreators(updateIncluded, dispatch),
-  updateExcluded: bindActionCreators(updateExcluded, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BrowserCards);

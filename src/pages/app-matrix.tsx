@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { HeadTag } from '../components/HeadTag';
+import { HeadTag } from '../ui/HeadTag';
 import { Container, Row, Col } from 'react-grid-system';
-import { AppBar } from '../components/AppBar';
-import { SideBar } from '../components/SideBar';
+import { AppBar } from '../ui/AppBar';
+import { SideBar } from '../ui/SideBar';
 
 import { scaffolding } from '../theme';
 

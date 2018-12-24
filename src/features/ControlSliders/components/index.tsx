@@ -1,16 +1,12 @@
 import * as React from 'react';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { updateQuery, updateValue } from '../../modules/ui/actions/update_ui';
-
 import { Row, Col } from 'react-grid-system';
 
-import { Accordion, AccordionItem } from '../../components/Accordion';
-import { CompoundSlider } from '../../components/CompoundSlider';
-import { queryParams } from '../../utils/queryStrings';
-import { urlSetter } from '../../utils/urlSetter';
-import { config } from './config';
+import { Accordion, AccordionItem } from '../../../ui/Accordion';
+import { CompoundSlider } from '../../../ui/CompoundSlider';
+import { queryParams } from '../../../utils/queryStrings';
+import { urlSetter } from '../../../utils/urlSetter';
+import { config } from '../config';
 
 interface IProps {
   queryType: string;
@@ -24,7 +20,7 @@ interface IProps {
   updateValue: any;
 }
 
-class ControlSliders extends React.Component<IProps, {}> {
+export class ControlSliders extends React.Component<IProps, {}> {
   accordionOnChange(queryType: string, queryColour: string) {
     const { updateQuery } = this.props;
 
@@ -89,23 +85,3 @@ class ControlSliders extends React.Component<IProps, {}> {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  queryType: state.ui.queryType,
-  globalUsage: state.ui.globalUsage,
-  yearReleased: state.ui.yearReleased,
-  lastVersions: state.ui.lastVersions,
-  incQuery: state.ui.incQuery,
-  excQuery: state.ui.excQuery,
-  browserQuery: state.ui.browserQuery
-});
-
-const mapDispatchToProps = dispatch => ({
-  updateQuery: bindActionCreators(updateQuery, dispatch),
-  updateValue: bindActionCreators(updateValue, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ControlSliders);

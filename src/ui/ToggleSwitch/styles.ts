@@ -1,15 +1,14 @@
 import styled from 'react-emotion';
-import { colours, scaffolding } from '../../theme';
-import { font } from '../../typography';
-
+import { transitionBuilder, colours, scaffolding } from '../../theme';
+import { font } from '../../ui/Typography';
 interface IProps {
   selectColour?: string;
   flexDirection?: string;
 }
 
-export const RadioLabel = styled.label<IProps>(
+export const SwitchLabel = styled.label<IProps>(
   {
-    label: 'radio-label',
+    label: 'switch-label',
     position: 'relative',
     display: 'inline-flex',
     flexGrow: 1,
@@ -25,16 +24,17 @@ export const RadioLabel = styled.label<IProps>(
   })
 );
 
-export const RadioInput = styled.input<IProps>(
+export const SwitchInput = styled.input<IProps>(
   {
-    label: 'radio-input',
+    label: 'switch-input',
     position: 'absolute',
     top: '-10px',
     left: '-10px',
     display: 'none',
-
-    ':checked + span + small': {
-      color: colours.greyMid
+    ':checked + span': {
+      ':before': {
+        transform: 'translateX(14px)'
+      }
     }
   },
   ({ selectColour }) => ({
@@ -44,17 +44,30 @@ export const RadioInput = styled.input<IProps>(
   })
 );
 
-export const RadioStyle = styled.span({
-  label: 'radio-style',
-  display: 'inline-block',
+export const SwitchSlider = styled.span({
+  label: 'switch-slider',
   position: 'relative',
-  borderRadius: '50%',
-  width: '16px',
-  height: '16px',
-  backgroundColor: colours.greyUltraLight
+  display: 'inline-block',
+  borderRadius: '32px',
+  width: '32px',
+  height: '18px',
+  right: '0px',
+  backgroundColor: colours.greyUltraLight,
+  transition: transitionBuilder('all'),
+  ':before': {
+    position: 'absolute',
+    content: `""`,
+    borderRadius: '50%',
+    width: '12px',
+    height: '12px',
+    left: '3px',
+    bottom: '3px',
+    backgroundColor: colours.white,
+    transition: transitionBuilder('all')
+  }
 });
 
-export const RadioText = styled.small({
+export const SwitchText = styled.small({
   label: 'radio-text',
   fontSize: '14px',
   lineHeight: '16px',

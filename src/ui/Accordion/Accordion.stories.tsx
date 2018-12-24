@@ -146,9 +146,9 @@ stories.add(
 );
 
 stories.add(
-  'browser',
+  'logo/id',
   withInfo(
-    'The browser prop is used to display any of the predefined BrowserLogos'
+    'The logo and id props are used to display any of the predefined BrowserLogos'
   )(() => (
     <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem

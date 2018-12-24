@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 
 import { scaffolding } from '../../theme';
-import { font } from '../../typography';
+import { font } from '../../ui/Typography';
 
 interface IProps {
   fontColour: string;

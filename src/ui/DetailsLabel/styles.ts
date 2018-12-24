@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 import { scaffolding, colours, transitionBuilder } from '../../theme';
-import { font } from '../../typography';
+import { font } from '../../ui/Typography';
 
 interface IProps {
   width?: number | string;

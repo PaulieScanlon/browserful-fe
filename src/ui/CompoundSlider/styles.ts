@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion';
-import { fontFamily } from '../../typography/';
+import { fontFamily } from '../../ui/Typography/';
 import { colours, materialBuilder, scaffolding } from '../../theme';
 
 interface IProps {
