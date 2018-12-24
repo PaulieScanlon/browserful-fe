@@ -5,7 +5,8 @@ import { Row, Col } from 'react-grid-system';
 import { scaffolding } from '../../../theme';
 import { BrowserCard } from './BrowserCard';
 
-import { H4 } from '../../../ui/Typography';
+import { Icon } from '../../../ui/Icon';
+import { H5 } from '../../../ui/Typography';
 
 import { platform } from '../../../utils/browserDetails';
 import { createMatrix } from '../../../utils/createMatrix';
@@ -13,6 +14,8 @@ import { queryParams } from '../../../utils/queryStrings';
 import { urlSetter } from '../../../utils/urlSetter';
 import { arrayAdd } from '../../../utils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayRemove';
+
+import { TitleBar } from './styles';
 
 interface IProps {
   queryType: string;
@@ -97,11 +100,23 @@ export class BrowserControls extends React.Component<IProps, {}> {
         }}
       >
         <Col xs={12} sm={12} md={12} lg={6}>
-          <H4>Desktop</H4>
+          <TitleBar
+            style={{ marginBottom: scaffolding.gutterLg }}
+            borderColour={queryColour}
+          >
+            <H5>Desktop</H5>
+            <Icon fill={queryColour} name="desktop" />
+          </TitleBar>
           {desktop}
         </Col>
         <Col xs={12} sm={12} md={12} lg={6}>
-          <H4>Mobile</H4>
+          <TitleBar
+            style={{ marginBottom: scaffolding.gutterLg }}
+            borderColour={queryColour}
+          >
+            <H5>Mobile / Other</H5>
+            <Icon fill={queryColour} name="mobile" />
+          </TitleBar>
           {mobile}
         </Col>
       </Row>
