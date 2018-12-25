@@ -19,17 +19,8 @@ export const font = {
 };
 
 interface IProps {
-  /**
-   * css color prop
-   *
-   * @default colours.greyDark
-   **/
   fontColour?: string;
-  /**
-   * css display prop
-   *
-   * @default "block"
-   **/
+  fontAlign?: string | any;
   display?: string;
   bold?: boolean;
 
@@ -45,8 +36,9 @@ export const P = styled.p<IProps>(
     label: 'p',
     color: colours.greyMid
   },
-  ({ fontColour }) => ({
-    color: fontColour
+  ({ fontColour, fontAlign }) => ({
+    color: fontColour,
+    textAlign: fontAlign
   })
 );
 
@@ -58,9 +50,10 @@ export const H1 = styled.h1<IProps>(
     fontSize: '40px',
     lineHeight: '44px'
   },
-  ({ fontColour, display }) => ({
+  ({ fontColour, display, fontAlign }) => ({
     color: fontColour,
-    display: display
+    display: display,
+    textAlign: fontAlign
   })
 );
 
@@ -100,9 +93,10 @@ export const H4 = styled.h4<IProps>(
     fontSize: '20px',
     lineHeight: '24px'
   },
-  ({ fontColour, display }) => ({
+  ({ fontColour, display, fontAlign }) => ({
     color: fontColour,
-    display: display
+    display: display,
+    textAlign: fontAlign
   })
 );
 

@@ -13,7 +13,7 @@ import {
 import { HeadTag } from '../ui/HeadTag';
 import { Container } from 'react-grid-system';
 import { AppBar } from '../ui/AppBar';
-import { scaffolding, common } from '../theme';
+import { scaffolding, common, colours } from '../theme';
 
 import { config } from '../features/SliderControls/config';
 
@@ -26,13 +26,12 @@ import { urlGetter } from '../utils/urlGetter';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
-  margin: `${common.appBar.height} auto`,
+  margin: `${common.appBar.height} auto 0px`,
+  paddingTop: scaffolding.gutterLg,
   width: '100%',
   height: '100%',
   minHeight: '100vh',
-  position: 'absolute',
-  top: '0px',
-  left: '0px'
+  backgroundColor: colours.offWhite
 });
 
 interface IProps {
@@ -42,13 +41,13 @@ interface IProps {
   updateBrowserQuery: any;
 }
 interface IState {
-  loaded: boolean;
+  isLoaded: boolean;
 }
 class Matrix extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      isLoaded: false
     };
   }
 
@@ -93,28 +92,27 @@ class Matrix extends React.Component<IProps, IState> {
     );
 
     this.setState({
-      loaded: true
+      isLoaded: true
     });
   }
 
   render() {
-    const { loaded } = this.state;
+    const { isLoaded } = this.state;
 
     return (
-      <React.Fragment>
+      <FreeviewContent>
         <HeadTag />
         <AppBar fixed={true} width="100%" />
-        <FreeviewContent>
-          <Container
-            style={{
-              margin: `${scaffolding.gutterLg} auto`
-            }}
-          >
-            {loaded && <SliderControls />}
-            {loaded && <BrowserControls />}
-          </Container>
-        </FreeviewContent>
-      </React.Fragment>
+
+        <Container
+          style={{
+            margin: `${scaffolding.gutterLg} auto`
+          }}
+        >
+          {isLoaded && <SliderControls />}
+          {isLoaded && <BrowserControls />}
+        </Container>
+      </FreeviewContent>
     );
   }
 }

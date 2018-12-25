@@ -54,6 +54,5 @@ injectGlobal`
     color: ${font.color};
     font-size: ${font.fontSize};
     font-family: ${font.fontFamily};
-    background: ${colours.offWhite};
   }
   `;
