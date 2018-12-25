@@ -11,6 +11,7 @@ export const AppBarWrapper = styled.header<IProps>(
     label: 'app-bar-wrapper',
     display: 'flex',
     position: 'fixed',
+    top: '0px',
     zIndex: common.appBar.zIndex,
     alignItems: 'center',
     justifyContent: 'space-between',
