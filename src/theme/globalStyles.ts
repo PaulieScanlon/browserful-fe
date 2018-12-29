@@ -1,6 +1,5 @@
 import { injectGlobal } from 'react-emotion';
 import { font } from '../ui/Typography';
-import { colours } from '../theme';
 
 injectGlobal`
   html, body, div, span, applet, object, iframe,

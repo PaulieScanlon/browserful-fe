@@ -1,12 +1,13 @@
 import styled from 'react-emotion';
 
-import { scaffolding } from '../../theme';
+import { scaffolding, colours } from '../../theme';
 import { font } from '../../ui/Typography';
 
 interface IProps {
   fontColour: string;
   backgroundColour: string;
   grow: boolean;
+  disabled: boolean;
 }
 
 export const ButtonElement = styled.button<IProps>(
@@ -19,12 +20,12 @@ export const ButtonElement = styled.button<IProps>(
     fontFamily: font.fontFamily,
     border: 0,
     borderRadius: '5px',
-    outline: 'none',
-    cursor: 'pointer'
+    outline: 'none'
   },
-  ({ fontColour, backgroundColour, grow }) => ({
+  ({ fontColour, backgroundColour, grow, disabled }) => ({
     color: fontColour,
-    backgroundColor: backgroundColour,
-    width: grow ? '100%' : 'auto'
+    backgroundColor: disabled ? colours.greyUltraLight : backgroundColour,
+    width: grow ? '100%' : 'auto',
+    cursor: disabled ? 'not-allowed' : 'pointer'
   })
 );

@@ -10,8 +10,9 @@ import {
   updateBrowserQuery
 } from '../modules/ui/actions/update_ui';
 
-import { HeadTag } from '../ui/HeadTag';
 import { Container } from 'react-grid-system';
+
+import { HeadTag } from '../ui/HeadTag';
 import { AppBar } from '../ui/AppBar';
 import { scaffolding, common, colours } from '../theme';
 

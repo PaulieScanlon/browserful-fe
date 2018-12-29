@@ -1,12 +1,16 @@
 import * as React from 'react';
+import fetch from 'isomorphic-unfetch';
 
 import LandingPage from '../features/LandingPage/components';
-
+import FeedbackForm from '../features/FeedbackForm/components';
+interface IProps {
+  json: any;
+}
 interface IState {
   isLoaded: boolean;
 }
 
-class Index extends React.Component<{}, IState> {
+class Index extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +27,12 @@ class Index extends React.Component<{}, IState> {
   render() {
     const { isLoaded } = this.state;
 
-    return <React.Fragment>{isLoaded && <LandingPage />}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {isLoaded && <LandingPage />}
+        {isLoaded && <FeedbackForm />}
+      </React.Fragment>
+    );
   }
 }
 
