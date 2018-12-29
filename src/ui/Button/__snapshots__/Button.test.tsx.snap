@@ -5,9 +5,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Button
     backgroundColour="#ff5ca3"
+    disabled={false}
     fontColour="#ffffff"
     grow={false}
     onClick={[Function]}
+    type="button"
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -24,9 +26,11 @@ ShallowWrapper {
     "props": Object {
       "backgroundColour": "#ff5ca3",
       "children": undefined,
+      "disabled": false,
       "fontColour": "#ffffff",
       "grow": false,
       "onClick": [Function],
+      "type": "button",
     },
     "ref": null,
     "rendered": null,
@@ -40,9 +44,11 @@ ShallowWrapper {
       "props": Object {
         "backgroundColour": "#ff5ca3",
         "children": undefined,
+        "disabled": false,
         "fontColour": "#ffffff",
         "grow": false,
         "onClick": [Function],
+        "type": "button",
       },
       "ref": null,
       "rendered": null,

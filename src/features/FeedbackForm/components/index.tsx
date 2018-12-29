@@ -1,9 +1,18 @@
 import * as React from 'react';
 import fetch from 'isomorphic-unfetch';
+import { InputLabel } from '../../../ui/InputLabel';
+import { InputText } from '../../../ui/InputText';
+import { InputTextArea } from '../../../ui/InputTextArea';
+import { InputError } from '../../../ui/InputError';
 import { Button } from '../../..//ui/Button';
-import { scaffolding, colours } from '../../../theme';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import { Container, Row, Col } from 'react-grid-system';
+
+import { FormWrapper } from './styles';
+import { H2, H4, P } from '../../../ui/Typography';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -14,85 +23,94 @@ const schema = Yup.object().shape({
 
 const FeedbackForm: React.SFC<{}> = ({}) => {
   return (
-    <div
-      style={{
-        height: '200px',
-        padding: scaffolding.gutterLg,
-        backgroundColor: colours.offWhite
-      }}
-    >
-      <Formik
-        initialValues={{ email: '', message: '' }}
-        validationSchema={schema}
-        onSubmit={(values, { setSubmitting }) => {
-          fetch('http://api.browserful.com/send/feedback/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              ...values
-            })
-          })
-            .then(function(data) {
-              setSubmitting(false);
-              console.log('Request ok', data);
-            })
-            .catch(function(error) {
-              console.log('Request failed', error);
-            });
-
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 400);
-        }}
-      >
-        {({ values, isSubmitting, errors }) => (
-          <Form>
-            <label>
-              Email
-              <Field
-                name="email"
-                render={({ field }) => (
-                  <input
-                    {...field}
-                    type="email"
-                    value={values.email}
-                    placeholder="you@email.com"
-                  />
-                )}
-              />
-              <ErrorMessage
-                name="email"
-                render={msg => <strong>{msg}</strong>}
-              />
-            </label>
-
-            <label>
-              Message
-              <Field
-                name="message"
-                render={({ field }) => (
-                  <textarea {...field} value={values.message} />
-                )}
-              />
-              <ErrorMessage
-                name="message"
-                render={msg => <strong>{msg}</strong>}
-              />
-            </label>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting || !!errors.email || !!errors.message}
+    <FormWrapper>
+      <Container>
+        <Row>
+          <Col xs={1} sm={1} md={2} lg={3} />
+          <Col xs={12} sm={12} md={8} lg={6}>
+            <H2>Feedback</H2>
+            <P>
+              If you have any suggestions, found a bug or have a general
+              question feel free to send us a message.
+            </P>
+            <Formik
+              initialValues={{ email: '', message: '' }}
+              validationSchema={schema}
+              enableReinitialize={true}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                fetch(`${process.env.BROWSERFUL_API}send/feedback/`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    ...values
+                  })
+                })
+                  .then(function(data) {
+                    setSubmitting(false);
+                    resetForm();
+                    console.log('Request ok', data);
+                  })
+                  .catch(function(error) {
+                    console.log('Request failed', error);
+                  });
+              }}
             >
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+              {({ values, isSubmitting, errors, touched }) => (
+                <Form>
+                  <InputLabel>
+                    Email
+                    <Field
+                      name="email"
+                      render={({ field }) => (
+                        <InputText
+                          {...field}
+                          type="email"
+                          value={values.email || ''}
+                          placeholder="you@email.com"
+                        />
+                      )}
+                    />
+                    <ErrorMessage
+                      name="email"
+                      render={msg => <InputError>{msg}</InputError>}
+                    />
+                  </InputLabel>
+
+                  <InputLabel>
+                    Message
+                    <Field
+                      name="message"
+                      render={({ field }) => (
+                        <InputTextArea
+                          {...field}
+                          value={values.message || ''}
+                        />
+                      )}
+                    />
+                    <ErrorMessage
+                      name="message"
+                      render={msg => <InputError>{msg}</InputError>}
+                    />
+                  </InputLabel>
+
+                  <Button
+                    type="submit"
+                    disabled={
+                      isSubmitting || !!errors.email || !!errors.message
+                    }
+                  >
+                    Send
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </Col>
+          <Col xs={1} sm={1} md={2} lg={3} />
+        </Row>
+      </Container>
+    </FormWrapper>
   );
 };
 export default FeedbackForm;
