@@ -47,17 +47,14 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                     ...values
                   })
                 })
-                  .then(function(data) {
+                  .then(() => {
                     setSubmitting(false);
                     resetForm();
-                    console.log('Request ok', data);
                   })
-                  .catch(function(error) {
-                    console.log('Request failed', error);
-                  });
+                  .catch(() => {});
               }}
             >
-              {({ values, isSubmitting, errors, touched }) => (
+              {({ values, isSubmitting, errors }) => (
                 <Form>
                   <InputLabel>
                     Email
@@ -68,7 +65,7 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                           {...field}
                           type="email"
                           value={values.email || ''}
-                          placeholder="you@email.com"
+                          placeholder="Enter your email address"
                         />
                       )}
                     />
