@@ -8,15 +8,18 @@ interface IProps {
   fontColour?: string;
   backgroundColour?: string;
   grow?: boolean;
+  type?: string;
+  disabled?: boolean;
   children: React.ReactNode;
-  // @TODO can IPRops extends HTML Button so onClick doesn't need to be defined?
-  onClick?: any;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Button: React.SFC<IProps> = ({
   fontColour,
   backgroundColour,
   grow,
+  type,
+  disabled,
   children,
   onClick
 }: IProps) => {
@@ -25,7 +28,9 @@ export const Button: React.SFC<IProps> = ({
       fontColour={fontColour}
       backgroundColour={backgroundColour}
       grow={grow}
-      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      onClick={event => onClick(event)}
     >
       {children}
     </ButtonElement>
@@ -35,5 +40,8 @@ export const Button: React.SFC<IProps> = ({
 Button.defaultProps = {
   fontColour: colours.white,
   backgroundColour: colours.pink,
-  grow: false
+  grow: false,
+  type: 'button',
+  disabled: false,
+  onClick: () => {}
 };

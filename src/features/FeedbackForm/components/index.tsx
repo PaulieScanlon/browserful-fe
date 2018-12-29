@@ -2,82 +2,97 @@ import * as React from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Button } from '../../..//ui/Button';
 import { scaffolding, colours } from '../../../theme';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-class FeedbackForm extends React.Component {
-  onSubmit(event: any) {
-    console.log('onSubmit');
-    event.preventDefault();
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email()
+    .required(),
+  message: Yup.string().required()
+});
 
-    const form = event.target;
-    const formData = new FormData(form);
-    let formObject = {};
+const FeedbackForm: React.SFC<{}> = ({}) => {
+  return (
+    <div
+      style={{
+        height: '200px',
+        padding: scaffolding.gutterLg,
+        backgroundColor: colours.offWhite
+      }}
+    >
+      <Formik
+        initialValues={{ email: '', message: '' }}
+        validationSchema={schema}
+        onSubmit={(values, { setSubmitting }) => {
+          fetch('http://api.browserful.com/send/feedback/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              ...values
+            })
+          })
+            .then(function(data) {
+              setSubmitting(false);
+              console.log('Request ok', data);
+            })
+            .catch(function(error) {
+              console.log('Request failed', error);
+            });
 
-    for (const pair of formData.entries()) {
-      formObject[pair[0]] = pair[1];
-    }
-
-    fetch('http://api.browserful.com/send/feedback/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        ...formObject
-      })
-    })
-      .then(function(data) {
-        console.log('Request ok', data);
-      })
-      .catch(function(error) {
-        console.log('Request failed', error);
-      });
-  }
-
-  onChange(event) {
-    console.log(event);
-  }
-
-  render() {
-    return (
-      <div
-        style={{
-          height: '200px',
-          padding: scaffolding.gutterLg,
-          backgroundColor: colours.greyUltraLight
+          // setTimeout(() => {
+          //   alert(JSON.stringify(values, null, 2));
+          //   setSubmitting(false);
+          // }, 400);
         }}
       >
-        <form id="myForm" onSubmit={event => this.onSubmit(event)}>
-          <div style={{ marginTop: '10px' }}>
-            <label htmlFor="myEmail" style={{ display: 'block' }}>
-              Email:
+        {({ values, isSubmitting, errors }) => (
+          <Form>
+            <label>
+              Email
+              <Field
+                name="email"
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="email"
+                    value={values.email}
+                    placeholder="you@email.com"
+                  />
+                )}
+              />
+              <ErrorMessage
+                name="email"
+                render={msg => <strong>{msg}</strong>}
+              />
             </label>
-            <input
-              id="myEmail"
-              name="email"
-              value="pauliescanlon@gmail.com"
-              onChange={event => this.onChange(event)}
-            />
-          </div>
 
-          <div style={{ marginTop: '10px' }}>
-            <label htmlFor="myMessage" style={{ display: 'block' }}>
-              name:
+            <label>
+              Message
+              <Field
+                name="message"
+                render={({ field }) => (
+                  <textarea {...field} value={values.message} />
+                )}
+              />
+              <ErrorMessage
+                name="message"
+                render={msg => <strong>{msg}</strong>}
+              />
             </label>
-            <textarea
-              id="myMessage"
-              name="message"
-              value="This is a message"
-              onChange={event => this.onChange(event)}
-            />
-          </div>
 
-          <div style={{ marginTop: '10px' }}>
-            <Button>Submit</Button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
-
+            <Button
+              type="submit"
+              disabled={isSubmitting || !!errors.email || !!errors.message}
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 export default FeedbackForm;
