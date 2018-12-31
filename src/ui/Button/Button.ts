@@ -15,14 +15,14 @@ const getStyles = (size: string) => {
     return {
       padding: `${scaffolding.gutterXs} ${scaffolding.gutterMd}`,
       fontSize: '12px',
-      lineHeight: '16px'
+      lineHeight: '14px'
     };
   }
   if (size === 'lg') {
     return {
       padding: `${scaffolding.gutterMd} ${scaffolding.gutterXl}`,
       fontSize: '18px',
-      lineHeight: '22px'
+      lineHeight: '20px'
     };
   }
   return {

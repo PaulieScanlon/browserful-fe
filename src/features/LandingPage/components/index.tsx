@@ -10,7 +10,7 @@ import { AppBar } from '../../../ui/AppBar';
 import { Button } from '../../../ui/Button';
 import { H1, H4, P } from '../../../ui/Typography';
 
-import { common, colours } from '../../../theme';
+import { common, colours, scaffolding } from '../../../theme';
 
 import { LandingContent, LandingImage, CopyWrapper } from './styles';
 
@@ -22,7 +22,8 @@ const LandingPage: React.SFC = () => {
 
       <Container>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={12} sm={12} md={1} lg={2} />
+          <Col xs={12} sm={12} md={10} lg={8}>
             <LandingContent>
               <CopyWrapper>
                 <H1
@@ -35,12 +36,15 @@ const LandingPage: React.SFC = () => {
                   This is confusing. Browserful isn’t!
                 </H4>
                 <P fontAlign="center">
-                  Using our easy to use sliders you can configure a matrix to
-                  show exactly which browsers you support and which browsers you
-                  don’t.
+                  Use our easy to use sliders to configure a shareable matrix to
+                  show exactly which browsers you support, and which browsers
+                  you don’t!
                 </P>
                 <Link href="/freeview/matrix">
-                  <a className={`${RouterLink}`}>
+                  <a
+                    className={`${RouterLink}`}
+                    style={{ marginTop: scaffolding.gutterLg }}
+                  >
                     <Button size="lg">Try for free</Button>
                   </a>
                 </Link>
@@ -48,6 +52,7 @@ const LandingPage: React.SFC = () => {
               <LandingImage src="/static/images/landing-page.jpg" />
             </LandingContent>
           </Col>
+          <Col xs={12} sm={12} md={1} lg={2} />
         </Row>
       </Container>
     </React.Fragment>
