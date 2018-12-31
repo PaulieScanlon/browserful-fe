@@ -13,6 +13,8 @@ export const colours = {
   green: '#00b256',
   redLight: '#ffefef',
   red: '#ff000f',
+  orangeLight: '#f1c40f',
+  orange: '#f39c12',
   transparent: 'rgba(0,0,0,0)',
   lightBox: 'rgba(50, 50, 50, 0.8)'
 };

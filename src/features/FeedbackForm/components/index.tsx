@@ -1,9 +1,11 @@
 import * as React from 'react';
 import fetch from 'isomorphic-unfetch';
+
+import { Icon } from '../../../ui/Icon';
 import { InputLabel } from '../../../ui/InputLabel';
 import { InputText } from '../../../ui/InputText';
 import { InputTextArea } from '../../../ui/InputTextArea';
-import { InputError } from '../../../ui/InputError';
+import { InputAnnounce } from '../../../ui/InputAnnounce';
 import { Button } from '../../..//ui/Button';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -12,7 +14,8 @@ import * as Yup from 'yup';
 import { Container, Row, Col } from 'react-grid-system';
 
 import { FormWrapper } from './styles';
-import { H2, H4, P } from '../../../ui/Typography';
+import { H2, P } from '../../../ui/Typography';
+import { scaffolding, colours } from '../../../theme';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -34,10 +37,13 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
               question feel free to send us a message.
             </P>
             <Formik
-              initialValues={{ email: '', message: '' }}
+              initialValues={{
+                email: '',
+                message: ''
+              }}
               validationSchema={schema}
               enableReinitialize={true}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
+              onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
                 fetch(`${process.env.BROWSERFUL_API}send/feedback/`, {
                   method: 'POST',
                   headers: {
@@ -50,12 +56,20 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                   .then(() => {
                     setSubmitting(false);
                     resetForm();
+                    setStatus({ displayMessage: true });
                   })
                   .catch(() => {});
               }}
             >
-              {({ values, isSubmitting, errors }) => (
-                <Form>
+              {({ values, isSubmitting, setStatus, status, errors }) => (
+                <Form
+                  onBlur={() => {
+                    setStatus({ displayMessage: false });
+                  }}
+                  onChange={() => {
+                    setStatus({ displayMessage: false });
+                  }}
+                >
                   <InputLabel>
                     Email
                     <Field
@@ -71,7 +85,12 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                     />
                     <ErrorMessage
                       name="email"
-                      render={msg => <InputError>{msg}</InputError>}
+                      render={msg => (
+                        <InputAnnounce variant="error">
+                          <Icon name="error" size="sm" fill={colours.red} />
+                          {msg}
+                        </InputAnnounce>
+                      )}
                     />
                   </InputLabel>
 
@@ -88,12 +107,29 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                     />
                     <ErrorMessage
                       name="message"
-                      render={msg => <InputError>{msg}</InputError>}
+                      render={msg => (
+                        <InputAnnounce variant="error">
+                          <Icon name="error" size="sm" fill={colours.red} />
+                          {msg}
+                        </InputAnnounce>
+                      )}
                     />
                   </InputLabel>
 
+                  {status && status.displayMessage && (
+                    <div style={{ marginBottom: scaffolding.gutterLg }}>
+                      <InputAnnounce variant="success">
+                        <Icon name="success" size="sm" fill={colours.green} />
+                        Thanks! Your message has been sent
+                      </InputAnnounce>
+                    </div>
+                  )}
+
                   <Button
                     type="submit"
+                    onClick={() => {
+                      setStatus({ displayMessage: false });
+                    }}
                     disabled={
                       isSubmitting || !!errors.email || !!errors.message
                     }

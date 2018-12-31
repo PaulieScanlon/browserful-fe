@@ -9,6 +9,7 @@ export const InputText = styled.input({
   fontFamily: font.fontFamily,
   fontSize: font.fontSize,
   color: colours.greyMid,
+  backgroundColor: colours.white,
   outline: 'none',
   border: `1px solid ${colours.greyUltraLight}`,
   caretColor: colours.greyMid,
