@@ -41,7 +41,7 @@ const LandingPage: React.SFC = () => {
                 </P>
                 <Link href="/freeview/matrix">
                   <a className={`${RouterLink}`}>
-                    <Button>Try for free</Button>
+                    <Button size="lg">Try for free</Button>
                   </a>
                 </Link>
               </CopyWrapper>

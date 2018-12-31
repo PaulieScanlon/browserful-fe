@@ -20,8 +20,9 @@ export const colours = {
 };
 
 export const scaffolding = {
-  gutterXl: '32px',
+  gutterXl: '22px',
   gutterLg: '16px',
+  gutterMd: '12px',
   gutterSm: '8px',
   gutterXs: '4px'
 };
