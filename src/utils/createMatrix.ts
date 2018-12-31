@@ -34,16 +34,6 @@ const getVersionsStatus = (
   });
 };
 
-const getVersionsPercentage = (updatedVersions: any) => {
-  const percent =
-    (updatedVersions.filter((version: any) => version.isIncluded === true)
-      .length /
-      updatedVersions.length) *
-    100;
-
-  return Math.round(percent);
-};
-
 export const createMatrix = (
   builtQuery: string,
   incQuery: Array<String>,
@@ -59,14 +49,9 @@ export const createMatrix = (
     return {
       friendlyName: browserDetails[br].friendlyName,
       queryName: browserDetails[br].queryName,
-      percent: getVersionsPercentage(
-        getVersionsStatus(
-          filteredVersions[br],
-          unfiltered[br],
-          incQuery,
-          excQuery
-        )
-      ),
+      includeCount: `${filteredVersions[br].length} of ${
+        unfiltered[br].length
+      }`,
       browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,

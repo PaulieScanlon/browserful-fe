@@ -7,6 +7,7 @@ import { CompoundSlider } from '../../../ui/CompoundSlider';
 import { queryParams } from '../../../utils/queryStrings';
 import { urlSetter } from '../../../utils/urlSetter';
 import { config } from '../config';
+import { DetailsLabel } from '../../../ui/DetailsLabel';
 
 interface IProps {
   queryType: string;
@@ -53,11 +54,15 @@ export class SliderControls extends React.Component<IProps, {}> {
           }
           key={index}
           id={accordionName.id}
-          label={accordionName.label}
-          value={{
-            amount: this.props[accordionName.id],
-            suffix: accordionName.valueSuffix
-          }}
+          renderLabel={() => (
+            <DetailsLabel
+              label={accordionName.label}
+              value={{
+                amount: this.props[accordionName.id],
+                suffix: accordionName.valueSuffix
+              }}
+            />
+          )}
           selectColour={accordionName.selectColour}
           defaultChecked={queryType === accordionName.id ? true : false}
         >

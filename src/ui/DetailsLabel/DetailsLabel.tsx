@@ -13,7 +13,6 @@ import {
 interface IProps {
   label: string;
   logo?: string;
-  // value?: string | number;
   value?: {
     amount: string | number;
     suffix?: string;

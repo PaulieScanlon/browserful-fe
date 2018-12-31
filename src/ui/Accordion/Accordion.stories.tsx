@@ -4,12 +4,9 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 
 import { CompoundSlider } from '../CompoundSlider';
+import { DetailsLabel } from '../DetailsLabel';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
-
-import { createMatrix } from '../../utils/createMatrix';
-
-const mockData = createMatrix('last 2 versions', [], []);
 
 const sliderOnChange = values => {
   action('sliderOnChange')(values[0]);
@@ -146,18 +143,19 @@ stories.add(
 );
 
 stories.add(
-  'logo/id',
-  withInfo(
-    'The logo and id props are used to display any of the predefined BrowserLogos'
-  )(() => (
-    <Accordion type="checkbox" name="storybook-accordion">
+  'renderLabel',
+  withInfo('Displaying DetailsLabel as label using renderLabel()')(() => (
+    <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
       <AccordionItem
-        logo={mockData[0].logo}
-        id={mockData[0].friendlyName}
-        label={mockData[0].friendlyName}
-        value={{
-          amount: mockData[0].percent
-        }}
+        defaultChecked
+        id="item1"
+        renderLabel={() => (
+          <DetailsLabel
+            logo="chrome"
+            label="Chrome"
+            value={{ amount: '2 of 20' }}
+          />
+        )}
       >
         child 1
       </AccordionItem>
@@ -166,8 +164,8 @@ stories.add(
 );
 
 stories.add(
-  'CompoundSlider',
-  withInfo('Displaying CompoundSlider in Accordion Item')(() => (
+  'children',
+  withInfo('Displaying CompoundSlider as Accordion Item child')(() => (
     <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
       <AccordionItem defaultChecked id="item1" label="Item 1">
         <CompoundSlider

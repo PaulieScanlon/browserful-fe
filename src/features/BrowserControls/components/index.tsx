@@ -61,7 +61,7 @@ export class BrowserControls extends React.Component<IProps, {}> {
 
     const browserList = createMatrix(browserQuery, incQuery, excQuery);
 
-    const desktop = browserList.map((browser, i) => {
+    const desktopBrowserCards = browserList.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {
         return (
           <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
@@ -77,7 +77,7 @@ export class BrowserControls extends React.Component<IProps, {}> {
       }
     });
 
-    const mobile = browserList.map((browser, i) => {
+    const mobileBrowserCards = browserList.map((browser, i) => {
       if (browser.platform === platform.MOBILE) {
         return (
           <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
@@ -107,7 +107,7 @@ export class BrowserControls extends React.Component<IProps, {}> {
             <H5>Desktop</H5>
             <Icon fill={queryColour} name="desktop" />
           </TitleBar>
-          {desktop}
+          {desktopBrowserCards}
         </Col>
         <Col xs={12} sm={12} md={12} lg={6}>
           <TitleBar
@@ -117,7 +117,7 @@ export class BrowserControls extends React.Component<IProps, {}> {
             <H5>Mobile / Other</H5>
             <Icon fill={queryColour} name="mobile" />
           </TitleBar>
-          {mobile}
+          {mobileBrowserCards}
         </Col>
       </Row>
     );

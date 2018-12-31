@@ -8,8 +8,6 @@ import {
   AccordionContentInner
 } from './styles';
 
-import { DetailsLabel } from '../DetailsLabel';
-
 import { colours } from '../../theme';
 
 interface IProps {
@@ -21,14 +19,9 @@ interface IProps {
 }
 
 interface EProps extends IProps {
-  label?: string;
   id: string;
-  logo?: string;
-  value?: {
-    amount: string | number;
-    suffix?: string;
-  };
-  showBar?: boolean;
+  label?: string;
+  renderLabel?(): React.ReactNode;
   defaultChecked?: boolean;
   selectColour?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -53,11 +46,9 @@ export const Accordion: React.SFC<IProps> = ({
 };
 
 export const AccordionItem: React.SFC<EProps> = ({
-  label,
   id,
-  logo,
-  value,
-  showBar,
+  label,
+  renderLabel,
   defaultChecked,
   selectColour,
   backgroundColour,
@@ -79,12 +70,8 @@ export const AccordionItem: React.SFC<EProps> = ({
         onChange={event => onChange(event)}
       />
       <AccordionLabel htmlFor={id}>
-        <DetailsLabel
-          label={label ? label : id}
-          logo={logo}
-          value={value}
-          showBar={showBar}
-        />
+        {label}
+        {renderLabel && renderLabel()}
       </AccordionLabel>
 
       <AccordionContent backgroundColour={backgroundColour}>

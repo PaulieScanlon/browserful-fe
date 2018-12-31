@@ -6,7 +6,7 @@ import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { Modal } from '../../../ui/Modal';
 import { VersionChip } from '../../../ui/VersionChip';
 import { OverrideSelect } from '../../../ui/OverrideSelect';
-
+import { DetailsLabel } from '../../../ui/DetailsLabel';
 interface IProps {
   browser: any;
   queryColour: string;
@@ -32,12 +32,13 @@ export const BrowserCard: React.SFC<IProps> = ({
       >
         <AccordionItem
           id={browser.friendlyName}
-          logo={browser.logo}
-          value={{
-            amount: browser.percent,
-            suffix: '%'
-          }}
-          showBar
+          renderLabel={() => (
+            <DetailsLabel
+              label={browser.friendlyName}
+              logo={browser.logo}
+              value={{ amount: browser.includeCount }}
+            />
+          )}
           selectColour={queryColour}
           defaultChecked={browser.defaultChecked}
         >

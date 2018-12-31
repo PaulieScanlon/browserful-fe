@@ -54,6 +54,7 @@ export const AccordionLabel = styled.label({
   label: 'accordion-label',
   display: 'flex',
   alignItems: 'center',
+  minHeight: '56px',
   padding: `0px ${scaffolding.gutterLg}`,
   cursor: 'pointer',
   boxSizing: 'border-box',
