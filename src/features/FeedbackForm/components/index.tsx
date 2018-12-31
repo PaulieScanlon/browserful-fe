@@ -29,8 +29,7 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
     <FormWrapper>
       <Container>
         <Row>
-          <Col xs={1} sm={1} md={2} lg={3} />
-          <Col xs={12} sm={12} md={8} lg={6}>
+          <Col xs={12} sm={12} md={12} lg={12}>
             <H2>Feedback</H2>
             <P>
               If you have any suggestions, found a bug or have a general
@@ -140,7 +139,6 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
               )}
             </Formik>
           </Col>
-          <Col xs={1} sm={1} md={2} lg={3} />
         </Row>
       </Container>
     </FormWrapper>

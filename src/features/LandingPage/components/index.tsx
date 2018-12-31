@@ -3,7 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { RouterLink } from '../../../common/RouterLink';
 
-import { Container, Row, Col } from 'react-grid-system';
+import { Container, Row, Col, Hidden } from 'react-grid-system';
 
 import { HeadTag } from '../../../ui/HeadTag';
 import { AppBar } from '../../../ui/AppBar';
@@ -22,8 +22,7 @@ const LandingPage: React.SFC = () => {
 
       <Container>
         <Row>
-          <Col xs={12} sm={12} md={1} lg={2} />
-          <Col xs={12} sm={12} md={10} lg={8}>
+          <Col xs={12} sm={12} md={12} lg={12}>
             <LandingContent>
               <CopyWrapper>
                 <H1
@@ -49,10 +48,14 @@ const LandingPage: React.SFC = () => {
                   </a>
                 </Link>
               </CopyWrapper>
-              <LandingImage src="/static/images/landing-page.jpg" />
+              <Hidden xs>
+                <LandingImage src="/static/images/landing-page-lg.jpg" />
+              </Hidden>
+              <Hidden sm md lg xl>
+                <LandingImage src="/static/images/landing-page-sm.jpg" />
+              </Hidden>
             </LandingContent>
           </Col>
-          <Col xs={12} sm={12} md={1} lg={2} />
         </Row>
       </Container>
     </React.Fragment>
