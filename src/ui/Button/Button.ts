@@ -51,10 +51,3 @@ export const Button = styled.button<IProps>(
     ...getStyles(size)
   })
 );
-
-// ({ backgroundColour, grow, disabled }) => ({
-//
-//   backgroundColor: disabled ? colours.greyUltraLight : backgroundColour,
-//   width: grow ? '100%' : 'auto',
-//   cursor: disabled ? 'not-allowed' : 'pointer'
-// })
