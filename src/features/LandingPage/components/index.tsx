@@ -3,14 +3,14 @@ import * as React from 'react';
 import Link from 'next/link';
 import { RouterLink } from '../../../common/RouterLink';
 
-import { Container, Row, Col } from 'react-grid-system';
+import { Container, Row, Col, Hidden } from 'react-grid-system';
 
 import { HeadTag } from '../../../ui/HeadTag';
 import { AppBar } from '../../../ui/AppBar';
 import { Button } from '../../../ui/Button';
 import { H1, H4, P } from '../../../ui/Typography';
 
-import { common, colours } from '../../../theme';
+import { common, colours, scaffolding } from '../../../theme';
 
 import { LandingContent, LandingImage, CopyWrapper } from './styles';
 
@@ -35,17 +35,25 @@ const LandingPage: React.SFC = () => {
                   This is confusing. Browserful isn’t!
                 </H4>
                 <P fontAlign="center">
-                  Using our easy to use sliders you can configure a matrix to
-                  show exactly which browsers you support and which browsers you
-                  don’t.
+                  Use our easy to use sliders to configure a shareable matrix to
+                  show exactly which browsers you support, and which browsers
+                  you don’t!
                 </P>
                 <Link href="/freeview/matrix">
-                  <a className={`${RouterLink}`}>
-                    <Button>Try for free</Button>
+                  <a
+                    className={`${RouterLink}`}
+                    style={{ marginTop: scaffolding.gutterLg }}
+                  >
+                    <Button size="lg">Try for free</Button>
                   </a>
                 </Link>
               </CopyWrapper>
-              <LandingImage src="/static/images/landing-page.jpg" />
+              <Hidden xs>
+                <LandingImage src="/static/images/landing-page-lg.jpg" />
+              </Hidden>
+              <Hidden sm md lg xl>
+                <LandingImage src="/static/images/landing-page-sm.jpg" />
+              </Hidden>
             </LandingContent>
           </Col>
         </Row>

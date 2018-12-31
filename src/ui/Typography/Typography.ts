@@ -10,7 +10,7 @@ export const font = {
   display: 'block',
   ...fontFamily,
   fontWeight: 400,
-  fontSize: '14px',
+  fontSize: '16px',
   lineHeight: '18px',
   textAlign: 'left',
   marginTop: 0,

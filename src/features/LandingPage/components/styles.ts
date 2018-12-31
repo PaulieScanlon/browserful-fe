@@ -11,7 +11,7 @@ export const LandingContent = styled.div({
 
 export const LandingImage = styled.img({
   label: 'landing-image',
-  width: '75%',
+  width: '100%',
   height: 'auto',
   margin: '0 auto',
   boxShadow: '0px 0px 30px 0px rgba(0,0,0,0.1)'
