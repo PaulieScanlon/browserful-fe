@@ -31,14 +31,17 @@ export const SwitchInput = styled.input<IProps>(
     top: '-10px',
     left: '-10px',
     display: 'none',
-    ':checked + span': {
+    ':checked + .switch-slider': {
       ':before': {
         transform: 'translateX(14px)'
       }
     }
   },
   ({ selectColour }) => ({
-    ':checked + span': {
+    ':checked + .switch-slider': {
+      '+ .switch-text': {
+        color: colours.greyMid
+      },
       backgroundColor: selectColour
     }
   })
@@ -68,12 +71,13 @@ export const SwitchSlider = styled.span({
 });
 
 export const SwitchText = styled.small({
-  label: 'radio-text',
+  label: 'switch-text',
   fontSize: '14px',
   lineHeight: '16px',
   fontFamily: `${font.fontFamily}`,
   fontWeight: 'normal',
   textAlign: 'center',
   margin: `0px ${scaffolding.gutterSm}`,
-  color: colours.greyLight
+  color: colours.greyLight,
+  transition: transitionBuilder('all')
 });

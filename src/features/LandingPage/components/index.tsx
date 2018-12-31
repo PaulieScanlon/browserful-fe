@@ -10,7 +10,7 @@ import { AppBar } from '../../../ui/AppBar';
 import { Button } from '../../../ui/Button';
 import { H1, H4, P } from '../../../ui/Typography';
 
-import { common, colours, scaffolding } from '../../../theme';
+import { common, scaffolding } from '../../../theme';
 
 import { LandingContent, LandingImage, CopyWrapper } from './styles';
 
@@ -31,9 +31,7 @@ const LandingPage: React.SFC = () => {
                 >
                   Last 5 versions, > 0.1%, not dead
                 </H1>
-                <H4 fontAlign="center" fontColour={colours.greyMid}>
-                  This is confusing. Browserful isn’t!
-                </H4>
+                <H4 fontAlign="center">This is confusing. Browserful isn’t!</H4>
                 <P fontAlign="center">
                   Use our easy to use sliders to configure a shareable matrix to
                   show exactly which browsers you support, and which browsers

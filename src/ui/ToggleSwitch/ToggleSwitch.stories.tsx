@@ -74,7 +74,11 @@ stories.add(
     `ToggleSwitch defaults to flex-grow 1 and justify-content space between to fill it's container and places the label and the input at either end`
   )(() => (
     <div style={{ display: 'flex', width: '200px' }}>
-      <ToggleSwitch flexDirection="row-reverse" id="storybook-togggle-switch">
+      <ToggleSwitch
+        flexDirection="row-reverse"
+        id="storybook-togggle-switch"
+        defaultChecked
+      >
         Label text
       </ToggleSwitch>
     </div>

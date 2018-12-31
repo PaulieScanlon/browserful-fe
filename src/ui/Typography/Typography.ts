@@ -6,7 +6,7 @@ export const fontFamily = {
 };
 
 export const font = {
-  color: `${colours.greyDark}`,
+  color: `${colours.greyMid}`,
   display: 'block',
   ...fontFamily,
   fontWeight: 400,
@@ -46,6 +46,7 @@ export const H1 = styled.h1<IProps>(
   {
     ...(font as any),
     label: 'h1',
+    color: colours.greyDark,
     fontWeight: 700,
     fontSize: '40px',
     lineHeight: '44px'
@@ -61,6 +62,7 @@ export const H2 = styled.h2<IProps>(
   {
     ...(font as any),
     label: 'h2',
+    color: colours.greyDark,
     fontWeight: 700,
     fontSize: '32px',
     lineHeight: '36px'
@@ -75,6 +77,7 @@ export const H3 = styled.h3<IProps>(
   {
     ...(font as any),
     label: 'h3',
+    color: colours.greyDark,
     fontWeight: 700,
     fontSize: '28px',
     lineHeight: '32px'
@@ -89,6 +92,7 @@ export const H4 = styled.h4<IProps>(
   {
     ...(font as any),
     label: 'h4',
+    color: colours.greyDark,
     fontWeight: 400,
     fontSize: '20px',
     lineHeight: '24px'
@@ -104,6 +108,7 @@ export const H5 = styled.h5<IProps>(
   {
     ...(font as any),
     label: 'h5',
+    color: colours.greyDark,
     fontWeight: 400,
     fontSize: '16px',
     lineHeight: '20px',
@@ -119,6 +124,7 @@ export const H6 = styled.h6<IProps>(
   {
     ...(font as any),
     label: 'h6',
+    color: colours.greyDark,
     fontWeight: 400,
     fontSize: '14px',
     lineHeight: '18px',

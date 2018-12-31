@@ -25,7 +25,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <Slider
-        className="css-1ioyo0j-SliderStyles"
+        className="css-at0lk9-SliderStyles"
         domain={
           Array [
             0,
@@ -85,7 +85,7 @@ ShallowWrapper {
             [Function]
           </Ticks>,
         ],
-        "className": "css-1ioyo0j-SliderStyles",
+        "className": "css-at0lk9-SliderStyles",
         "domain": Array [
           0,
           100,
@@ -161,7 +161,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <Slider
-          className="css-1ioyo0j-SliderStyles"
+          className="css-at0lk9-SliderStyles"
           domain={
             Array [
               0,
@@ -221,7 +221,7 @@ ShallowWrapper {
               [Function]
             </Ticks>,
           ],
-          "className": "css-1ioyo0j-SliderStyles",
+          "className": "css-at0lk9-SliderStyles",
           "domain": Array [
             0,
             100,

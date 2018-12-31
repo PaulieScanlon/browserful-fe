@@ -43,15 +43,13 @@ export const createMatrix = (
     const [name, version] = br.split(' ', 2);
     acc[name] = [].concat(acc[name] || [], version);
     return acc;
-  }, {});
+  }, []);
 
   return Object.keys(unfiltered).map(br => {
     return {
       friendlyName: browserDetails[br].friendlyName,
       queryName: browserDetails[br].queryName,
-      includeCount: `${filteredVersions[br].length} of ${
-        unfiltered[br].length
-      }`,
+      includeCount: '', //TODO
       browser: br,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,

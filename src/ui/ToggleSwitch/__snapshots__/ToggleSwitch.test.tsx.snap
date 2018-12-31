@@ -32,8 +32,12 @@ ShallowWrapper {
           selectColour="#ff5ca3"
           type="checkbox"
         />,
-        <SwitchSlider />,
-        <SwitchText />,
+        <SwitchSlider
+          className="switch-slider"
+        />,
+        <SwitchText
+          className="switch-text"
+        />,
       ],
       "flexDirection": "row",
       "htmlFor": "test-togggle-switch",
@@ -60,7 +64,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
-        "props": Object {},
+        "props": Object {
+          "className": "switch-slider",
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -71,6 +77,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": undefined,
+          "className": "switch-text",
         },
         "ref": null,
         "rendered": null,
@@ -93,8 +100,12 @@ ShallowWrapper {
             selectColour="#ff5ca3"
             type="checkbox"
           />,
-          <SwitchSlider />,
-          <SwitchText />,
+          <SwitchSlider
+            className="switch-slider"
+          />,
+          <SwitchText
+            className="switch-text"
+          />,
         ],
         "flexDirection": "row",
         "htmlFor": "test-togggle-switch",
@@ -121,7 +132,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
-          "props": Object {},
+          "props": Object {
+            "className": "switch-slider",
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -132,6 +145,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": undefined,
+            "className": "switch-text",
           },
           "ref": null,
           "rendered": null,
