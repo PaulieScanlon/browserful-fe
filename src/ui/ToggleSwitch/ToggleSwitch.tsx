@@ -34,8 +34,8 @@ export const ToggleSwitch: React.SFC<IProps> = ({
         selectColour={selectColour}
         onChange={event => onChange(event)}
       />
-      <SwitchSlider />
-      <SwitchText>{children}</SwitchText>
+      <SwitchSlider className="switch-slider" />
+      <SwitchText className="switch-text">{children}</SwitchText>
     </SwitchLabel>
   );
 };

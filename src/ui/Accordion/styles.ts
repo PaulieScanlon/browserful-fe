@@ -43,6 +43,7 @@ export const AccordionInput = styled.input<IProps>(
       maxHeight: maxHeight
     },
     ':checked + label': {
+      color: colours.greyMid,
       '&:after': {
         backgroundColor: selectColour
       }
@@ -54,11 +55,12 @@ export const AccordionLabel = styled.label({
   label: 'accordion-label',
   display: 'flex',
   alignItems: 'center',
+  minHeight: '56px',
   padding: `0px ${scaffolding.gutterLg}`,
   cursor: 'pointer',
   boxSizing: 'border-box',
   borderBottom: `1px solid ${colours.greyLight}`,
-  color: colours.greyLight,
+  color: colours.greyUltraLight,
   transition: `${transitionBuilder('color')}`,
   WebkitTapHighlightColor: colours.transparent,
   '&:after': {

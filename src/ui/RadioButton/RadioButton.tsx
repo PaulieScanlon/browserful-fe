@@ -32,8 +32,8 @@ export const RadioButton: React.SFC<IProps> = ({
         selectColour={selectColour}
         onChange={event => onChange(event)}
       />
-      <RadioStyle />
-      <RadioText>{children}</RadioText>
+      <RadioStyle className="radio-style" />
+      <RadioText className="radio-text">{children}</RadioText>
     </RadioLabel>
   );
 };

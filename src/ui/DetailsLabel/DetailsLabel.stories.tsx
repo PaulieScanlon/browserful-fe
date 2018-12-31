@@ -23,13 +23,13 @@ stories.add(
 stories.add(
   'value',
   withInfo(
-    'The value prop is used to display the value of versions covered. Optional suffix can be used to denote value type'
-  )(() => <DetailsLabel label="Chrome" value={{ amount: 66, suffix: '%' }} />)
+    'The value prop is used to display the value of versions covered. or value type as used in the Sliders. Optional suffix can be used to denote value type'
+  )(() => <DetailsLabel label="Chrome" value={{ amount: '3 of 20' }} />)
 );
 
 stories.add(
-  'showBar',
-  withInfo('The showBar prop is used visualise the value value')(() => (
-    <DetailsLabel label="Chrome" value={{ amount: 66 }} showBar />
-  ))
+  'value & suffix',
+  withInfo(
+    'The value prop is used to display the value of versions covered. or value type as used in the Sliders. Optional suffix can be used to denote value type'
+  )(() => <DetailsLabel label="Chrome" value={{ amount: 66, suffix: '%' }} />)
 );

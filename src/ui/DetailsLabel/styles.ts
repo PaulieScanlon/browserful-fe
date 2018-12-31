@@ -1,10 +1,6 @@
 import styled from 'react-emotion';
-import { scaffolding, colours, transitionBuilder } from '../../theme';
+import { scaffolding } from '../../theme';
 import { font } from '../../ui/Typography';
-
-interface IProps {
-  width?: number | string;
-}
 
 export const LabelWrapper = styled.div({
   label: 'label-wrapper',
@@ -14,38 +10,21 @@ export const LabelWrapper = styled.div({
   width: '100%'
 });
 
-export const LabelText = styled.span({
-  label: 'label-text',
+const commonStyles = {
   fontFamily: font.fontFamily,
+  color: 'inherit',
   fontSize: '16px',
   lineHeight: '18px',
   marginRight: scaffolding.gutterLg
+};
+
+export const LabelText = styled.span({
+  label: 'label-text',
+  ...commonStyles
 });
 
 export const BoldText = styled.span({
   label: 'bold-text',
-  fontWeight: 'bold',
-  marginRight: scaffolding.gutterLg
+  ...commonStyles,
+  fontWeight: 'bold'
 });
-
-export const BarChartWrapper = styled.div({
-  label: 'bar-chart-wrapper',
-  position: 'relative',
-  height: '6px',
-  width: '10%',
-  maxWidth: '100px',
-  backgroundColor: colours.offWhite
-});
-
-export const BarChart = styled.div<IProps>(
-  {
-    label: 'bar-chart',
-    position: 'absolute',
-    height: '100%',
-    backgroundColor: colours.green,
-    transition: transitionBuilder('width')
-  },
-  ({ width }) => ({
-    width: `${width}%`
-  })
-);

@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { colours, scaffolding } from '../../theme';
+import { colours, scaffolding, transitionBuilder } from '../../theme';
 import { font } from '../../ui/Typography';
 
 interface IProps {
@@ -33,12 +33,12 @@ export const RadioInput = styled.input<IProps>(
     left: '-10px',
     display: 'none',
 
-    ':checked + span + small': {
+    ':checked + .radio-style + .radio-text': {
       color: colours.greyMid
     }
   },
   ({ selectColour }) => ({
-    ':checked + span': {
+    ':checked + .radio-style': {
       backgroundColor: selectColour
     }
   })
@@ -51,7 +51,8 @@ export const RadioStyle = styled.span({
   borderRadius: '50%',
   width: '16px',
   height: '16px',
-  backgroundColor: colours.greyUltraLight
+  backgroundColor: colours.greyUltraLight,
+  transition: transitionBuilder('all')
 });
 
 export const RadioText = styled.small({
@@ -62,5 +63,6 @@ export const RadioText = styled.small({
   fontWeight: 'normal',
   textAlign: 'center',
   margin: `0px ${scaffolding.gutterSm}`,
-  color: colours.greyLight
+  color: colours.greyLight,
+  transition: transitionBuilder('all')
 });

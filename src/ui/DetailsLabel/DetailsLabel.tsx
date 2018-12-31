@@ -2,30 +2,21 @@ import * as React from 'react';
 
 import { BrowserLogo } from '../BrowserLogo';
 
-import {
-  LabelWrapper,
-  LabelText,
-  BoldText,
-  BarChartWrapper,
-  BarChart
-} from './styles';
+import { LabelWrapper, LabelText, BoldText } from './styles';
 
 interface IProps {
   label: string;
   logo?: string;
-  // value?: string | number;
   value?: {
     amount: string | number;
     suffix?: string;
   };
-  showBar?: boolean;
 }
 
 export const DetailsLabel: React.SFC<IProps> = ({
   label,
   logo,
-  value,
-  showBar
+  value
 }: IProps) => {
   return (
     <LabelWrapper>
@@ -36,12 +27,6 @@ export const DetailsLabel: React.SFC<IProps> = ({
           {value.amount}
           {value.suffix}
         </BoldText>
-      )}
-
-      {showBar && value && (
-        <BarChartWrapper>
-          <BarChart width={value.amount} />
-        </BarChartWrapper>
       )}
     </LabelWrapper>
   );
