@@ -24,11 +24,12 @@ export const constructMatrix = (
         ? 'isIncluded'
         : false || excQuery.includes(concatQueryName)
         ? 'isExcluded'
-        : false
+        : false,
+      platform: browserDetails[name].platform
     };
   });
 
-  const browsersList = versionsList.reduce((acc: Object, version: IVersion) => {
+  const namesList = versionsList.reduce((acc: Object, version: IVersion) => {
     const [name] = version.name.split(' ', 2);
     acc[name] = [].concat(acc[name] || [], {
       ...version
@@ -38,32 +39,22 @@ export const constructMatrix = (
     };
   }, {});
 
-  const browsers = Object.keys(browsersList).map(br => {
+  const browserList = Object.keys(namesList).map(browser => {
     return {
-      friendlyName: browserDetails[br].friendlyName,
-      logo: browserDetails[br].logo,
-      platform: browserDetails[br].platform,
-      totalCount: browsersList[br] ? browsersList[br].length : 0,
-      includedCount: browsersList[br]
-        ? browsersList[br].filter(version => version.isIncluded === true).length
+      friendlyName: browserDetails[browser].friendlyName,
+      logo: browserDetails[browser].logo,
+      platform: browserDetails[browser].platform,
+      totalCount: namesList[browser] ? namesList[browser].length : 0,
+      includedCount: namesList[browser]
+        ? namesList[browser].filter(version => version.isIncluded === true)
+            .length
         : 0,
       expandCard: true,
-      versions: browsersList[br]
+      versions: namesList[browser]
     };
   });
 
-  const totalBrowsers = browsers
-    .map(browser => browser.totalCount)
-    .reduce((a, b) => a + b, 0);
-
-  const totalIncluded = browsers
-    .map(browser => browser.includedCount)
-    .reduce((a, b) => a + b, 0);
-
   return {
-    browsers,
-    totalBrowsers: totalBrowsers,
-    totalIncluded: totalIncluded,
-    percentIncluded: Math.round((totalIncluded / totalBrowsers) * 100)
+    browserList: browserList
   };
 };

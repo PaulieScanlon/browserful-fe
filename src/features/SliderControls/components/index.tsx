@@ -28,7 +28,9 @@ export class SliderControls extends React.Component<IProps, {}> {
     urlSetter(queryParams.QUERY_TYPE, queryType);
     urlSetter(queryParams.SLIDER_VALUES, this.props[queryType]);
 
-    updateQuery(queryType, queryColour);
+    setTimeout(() => {
+      updateQuery(queryType, queryColour);
+    }, 400);
   }
 
   sliderOnChange(value: any) {

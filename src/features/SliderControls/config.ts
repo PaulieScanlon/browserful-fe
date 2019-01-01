@@ -12,7 +12,7 @@ export const config = {
     slider: {
       defaultValue: 5,
       sliderColour: colours.pink,
-      domain: [1, 30],
+      domain: [1, 20],
       step: 1,
       tickCount: 20
     }

@@ -67,12 +67,9 @@ export class BrowserControls extends React.Component<IProps, {}> {
       queryColour
     } = this.props;
 
-    const browserList = constructMatrix(
-      queryType,
-      browserQuery,
-      incQuery,
-      excQuery
-    ).browsers;
+    const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
+
+    const { browserList } = matrix;
 
     const desktopBrowserCards = browserList.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {

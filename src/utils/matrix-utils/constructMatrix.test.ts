@@ -14,12 +14,12 @@ const excQuery = [
 describe('constructMatrix', () => {
   it('returns browsers for LAST_VERSIONS', () => {
     const queryType = queryTypes.LAST_VERSIONS;
-    const browserQuery = 'last 5 versions';
+    const browserQuery = 'last 1 versions';
     const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
 
     expect(matrix).toMatchSnapshot();
     // console.log(matrix);
-    // console.log(...matrix.browsers);
+    // console.log(JSON.stringify(matrix, null, 2));
   });
 
   it('returns browsers for GLOBAL_USAGE', () => {
@@ -29,7 +29,8 @@ describe('constructMatrix', () => {
 
     expect(matrix).toMatchSnapshot();
     // console.log(matrix);
-    // console.log(...matrix.browsers);
+    // console.log(...matrix.browserList);
+    // console.log(JSON.stringify(matrix, null, 2));
   });
 
   it('returns browsers for YEAR_RELEASED', () => {
@@ -39,6 +40,7 @@ describe('constructMatrix', () => {
 
     expect(matrix).toMatchSnapshot();
     // console.log(matrix);
-    // console.log(...matrix.browsers);
+    // console.log(...matrix.browserList);
+    // console.log(JSON.stringify(matrix, null, 2));
   });
 });
