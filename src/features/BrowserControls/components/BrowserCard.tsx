@@ -25,7 +25,7 @@ export const BrowserCard: React.SFC<IProps> = ({
   return (
     <div>
       <Accordion
-        maxHeight="250px"
+        maxHeight="700px"
         type="checkbox"
         name={browser.friendlyName}
         backgroundColour={colours.white}
@@ -36,11 +36,13 @@ export const BrowserCard: React.SFC<IProps> = ({
             <DetailsLabel
               label={browser.friendlyName}
               logo={browser.logo}
-              value={{ amount: browser.includeCount }}
+              value={{
+                amount: `${browser.includedCount} of ${browser.totalCount}`
+              }}
             />
           )}
           selectColour={queryColour}
-          defaultChecked={browser.defaultChecked}
+          defaultChecked={browser.expandCard}
         >
           {browser.versions.map((version: any, index: number) => {
             return (
@@ -48,17 +50,17 @@ export const BrowserCard: React.SFC<IProps> = ({
                 key={index}
                 renderTrigger={() => (
                   <VersionChip
-                    version={version.id}
+                    version={version.version}
                     isIncluded={version.isIncluded}
                     hasOverride={version.hasOverride}
                   />
                 )}
                 renderContent={() => (
                   <OverrideSelect
-                    name={browser.friendlyName}
+                    name={browser.name}
                     friendlyName={browser.friendlyName}
-                    queryName={version.queryName}
-                    version={version.id}
+                    queryName={version.query}
+                    version={version.version}
                     logo={browser.logo}
                     hasOverride={version.hasOverride}
                     onAutoChange={queryName => onAutoChange(queryName)}

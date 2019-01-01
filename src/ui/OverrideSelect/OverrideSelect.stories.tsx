@@ -17,14 +17,11 @@ const onExcludeChange = (browser, version, event) => {
   action('onExcludeChange')(browser, version, event.currentTarget);
 };
 
-import { createMatrix } from '../../utils/createMatrix';
-const mockData = createMatrix('last 2 versions', [''], [''])[7];
-
 const commonProps = {
-  friendlyName: mockData.friendlyName,
-  queryName: mockData.queryName,
-  version: mockData.versions[0].id,
-  logo: mockData.logo
+  friendlyName: 'Chrome',
+  queryName: 'Chrome 70',
+  version: '70',
+  logo: 'chrome'
 };
 
 const stories = storiesOf('OverrideSelect', module);

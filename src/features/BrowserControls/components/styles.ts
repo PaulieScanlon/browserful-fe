@@ -13,11 +13,11 @@ export const TitleBar = styled.div<IProps>(
     alignItems: 'center',
     backgroundColor: colours.white,
     padding: scaffolding.gutterLg,
-    borderLeftStyle: 'solid',
-    borderLeftWidth: '5px',
-    transition: `${transitionBuilder('border-left-color')}`
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '3px',
+    transition: `${transitionBuilder('border-bottom-color')}`
   },
   ({ borderColour }) => ({
-    borderLeftColor: borderColour
+    borderBottomColor: borderColour
   })
 );
