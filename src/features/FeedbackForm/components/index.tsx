@@ -132,6 +132,7 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
                     disabled={
                       isSubmitting || !!errors.email || !!errors.message
                     }
+                    backgroundColour={colours.teal}
                   >
                     Send
                   </Button>

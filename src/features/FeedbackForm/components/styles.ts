@@ -5,5 +5,5 @@ export const FormWrapper = styled.div({
   label: 'form-wrapper',
   height: 'auto',
   padding: `${scaffolding.gutterXl} 0px`,
-  backgroundColor: colours.offWhite
+  backgroundColor: colours.white
 });
