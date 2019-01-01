@@ -18,7 +18,7 @@ export const LandingContent = styled.div({
   minHeight: `calc(100vh - ${common.appBar.height})`,
   justifyContent: 'center',
   [mq[0]]: {
-    margin: '0px'
+    marginBottom: '0px'
   }
 });
 
