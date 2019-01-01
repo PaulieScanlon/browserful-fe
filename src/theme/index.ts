@@ -35,6 +35,12 @@ export const breakpoints = {
   xl: '1200px'
 };
 
+export const mq = Object.keys(breakpoints).map(
+  bp => `@media (min-width: ${breakpoints[bp]})`
+);
+
+console.log(mq);
+
 export const transitionBuilder = (value: string) => `${value} .3s ease-out`;
 
 export const materialBuilder = (level: number) => {

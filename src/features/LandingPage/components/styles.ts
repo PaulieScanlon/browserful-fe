@@ -1,4 +1,6 @@
 import styled from 'react-emotion';
+import { mq } from '../../../theme';
+
 import {
   common,
   colours,
@@ -11,17 +13,21 @@ export const LandingContent = styled.div({
   label: 'landing-content',
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
-  minHeight: '100vh',
-  justifyContent: 'center'
+  margin: `${common.appBar.height} 0px`,
+  height: `calc(100% - ${common.appBar.height})`,
+  minHeight: `calc(100vh - ${common.appBar.height})`,
+  justifyContent: 'center',
+  [mq[0]]: {
+    margin: '0px'
+  }
 });
 
 export const LandingImage = styled.div({
   label: 'landing-image',
   position: 'absolute',
-  marginTop: common.appBar.height,
+  margin: `${common.appBar.height} 0px`,
   width: '100%',
-  height: `calc(100vh - ${common.appBar.height})`,
+  height: `calc(100% - ${common.appBar.height})`,
   minHeight: `calc(100vh - ${common.appBar.height})`,
 
   backgroundImage: `url("/static/images/landing-page-lg.jpg")`,

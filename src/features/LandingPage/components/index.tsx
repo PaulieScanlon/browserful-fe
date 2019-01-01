@@ -3,14 +3,14 @@ import * as React from 'react';
 import Link from 'next/link';
 import { RouterLink } from '../../../common/RouterLink';
 
-import { Container, Row, Col, Hidden } from 'react-grid-system';
+import { Container, Row, Col } from 'react-grid-system';
 
 import { HeadTag } from '../../../ui/HeadTag';
 import { AppBar } from '../../../ui/AppBar';
 import { Button } from '../../../ui/Button';
 import { H1, H4, P } from '../../../ui/Typography';
 
-import { common, scaffolding } from '../../../theme';
+import { scaffolding } from '../../../theme';
 
 import { LandingContent, LandingImage, CopyPanel } from './styles';
 
