@@ -3,17 +3,24 @@ import { constructMatrix } from './constructMatrix';
 import { queryTypes } from '../queryStrings';
 import browserslist from 'browserslist';
 
-const incQuery = ['Chrome 70', 'Chrome 18'];
-const excQuery = ['Chrome 69', 'Chrome 68', 'Chrome 19'];
+const incQuery = ['Chrome 70', 'Chrome 69'];
+const excQuery = [
+  'Explorer 5.5',
+  'Explorer 6',
+  'Explorer 7',
+  'Explorer 8',
+  'Explorer 9'
+];
 
 describe('constructMatrix', () => {
   it('returns browsers for LAST_VERSIONS', () => {
     const queryType = queryTypes.LAST_VERSIONS;
-    const builtQuery = browserslist('last 3 Chrome versions');
+    const builtQuery = browserslist('last 5 versions');
     const matrix = constructMatrix(queryType, builtQuery, incQuery, excQuery);
 
     expect(matrix).toMatchSnapshot();
-    // console.log(...matrix);
+    // console.log(matrix);
+    // console.log(...matrix.browsers);
   });
 
   it('returns browsers for GLOBAL_USAGE', () => {
@@ -22,7 +29,8 @@ describe('constructMatrix', () => {
     const matrix = constructMatrix(queryType, builtQuery, incQuery, excQuery);
 
     expect(matrix).toMatchSnapshot();
-    // console.log(...matrix);
+    // console.log(matrix);
+    // console.log(...matrix.browsers);
   });
 
   it('returns browsers for YEAR_RELEASED', () => {
@@ -31,6 +39,7 @@ describe('constructMatrix', () => {
     const matrix = constructMatrix(queryType, builtQuery, incQuery, excQuery);
 
     expect(matrix).toMatchSnapshot();
-    // console.log(...matrix);
+    // console.log(matrix);
+    // console.log(...matrix.browsers);
   });
 });
