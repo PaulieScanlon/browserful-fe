@@ -6,7 +6,7 @@ export enum queryParams {
 }
 
 export enum queryTypes {
+  LAST_VERSIONS = 'lastVersions',
   GLOBAL_USAGE = 'globalUsage',
-  YEAR_RELEASED = 'yearReleased',
-  LAST_VERSIONS = 'lastVersions'
+  YEAR_RELEASED = 'yearReleased'
 }
