@@ -107,7 +107,7 @@ class Matrix extends React.Component<IProps, IState> {
 
         <Container
           style={{
-            margin: `${scaffolding.gutterLg} auto`
+            margin: `${scaffolding.gutterSm} auto`
           }}
         >
           {isLoaded && <SliderControls />}
