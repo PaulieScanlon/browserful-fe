@@ -1,6 +1,6 @@
 export const colours = {
   pink: '#ff5ca3',
-  blue: '#00b5fe',
+  blue: '#40c4ff',
   teal: '#36e5d0',
   purple: '#8b76bb',
   greyDark: '#333333',
@@ -20,6 +20,7 @@ export const colours = {
 };
 
 export const scaffolding = {
+  gutterXxl: '42px',
   gutterXl: '22px',
   gutterLg: '16px',
   gutterMd: '12px',
@@ -42,7 +43,8 @@ export const materialBuilder = (level: number) => {
     2: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     3: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     4: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
-    5: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'
+    5: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
+    6: '0px 0px 30px 0px rgba(0,0,0,0.3)'
   };
 
   return material[level];
