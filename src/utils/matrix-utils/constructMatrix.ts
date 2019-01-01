@@ -1,3 +1,4 @@
+import browserslist from 'browserslist';
 import { browserDetails } from '../browserDetails';
 import { fullArrays } from './full-arrays';
 
@@ -5,10 +6,12 @@ import { IVersion } from './types';
 
 export const constructMatrix = (
   queryType: string,
-  builtQuery: Array<String>,
+  browserQuery: string,
   incQuery: Array<String>,
   excQuery: Array<String>
 ) => {
+  const builtQuery = browserslist(`${browserQuery}`);
+
   const versionsList = fullArrays[queryType].map((browser: string) => {
     const [name, version] = browser.split(' ', 2);
     let concatQueryName = `${browserDetails[name].queryName} ${version}`;
@@ -40,7 +43,6 @@ export const constructMatrix = (
       friendlyName: browserDetails[br].friendlyName,
       logo: browserDetails[br].logo,
       platform: browserDetails[br].platform,
-
       totalCount: browsersList[br] ? browsersList[br].length : 0,
       includedCount: browsersList[br]
         ? browsersList[br].filter(version => version.isIncluded === true).length

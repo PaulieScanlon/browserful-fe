@@ -9,7 +9,9 @@ import { Icon } from '../../../ui/Icon';
 import { H5 } from '../../../ui/Typography';
 
 import { platform } from '../../../utils/browserDetails';
-import { createMatrix } from '../../../utils/createMatrix';
+
+import { constructMatrix } from '../../../utils/matrix-utils/constructMatrix';
+
 import { queryParams } from '../../../utils/queryStrings';
 import { urlSetter } from '../../../utils/urlSetter';
 import { arrayAdd } from '../../../utils/arrayAdd';
@@ -57,9 +59,20 @@ export class BrowserControls extends React.Component<IProps, {}> {
   }
 
   render() {
-    const { browserQuery, incQuery, excQuery, queryColour } = this.props;
+    const {
+      browserQuery,
+      queryType,
+      incQuery,
+      excQuery,
+      queryColour
+    } = this.props;
 
-    const browserList = createMatrix(browserQuery, incQuery, excQuery);
+    const browserList = constructMatrix(
+      queryType,
+      browserQuery,
+      incQuery,
+      excQuery
+    ).browsers;
 
     const desktopBrowserCards = browserList.map((browser, i) => {
       if (browser.platform === platform.DESKTOP) {

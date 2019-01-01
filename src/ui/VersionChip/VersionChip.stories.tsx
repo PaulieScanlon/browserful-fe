@@ -7,11 +7,8 @@ import { VersionChip } from './VersionChip';
 
 const stories = storiesOf('VersionChip', module);
 
-import { createMatrix } from '../../utils/createMatrix';
-const mockData = createMatrix('last 2 versions', [''], [''])[7];
-
 const commonProps = {
-  version: mockData.versions[0].id
+  version: '70'
 };
 
 const StoryDiv = styled.div({
