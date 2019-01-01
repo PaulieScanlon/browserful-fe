@@ -8,7 +8,7 @@ export const fullArrays = {
   ),
 
   [queryTypes.GLOBAL_USAGE]: browserslist(
-    `<= ${config[queryTypes.GLOBAL_USAGE].slider.domain[1]}%`
+    `< ${config[queryTypes.GLOBAL_USAGE].slider.domain[1]}%`
   ),
 
   [queryTypes.YEAR_RELEASED]: browserslist(

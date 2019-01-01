@@ -1,6 +1,8 @@
 import { queryTypes } from '../../utils/queryStrings';
 import { colours } from '../../theme';
 
+const currentYear = new Date().getFullYear();
+
 export const config = {
   [queryTypes.LAST_VERSIONS]: {
     id: queryTypes.LAST_VERSIONS,
@@ -10,7 +12,7 @@ export const config = {
     slider: {
       defaultValue: 5,
       sliderColour: colours.pink,
-      domain: [1, 20],
+      domain: [1, 30],
       step: 1,
       tickCount: 20
     }
@@ -24,8 +26,8 @@ export const config = {
     slider: {
       defaultValue: 0.3,
       sliderColour: colours.blue,
-      domain: [0, 1],
-      step: 0.001,
+      domain: [0, 2],
+      step: 0.01,
       tickCount: 14
     }
   },
@@ -38,7 +40,7 @@ export const config = {
     slider: {
       defaultValue: 2015,
       sliderColour: colours.teal,
-      domain: [2010, 2018],
+      domain: [currentYear - 10, currentYear],
       step: 1,
       tickCount: 8
     }

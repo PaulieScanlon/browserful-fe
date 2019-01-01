@@ -58,9 +58,9 @@ export const BrowserCard: React.SFC<IProps> = ({
                 renderContent={() => (
                   <OverrideSelect
                     name={browser.name}
-                    friendlyName={browser.name}
+                    friendlyName={browser.friendlyName}
                     queryName={version.query}
-                    version={version.id}
+                    version={version.version}
                     logo={browser.logo}
                     hasOverride={version.hasOverride}
                     onAutoChange={queryName => onAutoChange(queryName)}
