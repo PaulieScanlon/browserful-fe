@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { colours, scaffolding } from '../../theme';
+import { colours, scaffolding, mq } from '../../theme';
 
 export const fontFamily = {
   fontFamily: `Lato, sans-serif`
@@ -48,8 +48,12 @@ export const H1 = styled.h1<IProps>(
     label: 'h1',
     color: colours.greyDark,
     fontWeight: 700,
-    fontSize: '40px',
-    lineHeight: '44px'
+    fontSize: '32px',
+    lineHeight: '34px',
+    [mq[0]]: {
+      fontSize: '40px',
+      lineHeight: '44px'
+    }
   },
   ({ fontColour, display, fontAlign }) => ({
     color: fontColour,
@@ -94,8 +98,8 @@ export const H4 = styled.h4<IProps>(
     label: 'h4',
     color: colours.greyDark,
     fontWeight: 400,
-    fontSize: '20px',
-    lineHeight: '24px'
+    fontSize: '22px',
+    lineHeight: '26px'
   },
   ({ fontColour, display, fontAlign }) => ({
     color: fontColour,

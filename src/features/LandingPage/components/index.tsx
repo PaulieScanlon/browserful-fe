@@ -26,7 +26,10 @@ const LandingPage: React.SFC = () => {
           <Col xs={12} sm={12} md={12} lg={12}>
             <LandingContent>
               <CopyPanel>
-                <H1 fontAlign="center">Last 5 versions, > 0.1%, not dead</H1>
+                <H1 fontAlign="center">
+                  <span>Last 5 versions, </span>
+                  <span>>0.1%, not dead</span>
+                </H1>
                 <H4 fontAlign="center">This is confusing. Browserful isn’t!</H4>
                 <P fontAlign="center">
                   Use our easy to use sliders to configure a shareable matrix to
@@ -38,7 +41,9 @@ const LandingPage: React.SFC = () => {
                     className={`${RouterLink}`}
                     style={{ marginTop: scaffolding.gutterLg }}
                   >
-                    <Button size="lg">Try for free</Button>
+                    <Button style={{ margin: '0 auto' }} size="lg">
+                      Try for free
+                    </Button>
                   </a>
                 </Link>
               </CopyPanel>
