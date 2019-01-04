@@ -1,7 +1,4 @@
-export enum platform {
-  MOBILE = 'mobile',
-  DESKTOP = 'desktop'
-}
+import { platform } from './enums';
 
 export const browserDetails = {
   and_chr: {

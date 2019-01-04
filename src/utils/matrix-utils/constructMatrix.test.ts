@@ -1,46 +1,65 @@
+import browserslist from 'browserslist';
 import { constructMatrix } from './constructMatrix';
 
-import { queryTypes } from '../queryStrings';
+const incQuery = ['Safari 12', 'Samsung 7.2'];
+const excQuery = ['Safari 11.1', 'Samsung 6.2'];
 
-const incQuery = ['Chrome 70', 'Chrome 69'];
-const excQuery = [
-  'Explorer 5.5',
-  'Explorer 6',
-  'Explorer 7',
-  'Explorer 8',
-  'Explorer 9'
-];
+const typeATest = browserslist(
+  'last 4 Safari versions, last 4 Samsung versions'
+);
 
 describe('constructMatrix', () => {
-  it('returns browsers for LAST_VERSIONS', () => {
-    const queryType = queryTypes.LAST_VERSIONS;
-    const browserQuery = 'last 1 versions';
-    const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
+  it('returns the correct browserObject shape : typeATest', () => {
+    // const browserQuery = 'last 1 Safari versions, last 1 Samsung versions';
+    const browserQuery = 'last 1 Safari versions';
+    const matrix = constructMatrix(browserQuery, typeATest, incQuery, excQuery);
 
-    expect(matrix).toMatchSnapshot();
-    // console.log(matrix);
+    console.log(JSON.stringify(matrix, null, 2));
+
+    // expect(matrix).toMatchSnapshot();
+    // expect(matrix.includedVersions.dekstop).toEqual(1);
+    // expect(matrix.includedVersions.mobile).toEqual(1);
+    // expect(matrix.includedVersions.combined).toEqual(2);
+
     // console.log(JSON.stringify(matrix, null, 2));
   });
+  // it('returns correct browser object shape', () => {
 
-  it('returns browsers for GLOBAL_USAGE', () => {
-    const queryType = queryTypes.GLOBAL_USAGE;
-    const browserQuery = '>= 0.1%';
-    const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
+  //   const browserQuery = 'last 5 versions';
+  //   const matrix = constructMatrix(
+  //     browserQuery,
+  //     typeATest,
+  //     incQuery,
+  //     excQuery
+  //   );
 
-    expect(matrix).toMatchSnapshot();
-    // console.log(matrix);
-    // console.log(...matrix.browserList);
-    // console.log(JSON.stringify(matrix, null, 2));
-  });
+  //   const browserObject = matrix.browserList.desktop;
+  //   expect(matrix).toMatchSnapshot();
+  //   expect(browserObject.friendlyName).toBeDefined();
+  //   expect(browserObject.logo).toBeDefined();
+  //   expect(browserObject.platform).toBeDefined();
+  //   expect(browserObject.includedVersions).toBeDefined();
+  //   expect(browserObject.totalVersions).toBeDefined();
+  //   expect(browserObject.expandCard).toBeDefined();
+  //   expect(Array.isArray(browserObject.versions)).toBe(true);
+  // });
+  // it('returns correct version object shape', () => {
 
-  it('returns browsers for YEAR_RELEASED', () => {
-    const queryType = queryTypes.YEAR_RELEASED;
-    const browserQuery = 'since 2018';
-    const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
+  //   const browserQuery = 'last 5 versions';
+  //   const matrix = constructMatrix(
+  //     browserQuery,
+  //     typeATest,
+  //     incQuery,
+  //     excQuery
+  //   );
 
-    expect(matrix).toMatchSnapshot();
-    // console.log(matrix);
-    // console.log(...matrix.browserList);
-    // console.log(JSON.stringify(matrix, null, 2));
-  });
+  //   const versionsObject = matrix.browserList.desktop[2].versions[0];
+  //   expect(matrix).toMatchSnapshot();
+  //   expect(versionsObject.query).toBeDefined();
+  //   expect(versionsObject.name).toBeDefined();
+  //   expect(versionsObject.version).toBeDefined();
+  //   expect(versionsObject.isIncluded).toBeDefined();
+  //   expect(versionsObject.hasOverride).toBeDefined();
+  //   expect(versionsObject.platform).toBeDefined();
+  // });
 });

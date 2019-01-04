@@ -8,8 +8,7 @@ import { BrowserCard } from './BrowserCard';
 import { Icon } from '../../../ui/Icon';
 import { H5 } from '../../../ui/Typography';
 
-import { platform } from '../../../utils/browserDetails';
-
+import { comparisonArrays } from '../../../utils/matrix-utils/comparison-arrays';
 import { constructMatrix } from '../../../utils/matrix-utils/constructMatrix';
 
 import { queryParams } from '../../../utils/queryStrings';
@@ -67,40 +66,41 @@ export class BrowserControls extends React.Component<IProps, {}> {
       queryColour
     } = this.props;
 
-    const matrix = constructMatrix(queryType, browserQuery, incQuery, excQuery);
+    const matrix = constructMatrix(
+      browserQuery,
+      comparisonArrays[queryType],
+      incQuery,
+      excQuery
+    );
 
     const { browserList } = matrix;
 
-    const desktopBrowserCards = browserList.map((browser, i) => {
-      if (browser.platform === platform.DESKTOP) {
-        return (
-          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-            <BrowserCard
-              browser={browser}
-              queryColour={queryColour}
-              onAutoChange={queryName => this.onAutoChange(queryName)}
-              onIncludeChange={queryName => this.onIncludeChange(queryName)}
-              onExcludeChange={queryName => this.onExcludeChange(queryName)}
-            />
-          </div>
-        );
-      }
+    const desktopBrowserCards = browserList.desktop.map((browser, i) => {
+      return (
+        <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+          <BrowserCard
+            browser={browser}
+            queryColour={queryColour}
+            onAutoChange={queryName => this.onAutoChange(queryName)}
+            onIncludeChange={queryName => this.onIncludeChange(queryName)}
+            onExcludeChange={queryName => this.onExcludeChange(queryName)}
+          />
+        </div>
+      );
     });
 
-    const mobileBrowserCards = browserList.map((browser, i) => {
-      if (browser.platform === platform.MOBILE) {
-        return (
-          <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-            <BrowserCard
-              browser={browser}
-              queryColour={queryColour}
-              onAutoChange={queryName => this.onAutoChange(queryName)}
-              onIncludeChange={queryName => this.onIncludeChange(queryName)}
-              onExcludeChange={queryName => this.onExcludeChange(queryName)}
-            />
-          </div>
-        );
-      }
+    const mobileBrowserCards = browserList.mobile.map((browser, i) => {
+      return (
+        <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+          <BrowserCard
+            browser={browser}
+            queryColour={queryColour}
+            onAutoChange={queryName => this.onAutoChange(queryName)}
+            onIncludeChange={queryName => this.onIncludeChange(queryName)}
+            onExcludeChange={queryName => this.onExcludeChange(queryName)}
+          />
+        </div>
+      );
     });
 
     return (

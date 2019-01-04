@@ -28,7 +28,7 @@ const LandingPage: React.SFC = () => {
               <CopyPanel>
                 <H1 fontAlign="center">
                   <span>Last 5 versions, </span>
-                  <span>>0.1%, not dead</span>
+                  <span>> 0.1%, not dead</span>
                 </H1>
                 <H4 fontAlign="center">This is confusing. Browserful isn’t!</H4>
                 <P fontAlign="center">
