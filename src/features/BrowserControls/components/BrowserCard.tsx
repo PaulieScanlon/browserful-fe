@@ -37,7 +37,7 @@ export const BrowserCard: React.SFC<IProps> = ({
               label={browser.friendlyName}
               logo={browser.logo}
               value={{
-                amount: `${browser.includedCount} of ${browser.totalCount}`
+                amount: `${browser.totalIncluded} of ${browser.total}`
               }}
             />
           )}

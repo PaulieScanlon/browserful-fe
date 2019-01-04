@@ -1,0 +1,18 @@
+{
+  "friendlyName": "Safari",
+  "logo": "safari",
+  "platform": "desktop",
+  "includedVersions": 1,
+  "totalVersions": 4,
+  "expandCard": true,
+  "versions": [
+    {
+      "query": "Safari 12",
+      "name": "safari",
+      "version": "12",
+      "isIncluded": true,
+      "hasOverride": "isIncluded",
+      "platform": "desktop"
+    }
+  ]
+}

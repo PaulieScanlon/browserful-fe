@@ -2,7 +2,7 @@ import browserslist from 'browserslist';
 import { queryTypes } from '../queryStrings';
 import { config } from '../../features/SliderControls/config';
 
-export const fullArrays = {
+export const comparisonQuery = {
   [queryTypes.LAST_VERSIONS]: browserslist(
     `last ${config[queryTypes.LAST_VERSIONS].slider.domain[1]} versions`
   ),

@@ -1,60 +1,112 @@
 import browserslist from 'browserslist';
-import { browserDetails } from '../browserDetails';
-import { fullArrays } from './full-arrays';
-
-import { IVersion } from './types';
+import { browserDetails } from './browserDetails';
+import { platform, overrides } from './enums';
 
 export const constructMatrix = (
-  queryType: string,
   browserQuery: string,
+  comparisonArray: Array<String>,
   incQuery: Array<String>,
   excQuery: Array<String>
 ) => {
   const builtQuery = browserslist(`${browserQuery}`);
 
-  const versionsList = fullArrays[queryType].map((browser: string) => {
-    const [name, version] = browser.split(' ', 2);
-    let concatQueryName = `${browserDetails[name].queryName} ${version}`;
-    return {
-      query: concatQueryName,
-      name: name,
-      version: version,
-      isIncluded: builtQuery.includes(browser),
-      hasOverride: incQuery.includes(concatQueryName)
-        ? 'isIncluded'
-        : false || excQuery.includes(concatQueryName)
-        ? 'isExcluded'
-        : false,
-      platform: browserDetails[name].platform
-    };
-  });
+  const getIsIncluded = version => version.isIncluded;
+  const getIsExcluded = version => !version.isIncluded;
 
-  const namesList = versionsList.reduce((acc: Object, version: IVersion) => {
-    const [name] = version.name.split(' ', 2);
-    acc[name] = [].concat(acc[name] || [], {
-      ...version
-    });
-    return {
-      ...acc
-    };
-  }, {});
+  const getOverrride = q =>
+    incQuery.includes(q)
+      ? overrides.IS_INCLUDED
+      : false || excQuery.includes(q)
+      ? overrides.IS_EXCLUDED
+      : false;
 
-  const browserList = Object.keys(namesList).map(browser => {
-    return {
-      friendlyName: browserDetails[browser].friendlyName,
-      logo: browserDetails[browser].logo,
-      platform: browserDetails[browser].platform,
-      totalCount: namesList[browser] ? namesList[browser].length : 0,
-      includedCount: namesList[browser]
-        ? namesList[browser].filter(version => version.isIncluded === true)
-            .length
-        : 0,
-      expandCard: true,
-      versions: namesList[browser]
-    };
-  });
+  const getTotalIncluded = (sum, item) => sum + item.totalIncluded;
+  const getTotalExcluded = (sum, item) => sum + item.totalExcluded;
+
+  const getTotal = (sum, item) => sum + item.total;
+
+  const browserObject: any = comparisonArray
+    .map(result => {
+      const [name, version] = result.split(' ', 2);
+      return {
+        name: name,
+        version: version,
+        platform: browserDetails[name].platform
+      };
+    })
+    .reduce((browser, item) => {
+      const { name, version } = item;
+
+      browser[name] = browser[name] || {
+        ...browserDetails[name],
+        totalIncluded: 0,
+        totalExcluded: 0,
+        total: 0,
+        expandCard: true,
+        versions: []
+      };
+
+      let q = `${name} ${version}`;
+
+      browser[name].versions.push({
+        friendlyName: browserDetails[name].friendlyName,
+        query: q,
+        version: version,
+        isIncluded:
+          getOverrride(q) === overrides.IS_EXCLUDED
+            ? false
+            : builtQuery.includes(q),
+        hasOverride: getOverrride(q),
+        platform: browserDetails[name].platform
+      });
+
+      browser[name].totalIncluded = browser[name].versions.filter(
+        getIsIncluded
+      ).length;
+
+      browser[name].totalExcluded = browser[name].versions.filter(
+        getIsExcluded
+      ).length;
+
+      browser[name].total = browser[name].versions.length
+        ? browser[name].versions.length
+        : 0;
+
+      return browser;
+    }, {});
+
+  const platformObject = Object.keys(browserObject)
+    .map(browser => {
+      const [name] = browser.split(' ', 1);
+      return browserObject[name];
+    })
+    .reduce(
+      (platforms, item) => {
+        const { platform } = item;
+
+        platforms[platform].push(item);
+
+        return platforms;
+      },
+      { [platform.DESKTOP]: [], [platform.MOBILE]: [] }
+    );
 
   return {
-    browserList: browserList
+    browserList: {
+      desktop: platformObject.desktop,
+      mobile: platformObject.mobile
+    },
+    includedList: {
+      desktop: platformObject.desktop.reduce(getTotalIncluded, 0),
+      mobile: platformObject.mobile.reduce(getTotalIncluded, 0)
+    },
+    excludedList: {
+      desktop: platformObject.desktop.reduce(getTotalExcluded, 0),
+      mobile: platformObject.mobile.reduce(getTotalExcluded, 0)
+    },
+    total: {
+      desktop: platformObject.desktop.reduce(getTotal, 0),
+      mobile: platformObject.mobile.reduce(getTotal, 0)
+    }
   };
 };

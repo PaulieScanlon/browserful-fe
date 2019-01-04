@@ -83,7 +83,7 @@ export class SliderControls extends React.Component<IProps, {}> {
 
     return (
       <Row>
-        <Col xs={12} sm={12} md={12} lg={12}>
+        <Col xs={12} sm={12} md={7} lg={9}>
           <Accordion maxHeight="200px" type="radio" name="controls-accordion">
             {accordionItems}
           </Accordion>
