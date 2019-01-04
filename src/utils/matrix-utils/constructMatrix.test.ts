@@ -5,13 +5,14 @@ const incQuery = ['safari 12', 'samsung 7.2'];
 const excQuery = ['safari 11.1', 'samsung 6.2'];
 
 const typeATest = browserslist(
-  'last 5 safari versions, last 4 samsung versions'
+  'last 4 chrome versions, last 4 safari versions, last 4 samsung versions, last 4 operamobile versions'
 );
 
 describe('constructMatrix', () => {
   it('returns the correct browserObject shape : typeATest', () => {
     // const browserQuery = 'last 1 Safari versions, last 1 Samsung versions';
-    const browserQuery = 'last 1 safari versions, last 1 samsung versions';
+    const browserQuery =
+      'last 1 chrome versions, last 3 safari versions, last 1 samsung versions, last 2 operamobile versions';
     const matrix = constructMatrix(browserQuery, typeATest, incQuery, excQuery);
 
     console.log(JSON.stringify(matrix, null, 2));
