@@ -1,17 +1,17 @@
 import browserslist from 'browserslist';
 import { constructMatrix } from './constructMatrix';
 
-const incQuery = ['Safari 12', 'Samsung 7.2'];
-const excQuery = ['Safari 11.1', 'Samsung 6.2'];
+const incQuery = ['safari 12', 'samsung 7.2'];
+const excQuery = ['safari 11.1', 'samsung 6.2'];
 
 const typeATest = browserslist(
-  'last 4 Safari versions, last 4 Samsung versions'
+  'last 5 safari versions, last 4 samsung versions'
 );
 
 describe('constructMatrix', () => {
   it('returns the correct browserObject shape : typeATest', () => {
     // const browserQuery = 'last 1 Safari versions, last 1 Samsung versions';
-    const browserQuery = 'last 1 Safari versions';
+    const browserQuery = 'last 1 safari versions, last 1 samsung versions';
     const matrix = constructMatrix(browserQuery, typeATest, incQuery, excQuery);
 
     console.log(JSON.stringify(matrix, null, 2));
