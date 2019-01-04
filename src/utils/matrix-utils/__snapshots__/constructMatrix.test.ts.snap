@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constructMatrix matches snapshot 1`] = `
+Object {
+  "browserList": Object {
+    "desktop": Array [
+      Object {
+        "expandCard": true,
+        "friendlyName": "Chrome",
+        "logo": "chrome",
+        "platform": "desktop",
+        "total": 1,
+        "totalExcluded": 0,
+        "totalIncluded": 1,
+        "versions": Array [
+          Object {
+            "friendlyName": "Chrome",
+            "hasOverride": false,
+            "isIncluded": true,
+            "platform": "desktop",
+            "query": "chrome 70",
+            "version": "70",
+          },
+        ],
+      },
+    ],
+    "mobile": Array [
+      Object {
+        "expandCard": true,
+        "friendlyName": "Chrome (Android)",
+        "logo": "chrome-for-android",
+        "platform": "mobile",
+        "total": 1,
+        "totalExcluded": 0,
+        "totalIncluded": 1,
+        "versions": Array [
+          Object {
+            "friendlyName": "Chrome (Android)",
+            "hasOverride": false,
+            "isIncluded": true,
+            "platform": "mobile",
+            "query": "and_chr 70",
+            "version": "70",
+          },
+        ],
+      },
+    ],
+  },
+  "excludedList": Object {
+    "desktop": 0,
+    "mobile": 0,
+  },
+  "includedList": Object {
+    "desktop": 1,
+    "mobile": 1,
+  },
+  "total": Object {
+    "desktop": 1,
+    "mobile": 1,
+  },
+}
+`;

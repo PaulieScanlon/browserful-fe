@@ -8,7 +8,7 @@ import { BrowserCard } from './BrowserCard';
 import { Icon } from '../../../ui/Icon';
 import { H5 } from '../../../ui/Typography';
 
-import { comparisonArrays } from '../../../utils/matrix-utils/comparison-arrays';
+import { comparisonQuery } from '../../../utils/matrix-utils/comparison-query';
 import { constructMatrix } from '../../../utils/matrix-utils/constructMatrix';
 
 import { queryParams } from '../../../utils/queryStrings';
@@ -68,7 +68,7 @@ export class BrowserControls extends React.Component<IProps, {}> {
 
     const matrix = constructMatrix(
       browserQuery,
-      comparisonArrays[queryType],
+      comparisonQuery[queryType],
       incQuery,
       excQuery
     );

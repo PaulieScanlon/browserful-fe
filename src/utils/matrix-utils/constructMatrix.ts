@@ -52,7 +52,10 @@ export const constructMatrix = (
         friendlyName: browserDetails[name].friendlyName,
         query: q,
         version: version,
-        isIncluded: builtQuery.includes(q),
+        isIncluded:
+          getOverrride(q) === overrides.IS_EXCLUDED
+            ? false
+            : builtQuery.includes(q),
         hasOverride: getOverrride(q),
         platform: browserDetails[name].platform
       });

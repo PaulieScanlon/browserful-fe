@@ -1,66 +1,171 @@
 import browserslist from 'browserslist';
 import { constructMatrix } from './constructMatrix';
-
-const incQuery = ['safari 12', 'samsung 7.2'];
-const excQuery = ['safari 11.1', 'samsung 6.2'];
-
-const typeATest = browserslist(
-  'last 4 chrome versions, last 4 safari versions, last 4 samsung versions, last 4 operamobile versions'
-);
+import { string } from 'prop-types';
 
 describe('constructMatrix', () => {
-  it('returns the correct browserObject shape : typeATest', () => {
-    // const browserQuery = 'last 1 Safari versions, last 1 Samsung versions';
-    const browserQuery =
-      'last 1 chrome versions, last 3 safari versions, last 1 samsung versions, last 2 operamobile versions';
-    const matrix = constructMatrix(browserQuery, typeATest, incQuery, excQuery);
+  it('matches snapshot', () => {
+    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
 
-    console.log(JSON.stringify(matrix, null, 2));
-
-    // expect(matrix).toMatchSnapshot();
-    // expect(matrix.includedVersions.dekstop).toEqual(1);
-    // expect(matrix.includedVersions.mobile).toEqual(1);
-    // expect(matrix.includedVersions.combined).toEqual(2);
+    const matrix = constructMatrix(
+      'chrome 70, chromeandroid 69',
+      comparisonQuery,
+      [],
+      []
+    );
 
     // console.log(JSON.stringify(matrix, null, 2));
+    expect(matrix).toMatchSnapshot();
   });
-  // it('returns correct browser object shape', () => {
 
-  //   const browserQuery = 'last 5 versions';
-  //   const matrix = constructMatrix(
-  //     browserQuery,
-  //     typeATest,
-  //     incQuery,
-  //     excQuery
-  //   );
+  it('returns correct keys for browserList', () => {
+    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
 
-  //   const browserObject = matrix.browserList.desktop;
-  //   expect(matrix).toMatchSnapshot();
-  //   expect(browserObject.friendlyName).toBeDefined();
-  //   expect(browserObject.logo).toBeDefined();
-  //   expect(browserObject.platform).toBeDefined();
-  //   expect(browserObject.includedVersions).toBeDefined();
-  //   expect(browserObject.totalVersions).toBeDefined();
-  //   expect(browserObject.expandCard).toBeDefined();
-  //   expect(Array.isArray(browserObject.versions)).toBe(true);
-  // });
-  // it('returns correct version object shape', () => {
+    const matrix = constructMatrix(
+      'chrome 70, chromeandroid 69',
+      comparisonQuery,
+      [],
+      []
+    );
 
-  //   const browserQuery = 'last 5 versions';
-  //   const matrix = constructMatrix(
-  //     browserQuery,
-  //     typeATest,
-  //     incQuery,
-  //     excQuery
-  //   );
+    expect(matrix.browserList).toBeDefined();
+    expect(matrix.browserList.desktop).toBeDefined();
+    expect(matrix.browserList.mobile).toBeDefined();
+  });
 
-  //   const versionsObject = matrix.browserList.desktop[2].versions[0];
-  //   expect(matrix).toMatchSnapshot();
-  //   expect(versionsObject.query).toBeDefined();
-  //   expect(versionsObject.name).toBeDefined();
-  //   expect(versionsObject.version).toBeDefined();
-  //   expect(versionsObject.isIncluded).toBeDefined();
-  //   expect(versionsObject.hasOverride).toBeDefined();
-  //   expect(versionsObject.platform).toBeDefined();
-  // });
+  it('returns correct shape for browserObject', () => {
+    const comparisonQuery = browserslist('chrome 70');
+
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+
+    const {
+      friendlyName,
+      logo,
+      platform,
+      totalIncluded,
+      totalExcluded,
+      total,
+      expandCard
+    } = matrix.browserList.desktop[0];
+
+    expect(typeof friendlyName).toEqual('string');
+    expect(typeof logo).toEqual('string');
+    expect(typeof platform).toEqual('string');
+    expect(typeof totalIncluded).toEqual('number');
+    expect(typeof totalExcluded).toEqual('number');
+    expect(typeof total).toEqual('number');
+    expect(typeof expandCard).toEqual('boolean');
+  });
+
+  it('returns correct shape for browserObject.versions', () => {
+    const comparisonQuery = browserslist('chrome 70');
+
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+
+    const {
+      friendlyName,
+      query,
+      version,
+      isIncluded,
+      hasOverride,
+      platform
+    } = matrix.browserList.desktop[0].versions[0];
+
+    expect(typeof friendlyName).toEqual('string');
+    expect(typeof query).toEqual('string');
+    expect(typeof version).toEqual('string');
+    expect(typeof isIncluded).toEqual('boolean');
+    expect(typeof hasOverride).toEqual('boolean');
+    expect(typeof platform).toEqual('string');
+  });
+
+  it('returns correct values for includedList', () => {
+    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
+
+    const matrix = constructMatrix(
+      'chrome 70, chromeandroid 69',
+      comparisonQuery,
+      [],
+      []
+    );
+
+    expect(matrix.includedList).toEqual(
+      expect.objectContaining({
+        desktop: 1,
+        mobile: 1
+      })
+    );
+  });
+
+  it('returns correct values for excludedList', () => {
+    const comparisonQuery = browserslist('chrome 70, chrome 69');
+
+    const matrix = constructMatrix(
+      'chrome 70, chromeandroid 69',
+      comparisonQuery,
+      [],
+      []
+    );
+
+    expect(matrix.excludedList).toEqual(
+      expect.objectContaining({
+        desktop: 1,
+        mobile: 0
+      })
+    );
+  });
+
+  it('returns correct values for total', () => {
+    const comparisonQuery = browserslist(
+      'chrome 70, chrome 69, chrome 68, chrome 67'
+    );
+
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+
+    expect(matrix.total).toEqual(
+      expect.objectContaining({
+        desktop: 4,
+        mobile: 0
+      })
+    );
+  });
+
+  it('is correctly isIncluded if isIncluded ovverride is set', () => {
+    const comparisonQuery = browserslist('chrome 70');
+
+    const matrix = constructMatrix(
+      'chrome 70',
+      comparisonQuery,
+      ['chrome 70'],
+      []
+    );
+
+    const {
+      hasOverride,
+      isIncluded
+    } = matrix.browserList.desktop[0].versions[0];
+
+    expect(isIncluded).toBe(true);
+    expect(hasOverride).toEqual('isIncluded');
+    expect(typeof hasOverride).toEqual('string');
+  });
+
+  it('is correctly isIncluded if isExcluded ovverride is set', () => {
+    const comparisonQuery = browserslist('chrome 70');
+
+    const matrix = constructMatrix(
+      'chrome 70',
+      comparisonQuery,
+      [],
+      ['chrome 70']
+    );
+
+    const {
+      hasOverride,
+      isIncluded
+    } = matrix.browserList.desktop[0].versions[0];
+
+    expect(isIncluded).toBe(false);
+    expect(hasOverride).toEqual('isExcluded');
+    expect(typeof hasOverride).toEqual('string');
+  });
 });
