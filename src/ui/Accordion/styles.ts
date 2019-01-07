@@ -75,20 +75,19 @@ export const AccordionLabel = styled.label({
   }
 });
 
-export const AccordionContent = styled.div<EProps>(
+export const AccordionContent = styled.div({
+  label: 'accordion-content',
+  overflow: 'hidden',
+  maxHeight: '0px',
+  transition: `${transitionBuilder('max-height')}`
+});
+
+export const AccordionContentInner = styled.div<EProps>(
   {
-    label: 'accordion-content',
-    overflow: 'hidden',
-    maxHeight: '0px',
-    backgroundColor: colours.offWhite,
-    transition: `${transitionBuilder('max-height')}`
+    padding: `${scaffolding.gutterLg}`,
+    color: colours.greyMid
   },
   ({ backgroundColour }) => ({
     backgroundColor: backgroundColour
   })
 );
-
-export const AccordionContentInner = styled.div({
-  padding: `${scaffolding.gutterLg}`,
-  color: colours.greyMid
-});

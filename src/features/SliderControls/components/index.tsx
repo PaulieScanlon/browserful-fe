@@ -8,6 +8,7 @@ import { queryParams } from '../../../utils/queryStrings';
 import { urlSetter } from '../../../utils/urlSetter';
 import { config } from '../config';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
+import { colours } from './../../..//theme';
 
 interface IProps {
   queryType: string;
@@ -66,6 +67,7 @@ export class SliderControls extends React.Component<IProps, {}> {
             />
           )}
           selectColour={accordionName.selectColour}
+          backgroundColour={colours.offWhite}
           defaultChecked={queryType === accordionName.id ? true : false}
         >
           <CompoundSlider
@@ -83,7 +85,7 @@ export class SliderControls extends React.Component<IProps, {}> {
 
     return (
       <Row>
-        <Col xs={12} sm={12} md={12} lg={12}>
+        <Col xs={12} sm={12} md={7} lg={8}>
           <Accordion maxHeight="200px" type="radio" name="controls-accordion">
             {accordionItems}
           </Accordion>
