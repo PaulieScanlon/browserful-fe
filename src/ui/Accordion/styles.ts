@@ -1,10 +1,5 @@
 import styled from 'react-emotion';
-import {
-  colours,
-  scaffolding,
-  transitionBuilder,
-  materialBuilder
-} from '../../theme';
+import { colours, scaffolding, transitionBuilder } from '../../theme';
 
 interface IProps {
   maxHeight: string;
@@ -19,7 +14,8 @@ export const AccordionWrapper = styled.div({
   label: 'acorrdion-wrapper',
   position: 'relative',
   width: '100%',
-  boxShadow: `${materialBuilder(1)}`,
+  border: `1px solid ${colours.greyUltraLight}`,
+  boxSizing: 'border-box',
   backgroundColor: colours.white
 });
 

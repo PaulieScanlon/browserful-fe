@@ -2,11 +2,8 @@ import * as React from 'react';
 
 import { Row, Col } from 'react-grid-system';
 
-import { scaffolding } from '../../../theme';
+import { scaffolding, colours } from '../../../theme';
 import { BrowserCard } from './BrowserCard';
-
-import { Icon } from '../../../ui/Icon';
-import { H5 } from '../../../ui/Typography';
 
 import { comparisonQuery } from '../../../utils/matrix-utils/comparison-query';
 import { constructMatrix } from '../../../utils/matrix-utils/constructMatrix';
@@ -16,7 +13,7 @@ import { urlSetter } from '../../../utils/urlSetter';
 import { arrayAdd } from '../../../utils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayRemove';
 
-import { TitleBar } from './styles';
+import { TitleBar } from '../../../ui/TitleBar';
 
 interface IProps {
   queryType: string;
@@ -111,22 +108,20 @@ export class BrowserControls extends React.Component<IProps, {}> {
       >
         <Col xs={12} sm={12} md={12} lg={6}>
           <TitleBar
-            style={{ marginBottom: scaffolding.gutterLg }}
-            borderColour={queryColour}
-          >
-            <H5>Desktop</H5>
-            <Icon fill={queryColour} name="desktop" />
-          </TitleBar>
+            icon="bars"
+            highlightColour={colours.blue}
+            title="Desktop"
+          />
+
           {desktopBrowserCards}
         </Col>
         <Col xs={12} sm={12} md={12} lg={6}>
           <TitleBar
-            style={{ marginBottom: scaffolding.gutterLg }}
-            borderColour={queryColour}
-          >
-            <H5>Mobile / Other</H5>
-            <Icon fill={queryColour} name="mobile" />
-          </TitleBar>
+            icon="bars"
+            highlightColour={colours.teal}
+            title="Mobile / Other"
+          />
+
           {mobileBrowserCards}
         </Col>
       </Row>

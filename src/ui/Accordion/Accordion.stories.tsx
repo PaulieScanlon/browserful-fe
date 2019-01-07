@@ -7,6 +7,7 @@ import { CompoundSlider } from '../CompoundSlider';
 import { DetailsLabel } from '../DetailsLabel';
 import { Accordion, AccordionItem } from './Accordion';
 import { colours } from '../../theme';
+import { LabelTextBold, LabelTextItalic } from '../Typography';
 
 const sliderOnChange = values => {
   action('sliderOnChange')(values[0]);
@@ -153,7 +154,11 @@ stories.add(
           <DetailsLabel
             logo="chrome"
             label="Chrome"
-            value={{ amount: '2 of 20' }}
+            renderStats={() => [
+              <LabelTextBold key={'bold-a'}>2&nbsp;</LabelTextBold>,
+              <LabelTextItalic key={'italic-a'}>of&nbsp;</LabelTextItalic>,
+              <LabelTextBold key={'bold-b'}>20&nbsp;</LabelTextBold>
+            ]}
           />
         )}
       >

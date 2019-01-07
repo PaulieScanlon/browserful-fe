@@ -8,7 +8,8 @@ import { queryParams } from '../../../utils/queryStrings';
 import { urlSetter } from '../../../utils/urlSetter';
 import { config } from '../config';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
-import { colours } from './../../..//theme';
+import { colours } from './../../../theme';
+import { LabelTextBold } from '../../../ui/Typography';
 
 interface IProps {
   queryType: string;
@@ -47,6 +48,7 @@ export class SliderControls extends React.Component<IProps, {}> {
 
     const accordionItems = Object.keys(config).map((key, index) => {
       const accordionName = config[key];
+
       return (
         <AccordionItem
           onChange={event =>
@@ -60,10 +62,11 @@ export class SliderControls extends React.Component<IProps, {}> {
           renderLabel={() => (
             <DetailsLabel
               label={accordionName.label}
-              value={{
-                amount: this.props[accordionName.id],
-                suffix: accordionName.valueSuffix
-              }}
+              renderStats={() => (
+                <LabelTextBold>{`${this.props[accordionName.id]}${
+                  accordionName.valueSuffix
+                }`}</LabelTextBold>
+              )}
             />
           )}
           selectColour={accordionName.selectColour}
@@ -86,7 +89,7 @@ export class SliderControls extends React.Component<IProps, {}> {
     return (
       <Row>
         <Col xs={12} sm={12} md={7} lg={8}>
-          <Accordion maxHeight="200px" type="radio" name="controls-accordion">
+          <Accordion maxHeight="200px" type="radio" name="slider-controls">
             {accordionItems}
           </Accordion>
         </Col>

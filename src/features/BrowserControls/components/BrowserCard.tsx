@@ -7,6 +7,7 @@ import { Modal } from '../../../ui/Modal';
 import { VersionChip } from '../../../ui/VersionChip';
 import { OverrideSelect } from '../../../ui/OverrideSelect';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
+import { LabelTextRegular, LabelTextBold } from '../../../ui/Typography';
 interface IProps {
   browser: any;
   queryColour: string;
@@ -24,21 +25,24 @@ export const BrowserCard: React.SFC<IProps> = ({
 }) => {
   return (
     <div>
-      <Accordion
-        maxHeight="700px"
-        type="checkbox"
-        name={browser.friendlyName}
-        backgroundColour={colours.white}
-      >
+      <Accordion maxHeight="700px" type="checkbox" name={browser.friendlyName}>
         <AccordionItem
           id={browser.friendlyName}
           renderLabel={() => (
             <DetailsLabel
               label={browser.friendlyName}
               logo={browser.logo}
-              value={{
-                amount: `${browser.totalIncluded} of ${browser.total}`
-              }}
+              renderStats={() => [
+                <LabelTextBold key={`${browser.friendlyName}-totalIncluded`}>
+                  {browser.totalIncluded}&nbsp;
+                </LabelTextBold>,
+                <LabelTextRegular key={`${browser.friendlyName}-of`}>
+                  of&nbsp;
+                </LabelTextRegular>,
+                <LabelTextBold key={`${browser.friendlyName}-total`}>
+                  {browser.total}
+                </LabelTextBold>
+              ]}
             />
           )}
           selectColour={queryColour}

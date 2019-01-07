@@ -155,3 +155,23 @@ export const BrowserfulLogoText = styled.div<IProps>(
     color: fontColour
   })
 );
+
+export const LabelTextRegular = styled.span({
+  label: 'label-text-regular',
+  ...(font as any),
+  marginBottom: '0px'
+});
+
+export const LabelTextItalic = styled.span({
+  label: 'label-text-bold',
+  ...(font as any),
+  marginBottom: '0px',
+  fontStyle: 'italitc'
+});
+
+export const LabelTextBold = styled.span({
+  label: 'label-text-bold',
+  ...(font as any),
+  marginBottom: '0px',
+  fontWeight: 'bold'
+});

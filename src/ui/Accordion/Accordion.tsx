@@ -69,7 +69,7 @@ export const AccordionItem: React.SFC<EProps> = ({
       />
       <AccordionLabel htmlFor={id}>
         {label}
-        {renderLabel && renderLabel()}
+        {renderLabel()}
       </AccordionLabel>
 
       <AccordionContent>
@@ -86,5 +86,6 @@ AccordionItem.defaultProps = {
   defaultChecked: false,
   selectColour: colours.pink,
   backgroundColour: colours.white,
+  renderLabel: () =>  null,
   onChange: () => {}
 };
