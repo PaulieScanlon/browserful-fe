@@ -29,7 +29,7 @@ stories.add(
       renderStats={() => [
         <LabelTextBold key={'label-text-bold-a'}>3&nbsp;</LabelTextBold>,
         <LabelTextItalic key={'label-text-italic'}>of&nbsp;</LabelTextItalic>,
-        <LabelTextBold key={'label-text-bold-b'}>20&nbsp;</LabelTextBold>
+        <LabelTextBold key={'label-text-bold-b'}>&nbsp;20</LabelTextBold>
       ]}
     />
   ))

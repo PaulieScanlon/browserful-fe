@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { colours, scaffolding, mq } from '../../theme';
+import { colours, scaffolding, mq, transitionBuilder } from '../../theme';
 
 export const fontFamily = {
   fontFamily: `Lato, sans-serif`
@@ -159,19 +159,22 @@ export const BrowserfulLogoText = styled.div<IProps>(
 export const LabelTextRegular = styled.span({
   label: 'label-text-regular',
   ...(font as any),
-  marginBottom: '0px'
+  marginBottom: '0px',
+  transition: transitionBuilder('opacity')
 });
 
 export const LabelTextItalic = styled.span({
   label: 'label-text-bold',
   ...(font as any),
   marginBottom: '0px',
-  fontStyle: 'italitc'
+  fontStyle: 'italic',
+  transition: transitionBuilder('opacity')
 });
 
 export const LabelTextBold = styled.span({
   label: 'label-text-bold',
   ...(font as any),
   marginBottom: '0px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  transition: transitionBuilder('opacity')
 });

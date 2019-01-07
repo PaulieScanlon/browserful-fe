@@ -31,6 +31,8 @@ export const SwitchInput = styled.input<IProps>(
     top: '-10px',
     left: '-10px',
     display: 'none',
+    transition: transitionBuilder('background-color'),
+
     ':checked + .switch-slider': {
       ':before': {
         transform: 'translateX(14px)'
@@ -42,6 +44,9 @@ export const SwitchInput = styled.input<IProps>(
       '+ .switch-text': {
         color: colours.greyMid
       },
+      backgroundColor: selectColour
+    },
+    ':hover + .switch-slider': {
       backgroundColor: selectColour
     }
   })
@@ -72,8 +77,8 @@ export const SwitchSlider = styled.span({
 
 export const SwitchText = styled.small({
   label: 'switch-text',
-  fontSize: '14px',
-  lineHeight: '16px',
+  fontSize: `${font.fontSize}`,
+  lineHeight: `${font.lineHeight}`,
   fontFamily: `${font.fontFamily}`,
   fontWeight: 'normal',
   textAlign: 'center',

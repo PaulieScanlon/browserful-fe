@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { Row, Col } from 'react-grid-system';
-
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
 import { queryParams } from '../../../utils/queryStrings';
@@ -87,13 +85,9 @@ export class SliderControls extends React.Component<IProps, {}> {
     });
 
     return (
-      <Row>
-        <Col xs={12} sm={12} md={7} lg={8}>
-          <Accordion maxHeight="200px" type="radio" name="slider-controls">
-            {accordionItems}
-          </Accordion>
-        </Col>
-      </Row>
+      <Accordion maxHeight="200px" type="radio" name="slider-controls">
+        {accordionItems}
+      </Accordion>
     );
   }
 }

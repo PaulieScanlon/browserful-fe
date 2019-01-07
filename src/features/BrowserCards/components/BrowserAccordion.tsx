@@ -1,24 +1,24 @@
 import * as React from 'react';
 
-import { colours } from '../../../theme';
-
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { Modal } from '../../../ui/Modal';
 import { VersionChip } from '../../../ui/VersionChip';
 import { OverrideSelect } from '../../../ui/OverrideSelect';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
-import { LabelTextRegular, LabelTextBold } from '../../../ui/Typography';
+import { LabelTextBold, LabelTextItalic } from '../../../ui/Typography';
+import { colours } from '../../../theme';
+
 interface IProps {
   browser: any;
-  queryColour: string;
+  highlightColour: string;
   onAutoChange: any;
   onIncludeChange: any;
   onExcludeChange: any;
 }
 
-export const BrowserCard: React.SFC<IProps> = ({
+export const BrowserAccordion: React.SFC<IProps> = ({
   browser,
-  queryColour,
+  highlightColour,
   onAutoChange,
   onIncludeChange,
   onExcludeChange
@@ -36,16 +36,17 @@ export const BrowserCard: React.SFC<IProps> = ({
                 <LabelTextBold key={`${browser.friendlyName}-totalIncluded`}>
                   {browser.totalIncluded}&nbsp;
                 </LabelTextBold>,
-                <LabelTextRegular key={`${browser.friendlyName}-of`}>
+                <LabelTextItalic key={`${browser.friendlyName}-of`}>
                   of&nbsp;
-                </LabelTextRegular>,
+                </LabelTextItalic>,
                 <LabelTextBold key={`${browser.friendlyName}-total`}>
-                  {browser.total}
+                  &nbsp;{browser.total}
                 </LabelTextBold>
               ]}
             />
           )}
-          selectColour={queryColour}
+          selectColour={highlightColour}
+          backgroundColour={colours.white}
           defaultChecked={browser.expandCard}
         >
           {browser.versions.map((version: any, index: number) => {
@@ -63,13 +64,13 @@ export const BrowserCard: React.SFC<IProps> = ({
                   <OverrideSelect
                     name={browser.friendlyName}
                     friendlyName={browser.friendlyName}
-                    queryName={version.query}
+                    query={version.query}
                     version={version.version}
                     logo={browser.logo}
                     hasOverride={version.hasOverride}
-                    onAutoChange={queryName => onAutoChange(queryName)}
-                    onIncludeChange={queryName => onIncludeChange(queryName)}
-                    onExcludeChange={queryName => onExcludeChange(queryName)}
+                    onAutoChange={query => onAutoChange(query)}
+                    onIncludeChange={query => onIncludeChange(query)}
+                    onExcludeChange={query => onExcludeChange(query)}
                   />
                 )}
               />

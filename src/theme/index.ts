@@ -39,7 +39,7 @@ export const mq = Object.keys(breakpoints).map(
   bp => `@media (min-width: ${breakpoints[bp]})`
 );
 
-export const transitionBuilder = (value: string) => `${value} .3s ease-out`;
+export const transitionBuilder = (value: string) => `${value} .2s linear`;
 
 export const materialBuilder = (level: number) => {
   const material = {

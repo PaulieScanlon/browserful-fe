@@ -45,24 +45,16 @@ stories.add(
   )(() => (
     <Accordion type="radio" name="storybook-accordion">
       <AccordionItem
-        onChange={event => accordionOnChange(event)}
         id="item1"
         label="Item 1"
+        onChange={event => accordionOnChange(event)}
       >
         child 1
       </AccordionItem>
-      <AccordionItem
-        onChange={event => accordionOnChange(event)}
-        id="item1"
-        label="Item 2"
-      >
+      <AccordionItem id="item2" label="Item 2">
         child 2
       </AccordionItem>
-      <AccordionItem
-        onChange={event => accordionOnChange(event)}
-        id="item1"
-        label="Item 3"
-      >
+      <AccordionItem id="item3" label="Item 3">
         child 3
       </AccordionItem>
     </Accordion>
@@ -144,6 +136,25 @@ stories.add(
 );
 
 stories.add(
+  'backgroundColour',
+  withInfo(
+    'The backgroundColour controls the colour of the content background'
+  )(() => (
+    <Accordion type="radio" name="storybook-accordion">
+      <AccordionItem backgroundColour={colours.pink} id="item1" label="Item 1">
+        <span style={{ color: colours.white }}>child 1</span>
+      </AccordionItem>
+      <AccordionItem backgroundColour={colours.teal} id="item2" label="Item 2">
+        <span style={{ color: colours.white }}>child 2</span>
+      </AccordionItem>
+      <AccordionItem backgroundColour={colours.blue} id="item3" label="Item 3">
+        <span style={{ color: colours.white }}>child 3</span>
+      </AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
   'renderLabel',
   withInfo('Displaying DetailsLabel as label using renderLabel()')(() => (
     <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
@@ -157,7 +168,7 @@ stories.add(
             renderStats={() => [
               <LabelTextBold key={'bold-a'}>2&nbsp;</LabelTextBold>,
               <LabelTextItalic key={'italic-a'}>of&nbsp;</LabelTextItalic>,
-              <LabelTextBold key={'bold-b'}>20&nbsp;</LabelTextBold>
+              <LabelTextBold key={'bold-b'}>&nbsp;20</LabelTextBold>
             ]}
           />
         )}
