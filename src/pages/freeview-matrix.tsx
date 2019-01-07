@@ -10,7 +10,7 @@ import {
   updateBrowserQuery
 } from '../modules/ui/actions/update_ui';
 
-import { Container } from 'react-grid-system';
+import { Container, Row, Col } from 'react-grid-system';
 
 import { HeadTag } from '../ui/HeadTag';
 import { AppBar } from '../ui/AppBar';
@@ -19,7 +19,8 @@ import { scaffolding, common, colours } from '../theme';
 import { config } from '../features/SliderControls/config';
 
 import SliderControls from '../features/SliderControls/containers';
-import BrowserControls from '../features/BrowserControls/containers';
+import BrowserCards from '../features/BrowserCards/containers';
+import Stats from '../features/Stats/containers';
 
 import { queryParams } from '../utils/queryStrings';
 import { urlValidator } from '../utils/urlValidator';
@@ -110,8 +111,20 @@ class Matrix extends React.Component<IProps, IState> {
             margin: `${scaffolding.gutterSm} auto`
           }}
         >
-          {isLoaded && <SliderControls />}
-          {isLoaded && <BrowserControls />}
+          <Row>
+            {isLoaded && (
+              <Col xs={12} sm={12} md={12} lg={12}>
+                <SliderControls />
+                <div
+                  style={{
+                    marginTop: scaffolding.gutterLg
+                  }}
+                />
+              </Col>
+            )}
+          </Row>
+
+          <Row>{isLoaded && <BrowserCards />}</Row>
         </Container>
       </FreeviewContent>
     );

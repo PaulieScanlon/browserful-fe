@@ -1,10 +1,10 @@
 import { queryTypes } from '../utils/queryStrings';
 
 export const incQueryBuilder = (query: Array<String>) =>
-  query.map(query => (query.length !== 0 ? ` ${query}` : query));
+  query.map(query => (query.length !== 0 ? `${query}` : query));
 
 export const excQueryBuilder = (query: Array<String>) =>
-  query.map(query => (query.length !== 0 ? ` not ${query}` : query));
+  query.map(query => (query.length !== 0 ? `not ${query}` : query));
 
 export const queryBuilder = (
   qt: string,
@@ -16,7 +16,7 @@ export const queryBuilder = (
 
   const constructed = {
     [queryTypes.LAST_VERSIONS]: `last ${sv} versions${combinedQuery}`,
-    [queryTypes.GLOBAL_USAGE]: `> ${sv}%${combinedQuery}`,
+    [queryTypes.GLOBAL_USAGE]: `>= ${sv}%${combinedQuery}`,
     [queryTypes.YEAR_RELEASED]: `since ${sv}${combinedQuery}`
   };
 

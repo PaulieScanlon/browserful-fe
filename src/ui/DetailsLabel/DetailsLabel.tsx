@@ -2,32 +2,30 @@ import * as React from 'react';
 
 import { BrowserLogo } from '../BrowserLogo';
 
-import { LabelWrapper, LabelText, BoldText } from './styles';
+import { LabelWrapper } from './styles';
+
+import { LabelTextRegular } from '../Typography';
 
 interface IProps {
   label: string;
   logo?: string;
-  value?: {
-    amount: string | number;
-    suffix?: string;
-  };
+  renderStats?(): React.ReactNode;
 }
 
 export const DetailsLabel: React.SFC<IProps> = ({
   label,
   logo,
-  value
+  renderStats
 }: IProps) => {
   return (
     <LabelWrapper>
       {logo && <BrowserLogo logo={logo} />}
-      <LabelText>{label}</LabelText>
-      {value && (
-        <BoldText>
-          {value.amount}
-          {value.suffix}
-        </BoldText>
-      )}
+      <LabelTextRegular className="label">{label}</LabelTextRegular>
+      {renderStats()}
     </LabelWrapper>
   );
+};
+
+DetailsLabel.defaultProps = {
+  renderStats: () => null
 };

@@ -32,6 +32,7 @@ export const RadioInput = styled.input<IProps>(
     top: '-10px',
     left: '-10px',
     display: 'none',
+    transition: transitionBuilder('background-color'),
 
     ':checked + .radio-style + .radio-text': {
       color: colours.greyMid
@@ -39,6 +40,9 @@ export const RadioInput = styled.input<IProps>(
   },
   ({ selectColour }) => ({
     ':checked + .radio-style': {
+      backgroundColor: selectColour
+    },
+    ':hover + .radio-style': {
       backgroundColor: selectColour
     }
   })
@@ -57,8 +61,8 @@ export const RadioStyle = styled.span({
 
 export const RadioText = styled.small({
   label: 'radio-text',
-  fontSize: '14px',
-  lineHeight: '16px',
+  fontSize: `${font.fontSize}`,
+  lineHeight: `${font.lineHeight}`,
   fontFamily: `${font.fontFamily}`,
   fontWeight: 'normal',
   textAlign: 'center',

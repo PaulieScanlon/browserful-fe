@@ -1,4 +1,4 @@
-import { BrowserControls } from '../components';
+import { BrowserCards } from '../components';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
   globalUsage: state.ui.globalUsage,
   yearReleased: state.ui.yearReleased,
   lastVersions: state.ui.lastVersions,
-  queryColour: state.ui.queryColour,
   incQuery: state.ui.incQuery,
   excQuery: state.ui.excQuery,
   browserQuery: state.ui.browserQuery
@@ -28,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BrowserControls);
+)(BrowserCards);

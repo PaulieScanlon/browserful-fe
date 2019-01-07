@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { DetailsLabel } from './DetailsLabel';
+import { LabelTextItalic, LabelTextBold } from '../Typography';
 
 const stories = storiesOf('DetailsLabel', module);
 
@@ -21,15 +22,15 @@ stories.add(
 );
 
 stories.add(
-  'value',
-  withInfo(
-    'The value prop is used to display the value of versions covered. or value type as used in the Sliders. Optional suffix can be used to denote value type'
-  )(() => <DetailsLabel label="Chrome" value={{ amount: '3 of 20' }} />)
-);
-
-stories.add(
-  'value & suffix',
-  withInfo(
-    'The value prop is used to display the value of versions covered. or value type as used in the Sliders. Optional suffix can be used to denote value type'
-  )(() => <DetailsLabel label="Chrome" value={{ amount: 66, suffix: '%' }} />)
+  'renderStats',
+  withInfo('The renderStats prop ca ben used to rener label text')(() => (
+    <DetailsLabel
+      label="Chrome"
+      renderStats={() => [
+        <LabelTextBold key={'label-text-bold-a'}>3&nbsp;</LabelTextBold>,
+        <LabelTextItalic key={'label-text-italic'}>of&nbsp;</LabelTextItalic>,
+        <LabelTextBold key={'label-text-bold-b'}>&nbsp;20</LabelTextBold>
+      ]}
+    />
+  ))
 );

@@ -1,47 +1,52 @@
 import * as React from 'react';
 
-import { colours } from '../../../theme';
-
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { Modal } from '../../../ui/Modal';
 import { VersionChip } from '../../../ui/VersionChip';
 import { OverrideSelect } from '../../../ui/OverrideSelect';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
+import { LabelTextBold, LabelTextItalic } from '../../../ui/Typography';
+import { colours } from '../../../theme';
+
 interface IProps {
   browser: any;
-  queryColour: string;
+  highlightColour: string;
   onAutoChange: any;
   onIncludeChange: any;
   onExcludeChange: any;
 }
 
-export const BrowserCard: React.SFC<IProps> = ({
+export const BrowserAccordion: React.SFC<IProps> = ({
   browser,
-  queryColour,
+  highlightColour,
   onAutoChange,
   onIncludeChange,
   onExcludeChange
 }) => {
   return (
     <div>
-      <Accordion
-        maxHeight="700px"
-        type="checkbox"
-        name={browser.friendlyName}
-        backgroundColour={colours.white}
-      >
+      <Accordion maxHeight="700px" type="checkbox" name={browser.friendlyName}>
         <AccordionItem
           id={browser.friendlyName}
           renderLabel={() => (
             <DetailsLabel
               label={browser.friendlyName}
               logo={browser.logo}
-              value={{
-                amount: `${browser.totalIncluded} of ${browser.total}`
-              }}
+              renderStats={() => [
+                <LabelTextBold key={`${browser.friendlyName}-totalIncluded`}>
+                  {browser.totalIncluded}&nbsp;
+                </LabelTextBold>,
+                <LabelTextItalic key={`${browser.friendlyName}-of`}>
+                  of&nbsp;
+                </LabelTextItalic>,
+                <LabelTextBold key={`${browser.friendlyName}-total`}>
+                  &nbsp;{browser.total}
+                </LabelTextBold>
+              ]}
             />
           )}
-          selectColour={queryColour}
+          selectColour={highlightColour}
+          backgroundColour={colours.white}
           defaultChecked={browser.expandCard}
         >
           {browser.versions.map((version: any, index: number) => {
@@ -59,13 +64,13 @@ export const BrowserCard: React.SFC<IProps> = ({
                   <OverrideSelect
                     name={browser.friendlyName}
                     friendlyName={browser.friendlyName}
-                    queryName={version.query}
+                    query={version.query}
                     version={version.version}
                     logo={browser.logo}
                     hasOverride={version.hasOverride}
-                    onAutoChange={queryName => onAutoChange(queryName)}
-                    onIncludeChange={queryName => onIncludeChange(queryName)}
-                    onExcludeChange={queryName => onExcludeChange(queryName)}
+                    onAutoChange={query => onAutoChange(query)}
+                    onIncludeChange={query => onIncludeChange(query)}
+                    onExcludeChange={query => onExcludeChange(query)}
                   />
                 )}
               />

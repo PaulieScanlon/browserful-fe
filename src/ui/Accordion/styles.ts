@@ -1,10 +1,5 @@
 import styled from 'react-emotion';
-import {
-  colours,
-  scaffolding,
-  transitionBuilder,
-  materialBuilder
-} from '../../theme';
+import { colours, scaffolding, transitionBuilder } from '../../theme';
 
 interface IProps {
   maxHeight: string;
@@ -19,7 +14,8 @@ export const AccordionWrapper = styled.div({
   label: 'acorrdion-wrapper',
   position: 'relative',
   width: '100%',
-  boxShadow: `${materialBuilder(1)}`,
+  border: `1px solid ${colours.greyUltraLight}`,
+  boxSizing: 'border-box',
   backgroundColor: colours.white
 });
 
@@ -30,20 +26,31 @@ export const AccordionInput = styled.input<IProps>(
     top: '-10px',
     left: '-10px',
     display: 'none',
+    transition: transitionBuilder('background-color'),
 
-    ':checked + label': {
+    ':checked + .accordion-label': {
       color: colours.greyMid,
+      div: {
+        span: {
+          opacity: 1
+        }
+      },
       '&:after': {
         content: `""`
       }
     }
   },
   ({ maxHeight, selectColour }) => ({
-    ':checked + label + div': {
+    ':checked + .accordion-label + div': {
       maxHeight: maxHeight
     },
-    ':checked + label': {
+    ':checked + .accordion-label': {
       color: colours.greyMid,
+      '&:after': {
+        backgroundColor: selectColour
+      }
+    },
+    ':hover + .accordion-label': {
       '&:after': {
         backgroundColor: selectColour
       }
@@ -61,8 +68,13 @@ export const AccordionLabel = styled.label({
   boxSizing: 'border-box',
   borderBottom: `1px solid ${colours.greyLight}`,
   color: colours.greyUltraLight,
-  transition: `${transitionBuilder('color')}`,
+
   WebkitTapHighlightColor: colours.transparent,
+  div: {
+    span: {
+      opacity: 0.5
+    }
+  },
   '&:after': {
     content: `""`,
     position: 'absolute',
@@ -71,7 +83,7 @@ export const AccordionLabel = styled.label({
     height: '16px',
     borderRadius: '100%',
     backgroundColor: colours.greyUltraLight,
-    transition: `${transitionBuilder('background-color')}`
+    transition: transitionBuilder('background-color')
   }
 });
 
@@ -79,7 +91,7 @@ export const AccordionContent = styled.div({
   label: 'accordion-content',
   overflow: 'hidden',
   maxHeight: '0px',
-  transition: `${transitionBuilder('max-height')}`
+  transition: 'max-height .3s ease-out'
 });
 
 export const AccordionContentInner = styled.div<EProps>(

@@ -10,14 +10,12 @@ import {
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC_QUERY
 } from '../types';
-import { colours } from '../../../theme';
 
 import { queryTypes } from '../../../utils/queryStrings';
 import { queryBuilder } from '../../../utils/queryBuilder';
 import { config } from '../../../features/SliderControls/config';
 interface IProps {
   queryType: string;
-  queryColour: string;
   globalUsage: number;
   yearReleased: number;
   lastVersions: number;
@@ -28,7 +26,6 @@ interface IProps {
 
 const initialState: IProps = {
   queryType: '',
-  queryColour: colours.pink,
   globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
   yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
   lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
@@ -43,7 +40,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         queryType: action.queryType,
-        queryColour: action.queryColour,
         browserQuery: queryBuilder(
           action.queryType,
           state[action.queryType],

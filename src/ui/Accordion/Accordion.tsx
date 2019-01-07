@@ -67,9 +67,9 @@ export const AccordionItem: React.SFC<EProps> = ({
         selectColour={selectColour}
         onChange={event => onChange(event)}
       />
-      <AccordionLabel htmlFor={id}>
+      <AccordionLabel className="accordion-label" htmlFor={id}>
         {label}
-        {renderLabel && renderLabel()}
+        {renderLabel()}
       </AccordionLabel>
 
       <AccordionContent>
@@ -85,6 +85,7 @@ AccordionItem.defaultProps = {
   maxHeight: '100px',
   defaultChecked: false,
   selectColour: colours.pink,
-  backgroundColour: colours.white,
+  backgroundColour: colours.offWhite,
+  renderLabel: () => null,
   onChange: () => {}
 };

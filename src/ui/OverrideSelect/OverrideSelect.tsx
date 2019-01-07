@@ -7,20 +7,21 @@ import { colours } from '../../theme';
 import { OverrideWrapper, DetailsBorder, InputWrapper } from './styles';
 import { overrideTypes } from '../VersionChip/types';
 import { DetailsLabel } from '../DetailsLabel';
+import { LabelTextBold } from '../Typography';
 
 export interface OverrideSelectChangeProps {
   onAutoChange?: (
-    queryName: string,
+    query: string,
     version: number | string,
     event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
   onIncludeChange?: (
-    queryName: string,
+    query: string,
     version: number | string,
     event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
   onExcludeChange?: (
-    queryName: string,
+    query: string,
     version: number | string,
     event?: React.ChangeEvent<HTMLInputElement>
   ) => void;
@@ -28,7 +29,7 @@ export interface OverrideSelectChangeProps {
 
 interface IProps extends OverrideSelectChangeProps {
   friendlyName: string;
-  queryName: string;
+  query: string;
   version: number | string;
   logo: string;
   name: string;
@@ -37,7 +38,7 @@ interface IProps extends OverrideSelectChangeProps {
 
 export const OverrideSelect: React.SFC<IProps> = ({
   friendlyName,
-  queryName,
+  query,
   version,
   logo,
   name,
@@ -51,43 +52,45 @@ export const OverrideSelect: React.SFC<IProps> = ({
       <DetailsLabel
         label={friendlyName}
         logo={logo}
-        value={{ amount: version }}
+        renderStats={() => [
+          <LabelTextBold key="version">{version}</LabelTextBold>
+        ]}
       />
       <DetailsBorder />
 
       <InputWrapper>
         <ToggleSwitch
-          id={`auto ${queryName} ${version}`}
+          id={`auto ${query} ${version}`}
           name={name}
           type="radio"
           flexDirection="row-reverse"
           defaultChecked={!hasOverride ? true : false}
-          onChange={event => onAutoChange(queryName, version, event)}
+          onChange={event => onAutoChange(query, version, event)}
         >
           Automatic mode
         </ToggleSwitch>
 
         <RadioButton
-          id={`include ${queryName} ${version}`}
+          id={`include ${query} ${version}`}
           name={name}
           flexDirection="row-reverse"
           defaultChecked={
             hasOverride === overrideTypes.IS_INCLUDED ? true : false
           }
           selectColour={colours.green}
-          onChange={event => onIncludeChange(queryName, version, event)}
+          onChange={event => onIncludeChange(query, version, event)}
         >
           Always Include
         </RadioButton>
         <RadioButton
-          id={`exclude ${queryName} ${version}`}
+          id={`exclude ${query} ${version}`}
           name={name}
           flexDirection="row-reverse"
           defaultChecked={
             hasOverride === overrideTypes.IS_EXCLUDED ? true : false
           }
           selectColour={colours.red}
-          onChange={event => onExcludeChange(queryName, version, event)}
+          onChange={event => onExcludeChange(query, version, event)}
         >
           Always Exclude
         </RadioButton>
