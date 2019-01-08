@@ -8,7 +8,7 @@ import {
   updateValue,
   updateIncExcQuery,
   updateBrowserQuery
-} from '../modules/ui/actions/update_ui';
+} from '../modules/ui/actions/updateUi';
 
 import { Container, Row, Col } from 'react-grid-system';
 
@@ -113,8 +113,18 @@ class Matrix extends React.Component<IProps, IState> {
         >
           <Row>
             {isLoaded && (
-              <Col xs={12} sm={12} md={12} lg={12}>
+              <Col xs={12} sm={12} md={7} lg={8}>
                 <SliderControls />
+                <div
+                  style={{
+                    marginTop: scaffolding.gutterLg
+                  }}
+                />
+              </Col>
+            )}
+            {isLoaded && (
+              <Col xs={12} sm={12} md={5} lg={4}>
+                <Stats />
                 <div
                   style={{
                     marginTop: scaffolding.gutterLg

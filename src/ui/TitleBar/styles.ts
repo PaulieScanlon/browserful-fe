@@ -12,6 +12,7 @@ export const TitleBarWrapper = styled.div({
   backgroundColor: colours.white,
   padding: `${scaffolding.gutterSm} ${scaffolding.gutterLg}`,
   marginBottom: scaffolding.gutterLg,
+  boxSizing: 'border-box',
   '.title-chip, .title': {
     marginRight: scaffolding.gutterSm
   }

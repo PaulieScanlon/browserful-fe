@@ -15,29 +15,33 @@ export interface IData {
 interface IProps {
   data: Array<IData>;
   segmentColour?: string;
+  strokeColour?: string;
 }
 
 export const DoughnutChart: React.SFC<IProps> = ({
   data,
-  segmentColour
+  segmentColour,
+  strokeColour
 }: IProps) => {
   return (
     <ChartWrapper>
       <ResponsiveContainer
         width="100%"
         height="100%"
-        minHeight={320}
         className="responsive-container"
       >
         <PieChart>
           <Pie
             dataKey="value"
             data={addFillToData(data, segmentColour)}
-            startAngle={220}
-            endAngle={-40}
+            startAngle={90}
+            endAngle={450}
+            // startAngle={220}
+            // endAngle={-40}
             innerRadius={'70%'}
             outerRadius={'100%'}
             paddingAngle={2}
+            stroke={strokeColour}
           />
         </PieChart>
       </ResponsiveContainer>
@@ -46,5 +50,6 @@ export const DoughnutChart: React.SFC<IProps> = ({
 };
 
 DoughnutChart.defaultProps = {
-  segmentColour: colours.pink
+  segmentColour: colours.pink,
+  strokeColour: colours.white
 };
