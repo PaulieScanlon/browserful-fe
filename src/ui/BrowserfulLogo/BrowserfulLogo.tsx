@@ -3,7 +3,7 @@ import * as React from 'react';
 import { colours } from '../../theme';
 
 import { BrowserfulLogoText } from '../../ui/Typography';
-import { LogoWrapper, SvgWrapper } from './styles';
+import { LogoWrapper, SvgWrapper, BetaBadge } from './styles';
 
 interface IProps {
   text?: string;
@@ -36,7 +36,12 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
       </SvgWrapper>
 
       {showText && (
-        <BrowserfulLogoText fontColour={fontColour}>{text}</BrowserfulLogoText>
+        <React.Fragment>
+          <BrowserfulLogoText fontColour={fontColour}>
+            {text}
+          </BrowserfulLogoText>
+          <BetaBadge>Beta</BetaBadge>
+        </React.Fragment>
       )}
     </LogoWrapper>
   );
@@ -45,6 +50,6 @@ export const BrowserfulLogo: React.SFC<IProps> = ({
 BrowserfulLogo.defaultProps = {
   text: 'Browserful',
   showText: true,
-  logoColour: `${colours.pink}`,
-  fontColour: `${colours.greyMid}`
+  logoColour: colours.pink,
+  fontColour: colours.greyMid
 };
