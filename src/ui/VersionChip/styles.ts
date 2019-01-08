@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 
 import { font } from '../../ui/Typography';
-import { colours, transitionBuilder } from '../../theme';
+import { colours } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
