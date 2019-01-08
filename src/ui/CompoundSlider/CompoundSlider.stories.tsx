@@ -124,3 +124,16 @@ stories.add(
     />
   ))
 );
+
+stories.add(
+  'functional test',
+  withInfo('Year released needs to kind work the other way round')(() => (
+    <CompoundSlider
+      reversed
+      domain={[2009, 2019]}
+      step={1}
+      values={[2015]}
+      tickCount={8}
+    />
+  ))
+);

@@ -33,6 +33,7 @@ export const config = {
     valueSuffix: '',
     slider: {
       defaultValue: 2015,
+      reversed: true,
       domain: [currentYear - 10, currentYear],
       step: 1,
       tickCount: 8
