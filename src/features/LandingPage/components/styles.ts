@@ -30,7 +30,8 @@ export const LandingImage = styled.div({
   backgroundImage: `url("/static/images/landing-page-lg.jpg")`,
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  backgroundSize: 'cover'
+  backgroundSize: 'cover',
+  borderBottom: `1px solid ${colours.greyUltraLight}`
 });
 
 export const CopyPanel = styled.div({

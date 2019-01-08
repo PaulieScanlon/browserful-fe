@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import LandingPage from '../features/LandingPage/components';
 import FeedbackForm from '../features/FeedbackForm/components';
+import HowTo from '../features/HowTo/components';
+
 interface IState {
   isLoaded: boolean;
 }
@@ -25,8 +27,11 @@ class Index extends React.Component<{}, IState> {
 
     return (
       <React.Fragment>
-        {isLoaded && <LandingPage />}
-        {isLoaded && <FeedbackForm />}
+        {isLoaded && [
+          <LandingPage key="landing-page" />,
+          <HowTo key="how-to" />,
+          <FeedbackForm key="feedback-form" />
+        ]}
       </React.Fragment>
     );
   }

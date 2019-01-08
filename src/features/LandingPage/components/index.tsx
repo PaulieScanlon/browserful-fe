@@ -32,9 +32,8 @@ const LandingPage: React.SFC = () => {
                 </H1>
                 <H4 fontAlign="center">This is confusing. Browserful isn’t!</H4>
                 <P fontAlign="center">
-                  Use our easy to use sliders to configure a shareable matrix to
-                  show exactly which browsers you support, and which browsers
-                  you don’t!
+                  Show the world exactly which browsers you support and which
+                  browsers you don’t!
                 </P>
                 <Link href="/freeview/matrix">
                   <a
