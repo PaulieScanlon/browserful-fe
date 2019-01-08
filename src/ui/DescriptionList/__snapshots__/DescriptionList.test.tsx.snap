@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DescriptionList renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <DescriptionList>
+    <DescriptionTerm>
+      Lorem Ipsum
+    </DescriptionTerm>
+    <DescriptionDescription>
+      Dolor sit
+    </DescriptionDescription>
+  </DescriptionList>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <DescriptionTerm>
+          Lorem Ipsum
+        </DescriptionTerm>,
+        <DescriptionDescription>
+          Dolor sit
+        </DescriptionDescription>,
+      ],
+      "className": "css-1l5yqoi-DescriptionList-description-list eal8kcz0",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Lorem Ipsum",
+        },
+        "ref": null,
+        "rendered": "Lorem Ipsum",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Dolor sit",
+        },
+        "ref": null,
+        "rendered": "Dolor sit",
+        "type": [Function],
+      },
+    ],
+    "type": "dl",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <DescriptionTerm>
+            Lorem Ipsum
+          </DescriptionTerm>,
+          <DescriptionDescription>
+            Dolor sit
+          </DescriptionDescription>,
+        ],
+        "className": "css-1l5yqoi-DescriptionList-description-list eal8kcz0",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Lorem Ipsum",
+          },
+          "ref": null,
+          "rendered": "Lorem Ipsum",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Dolor sit",
+          },
+          "ref": null,
+          "rendered": "Dolor sit",
+          "type": [Function],
+        },
+      ],
+      "type": "dl",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
