@@ -1,21 +1,20 @@
 import * as React from 'react';
 import fetch from 'isomorphic-unfetch';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
+import { Container, Row, Col } from 'react-grid-system';
+
+import { H2, P } from '../../../ui/Typography';
 import { Icon } from '../../../ui/Icon';
 import { InputLabel } from '../../../ui/InputLabel';
 import { InputText } from '../../../ui/InputText';
 import { InputTextArea } from '../../../ui/InputTextArea';
 import { InputAnnounce } from '../../../ui/InputAnnounce';
 import { Button } from '../../..//ui/Button';
-
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-
-import { Container, Row, Col } from 'react-grid-system';
+import { scaffolding, colours } from '../../../theme';
 
 import { FormWrapper } from './styles';
-import { H2, P } from '../../../ui/Typography';
-import { scaffolding, colours } from '../../../theme';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -28,6 +27,14 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
   return (
     <FormWrapper>
       <Container>
+        <Row align="center">
+          <Col xs={12} sm={12} md={12} lg={12}>
+            <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+              <Icon name="feedback" size="xl" fill={colours.teal} />
+            </div>
+          </Col>
+        </Row>
+
         <Row>
           <Col xs={12} sm={12} md={12} lg={12}>
             <H2>Feedback</H2>

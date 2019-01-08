@@ -37,6 +37,7 @@ export class BrowserCards extends React.Component<IProps, {}> {
     const { incQuery, excQuery } = this.props;
 
     this.props.updateAuto(incQuery, excQuery, query);
+    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
     urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
   }
 
@@ -44,6 +45,7 @@ export class BrowserCards extends React.Component<IProps, {}> {
     const { incQuery, excQuery } = this.props;
 
     this.props.updateIncluded(incQuery, excQuery, query);
+    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
     urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, query).join());
   }
 
@@ -51,6 +53,7 @@ export class BrowserCards extends React.Component<IProps, {}> {
     const { incQuery, excQuery } = this.props;
 
     this.props.updateExcluded(incQuery, excQuery, query);
+    urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
     urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, query).join());
   }
 

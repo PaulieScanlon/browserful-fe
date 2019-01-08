@@ -17,7 +17,7 @@ export const DescriptionTerm = styled.dt<IProps>(
   {
     label: 'description-term',
     display: 'flex',
-    fontSize: '18px',
+    fontSize: '16px',
     lineHeight: '26px',
     alignItems: 'center',
     marginLeft: scaffolding.gutterXl,
@@ -26,8 +26,8 @@ export const DescriptionTerm = styled.dt<IProps>(
       marginTop: '10px',
       left: '0px',
       content: `""`,
-      width: '16px',
-      height: '16px',
+      width: '12px',
+      height: '12px',
       borderRadius: '100%',
       backgroundColor: colours.pink
     }
@@ -44,5 +44,7 @@ export const DescriptionDescription = styled.dd({
   fontSize: '14px',
   lineHeight: '16px',
   color: colours.greyLight,
-  marginLeft: scaffolding.gutterXl
+  fontStyle: 'italic',
+  marginLeft: scaffolding.gutterXl,
+  marginBottom: scaffolding.gutterLg
 });

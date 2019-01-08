@@ -11,7 +11,7 @@ export const font = {
   ...fontFamily,
   fontWeight: 400,
   fontSize: '16px',
-  lineHeight: '18px',
+  lineHeight: '22px',
   textAlign: 'left',
   marginTop: 0,
   marginBottom: scaffolding.gutterLg,
