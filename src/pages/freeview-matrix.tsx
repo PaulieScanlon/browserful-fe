@@ -63,10 +63,7 @@ class Matrix extends React.Component<IProps, IState> {
       updateIncExcQuery
     } = this.props;
 
-    updateQuery(
-      urlGetter()[queryParams.QUERY_TYPE],
-      config[urlGetter()[queryParams.QUERY_TYPE]].selectColour
-    );
+    updateQuery(urlGetter()[queryParams.QUERY_TYPE]);
 
     updateValue(
       urlGetter()[queryParams.QUERY_TYPE],
