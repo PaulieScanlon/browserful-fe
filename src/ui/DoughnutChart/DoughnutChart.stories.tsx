@@ -28,12 +28,25 @@ const stories = storiesOf('DoughnutChart', module);
 
 stories.add(
   'default usage',
-  withInfo('...')(() => <DoughnutChart data={data} />)
+  withInfo('The DoughnutChart is a Re-Charts Pie Chart with padding')(() => (
+    <DoughnutChart data={data} />
+  ))
 );
 
 stories.add(
   'segmentColour',
-  withInfo('...')(() => (
+  withInfo('The segmentColour prop controls the svg fill colour')(() => (
     <DoughnutChart data={data} segmentColour={colours.teal} />
+  ))
+);
+
+stories.add(
+  'strokeColour',
+  withInfo('The strokeColour prop controls the svg stroke colour')(() => (
+    <DoughnutChart
+      data={data}
+      segmentColour={colours.white}
+      strokeColour={colours.blue}
+    />
   ))
 );

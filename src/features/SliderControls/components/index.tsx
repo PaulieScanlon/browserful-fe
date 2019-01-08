@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { TitleBar } from '../../../ui/TitleBar';
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
 import { queryParams } from '../../../utils/queryStrings';
@@ -28,9 +29,7 @@ export class SliderControls extends React.Component<IProps, {}> {
     urlSetter(queryParams.QUERY_TYPE, queryType);
     urlSetter(queryParams.SLIDER_VALUES, this.props[queryType]);
 
-    setTimeout(() => {
-      updateQuery(queryType, queryColour);
-    }, 400);
+    updateQuery(queryType, queryColour);
   }
 
   sliderOnChange(value: any) {
@@ -85,9 +84,12 @@ export class SliderControls extends React.Component<IProps, {}> {
     });
 
     return (
-      <Accordion maxHeight="200px" type="radio" name="slider-controls">
-        {accordionItems}
-      </Accordion>
+      <React.Fragment>
+        <TitleBar icon="settings" title="Settings" />
+        <Accordion maxHeight="200px" type="radio" name="slider-controls">
+          {accordionItems}
+        </Accordion>
+      </React.Fragment>
     );
   }
 }

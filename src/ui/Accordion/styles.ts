@@ -63,7 +63,7 @@ export const AccordionLabel = styled.label({
   display: 'flex',
   alignItems: 'center',
   minHeight: '56px',
-  padding: `0px ${scaffolding.gutterLg}`,
+  padding: `0px calc(${scaffolding.gutterLg} - 2px)`,
   cursor: 'pointer',
   boxSizing: 'border-box',
   borderBottom: `1px solid ${colours.greyLight}`,

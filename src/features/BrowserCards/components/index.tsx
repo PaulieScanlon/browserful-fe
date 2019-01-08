@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Col } from 'react-grid-system';
 
-import { scaffolding, colours } from '../../../theme';
+import { TitleBar } from '../../../ui/TitleBar';
 import { BrowserAccordion } from './BrowserAccordion';
 
 import { comparisonQuery } from '../../../utils/matrix-utils/comparison-query';
@@ -13,7 +13,8 @@ import { urlSetter } from '../../../utils/urlSetter';
 import { arrayAdd } from '../../../utils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayRemove';
 
-import { TitleBar } from '../../../ui/TitleBar';
+import { scaffolding, colours } from '../../../theme';
+
 import {
   LabelTextBold,
   LabelTextItalic,
@@ -21,10 +22,12 @@ import {
 } from '../../../ui/Typography';
 
 interface IProps {
+  //common start
+  browserQuery: string;
   queryType: string;
   incQuery: Array<String>;
   excQuery: Array<String>;
-  browserQuery: string;
+  // common end
   updateAuto: any;
   updateIncluded: any;
   updateExcluded: any;

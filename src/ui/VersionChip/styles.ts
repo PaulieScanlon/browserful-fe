@@ -1,19 +1,24 @@
 import styled from 'react-emotion';
 
 import { font } from '../../ui/Typography';
-import { colours } from '../../theme';
+import { colours, transitionBuilder } from '../../theme';
 import { overrideTypes } from './types';
 interface IProps {
   isIncluded: boolean;
   hasOverride: string;
 }
 
+const boxShadow = '0px 0px 1px 1px';
+
 const getStyleRules = (isIncluded, hasOverride) => {
   if (hasOverride && hasOverride === overrideTypes.IS_INCLUDED) {
     return {
       color: colours.green,
       borderColor: colours.green,
-      backgroundColor: colours.greenLight
+      backgroundColor: colours.greenLight,
+      ':hover': {
+        boxShadow: `${boxShadow} ${colours.green}`
+      }
     };
   }
 
@@ -21,20 +26,29 @@ const getStyleRules = (isIncluded, hasOverride) => {
     return {
       color: colours.red,
       borderColor: colours.red,
-      backgroundColor: colours.redLight
+      backgroundColor: colours.redLight,
+      ':hover': {
+        boxShadow: `${boxShadow} ${colours.red}`
+      }
     };
   }
 
   if (isIncluded) {
     return {
       color: colours.green,
-      backgroundColor: colours.greenLight
+      backgroundColor: colours.greenLight,
+      ':hover': {
+        boxShadow: `${boxShadow} ${colours.green}`
+      }
     };
   }
 
   return {
     color: colours.red,
-    backgroundColor: colours.redLight
+    backgroundColor: colours.redLight,
+    ':hover': {
+      boxShadow: `${boxShadow} ${colours.red}`
+    }
   };
 };
 
@@ -59,10 +73,14 @@ export const VersionChipWrapper = styled.span<IProps>(
     borderWidth: '2px',
     borderColor: colours.transparent,
     backgroundColor: colours.greyUltraLight,
+    transition: 'transform 0.1s ease-out',
     ':active, :focus': {
       span: {
         display: 'block'
       }
+    },
+    ':hover': {
+      transform: 'scale(1.2)'
     }
   },
   ({ isIncluded, hasOverride }) => ({

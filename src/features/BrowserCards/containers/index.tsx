@@ -6,7 +6,7 @@ import {
   updateAuto,
   updateIncluded,
   updateExcluded
-} from '../../../modules/ui/actions/update_ui';
+} from '../../../modules/ui/actions/updateUi';
 
 const mapStateToProps = state => ({
   queryType: state.ui.queryType,

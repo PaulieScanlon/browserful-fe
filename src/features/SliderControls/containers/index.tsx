@@ -2,10 +2,7 @@ import { SliderControls } from '../components';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  updateQuery,
-  updateValue
-} from '../../../modules/ui/actions/update_ui';
+import { updateQuery, updateValue } from '../../../modules/ui/actions/updateUi';
 
 const mapStateToProps = state => ({
   queryType: state.ui.queryType,
