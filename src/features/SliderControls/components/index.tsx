@@ -73,6 +73,7 @@ export class SliderControls extends React.Component<IProps, {}> {
           <CompoundSlider
             onChange={values => this.sliderOnChange(values[0])}
             showHandleValue
+            reversed={accordionName.slider.reversed}
             sliderColour={accordionName.slider.sliderColour}
             domain={accordionName.slider.domain}
             step={accordionName.slider.step}
