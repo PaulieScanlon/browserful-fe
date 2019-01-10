@@ -19,7 +19,7 @@ const mountDefault = props => {
   return mount(<BrowserfulLogo {...props} />);
 };
 
-describe('<BrowserfulLogo/>', () => {
+describe('<BrowserfulLogo />', () => {
   it('renders correctly', () => {
     const wrapper = shallowDefault({});
     expect(wrapper).toHaveLength(1);

@@ -1,9 +1,9 @@
 import { urlValidator } from './urlValidator';
-import { queryDefault } from './queryDefault';
+import { queryDefault } from '../query-utils/queryDefault';
 
 describe('urlValidator', () => {
   it('returns the default queryUrl if any of the query params are missing', () => {
-    window.history.pushState({}, 'testA', '?whatever');
+    window.history.pushState({}, 'testA', '?whatever=&whatever=');
 
     expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
   });
