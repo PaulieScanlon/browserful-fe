@@ -1,14 +1,17 @@
 import * as React from 'react';
 
+import { queryParams } from '../../../utils/query-utils/enums';
+import { queryBuilder } from '../../../utils/query-utils/queryBuilder';
+import { urlSetter } from '../../../utils/url-utils/urlSetter';
+
 import { TitleBar } from '../../../ui/TitleBar';
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
-import { queryParams } from '../../../utils/query-utils/enums';
-import { urlSetter } from '../../../utils/url-utils/urlSetter';
-import { config } from '../config';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
-import { colours } from './../../../theme';
 import { LabelTextBold } from '../../../ui/Typography';
+import { colours } from './../../../theme';
+
+import { config } from '../config';
 
 interface IProps {
   queryType: string;
@@ -18,8 +21,10 @@ interface IProps {
   incQuery: Array<String>;
   excQuery: Array<String>;
   browserQuery: string;
+  thingObject: Object;
   updateQuery: any;
   updateValue: any;
+  updateThing: any;
 }
 
 export class SliderControls extends React.Component<IProps, {}> {
@@ -30,6 +35,11 @@ export class SliderControls extends React.Component<IProps, {}> {
     urlSetter(queryParams.SLIDER_VALUES, this.props[queryType]);
 
     updateQuery(queryType, queryColour);
+
+    this.props.updateThing({
+      ...this.props.thingObject,
+      [queryParams.QUERY_TYPE]: queryType
+    });
   }
 
   sliderOnChange(value: any) {
@@ -38,6 +48,12 @@ export class SliderControls extends React.Component<IProps, {}> {
     urlSetter(queryParams.SLIDER_VALUES, value);
 
     updateValue(queryType, value);
+
+    this.props.updateThing({
+      ...this.props.thingObject,
+      [this.props.queryType]: value,
+      browserQuery: queryBuilder(this.props.queryType, value, [''], [''])
+    });
   }
 
   render() {

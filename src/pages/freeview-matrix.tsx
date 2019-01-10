@@ -7,7 +7,8 @@ import {
   updateQuery,
   updateValue,
   updateIncExcQuery,
-  updateBrowserQuery
+  updateBrowserQuery,
+  updateThing
 } from '../modules/ui/actions/updateUi';
 
 import { Container, Row, Col } from 'react-grid-system';
@@ -23,6 +24,7 @@ import Stats from '../features/Stats/containers';
 import { queryParams } from '../utils/query-utils/enums';
 import { urlValidator } from '../utils/url-utils/urlValidator';
 import { urlGetter } from '../utils/url-utils/urlGetter';
+import { queryBuilder } from '../utils/query-utils/queryBuilder';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
@@ -35,10 +37,14 @@ export const FreeviewContent = styled.div({
 });
 
 interface IProps {
+  queryType: string;
+  thingObject: Object;
+
   updateQuery: any;
   updateValue: any;
   updateIncExcQuery: any;
   updateBrowserQuery: any;
+  updateThing: any;
 }
 interface IState {
   isLoaded: boolean;
@@ -88,6 +94,31 @@ class Matrix extends React.Component<IProps, IState> {
         .split(',')
     );
 
+    const qt = urlGetter()[queryParams.QUERY_TYPE];
+    const sv = urlGetter()[queryParams.SLIDER_VALUES];
+    const inc = urlGetter()[queryParams.INCLUDED_QUERY].split(',');
+
+    const exc = urlGetter()
+      [queryParams.EXCLUDED_QUERY].replace(/^,|,$/g, '')
+      .split(',');
+
+    const qb = queryBuilder(qt, sv, inc, exc);
+
+    console.log('qt: ', qt);
+    console.log('sv: ', qt, ':', sv);
+    console.log('bq: ', qb);
+    console.log('inc: ', inc);
+    console.log('exc: ', exc);
+
+    this.props.updateThing({
+      ...this.props.thingObject,
+      qt: qt,
+      [qt]: sv,
+      browserQuery: qb,
+      incq: inc,
+      excq: exc
+    });
+
     this.setState({
       isLoaded: true
     });
@@ -136,14 +167,20 @@ class Matrix extends React.Component<IProps, IState> {
   }
 }
 
+const mapStateToProps = state => ({
+  queryType: state.ui.queryType,
+  thingObject: state.ui.thingObject
+});
+
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
   updateValue: bindActionCreators(updateValue, dispatch),
   updateIncExcQuery: bindActionCreators(updateIncExcQuery, dispatch),
-  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch)
+  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
+  updateThing: bindActionCreators(updateThing, dispatch)
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Matrix);

@@ -8,7 +8,8 @@ import {
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
-  UPDATE_INC_EXC_QUERY
+  UPDATE_INC_EXC_QUERY,
+  UPDATE_THING
 } from '../types';
 
 import { queryParams } from '../../../utils/query-utils/enums';
@@ -22,6 +23,16 @@ interface IProps {
   browserQuery: string;
   incQuery: Array<String>;
   excQuery: Array<String>;
+
+  thingObject: {
+    [queryParams.QUERY_TYPE]: string;
+    [queryParams.LAST_VERSIONS]: number;
+    [queryParams.YEAR_RELEASED]: number;
+    [queryParams.GLOBAL_USAGE]: number;
+    browserQuery: string;
+    incq: Array<String>;
+    excq: Array<String>;
+  };
 }
 
 const initialState: IProps = {
@@ -31,11 +42,31 @@ const initialState: IProps = {
   lastVersions: config[queryParams.LAST_VERSIONS].slider.defaultValue,
   browserQuery: '',
   incQuery: [],
-  excQuery: []
+  excQuery: [],
+
+  thingObject: {
+    [queryParams.QUERY_TYPE]: '',
+    [queryParams.LAST_VERSIONS]:
+      config[queryParams.LAST_VERSIONS].slider.defaultValue,
+    [queryParams.YEAR_RELEASED]:
+      config[queryParams.YEAR_RELEASED].slider.defaultValue,
+    [queryParams.GLOBAL_USAGE]:
+      config[queryParams.GLOBAL_USAGE].slider.defaultValue,
+    browserQuery: '',
+    incq: [],
+    excq: []
+  }
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_THING:
+      console.log(action.thingObject);
+      return {
+        ...state,
+        thingObject: action.thingObject
+      };
+
     case UPDATE_QUERY:
       return {
         ...state,

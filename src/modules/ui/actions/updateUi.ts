@@ -5,8 +5,16 @@ import {
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
-  UPDATE_INC_EXC_QUERY
+  UPDATE_INC_EXC_QUERY,
+  UPDATE_THING
 } from '../types';
+
+export const updateThing = (thingObject: Object) => dispatch => {
+  return dispatch({
+    type: UPDATE_THING,
+    thingObject
+  });
+};
 
 export const updateQuery = (
   queryType: string,
