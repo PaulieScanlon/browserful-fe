@@ -11,7 +11,7 @@ import {
   UPDATE_INC_EXC_QUERY
 } from '../types';
 
-import { queryTypes } from '../../../utils/query-utils/queryStrings';
+import { queryParams } from '../../../utils/query-utils/enums';
 import { queryBuilder } from '../../../utils/query-utils/queryBuilder';
 import { config } from '../../../features/SliderControls/config';
 interface IProps {
@@ -26,9 +26,9 @@ interface IProps {
 
 const initialState: IProps = {
   queryType: '',
-  globalUsage: config[queryTypes.GLOBAL_USAGE].slider.defaultValue,
-  yearReleased: config[queryTypes.YEAR_RELEASED].slider.defaultValue,
-  lastVersions: config[queryTypes.LAST_VERSIONS].slider.defaultValue,
+  globalUsage: config[queryParams.GLOBAL_USAGE].slider.defaultValue,
+  yearReleased: config[queryParams.YEAR_RELEASED].slider.defaultValue,
+  lastVersions: config[queryParams.LAST_VERSIONS].slider.defaultValue,
   browserQuery: '',
   incQuery: [],
   excQuery: []

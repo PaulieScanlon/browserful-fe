@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TitleBar } from '../../../ui/TitleBar';
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
-import { queryParams } from '../../../utils/query-utils/queryStrings';
+import { queryParams } from '../../../utils/query-utils/enums';
 import { urlSetter } from '../../../utils/url-utils/urlSetter';
 import { config } from '../config';
 import { DetailsLabel } from '../../../ui/DetailsLabel';

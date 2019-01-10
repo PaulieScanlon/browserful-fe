@@ -20,7 +20,7 @@ import SliderControls from '../features/SliderControls/containers';
 import BrowserCards from '../features/BrowserCards/containers';
 import Stats from '../features/Stats/containers';
 
-import { queryParams } from '../utils/query-utils/queryStrings';
+import { queryParams } from '../utils/query-utils/enums';
 import { urlValidator } from '../utils/url-utils/urlValidator';
 import { urlGetter } from '../utils/url-utils/urlGetter';
 

@@ -1,14 +1,37 @@
-import { queryParams, queryTypes } from '../query-utils/queryStrings';
+import { queryParams } from '../query-utils/enums';
 import { queryDefault } from '../query-utils/queryDefault';
 import { config } from '../../features/SliderControls/config';
-import { incQueryBuilder, excQueryBuilder } from '../query-utils/queryBuilder';
 import browserslist from 'browserslist';
 
-const clamp = (min: number, max: number, value: number | string) => {
+enum typeString {
+  SLIDER = 'slider',
+  BROWSERSLIST = 'browserslist'
+}
+
+interface IUrlParams {
+  [key: string]: {
+    type: string;
+    value: number | string;
+    valid?: boolean;
+  };
+}
+
+const validateRanges = (min: number, max: number, value: number | string) => {
   if (value >= min && value <= max) {
     return true;
   }
   return false;
+};
+
+const validateBrowserslist = (value: string | number) => {
+  try {
+    // to test a value that is 'not' ...
+    // we also need a valid browser query for browserslist to run
+    browserslist(`last 1 versions, ${value}`);
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
 export const urlValidator = () => {
@@ -16,48 +39,67 @@ export const urlValidator = () => {
 
   const urlParams = new URLSearchParams(wls);
 
-  const qt = urlParams.getAll(queryParams.QUERY_TYPE);
-  const sv = urlParams.getAll(queryParams.SLIDER_VALUES);
-  const incq = urlParams
-    .getAll(queryParams.INCLUDED_QUERY)
-    .toString()
-    .split(',');
-  const excq = urlParams
-    .getAll(queryParams.EXCLUDED_QUERY)
-    .toString()
-    .split(',');
-
-  const browserlistQuery = () => {
-    try {
-      browserslist(`${incQueryBuilder(incq).concat(...excQueryBuilder(excq))}`);
-      return true;
-    } catch (e) {
-      return false;
+  const urlParamValues: IUrlParams = {
+    [urlParams.getAll(queryParams.QUERY_TYPE).toString()]: {
+      type: typeString.SLIDER,
+      value: Number(urlParams.getAll(queryParams.SLIDER_VALUES).toString())
+    },
+    [queryParams.EXCLUDED_QUERY]: {
+      type: typeString.BROWSERSLIST,
+      value: urlParams
+        .getAll(queryParams.EXCLUDED_QUERY)
+        .toString()
+        .trim()
+    },
+    [queryParams.INCLUDED_QUERY]: {
+      type: typeString.BROWSERSLIST,
+      value: urlParams
+        .getAll(queryParams.INCLUDED_QUERY)
+        .toString()
+        .trim()
     }
   };
 
-  const queryType = () => {
-    try {
-      return Object.keys(queryTypes)
-        .map(key => queryTypes[key])
-        .includes(qt.toString());
-    } catch (e) {
-      return false;
+  const validate = {
+    slider: (item: any) => {
+      try {
+        config[item].slider.domain[0];
+        return validateRanges(
+          config[item].slider.domain[0],
+          config[item].slider.domain[1],
+          urlParamValues[item].value
+        );
+      } catch (e) {
+        return false;
+      }
+    },
+    browserslist: (item: any) => {
+      try {
+        urlParamValues[item].value;
+        return validateBrowserslist(urlParamValues[item].value);
+      } catch (e) {
+        return false;
+      }
     }
   };
 
-  if (queryType()) {
-    const sliderMin = config[qt.toString()].slider.domain[0];
-    const sliderMax = config[qt.toString()].slider.domain[1];
+  const urlParamObject: IUrlParams = Object.keys(urlParamValues).reduce(
+    (urls, item) => {
+      urls[item] = urls[item] || {
+        ...urlParamValues[item],
+        valid: validate[urlParamValues[item].type](item)
+      };
 
-    if (
-      queryType &&
-      clamp(sliderMin, sliderMax, sv.toString()) &&
-      browserlistQuery()
-    ) {
-      return wls;
-    }
-  }
+      return urls;
+    },
+    {}
+  );
 
-  return queryDefault.DEFAULT_QUERY;
+  const checkTrueValues = Object.keys(urlParamObject)
+    .map(url => {
+      return urlParamObject[url].valid;
+    })
+    .every(urlValid => urlValid === true);
+
+  return checkTrueValues ? wls : queryDefault.DEFAULT_QUERY;
 };

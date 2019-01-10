@@ -1,10 +1,10 @@
-import { queryTypes } from '../../utils/query-utils/queryStrings';
+import { queryParams } from '../../utils/query-utils/enums';
 
 const currentYear = new Date().getFullYear();
 
 export const config = {
-  [queryTypes.LAST_VERSIONS]: {
-    id: queryTypes.LAST_VERSIONS,
+  [queryParams.LAST_VERSIONS]: {
+    id: queryParams.LAST_VERSIONS,
     label: 'Last Versions',
     valueSuffix: '',
     slider: {
@@ -15,8 +15,8 @@ export const config = {
     }
   },
 
-  [queryTypes.GLOBAL_USAGE]: {
-    id: queryTypes.GLOBAL_USAGE,
+  [queryParams.GLOBAL_USAGE]: {
+    id: queryParams.GLOBAL_USAGE,
     label: 'Global Usage',
     valueSuffix: '%',
     slider: {
@@ -27,8 +27,8 @@ export const config = {
     }
   },
 
-  [queryTypes.YEAR_RELEASED]: {
-    id: queryTypes.YEAR_RELEASED,
+  [queryParams.YEAR_RELEASED]: {
+    id: queryParams.YEAR_RELEASED,
     label: 'Year Released',
     valueSuffix: '',
     slider: {
