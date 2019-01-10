@@ -1,4 +1,4 @@
-import { queryTypes } from '../utils/queryStrings';
+import { queryTypes } from './queryStrings';
 
 export const incQueryBuilder = (query: Array<String>) =>
   query.map(query => (query.length !== 0 ? `${query}` : query));

@@ -8,10 +8,10 @@ import { BrowserAccordion } from './BrowserAccordion';
 import { comparisonQuery } from '../../../utils/matrix-utils/comparison-query';
 import { constructMatrix } from '../../../utils/matrix-utils/constructMatrix';
 
-import { queryParams } from '../../../utils/queryStrings';
-import { urlSetter } from '../../../utils/urlSetter';
-import { arrayAdd } from '../../../utils/arrayAdd';
-import { arrayRemove } from '../../../utils/arrayRemove';
+import { queryParams } from '../../../utils/query-utils/queryStrings';
+import { urlSetter } from '../../../utils/url-utils/urlSetter';
+import { arrayAdd } from '../../../utils/array-utils/arrayAdd';
+import { arrayRemove } from '../../../utils/array-utils/arrayRemove';
 
 import { scaffolding, colours } from '../../../theme';
 

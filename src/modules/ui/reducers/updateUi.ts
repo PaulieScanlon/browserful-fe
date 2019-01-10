@@ -1,5 +1,5 @@
-import { arrayAdd } from '../../../utils/arrayAdd';
-import { arrayRemove } from '../../../utils/arrayRemove';
+import { arrayAdd } from '../../../utils/array-utils/arrayAdd';
+import { arrayRemove } from '../../../utils/array-utils/arrayRemove';
 
 import {
   UPDATE_QUERY,
@@ -11,8 +11,8 @@ import {
   UPDATE_INC_EXC_QUERY
 } from '../types';
 
-import { queryTypes } from '../../../utils/queryStrings';
-import { queryBuilder } from '../../../utils/queryBuilder';
+import { queryTypes } from '../../../utils/query-utils/queryStrings';
+import { queryBuilder } from '../../../utils/query-utils/queryBuilder';
 import { config } from '../../../features/SliderControls/config';
 interface IProps {
   queryType: string;

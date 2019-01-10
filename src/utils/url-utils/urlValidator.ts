@@ -1,7 +1,7 @@
-import { queryParams, queryTypes } from './queryStrings';
-import { queryDefault } from './queryDefault';
-import { config } from '../features/SliderControls/config';
-import { incQueryBuilder, excQueryBuilder } from './queryBuilder';
+import { queryParams, queryTypes } from '../query-utils/queryStrings';
+import { queryDefault } from '../query-utils/queryDefault';
+import { config } from '../../features/SliderControls/config';
+import { incQueryBuilder, excQueryBuilder } from '../query-utils/queryBuilder';
 import browserslist from 'browserslist';
 
 const clamp = (min: number, max: number, value: number | string) => {

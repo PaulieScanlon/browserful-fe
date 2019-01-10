@@ -1,4 +1,4 @@
-import { queryTypes } from '../../utils/queryStrings';
+import { queryTypes } from '../../utils/query-utils/queryStrings';
 
 const currentYear = new Date().getFullYear();
 

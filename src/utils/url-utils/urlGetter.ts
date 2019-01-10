@@ -1,4 +1,4 @@
-import { queryParams } from './queryStrings';
+import { queryParams } from '../query-utils/queryStrings';
 
 export const urlGetter = () => {
   const wls = window.location.search;

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { DescriptionList, DescriptionTerm, DescriptionDescription } from './';
 
-describe('DescriptionList', () => {
+describe('<DescriptionList />', () => {
   it('renders correctly', () => {
     const wrapper = shallow(
       <DescriptionList>

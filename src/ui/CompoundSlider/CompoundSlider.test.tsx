@@ -9,7 +9,7 @@ const shallowDefault = props => {
   return shallow(<CompoundSlider {...props} />);
 };
 
-describe('<CompoundSlider>', () => {
+describe('<CompoundSlider />', () => {
   it('renders correctly', () => {
     const wrapper = shallowDefault({});
     expect(wrapper).toHaveLength(1);
