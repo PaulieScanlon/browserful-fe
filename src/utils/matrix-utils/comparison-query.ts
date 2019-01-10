@@ -2,7 +2,7 @@ import browserslist from 'browserslist';
 import { queryParams } from '../query-utils/enums';
 import { config } from '../../features/SliderControls/config';
 
-const standardExcluded = 'not dead, not unreleased Chrome versions';
+const standardExcluded = '';
 
 export const comparisonQuery = {
   [queryParams.LAST_VERSIONS]: browserslist(
