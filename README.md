@@ -6,10 +6,12 @@ Features:
 
 - React
 - TypeScript
-- Styled Components
+- React Emotion
 - Storybook
 - Jest
 - Enzyme
+- Browserslist
+- ReCharts
 - Made with Next.js
 - [react-grid-system](https://github.com/JSxMachina/react-grid-system#readme) - [API](https://jsxmachina.github.io/react-grid-system/)
 
@@ -18,8 +20,8 @@ Features:
 server.js contains the named routes, these are:
 
 - ./
-- ./app/matrix
-- ./app/messages
+- /freeview/matrix => Freeview Matrix uses the set and get url methods and the Redux state
+- /app/matrix => App Matrix will use only the Redux state + api
 
 Each route resolves to a .tsx in ./src/pages.
 For example http://localhost:3030/app/matrix resolves to ./src/pages/matrix.tsx
@@ -52,12 +54,3 @@ Access URL:
   Public: https://PaulieScanlon.github.io/browserful-fe/
 --------------------------------------------------------
 ```
-
-### caniuse data
-
-API:
-data-2.0.json has a better 'version_list' use this version NOT data-1.0.json!
-`http://jsonviewer.stack.hu/#http://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json`
-`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-2.0.json`
-
-~~`https://s3.eu-west-2.amazonaws.com/browserful/caniuse/data-1.0.json`~~

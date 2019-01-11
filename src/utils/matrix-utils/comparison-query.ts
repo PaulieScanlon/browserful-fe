@@ -1,6 +1,6 @@
 import browserslist from 'browserslist';
 import { queryParams } from '../query-utils/enums';
-import { config } from '../../features/SliderControls/config';
+import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
 const standardExcluded = '';
 

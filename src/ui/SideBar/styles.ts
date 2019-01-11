@@ -49,5 +49,6 @@ export const SideBarContent = styled.div({
   minHeight: '100vh',
   position: 'absolute',
   top: '0px',
-  right: '0px'
+  right: '0px',
+  backgroundColor: colours.offWhite
 });

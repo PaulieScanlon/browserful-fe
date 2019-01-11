@@ -1,6 +1,6 @@
 import { queryParams } from '../query-utils/enums';
 import { queryDefault } from '../query-utils/queryDefault';
-import { config } from '../../features/SliderControls/config';
+import { config } from '../../features/MatrixUi/config/sliderControls.config';
 import browserslist from 'browserslist';
 
 enum typeString {
