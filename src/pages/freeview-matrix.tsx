@@ -3,13 +3,7 @@ import styled from 'react-emotion';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  updateQuery,
-  updateValue,
-  updateIncExcQuery,
-  updateBrowserQuery,
-  updateThing
-} from '../modules/ui/actions/updateUi';
+import { updateThing } from '../modules/ui/actions/updateUi';
 
 import { Container, Row, Col } from 'react-grid-system';
 
@@ -19,12 +13,13 @@ import { scaffolding, common, colours } from '../theme';
 
 import SliderControls from '../features/SliderControls/containers';
 import BrowserCards from '../features/BrowserCards/containers';
-import Stats from '../features/Stats/containers';
+// import Stats from '../features/Stats/containers';
 
 import { queryParams } from '../utils/query-utils/enums';
 import { urlValidator } from '../utils/url-utils/urlValidator';
 import { urlGetter } from '../utils/url-utils/urlGetter';
 import { queryBuilder } from '../utils/query-utils/queryBuilder';
+// import { constructMatrix } from 'src/utils/matrix-utils/constructMatrix';
 
 export const FreeviewContent = styled.div({
   label: 'freeview-content',
@@ -60,40 +55,6 @@ class Matrix extends React.Component<IProps, IState> {
   componentDidMount() {
     history.replaceState({}, '', `${urlValidator()}`);
 
-    const {
-      updateQuery,
-      updateValue,
-      updateBrowserQuery,
-      updateIncExcQuery
-    } = this.props;
-
-    updateQuery(urlGetter()[queryParams.QUERY_TYPE]);
-
-    updateValue(
-      urlGetter()[queryParams.QUERY_TYPE],
-      urlGetter()[queryParams.SLIDER_VALUES]
-    );
-
-    updateIncExcQuery(
-      urlGetter()
-        [queryParams.INCLUDED_QUERY].toString()
-        .split(','),
-      urlGetter()
-        [queryParams.EXCLUDED_QUERY].toString()
-        .split(',')
-    );
-
-    updateBrowserQuery(
-      urlGetter()[queryParams.QUERY_TYPE],
-      urlGetter()[queryParams.SLIDER_VALUES],
-      urlGetter()
-        [queryParams.INCLUDED_QUERY].toString()
-        .split(','),
-      urlGetter()
-        [queryParams.EXCLUDED_QUERY].toString()
-        .split(',')
-    );
-
     const qt = urlGetter()[queryParams.QUERY_TYPE];
     const sv = urlGetter()[queryParams.SLIDER_VALUES];
     const inc = urlGetter()[queryParams.INCLUDED_QUERY].split(',');
@@ -104,15 +65,15 @@ class Matrix extends React.Component<IProps, IState> {
 
     const qb = queryBuilder(qt, sv, inc, exc);
 
-    console.log('qt: ', qt);
-    console.log('sv: ', qt, ':', sv);
-    console.log('bq: ', qb);
-    console.log('inc: ', inc);
-    console.log('exc: ', exc);
+    // console.log('qt: ', qt);
+    // console.log('sv: ', qt, ':', sv);
+    // console.log('qb: ', qb);
+    // console.log('inc: ', inc);
+    // console.log('exc: ', exc);
 
     this.props.updateThing({
       ...this.props.thingObject,
-      qt: qt,
+      [queryParams.QUERY_TYPE]: qt,
       [qt]: sv,
       browserQuery: qb,
       incq: inc,
@@ -150,7 +111,7 @@ class Matrix extends React.Component<IProps, IState> {
             )}
             {isLoaded && (
               <Col xs={12} sm={12} md={5} lg={4}>
-                <Stats />
+                {/* <Stats /> */}
                 <div
                   style={{
                     marginTop: scaffolding.gutterLg
@@ -160,7 +121,7 @@ class Matrix extends React.Component<IProps, IState> {
             )}
           </Row>
 
-          <Row>{isLoaded && <BrowserCards />}</Row>
+          {/* <Row>{isLoaded && <BrowserCards />}</Row> */}
         </Container>
       </FreeviewContent>
     );
@@ -168,15 +129,10 @@ class Matrix extends React.Component<IProps, IState> {
 }
 
 const mapStateToProps = state => ({
-  queryType: state.ui.queryType,
   thingObject: state.ui.thingObject
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateQuery: bindActionCreators(updateQuery, dispatch),
-  updateValue: bindActionCreators(updateValue, dispatch),
-  updateIncExcQuery: bindActionCreators(updateIncExcQuery, dispatch),
-  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
   updateThing: bindActionCreators(updateThing, dispatch)
 });
 

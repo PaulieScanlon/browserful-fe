@@ -13,70 +13,60 @@ import { colours } from './../../../theme';
 
 import { config } from '../config';
 
+import { IThingObject } from '../../../modules/ui/reducers/updateUi';
 interface IProps {
-  queryType: string;
-  globalUsage: number;
-  yearReleased: number;
-  lastVersions: number;
-  incQuery: Array<String>;
-  excQuery: Array<String>;
-  browserQuery: string;
-  thingObject: Object;
-  updateQuery: any;
-  updateValue: any;
+  thingObject: IThingObject;
   updateThing: any;
 }
 
 export class SliderControls extends React.Component<IProps, {}> {
-  accordionOnChange(queryType: string, queryColour: string) {
-    const { updateQuery } = this.props;
-
+  accordionOnChange(queryType: string) {
     urlSetter(queryParams.QUERY_TYPE, queryType);
-    urlSetter(queryParams.SLIDER_VALUES, this.props[queryType]);
-
-    updateQuery(queryType, queryColour);
+    urlSetter(queryParams.SLIDER_VALUES, this.props.thingObject[queryType]);
 
     this.props.updateThing({
       ...this.props.thingObject,
-      [queryParams.QUERY_TYPE]: queryType
+      [queryParams.QUERY_TYPE]: queryType,
+      browserQuery: queryBuilder(
+        queryType,
+        this.props.thingObject[queryType],
+        this.props.thingObject.incq,
+        this.props.thingObject.excq
+      )
     });
   }
 
   sliderOnChange(value: any) {
-    const { updateValue, queryType } = this.props;
-
     urlSetter(queryParams.SLIDER_VALUES, value);
-
-    updateValue(queryType, value);
 
     this.props.updateThing({
       ...this.props.thingObject,
-      [this.props.queryType]: value,
-      browserQuery: queryBuilder(this.props.queryType, value, [''], [''])
+      [this.props.thingObject[queryParams.QUERY_TYPE]]: value,
+      browserQuery: queryBuilder(
+        this.props.thingObject[queryParams.QUERY_TYPE],
+        value,
+        this.props.thingObject.incq,
+        this.props.thingObject.excq
+      )
     });
   }
 
   render() {
-    const { queryType } = this.props;
+    const { qt } = this.props.thingObject;
 
     const accordionItems = Object.keys(config).map((key, index) => {
       const accordionName = config[key];
 
       return (
         <AccordionItem
-          onChange={event =>
-            this.accordionOnChange(
-              event.currentTarget.id,
-              accordionName.selectColour
-            )
-          }
+          onChange={event => this.accordionOnChange(event.currentTarget.id)}
           key={index}
           id={accordionName.id}
           renderLabel={() => (
             <DetailsLabel
               label={accordionName.label}
               renderStats={() => (
-                <LabelTextBold>{`${this.props[accordionName.id]}${
+                <LabelTextBold>{`${this.props.thingObject[accordionName.id]}${
                   accordionName.valueSuffix
                 }`}</LabelTextBold>
               )}
@@ -84,7 +74,7 @@ export class SliderControls extends React.Component<IProps, {}> {
           )}
           selectColour={accordionName.selectColour}
           backgroundColour={colours.offWhite}
-          defaultChecked={queryType === accordionName.id ? true : false}
+          defaultChecked={qt === accordionName.id ? true : false}
         >
           <CompoundSlider
             onChange={values => this.sliderOnChange(values[0])}
@@ -93,7 +83,7 @@ export class SliderControls extends React.Component<IProps, {}> {
             sliderColour={accordionName.slider.sliderColour}
             domain={accordionName.slider.domain}
             step={accordionName.slider.step}
-            values={[this.props[accordionName.id]]}
+            values={[this.props.thingObject[accordionName.id]]}
             tickCount={accordionName.slider.tickCount}
           />
         </AccordionItem>

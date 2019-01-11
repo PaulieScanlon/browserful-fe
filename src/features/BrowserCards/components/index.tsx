@@ -13,13 +13,13 @@ import { urlSetter } from '../../../utils/url-utils/urlSetter';
 import { arrayAdd } from '../../../utils/array-utils/arrayAdd';
 import { arrayRemove } from '../../../utils/array-utils/arrayRemove';
 
-import { scaffolding, colours } from '../../../theme';
+// import { scaffolding, colours } from '../../../theme';
 
-import {
-  LabelTextBold,
-  LabelTextItalic,
-  LabelTextRegular
-} from '../../../ui/Typography';
+// import {
+//   LabelTextBold,
+//   LabelTextItalic,
+//   LabelTextRegular
+// } from '../../../ui/Typography';
 
 interface IProps {
   //common start
@@ -33,73 +33,57 @@ interface IProps {
   updateExcluded: any;
 }
 export class BrowserCards extends React.Component<IProps, {}> {
-  onAutoChange(query: string) {
-    const { incQuery, excQuery } = this.props;
+  onAutoChange(query: string) {}
 
-    this.props.updateAuto(incQuery, excQuery, query);
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
-    urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
-  }
+  onIncludeChange(query: string) {}
 
-  onIncludeChange(query: string) {
-    const { incQuery, excQuery } = this.props;
-
-    this.props.updateIncluded(incQuery, excQuery, query);
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
-    urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, query).join());
-  }
-
-  onExcludeChange(query: string) {
-    const { incQuery, excQuery } = this.props;
-
-    this.props.updateExcluded(incQuery, excQuery, query);
-    urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, query).join());
-  }
+  onExcludeChange(query: string) {}
 
   render() {
-    const { browserQuery, queryType, incQuery, excQuery } = this.props;
+    <div>BrowserCards index</div>;
+    // const { browserQuery, queryType, incQuery, excQuery } = this.props;
 
-    const matrix = constructMatrix(
-      browserQuery,
-      comparisonQuery[queryType],
-      incQuery,
-      excQuery
-    );
+    // const matrix = constructMatrix(
+    //   browserQuery,
+    //   comparisonQuery[queryType],
+    //   incQuery,
+    //   excQuery
+    // );
 
-    const { browserList, includedList, total } = matrix;
+    // const { browserList, includedList, total } = matrix;
 
-    const desktopBrowserCards = browserList.desktop.map((browser, i) => {
-      return (
-        <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-          <BrowserAccordion
-            browser={browser}
-            highlightColour={colours.blue}
-            onAutoChange={query => this.onAutoChange(query)}
-            onIncludeChange={query => this.onIncludeChange(query)}
-            onExcludeChange={query => this.onExcludeChange(query)}
-          />
-        </div>
-      );
-    });
+    // const desktopBrowserCards = browserList.desktop.map((browser, i) => {
+    //   return (
+    //     <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+    //       <BrowserAccordion
+    //         browser={browser}
+    //         highlightColour={colours.blue}
+    //         onAutoChange={query => this.onAutoChange(query)}
+    //         onIncludeChange={query => this.onIncludeChange(query)}
+    //         onExcludeChange={query => this.onExcludeChange(query)}
+    //       />
+    //     </div>
+    //   );
+    // });
 
-    const mobileBrowserCards = browserList.mobile.map((browser, i) => {
-      return (
-        <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
-          <BrowserAccordion
-            browser={browser}
-            highlightColour={colours.teal}
-            onAutoChange={query => this.onAutoChange(query)}
-            onIncludeChange={query => this.onIncludeChange(query)}
-            onExcludeChange={query => this.onExcludeChange(query)}
-          />
-        </div>
-      );
-    });
+    // const mobileBrowserCards = browserList.mobile.map((browser, i) => {
+    //   return (
+    //     <div key={i} style={{ marginBottom: scaffolding.gutterLg }}>
+    //       <BrowserAccordion
+    //         browser={browser}
+    //         highlightColour={colours.teal}
+    //         onAutoChange={query => this.onAutoChange(query)}
+    //         onIncludeChange={query => this.onIncludeChange(query)}
+    //         onExcludeChange={query => this.onExcludeChange(query)}
+    //       />
+    //     </div>
+    //   );
+    // });
 
     return (
       <React.Fragment>
-        <Col xs={12} sm={12} md={12} lg={6}>
+        <div>BrowserCards index</div>
+        {/* <Col xs={12} sm={12} md={12} lg={6}>
           <TitleBar
             icon="bars"
             highlightColour={colours.blue}
@@ -130,7 +114,7 @@ export class BrowserCards extends React.Component<IProps, {}> {
             ]}
           />
           {mobileBrowserCards}
-        </Col>
+        </Col> */}
       </React.Fragment>
     );
   }
