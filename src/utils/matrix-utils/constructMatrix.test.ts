@@ -1,6 +1,5 @@
 import browserslist from 'browserslist';
 import { constructMatrix } from './constructMatrix';
-import { string } from 'prop-types';
 
 describe('constructMatrix', () => {
   it('matches snapshot', () => {

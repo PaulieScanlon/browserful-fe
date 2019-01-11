@@ -1,18 +1,17 @@
 import {
   UPDATE_QUERY,
   UPDATE_VALUE,
-  UPDATE_BROWSERQUERY,
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
-  UPDATE_INC_EXC_QUERY
+  UPDATE_INC_EXC
 } from '../types';
 
-export const updateQuery = (
-  queryType: string,
-  queryColour: string
-) => dispatch => {
-  return dispatch({ type: UPDATE_QUERY, queryType, queryColour });
+export const updateQuery = (queryType: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_QUERY,
+    queryType
+  });
 };
 
 export const updateValue = (queryType: string, value: number) => dispatch => {
@@ -20,21 +19,6 @@ export const updateValue = (queryType: string, value: number) => dispatch => {
     type: UPDATE_VALUE,
     queryType,
     value
-  });
-};
-
-export const updateBrowserQuery = (
-  queryType: string,
-  value: number,
-  incQuery: Array<String>,
-  excQuery: Array<String>
-) => dispatch => {
-  return dispatch({
-    type: UPDATE_BROWSERQUERY,
-    queryType,
-    value,
-    incQuery,
-    excQuery
   });
 };
 
@@ -77,12 +61,12 @@ export const updateExcluded = (
   });
 };
 
-export const updateIncExcQuery = (
+export const updateIncExc = (
   incQuery: Array<String>,
   excQuery: Array<String>
 ) => dispatch => {
   return dispatch({
-    type: UPDATE_INC_EXC_QUERY,
+    type: UPDATE_INC_EXC,
     incQuery,
     excQuery
   });

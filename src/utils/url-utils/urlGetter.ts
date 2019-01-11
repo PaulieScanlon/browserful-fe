@@ -7,8 +7,8 @@ export const urlGetter = () => {
 
   const qt = urlParams.getAll(queryParams.QUERY_TYPE);
   const sv = urlParams.getAll(queryParams.SLIDER_VALUES);
-  const incq = urlParams.getAll(queryParams.INCLUDED_QUERY);
-  const excq = urlParams.getAll(queryParams.EXCLUDED_QUERY);
+  const incq = urlParams.getAll(queryParams.INCLUDED_QUERY).toString();
+  const excq = urlParams.getAll(queryParams.EXCLUDED_QUERY).toString();
 
   return {
     qt: qt.toString(),

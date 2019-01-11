@@ -55,16 +55,18 @@ export const materialBuilder = (level: number) => {
 };
 
 export const common = {
-  modal: {
-    zIndex: 997
-  },
   appBar: {
     height: '72px',
-    zIndex: 998
+    zIndex: 997
   },
+
   sideBar: {
     width: '220px',
-    zIndex: 999,
+    zIndex: 998,
     colour: '#404040'
+  },
+
+  modal: {
+    zIndex: 999
   }
 };

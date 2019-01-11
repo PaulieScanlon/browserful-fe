@@ -1,30 +1,24 @@
 import * as React from 'react';
 
+import { IProps } from '../types';
+
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
-import { Modal } from '../../../ui/Modal';
-import { VersionChip } from '../../../ui/VersionChip';
-import { OverrideSelect } from '../../../ui/OverrideSelect';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
 import { LabelTextBold, LabelTextItalic } from '../../../ui/Typography';
-import { colours } from '../../../theme';
+import { VersionChip } from '../../../ui/VersionChip';
+import { Modal } from '../../../ui/Modal';
+import { OverrideSelect } from '../../../ui/OverrideSelect';
 
-interface IProps {
-  browser: any;
-  highlightColour: string;
-  onAutoChange: any;
-  onIncludeChange: any;
-  onExcludeChange: any;
-}
+import { colours, scaffolding } from '../../../theme';
 
 export const BrowserAccordion: React.SFC<IProps> = ({
   browser,
-  highlightColour,
-  onAutoChange,
-  onIncludeChange,
-  onExcludeChange
-}) => {
+  handleAutoChange,
+  handleIncludeChange,
+  handleExcludeChange
+}: IProps) => {
   return (
-    <div>
+    <div style={{ marginBottom: scaffolding.gutterLg }}>
       <Accordion maxHeight="700px" type="checkbox" name={browser.friendlyName}>
         <AccordionItem
           id={browser.friendlyName}
@@ -45,7 +39,6 @@ export const BrowserAccordion: React.SFC<IProps> = ({
               ]}
             />
           )}
-          selectColour={highlightColour}
           backgroundColour={colours.white}
           defaultChecked={browser.expandCard}
         >
@@ -68,9 +61,9 @@ export const BrowserAccordion: React.SFC<IProps> = ({
                     version={version.version}
                     logo={browser.logo}
                     hasOverride={version.hasOverride}
-                    onAutoChange={query => onAutoChange(query)}
-                    onIncludeChange={query => onIncludeChange(query)}
-                    onExcludeChange={query => onExcludeChange(query)}
+                    onAutoChange={query => handleAutoChange(query)}
+                    onIncludeChange={query => handleIncludeChange(query)}
+                    onExcludeChange={query => handleExcludeChange(query)}
                   />
                 )}
               />

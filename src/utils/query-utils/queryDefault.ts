@@ -1,4 +1,4 @@
-import { config } from '../../features/SliderControls/config';
+import { config } from '../../features/MatrixUi/config/sliderControls.config';
 import { queryParams } from './enums';
 
 export const queryDefault = {
