@@ -27,6 +27,9 @@ export const StatArea = styled.div({
   justifyContent: 'flex-end',
   padding: scaffolding.gutterLg,
   '.stat-box:not(:last-child)': {
+    borderTopColor: colours.greyUltraLight,
+    borderLeftColor: colours.greyUltraLight,
+    borderRightColor: colours.greyUltraLight,
     marginBottom: scaffolding.gutterMd
   }
 });
@@ -37,7 +40,12 @@ export const StatBox = styled.div({
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: `1px solid ${colours.greyUltraLight}`,
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderTopColor: colours.white,
+  borderLeftColor: colours.white,
+  borderRightColor: colours.white,
+  borderBottomColor: colours.greyUltraLight,
   padding: scaffolding.gutterSm
 });
 

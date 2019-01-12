@@ -3,7 +3,11 @@ import * as React from 'react';
 import { IProps } from '../types';
 
 import { DoughnutChart } from '../../../ui/DoughnutChart';
-import { LabelTextRegular, LabelTextBold } from '../../../ui/Typography';
+import {
+  LabelTextRegular,
+  LabelTextItalic,
+  LabelTextBold
+} from '../../../ui/Typography';
 
 import {
   ChartContainer,
@@ -57,25 +61,25 @@ export const Stats: React.SFC<IProps> = ({
         </ChartArea>
         <StatArea>
           <StatBox className="stat-box">
-            <LabelTextRegular>
+            <LabelTextItalic style={{ fontSize: '14px' }}>
               <StatDot dotColour={colours.blue} />
               Desktop
-            </LabelTextRegular>
-            <LabelTextBold>{includedList.desktop}</LabelTextBold>
+            </LabelTextItalic>
+            <LabelTextRegular>{includedList.desktop}</LabelTextRegular>
           </StatBox>
           <StatBox className="stat-box">
-            <LabelTextRegular>
+            <LabelTextItalic style={{ fontSize: '14px' }}>
               <StatDot dotColour={colours.teal} />
               Mobile
-            </LabelTextRegular>
-            <LabelTextBold>{includedList.mobile}</LabelTextBold>
+            </LabelTextItalic>
+            <LabelTextRegular>{includedList.mobile}</LabelTextRegular>
           </StatBox>
           <StatBox className="stat-box">
-            <LabelTextRegular>
-              <StatDot dotColour={colours.greyUltraLight} />
+            <LabelTextRegular fontColour={colours.pink}>
+              <StatDot dotColour={colours.pink} />
               Total
             </LabelTextRegular>
-            <LabelTextBold>
+            <LabelTextBold fontColour={colours.pink}>
               {includedList.desktop + includedList.mobile}
             </LabelTextBold>
           </StatBox>
