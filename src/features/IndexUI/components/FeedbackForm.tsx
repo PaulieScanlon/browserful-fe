@@ -23,7 +23,7 @@ const schema = Yup.object().shape({
   message: Yup.string().required()
 });
 
-const FeedbackForm: React.SFC<{}> = ({}) => {
+export const FeedbackForm: React.SFC<{}> = ({}) => {
   return (
     <FormWrapper>
       <Container>
@@ -152,4 +152,3 @@ const FeedbackForm: React.SFC<{}> = ({}) => {
     </FormWrapper>
   );
 };
-export default FeedbackForm;

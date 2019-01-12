@@ -14,7 +14,7 @@ import { scaffolding } from '../../../theme';
 
 import { LandingContent, LandingImage, CopyPanel } from './styles';
 
-const LandingPage: React.SFC = () => {
+export const LandingPage: React.SFC = () => {
   return (
     <React.Fragment>
       <HeadTag />
@@ -53,5 +53,3 @@ const LandingPage: React.SFC = () => {
     </React.Fragment>
   );
 };
-
-export default LandingPage;

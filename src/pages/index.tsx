@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import LandingPage from '../features/LandingPage/components';
-import FeedbackForm from '../features/FeedbackForm/components';
-import HowTo from '../features/HowTo/components';
+import AppIndexUi from '../features/IndexUI/containers/AppIndexUi';
 
 interface IState {
   isLoaded: boolean;
@@ -25,15 +23,7 @@ class Index extends React.Component<{}, IState> {
   render() {
     const { isLoaded } = this.state;
 
-    return (
-      <React.Fragment>
-        {isLoaded && [
-          <LandingPage key="landing-page" />,
-          <HowTo key="how-to" />,
-          <FeedbackForm key="feedback-form" />
-        ]}
-      </React.Fragment>
-    );
+    return <React.Fragment>{isLoaded && <AppIndexUi />}</React.Fragment>;
   }
 }
 
