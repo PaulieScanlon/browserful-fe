@@ -9,7 +9,8 @@ import { colours } from '../../theme';
 export interface IData {
   name: string;
   value: number;
-  key: string;
+  fill?: string;
+  stroke?: string;
 }
 
 interface IProps {
@@ -33,14 +34,13 @@ export const DoughnutChart: React.SFC<IProps> = ({
         <PieChart>
           <Pie
             dataKey="value"
-            data={addFillToData(data, segmentColour)}
+            data={addFillToData(data)}
             startAngle={90}
             endAngle={450}
-            // startAngle={220}
-            // endAngle={-40}
             innerRadius={'70%'}
             outerRadius={'100%'}
             paddingAngle={2}
+            fill={segmentColour}
             stroke={strokeColour}
           />
         </PieChart>
