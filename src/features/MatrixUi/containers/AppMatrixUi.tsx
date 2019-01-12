@@ -10,7 +10,7 @@ import {
   updateIncluded,
   updateExcluded,
   updateIncExc
-} from '../actions/MatrixUi';
+} from '../actions/Matrix';
 
 import { constructMatrix } from '../../../utils/matrixUtils/constructMatrix';
 import { comparisonQuery } from '../../../utils/queryUtils/queryComparison';

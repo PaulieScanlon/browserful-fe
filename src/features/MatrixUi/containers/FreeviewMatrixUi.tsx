@@ -10,7 +10,7 @@ import {
   updateIncluded,
   updateExcluded,
   updateIncExc
-} from '../actions/MatrixUi';
+} from '../actions/Matrix';
 
 import { urlValidator } from '../../../utils/urlUtils/urlValidator';
 import { urlGetter } from '../../../utils/urlUtils/urlGetter';
