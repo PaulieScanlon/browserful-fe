@@ -25,6 +25,10 @@ class AppMatrix extends React.Component<IProps, IState> {
     };
   }
 
+  getInitialProps = () => {
+    //@TODO add getInitialProps to get the users matrix settings
+  };
+
   componentDidMount() {
     this.setState({
       isLoaded: true

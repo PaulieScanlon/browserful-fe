@@ -4,11 +4,13 @@ export interface IProps {
   lastVersions?: number;
   globalUsage?: number;
   yearReleased?: number;
+  browserQuery?: string;
   incQuery?: Array<String>;
   excQuery?: Array<String>;
   //
   updateQuery?: Function;
   updateValue?: Function;
+  updateBrowserQuery?: Function;
   updateAuto?: Function;
   updateIncluded?: Function;
   updateExcluded?: Function;
