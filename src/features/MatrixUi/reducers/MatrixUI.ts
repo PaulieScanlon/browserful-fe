@@ -5,11 +5,11 @@ import {
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC
-} from '../types';
+} from '../constants';
 
-import { queryParams } from '../../../utils/query-utils/enums';
-import { arrayAdd } from '../../../utils/array-utils/arrayAdd';
-import { arrayRemove } from '../../../utils/array-utils/arrayRemove';
+import { queryParams } from '../../../utils/queryUtils/enums';
+import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
+import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
 import { config } from '../config/sliderControls.config';
 

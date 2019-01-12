@@ -5,7 +5,7 @@ import {
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC
-} from '../types';
+} from '../constants';
 
 export const updateQuery = (queryType: string) => dispatch => {
   return dispatch({

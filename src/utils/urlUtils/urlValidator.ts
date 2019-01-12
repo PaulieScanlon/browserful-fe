@@ -1,5 +1,5 @@
-import { queryParams } from '../query-utils/enums';
-import { queryDefault } from '../query-utils/queryDefault';
+import { queryParams } from '../queryUtils/enums';
+import { queryDefault } from '../queryUtils/queryDefault';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 import browserslist from 'browserslist';
 

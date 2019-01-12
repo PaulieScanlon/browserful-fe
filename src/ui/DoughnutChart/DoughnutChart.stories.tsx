@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { DoughnutChart } from './DoughnutChart';
-import { overrides } from '../../utils/matrix-utils/enums';
+import { overrides } from '../../utils/matrixUtils/enums';
 import { colours } from '../../theme';
 
 const data = [

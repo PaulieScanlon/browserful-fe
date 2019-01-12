@@ -1,5 +1,5 @@
 import { urlValidator } from './urlValidator';
-import { queryDefault } from '../query-utils/queryDefault';
+import { queryDefault } from '../queryUtils/queryDefault';
 
 describe('urlValidator', () => {
   it('returns the default queryUrl if any of the query params are missing', () => {
