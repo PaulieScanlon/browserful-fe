@@ -18,6 +18,7 @@ export interface IProps {
   handleSliderChange?: (value: number, id: string) => void;
   //
   browser?: any;
+  selectColour?: string;
   //
   browserList?: any;
   includedList?: any;

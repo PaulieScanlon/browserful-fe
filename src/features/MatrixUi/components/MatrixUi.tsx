@@ -77,6 +77,7 @@ export class MatrixUi extends React.Component<IProps> {
                 <BrowserAccordion
                   key={index}
                   browser={browser}
+                  selectColour={colours.blue}
                   handleAutoChange={handleAutoChange}
                   handleIncludeChange={handleIncludeChange}
                   handleExcludeChange={handleExcludeChange}
@@ -103,6 +104,7 @@ export class MatrixUi extends React.Component<IProps> {
                 <BrowserAccordion
                   key={index}
                   browser={browser}
+                  selectColour={colours.teal}
                   handleAutoChange={handleAutoChange}
                   handleIncludeChange={handleIncludeChange}
                   handleExcludeChange={handleExcludeChange}

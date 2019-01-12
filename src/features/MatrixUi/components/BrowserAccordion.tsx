@@ -13,6 +13,7 @@ import { colours, scaffolding } from '../../../theme';
 
 export const BrowserAccordion: React.SFC<IProps> = ({
   browser,
+  selectColour,
   handleAutoChange,
   handleIncludeChange,
   handleExcludeChange
@@ -39,6 +40,7 @@ export const BrowserAccordion: React.SFC<IProps> = ({
               ]}
             />
           )}
+          selectColour={selectColour}
           backgroundColour={colours.white}
           defaultChecked={browser.expandCard}
         >
