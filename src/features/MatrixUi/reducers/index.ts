@@ -4,10 +4,12 @@ import {
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
-  UPDATE_INC_EXC
+  UPDATE_INC_EXC,
+  UPDATE_BROWSER_QUERY
 } from '../constants';
 
 import { queryParams } from '../../../utils/queryUtils/enums';
+import { queryBuilder } from '../../../utils/queryUtils/queryBuilder';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
@@ -23,6 +25,12 @@ const initialState: IProps = {
     config[queryParams.GLOBAL_USAGE].slider.defaultValue,
   [queryParams.YEAR_RELEASED]:
     config[queryParams.YEAR_RELEASED].slider.defaultValue,
+  browserQuery: queryBuilder(
+    queryParams.LAST_VERSIONS,
+    config[queryParams.LAST_VERSIONS].slider.defaultValue,
+    [''],
+    ['']
+  ),
   incQuery: [''],
   excQuery: ['']
 };
@@ -38,6 +46,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         [action.queryType]: action.value
+      };
+
+    case UPDATE_BROWSER_QUERY:
+      return {
+        ...state,
+        browserQuery: action.browserQuery
       };
 
     case UPDATE_AUTO:

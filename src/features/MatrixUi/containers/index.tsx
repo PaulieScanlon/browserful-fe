@@ -9,8 +9,9 @@ import {
   updateAuto,
   updateIncluded,
   updateExcluded,
-  updateIncExc
-} from '../actions/Matrix';
+  updateIncExc,
+  updateBrowserQuery
+} from '../actions';
 
 import { urlValidator } from '../../../utils/urlUtils/urlValidator';
 import { urlGetter } from '../../../utils/urlUtils/urlGetter';
@@ -47,12 +48,8 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
 
       const qt = urlGetter().qt;
       const sv = urlGetter().sv;
-      const incq = urlGetter()
-        [queryParams.INCLUDED_QUERY].toString()
-        .split(',');
-      const excq = urlGetter()
-        [queryParams.EXCLUDED_QUERY].toString()
-        .split(',');
+      const incq = urlGetter()[queryParams.INCLUDED_QUERY];
+      const excq = urlGetter()[queryParams.EXCLUDED_QUERY];
 
       updateQuery(qt);
       updateValue(qt, sv);
@@ -62,6 +59,17 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     this.setState({
       isLoaded: true
     });
+  }
+
+  componentWillReceiveProps(nextProps: any) {
+    const { updateBrowserQuery } = this.props;
+    const bq = queryBuilder(
+      nextProps.queryType,
+      nextProps[nextProps.queryType],
+      nextProps.incQuery,
+      nextProps.excQuery
+    );
+    updateBrowserQuery(bq);
   }
 
   handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -187,6 +195,7 @@ const mapStateToProps = state => ({
   lastVersions: state.matrixUi.lastVersions,
   globalUsage: state.matrixUi.globalUsage,
   yearReleased: state.matrixUi.yearReleased,
+  browserQuery: state.matrixUi.browserQuery,
   incQuery: state.matrixUi.incQuery,
   excQuery: state.matrixUi.excQuery
 });
@@ -194,6 +203,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
   updateValue: bindActionCreators(updateValue, dispatch),
+  updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),
   updateExcluded: bindActionCreators(updateExcluded, dispatch),

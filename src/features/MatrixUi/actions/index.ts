@@ -4,7 +4,8 @@ import {
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
-  UPDATE_INC_EXC
+  UPDATE_INC_EXC,
+  UPDATE_BROWSER_QUERY
 } from '../constants';
 
 export const updateQuery = (queryType: string) => dispatch => {
@@ -32,6 +33,13 @@ export const updateAuto = (
     incQuery,
     excQuery,
     query
+  });
+};
+
+export const updateBrowserQuery = (browserQuery: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_BROWSER_QUERY,
+    browserQuery
   });
 };
 

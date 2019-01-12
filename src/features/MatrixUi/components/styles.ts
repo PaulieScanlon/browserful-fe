@@ -6,7 +6,8 @@ export const ChartContainer = styled.div({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '370px',
-  backgroundColor: colours.white
+  backgroundColor: colours.white,
+  marginBottom: scaffolding.gutterXxl
 });
 
 export const ChartArea = styled.div({
