@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import AppIndexUi from '../features/IndexUI/containers/AppIndexUi';
+import IndexUi from '../features/IndexUI/containers/';
 
 interface IState {
   isLoaded: boolean;
@@ -23,7 +23,7 @@ class Index extends React.Component<{}, IState> {
   render() {
     const { isLoaded } = this.state;
 
-    return <React.Fragment>{isLoaded && <AppIndexUi />}</React.Fragment>;
+    return <React.Fragment>{isLoaded && <IndexUi />}</React.Fragment>;
   }
 }
 

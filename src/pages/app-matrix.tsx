@@ -7,7 +7,8 @@ import { AppBar } from '../ui/AppBar';
 import { SideBar } from '../ui/SideBar';
 import { scaffolding } from '../theme';
 
-import AppMatrixUi from '../features/MatrixUi/containers/AppMatrixUi';
+import MatrixUi from '../features/MatrixUi/containers';
+import { variantTypes } from '../features/MatrixUi/enums';
 
 import { AppContent } from './styles';
 
@@ -43,7 +44,7 @@ class AppMatrix extends React.Component<IProps, IState> {
               margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
             }}
           >
-            {isLoaded && <AppMatrixUi />}
+            {isLoaded && <MatrixUi variant={variantTypes.APPVIEW} />}
           </Container>
         </SideBar>
       </AppContent>

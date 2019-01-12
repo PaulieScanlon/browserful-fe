@@ -6,7 +6,8 @@ import { HeadTag } from '../ui/HeadTag';
 import { AppBar } from '../ui/AppBar';
 import { scaffolding } from '../theme';
 
-import FreeviewMatrixUi from '../features/MatrixUi/containers/FreeviewMatrixUi';
+import MatrixUi from '../features/MatrixUi/containers';
+import { variantTypes } from '../features/MatrixUi/enums';
 
 import { AppContent } from './styles';
 
@@ -40,7 +41,7 @@ class FreeviewMatrix extends React.Component<IProps, IState> {
             margin: `${scaffolding.gutterSm} auto`
           }}
         >
-          {isLoaded && <FreeviewMatrixUi />}
+          {isLoaded && <MatrixUi variant={variantTypes.FREEVIEW} />}
         </Container>
       </AppContent>
     );
