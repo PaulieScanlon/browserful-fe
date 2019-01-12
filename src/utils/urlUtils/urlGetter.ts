@@ -1,4 +1,4 @@
-import { queryParams } from '../query-utils/enums';
+import { queryParams } from '../queryUtils/enums';
 
 export const urlGetter = () => {
   const wls = window.location.search;

@@ -1,6 +1,6 @@
 import * as tinycolor from 'tinycolor2';
 
-import { overrides } from '../../utils/matrix-utils/enums';
+import { overrides } from '../../utils/matrixUtils/enums';
 
 import { IData } from './DoughnutChart';
 

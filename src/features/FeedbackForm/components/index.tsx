@@ -11,7 +11,7 @@ import { InputLabel } from '../../../ui/InputLabel';
 import { InputText } from '../../../ui/InputText';
 import { InputTextArea } from '../../../ui/InputTextArea';
 import { InputAnnounce } from '../../../ui/InputAnnounce';
-import { Button } from '../../..//ui/Button';
+import { Button } from '../../../ui/Button';
 import { scaffolding, colours } from '../../../theme';
 
 import { FormWrapper } from './styles';

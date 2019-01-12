@@ -1,5 +1,5 @@
 import browserslist from 'browserslist';
-import { queryParams } from '../query-utils/enums';
+import { queryParams } from './enums';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
 const standardExcluded = '';
@@ -12,8 +12,8 @@ export const comparisonQuery = {
   ),
 
   [queryParams.GLOBAL_USAGE]: browserslist(
-    `< ${
-      config[queryParams.GLOBAL_USAGE].slider.domain[1]
+    `>= ${
+      config[queryParams.GLOBAL_USAGE].slider.domain[0]
     }%, ${standardExcluded}`
   ),
 
