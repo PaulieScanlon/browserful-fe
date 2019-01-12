@@ -72,7 +72,7 @@ export const Stats: React.SFC<IProps> = ({
           </StatBox>
           <StatBox className="stat-box">
             <LabelTextRegular>
-              <StatDot dotColour={colours.pink} />
+              <StatDot dotColour={colours.greyUltraLight} />
               Total
             </LabelTextRegular>
             <LabelTextBold>
