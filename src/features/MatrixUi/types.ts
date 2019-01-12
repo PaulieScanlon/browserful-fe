@@ -1,4 +1,5 @@
 export interface IProps {
+  variant?: string;
   queryType?: string;
   lastVersions?: number;
   globalUsage?: number;

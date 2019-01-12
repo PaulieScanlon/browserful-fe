@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MatrixUi } from '../components/MatrixUi';
+import { MatrixUi } from '../components';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,8 +23,9 @@ import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
 import { IProps, IState } from '../types';
+import { variantTypes } from '../enums';
 
-class FreeviewMatrixUi extends React.Component<IProps, IState> {
+class MatrixUiContainer extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -38,24 +39,25 @@ class FreeviewMatrixUi extends React.Component<IProps, IState> {
     this.handleExcludeChange = this.handleExcludeChange.bind(this);
   }
 
-  // freeview only
   componentDidMount() {
-    history.replaceState({}, '', `${urlValidator()}`);
+    const { variant, updateQuery, updateValue, updateIncExc } = this.props;
 
-    const { updateQuery, updateValue, updateIncExc } = this.props;
+    if (variant === variantTypes.FREEVIEW) {
+      history.replaceState({}, '', `${urlValidator()}`);
 
-    const qt = urlGetter().qt;
-    const sv = urlGetter().sv;
-    const incq = urlGetter()
-      [queryParams.INCLUDED_QUERY].toString()
-      .split(',');
-    const excq = urlGetter()
-      [queryParams.EXCLUDED_QUERY].toString()
-      .split(',');
+      const qt = urlGetter().qt;
+      const sv = urlGetter().sv;
+      const incq = urlGetter()
+        [queryParams.INCLUDED_QUERY].toString()
+        .split(',');
+      const excq = urlGetter()
+        [queryParams.EXCLUDED_QUERY].toString()
+        .split(',');
 
-    updateQuery(qt);
-    updateValue(qt, sv);
-    updateIncExc(incq, excq);
+      updateQuery(qt);
+      updateValue(qt, sv);
+      updateIncExc(incq, excq);
+    }
 
     this.setState({
       isLoaded: true
@@ -63,51 +65,68 @@ class FreeviewMatrixUi extends React.Component<IProps, IState> {
   }
 
   handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { updateQuery } = this.props;
+    const { variant, updateQuery } = this.props;
     const qt = event.currentTarget.id;
     updateQuery(qt);
 
-    // freeview only
-    urlSetter('qt', qt);
-    urlSetter('sv', this.props[qt]);
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter('qt', qt);
+      urlSetter('sv', this.props[qt]);
+    }
   }
 
   handleSliderChange(value: number, id: string) {
-    const { updateValue } = this.props;
+    const { variant, updateValue } = this.props;
     const qt = id;
     const sv = value;
     updateValue(qt, sv);
 
-    // freeview only
-    urlSetter('qt', qt);
-    urlSetter('sv', sv);
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter('qt', qt);
+      urlSetter('sv', sv);
+    }
   }
 
   handleAutoChange(query: string) {
-    const { updateAuto, incQuery, excQuery } = this.props;
+    const { variant, updateAuto, incQuery, excQuery } = this.props;
     updateAuto(incQuery, excQuery, query);
 
-    // freeview only
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
-    urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter(
+        queryParams.EXCLUDED_QUERY,
+        arrayRemove(excQuery, query).join()
+      );
+      urlSetter(
+        queryParams.INCLUDED_QUERY,
+        arrayRemove(incQuery, query).join()
+      );
+    }
   }
 
   handleIncludeChange(query: string) {
-    const { updateIncluded, incQuery, excQuery } = this.props;
+    const { variant, updateIncluded, incQuery, excQuery } = this.props;
     updateIncluded(incQuery, excQuery, query);
 
-    // freeview only
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayRemove(excQuery, query).join());
-    urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, query).join());
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter(
+        queryParams.EXCLUDED_QUERY,
+        arrayRemove(excQuery, query).join()
+      );
+      urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, query).join());
+    }
   }
 
   handleExcludeChange(query: string) {
-    const { updateExcluded, incQuery, excQuery } = this.props;
+    const { variant, updateExcluded, incQuery, excQuery } = this.props;
     updateExcluded(incQuery, excQuery, query);
 
-    // freeview only
-    urlSetter(queryParams.INCLUDED_QUERY, arrayRemove(incQuery, query).join());
-    urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, query).join());
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter(
+        queryParams.INCLUDED_QUERY,
+        arrayRemove(incQuery, query).join()
+      );
+      urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, query).join());
+    }
   }
 
   render() {
@@ -184,4 +203,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FreeviewMatrixUi);
+)(MatrixUiContainer);
