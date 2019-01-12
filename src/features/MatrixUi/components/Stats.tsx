@@ -1,109 +1,85 @@
 import * as React from 'react';
-import tinycolor from 'tinycolor2';
-
-import { overrides } from '../../../utils/matrixUtils/enums';
 
 import { IProps } from '../types';
 
 import { DoughnutChart } from '../../../ui/DoughnutChart';
-
-import {
-  LabelTextRegular,
-  LabelTextBold,
-  LabelTextItalic
-} from '../../../ui/Typography';
+import { LabelTextRegular, LabelTextBold } from '../../../ui/Typography';
 
 import {
   ChartContainer,
   ChartArea,
-  DetailsContainer,
-  StatsArea,
-  TotalsArea,
-  LegendArea,
-  LegendDot
+  StatArea,
+  StatBox,
+  StatDot
 } from './styles';
 
-import { colours, scaffolding } from '../../../theme';
+import { colours } from '../../../theme';
 
 export const Stats: React.SFC<IProps> = ({
   includedList,
-  excludedList,
-  total
+  excludedList
 }: IProps) => {
   const chartData = [
     {
       name: 'desktop',
       value: includedList.desktop,
-      key: overrides.IS_INCLUDED
+      fill: colours.blue,
+      stroke: colours.blue
     },
     {
       name: 'mobile',
       value: includedList.mobile,
-      key: overrides.IS_INCLUDED
+      fill: colours.teal,
+      stroke: colours.teal
     },
     {
-      name: 'remaining-excluded',
-      value: excludedList.desktop + excludedList.mobile,
-      key: overrides.IS_EXCLUDED
+      name: 'desktop-excluded',
+      value: excludedList.desktop,
+      fill: colours.offWhite,
+      stroke: colours.offWhite
+    },
+    {
+      name: 'mobile-excluded',
+      value: excludedList.mobile,
+      fill: colours.offWhite,
+      stroke: colours.offWhite
     }
   ];
   return (
     <React.Fragment>
       <ChartContainer>
-        <LegendArea>
-          <LegendDot backgroundColour={colours.white} />
-          <LabelTextRegular
-            fontColour={colours.white}
-            style={{ marginRight: scaffolding.gutterLg }}
-          >
-            Included
-          </LabelTextRegular>
-          <LegendDot
-            backgroundColour={tinycolor(colours.white)
-              .setAlpha(0.5)
-              .toString()}
-          />
-          <LabelTextRegular fontColour={colours.white}>
-            Excluded
-          </LabelTextRegular>
-        </LegendArea>
         <ChartArea>
           <DoughnutChart
             data={chartData}
             segmentColour={colours.white}
-            strokeColour={colours.pink}
+            strokeColour={colours.white}
           />
         </ChartArea>
-        <DetailsContainer>
-          <StatsArea>
-            <LabelTextBold>{includedList.desktop}&nbsp;</LabelTextBold>
-            <LabelTextItalic>of&nbsp;</LabelTextItalic>
-            <LabelTextBold>&nbsp;{total.desktop}</LabelTextBold>
-            <LabelTextRegular>&nbsp;desktop&nbsp;/&nbsp;</LabelTextRegular>
-
-            <LabelTextBold>{includedList.mobile}&nbsp;</LabelTextBold>
-            <LabelTextItalic>of&nbsp;</LabelTextItalic>
-            <LabelTextBold>&nbsp;{total.mobile}</LabelTextBold>
-            <LabelTextRegular>&nbsp;mobile</LabelTextRegular>
-          </StatsArea>
-          <TotalsArea>
-            <LabelTextBold
-              fontColour={colours.pink}
-              style={{
-                fontSize: '64px',
-                lineHeight: '68px',
-                color: colours.pink,
-                marginLeft: scaffolding.gutterXl
-              }}
-            >
+        <StatArea>
+          <StatBox className="stat-box">
+            <LabelTextRegular>
+              <StatDot dotColour={colours.blue} />
+              Desktop
+            </LabelTextRegular>
+            <LabelTextBold>{includedList.desktop}</LabelTextBold>
+          </StatBox>
+          <StatBox className="stat-box">
+            <LabelTextRegular>
+              <StatDot dotColour={colours.teal} />
+              Mobile
+            </LabelTextRegular>
+            <LabelTextBold>{includedList.mobile}</LabelTextBold>
+          </StatBox>
+          <StatBox className="stat-box">
+            <LabelTextRegular>
+              <StatDot dotColour={colours.pink} />
+              Total
+            </LabelTextRegular>
+            <LabelTextBold>
               {includedList.desktop + includedList.mobile}
             </LabelTextBold>
-            <LabelTextItalic>&nbsp;of&nbsp;</LabelTextItalic>
-            <LabelTextRegular>
-              &nbsp;{total.desktop + total.mobile}
-            </LabelTextRegular>
-          </TotalsArea>
-        </DetailsContainer>
+          </StatBox>
+        </StatArea>
       </ChartContainer>
     </React.Fragment>
   );

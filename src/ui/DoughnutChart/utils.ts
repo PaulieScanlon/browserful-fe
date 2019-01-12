@@ -1,23 +1,12 @@
-import tinycolor from 'tinycolor2';
-
-import { overrides } from '../../utils/matrixUtils/enums';
-
 import { IData } from './DoughnutChart';
 
-export const addFillToData = (data: Array<IData>, segmentColour: string) => {
-  const treatmentColours = {
-    [overrides.IS_INCLUDED]: tinycolor(segmentColour).toString(),
-    [overrides.IS_EXCLUDED]: tinycolor(segmentColour)
-      .setAlpha(0.5)
-      .toString()
-  };
-
+export const addFillToData = (data: Array<IData>) => {
   return data.map(data => {
     return {
       name: data.name,
       value: data.value,
-      key: data.key,
-      fill: treatmentColours[data.key]
+      fill: data.fill,
+      stroke: data.stroke
     };
   });
 };

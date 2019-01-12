@@ -12,48 +12,45 @@ export const ChartContainer = styled.div({
 
 export const ChartArea = styled.div({
   label: 'chart-area',
-  backgroundColor: colours.pink,
-  padding: scaffolding.gutterLg
-});
-
-export const DetailsContainer = styled.div({
-  label: 'details-container',
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
-  justifyContent: 'center'
-});
-
-export const StatsArea = styled.div({
-  label: 'stats-area',
-  textAlign: 'center',
-  marginBottom: scaffolding.gutterSm
-});
-
-export const TotalsArea = styled.div({
-  label: 'totals-area',
-  textAlign: 'left'
-});
-
-export const LegendArea = styled.div({
-  label: 'legend-area',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: colours.pink,
+  justifyContent: 'flex-end',
   paddingTop: scaffolding.gutterLg
 });
 
-export const LegendDot = styled.span<{ backgroundColour: string }>(
+export const StatArea = styled.div({
+  label: 'stat-area',
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  justifyContent: 'flex-end',
+  padding: scaffolding.gutterLg,
+  '.stat-box:not(:last-child)': {
+    marginBottom: scaffolding.gutterMd
+  }
+});
+
+export const StatBox = styled.div({
+  label: 'stat-box',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  boxSizing: 'border-box',
+  border: `1px solid ${colours.greyUltraLight}`,
+  padding: scaffolding.gutterSm
+});
+
+export const StatDot = styled.span<{ dotColour: string }>(
   {
-    label: 'legend-dot',
+    label: 'label-dot',
     display: 'inline-block',
-    width: '14px',
-    height: '14px',
-    marginRight: scaffolding.gutterSm,
-    borderRadius: '100%'
+    width: '12px',
+    height: '12px',
+    borderRadius: '100%',
+    marginRight: scaffolding.gutterSm
   },
-  ({ backgroundColour }) => ({
-    backgroundColor: backgroundColour
+  ({ dotColour }) => ({
+    backgroundColor: dotColour
   })
 );

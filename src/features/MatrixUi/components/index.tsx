@@ -49,6 +49,7 @@ export class MatrixUi extends React.Component<IProps> {
           </Col>
           <Col xs={12} sm={12} md={12} lg={4}>
             <Stats
+              key={Math.random() * 10}
               includedList={includedList}
               excludedList={excludedList}
               total={total}
