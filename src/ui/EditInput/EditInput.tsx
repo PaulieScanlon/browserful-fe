@@ -2,46 +2,98 @@ import * as React from 'react';
 
 import { EditWrapper, EditField } from './styles';
 import { Icon } from '../Icon';
+import { IconButton } from '../IconButton';
+import { colours } from '../../theme';
 
-export class EditInput extends React.Component<{}> {
-  private editRef: any;
+interface Props {
+  html: string;
+}
 
-  constructor(props) {
-    super(props);
+export class EditInput extends React.Component<Props> {
+  lastHtml: string = this.props.html;
+  private el: any = React.createRef<HTMLElement>();
 
-    this.handleInput = this.handleInput.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.editRef = React.createRef();
+  getEl() {
+    return this.el.current;
   }
 
-  handleInput() {
-    console.log('handleInput');
+  findLastTextNode(node: Node): Node | null {
+    if (node.nodeType === Node.TEXT_NODE) return node;
+    let children = node.childNodes;
+    for (let i = children.length - 1; i >= 0; i--) {
+      let textNode = this.findLastTextNode(children[i]);
+      if (textNode !== null) return textNode;
+    }
+    return null;
   }
 
-  handleBlur(event: React.FocusEvent) {
-    console.log('handleBlur: ', event.currentTarget.textContent);
-    // const html = this.getDOMNode().innerHTML;
+  replaceCaret(el: HTMLElement) {
+    const target = this.findLastTextNode(el);
+    const isTargetFocused = document.activeElement === el;
+    if (target !== null && target.nodeValue !== null && isTargetFocused) {
+      var range = document.createRange();
+      var sel = window.getSelection();
+      range.setStart(target, target.nodeValue.length);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      if (el instanceof HTMLElement) el.focus();
+    }
   }
 
-  handleFocus() {
-    console.log('handleFocus');
-    this.editRef.focus();
+  componentDidUpdate() {
+    const el = this.getEl();
+
+    if (!el) return;
+    if (this.props.html !== el.innerHTML) {
+      el.innerHTML = this.lastHtml = this.props.html;
+    }
+    this.replaceCaret(el);
+  }
+
+  onInput() {
+    const el = this.getEl();
+    const html = el.innerHTML;
+    this.lastHtml = html;
+  }
+
+  onBlur() {
+    const el = this.getEl();
+    el.blur();
+    if (el.innerHTML === '') {
+      el.innerHTML = this.lastHtml = this.props.html;
+    }
+  }
+
+  onClick() {
+    const el = this.getEl();
+    el.focus();
+    if (el.innerHTML === this.props.html) {
+      el.innerHTML = '';
+    }
+    this.replaceCaret(el);
   }
 
   render() {
+    const { html } = this.props;
+
     return (
       <EditWrapper>
-        <EditField
+        <div
+          ref={this.el}
+          className={`${EditField}`}
+          onInput={() => this.onInput()}
+          onBlur={() => this.onBlur()}
           contentEditable
-          suppressContentEditableWarning
-          onInput={this.handleInput}
-          onBlur={this.handleBlur}
-          ref={this.editRef}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+        <IconButton
+          size="sm"
+          backgroundColour={colours.offWhite}
+          onClick={() => this.onClick()}
         >
-          Untitled
-        </EditField>
-        <Icon name="edit" size="sm" onClick={this.handleFocus} />
+          <Icon name="edit" size="sm" />
+        </IconButton>
       </EditWrapper>
     );
   }

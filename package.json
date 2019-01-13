@@ -32,6 +32,7 @@
     "polished": "^2.1.1",
     "react": "^16.4.1",
     "react-compound-slider": "^0.16.3",
+    "react-contenteditable": "^3.2.5",
     "react-dom": "^16.0.0",
     "react-emotion": "^9.2.12",
     "react-grid-system": "^4.3.1",

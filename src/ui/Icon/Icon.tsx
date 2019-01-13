@@ -29,8 +29,8 @@ export const Icon: React.SFC<IProps> = ({
     <SVG
       onClick={() => onClick()}
       width={sizes[size]}
-      fill={fill}
       height="100%"
+      fill={fill}
       viewBox={`0 0 ${sizes.viewBox} ${sizes.viewBox}`}
       preserveAspectRatio="xMidYMid meet"
       x="0"

@@ -5,14 +5,26 @@ import { font } from '../Typography';
 import { colours, transitionBuilder } from '../../theme';
 
 interface IProps {
+  size?: string;
   backgroundColour?: string;
 }
+
+const getStyles = (size: string) => {
+  const sizes = {
+    sm: '28px',
+    md: '36px',
+    lg: '44px'
+  };
+
+  return {
+    width: size ? sizes[size] : sizes.md,
+    height: size ? sizes[size] : sizes.md
+  };
+};
 
 const buttonStyles = {
   display: 'flex',
   justifyContent: 'center',
-  width: '40px',
-  height: '40px',
   fontFamily: font.fontFamily,
   border: 0,
   borderRadius: '100%',
@@ -29,7 +41,8 @@ export const IconButton = styled.button<IProps>(
     borderStyle: 'solid',
     ...buttonStyles
   },
-  ({ backgroundColour }) => ({
+  ({ size, backgroundColour }) => ({
+    ...getStyles(size),
     backgroundColor: backgroundColour,
     ':hover': {
       backgroundColor: tinycolor(backgroundColour)
@@ -45,7 +58,8 @@ export const IconLink = styled.a<IProps>(
     label: 'icon-link',
     ...buttonStyles
   },
-  ({ backgroundColour }) => ({
+  ({ size, backgroundColour }) => ({
+    ...getStyles(size),
     backgroundColor: backgroundColour,
     ':hover': {
       backgroundColor: backgroundColour
