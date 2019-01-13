@@ -1,6 +1,7 @@
 export interface IProps {
   variant?: string;
   queryType?: string;
+  matrixName?: any;
   lastVersions?: number;
   globalUsage?: number;
   yearReleased?: number;
@@ -10,6 +11,7 @@ export interface IProps {
   //
   updateQuery?: Function;
   updateValue?: Function;
+  updateName?: Function;
   updateBrowserQuery?: Function;
   updateAuto?: Function;
   updateIncluded?: Function;

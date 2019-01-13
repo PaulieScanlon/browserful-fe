@@ -15,6 +15,7 @@ import { scaffolding } from '../../../theme';
 export const SliderControls: React.SFC<IProps> = ({
   queryType,
   slidervValues,
+  matrixName,
   handleAccordionChange,
   handleSliderChange,
   handleNameChange
@@ -58,7 +59,7 @@ export const SliderControls: React.SFC<IProps> = ({
       <TitleBar
         renderStats={() => (
           <EditInput
-            html="Untitled"
+            html={matrixName}
             onBlur={event => handleNameChange(event.currentTarget.innerHTML)}
           />
         )}

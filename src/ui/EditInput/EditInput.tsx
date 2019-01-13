@@ -96,9 +96,6 @@ export class EditInput extends React.Component<Props> {
   onClick() {
     const el = this.getEl();
     el.focus();
-    if (el.innerHTML === this.props.html) {
-      el.innerHTML = '';
-    }
     this.replaceCaret(el);
   }
 

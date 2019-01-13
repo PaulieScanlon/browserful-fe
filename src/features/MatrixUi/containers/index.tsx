@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import {
   updateQuery,
   updateValue,
+  updateName,
   updateAuto,
   updateIncluded,
   updateExcluded,
@@ -35,13 +36,20 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
 
     this.handleAccordionChange = this.handleAccordionChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAutoChange = this.handleAutoChange.bind(this);
     this.handleIncludeChange = this.handleIncludeChange.bind(this);
     this.handleExcludeChange = this.handleExcludeChange.bind(this);
   }
 
   componentDidMount() {
-    const { variant, updateQuery, updateValue, updateIncExc } = this.props;
+    const {
+      variant,
+      updateQuery,
+      updateValue,
+      updateName,
+      updateIncExc
+    } = this.props;
 
     if (variant === variantTypes.FREEVIEW) {
       history.replaceState({}, '', `${urlValidator()}`);
@@ -50,9 +58,11 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       const sv = urlGetter().sv;
       const incq = urlGetter()[queryParams.INCLUDED_QUERY];
       const excq = urlGetter()[queryParams.EXCLUDED_QUERY];
+      const mn = urlGetter()[queryParams.MATRIX_NAME];
 
       updateQuery(qt);
       updateValue(qt, sv);
+      updateName(mn);
       updateIncExc(incq, excq);
     }
 
@@ -96,7 +106,13 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
   }
 
   handleNameChange(html: any) {
-    console.log(html);
+    const { variant, updateName } = this.props;
+    const mn = html;
+    updateName(html);
+
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter('mn', mn);
+    }
   }
 
   handleAutoChange(query: string) {
@@ -146,6 +162,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     const {
       queryType,
       lastVersions,
+      matrixName,
       globalUsage,
       yearReleased,
       incQuery,
@@ -178,6 +195,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
           <MatrixUi
             queryType={queryType}
             slidervValues={slidervValues}
+            matrixName={matrixName}
             browserList={matrix.browserList}
             includedList={matrix.includedList}
             excludedList={matrix.excludedList}
@@ -197,6 +215,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
 
 const mapStateToProps = state => ({
   queryType: state.matrixUi.queryType,
+  matrixName: state.matrixUi.matrixName,
   lastVersions: state.matrixUi.lastVersions,
   globalUsage: state.matrixUi.globalUsage,
   yearReleased: state.matrixUi.yearReleased,
@@ -208,6 +227,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateQuery: bindActionCreators(updateQuery, dispatch),
   updateValue: bindActionCreators(updateValue, dispatch),
+  updateName: bindActionCreators(updateName, dispatch),
   updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),

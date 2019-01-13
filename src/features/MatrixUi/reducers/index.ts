@@ -1,6 +1,7 @@
 import {
   UPDATE_QUERY,
   UPDATE_VALUE,
+  UPDATE_NAME,
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
@@ -14,6 +15,7 @@ import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
 import { config } from '../config/sliderControls.config';
+import { config as uiMisc } from '../config/uiMisc.config';
 
 import { IProps } from '../types';
 
@@ -25,6 +27,7 @@ const initialState: IProps = {
     config[queryParams.GLOBAL_USAGE].slider.defaultValue,
   [queryParams.YEAR_RELEASED]:
     config[queryParams.YEAR_RELEASED].slider.defaultValue,
+  matrixName: uiMisc[queryParams.MATRIX_NAME].name,
   browserQuery: queryBuilder(
     queryParams.LAST_VERSIONS,
     config[queryParams.LAST_VERSIONS].slider.defaultValue,
@@ -46,6 +49,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         [action.queryType]: action.value
+      };
+
+    case UPDATE_NAME:
+      return {
+        ...state,
+        matrixName: action.matrixName
       };
 
     case UPDATE_BROWSER_QUERY:

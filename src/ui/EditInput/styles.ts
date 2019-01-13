@@ -18,7 +18,7 @@ export const EditField = css`
   margin-right: ${scaffolding.gutterSm};
   font-family: ${font.fontFamily};
   font-size: 24px;
-  line-height: ${font.lineHeight};
+  line-height: 24px;
   color: ${colours.greyDark};
   background-color: ${colours.white};
   outline: none;
