@@ -6,7 +6,6 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <AppBar
     fixed={false}
     showLogo={true}
-    width={null}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -39,7 +38,6 @@ ShallowWrapper {
         undefined,
       ],
       "fixed": false,
-      "width": null,
     },
     "ref": null,
     "rendered": Array [
@@ -121,7 +119,6 @@ ShallowWrapper {
           undefined,
         ],
         "fixed": false,
-        "width": null,
       },
       "ref": null,
       "rendered": Array [

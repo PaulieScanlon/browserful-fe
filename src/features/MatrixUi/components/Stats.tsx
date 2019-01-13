@@ -3,6 +3,7 @@ import * as React from 'react';
 import { IProps } from '../types';
 
 import { DoughnutChart } from '../../../ui/DoughnutChart';
+import { Icon } from '../../../ui/Icon';
 import {
   LabelTextRegular,
   LabelTextItalic,
@@ -14,7 +15,8 @@ import {
   ChartArea,
   StatArea,
   StatBox,
-  StatDot
+  StatDot,
+  ChartIcon
 } from './styles';
 
 import { colours } from '../../../theme';
@@ -58,6 +60,9 @@ export const Stats: React.SFC<IProps> = ({
             segmentColour={colours.white}
             strokeColour={colours.white}
           />
+          <ChartIcon>
+            <Icon name="bars" size="lg" fill={colours.white} />
+          </ChartIcon>
         </ChartArea>
         <StatArea>
           <StatBox className="stat-box">
