@@ -7,6 +7,8 @@ import { colours } from '../../theme';
 
 interface Props {
   html: string;
+  onChange?: (html: any) => void;
+  onBlur?: (html: any) => void;
 }
 
 export class EditInput extends React.Component<Props> {
@@ -51,17 +53,35 @@ export class EditInput extends React.Component<Props> {
     this.replaceCaret(el);
   }
 
-  onInput() {
+  onInput(originalEvt: React.SyntheticEvent<any>) {
     const el = this.getEl();
     const html = el.innerHTML;
+
+    if (this.props.onChange && html !== this.lastHtml) {
+      const evt = Object.assign({}, originalEvt, {
+        target: {
+          value: html
+        }
+      });
+      this.props.onChange(evt);
+    }
     this.lastHtml = html;
   }
 
-  onBlur() {
+  onBlur(originalEvt: React.SyntheticEvent<any>) {
     const el = this.getEl();
+    const html = el.innerHTML;
     el.blur();
-    if (el.innerHTML === '') {
+    if (html === '') {
       el.innerHTML = this.lastHtml = this.props.html;
+    }
+    if (this.props.onBlur) {
+      const evt = Object.assign({}, originalEvt, {
+        target: {
+          value: html
+        }
+      });
+      this.props.onBlur(evt);
     }
   }
 
@@ -82,8 +102,8 @@ export class EditInput extends React.Component<Props> {
         <div
           ref={this.el}
           className={`${EditField}`}
-          onInput={() => this.onInput()}
-          onBlur={() => this.onBlur()}
+          onInput={event => this.onInput(event)}
+          onBlur={event => this.onBlur(event)}
           contentEditable
           dangerouslySetInnerHTML={{ __html: html }}
         />
