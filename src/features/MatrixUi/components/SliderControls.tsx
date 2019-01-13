@@ -7,15 +7,18 @@ import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
 import { LabelTextBold } from '../../../ui/Typography';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
+import { EditInput } from '../../../ui/EditInput';
 
 import { config } from '../config/sliderControls.config';
 import { scaffolding } from '../../../theme';
 
 export const SliderControls: React.SFC<IProps> = ({
   queryType,
+  slidervValues,
+  matrixName,
   handleAccordionChange,
   handleSliderChange,
-  slidervValues
+  handleNameChange
 }: IProps) => {
   const accordionItems = Object.keys(config).map((item: any, index: number) => {
     const accordionName = config[item];
@@ -53,7 +56,14 @@ export const SliderControls: React.SFC<IProps> = ({
 
   return (
     <React.Fragment>
-      <TitleBar icon="settings" title="Settings" />
+      <TitleBar
+        renderStats={() => (
+          <EditInput
+            html={matrixName}
+            onBlur={event => handleNameChange(event.currentTarget.innerHTML)}
+          />
+        )}
+      />
       <Accordion maxHeight="200px" type="radio" name="slider-controls">
         {accordionItems}
       </Accordion>

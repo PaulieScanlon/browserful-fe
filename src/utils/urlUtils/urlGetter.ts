@@ -7,6 +7,7 @@ export const urlGetter = () => {
 
   const qt = urlParams.getAll(queryParams.QUERY_TYPE);
   const sv = urlParams.getAll(queryParams.SLIDER_VALUES).toString();
+  const mn = urlParams.getAll(queryParams.MATRIX_NAME).toString();
   const incq = urlParams
     .getAll(queryParams.INCLUDED_QUERY)
     .toString()
@@ -25,6 +26,7 @@ export const urlGetter = () => {
   return {
     qt: qt.toString(),
     sv: Number(sv),
+    mn: mn,
     incq: incq,
     excq: excq
   };

@@ -8,6 +8,7 @@ interface IProps {
   name: string;
   size?: string;
   fill?: string;
+  onClick?: () => void;
 }
 
 const sizes = {
@@ -18,12 +19,18 @@ const sizes = {
   viewBox: '24'
 };
 
-export const Icon: React.SFC<IProps> = ({ name, size, fill }: IProps) => {
+export const Icon: React.SFC<IProps> = ({
+  name,
+  size,
+  fill,
+  onClick
+}: IProps) => {
   return (
     <SVG
+      onClick={() => onClick()}
       width={sizes[size]}
-      fill={fill}
       height="100%"
+      fill={fill}
       viewBox={`0 0 ${sizes.viewBox} ${sizes.viewBox}`}
       preserveAspectRatio="xMidYMid meet"
       x="0"
@@ -37,5 +44,6 @@ export const Icon: React.SFC<IProps> = ({ name, size, fill }: IProps) => {
 
 Icon.defaultProps = {
   size: 'md',
-  fill: colours.greyMid
+  fill: colours.greyMid,
+  onClick: () => {}
 };

@@ -35,6 +35,33 @@ stories.add(
 );
 
 stories.add(
+  'size:sm',
+  withInfo('The size prop controls the size of the IconButton')(() => (
+    <IconButton size="sm" backgroundColour={colours.pink}>
+      <Icon name="bars" size="sm" fill={colours.white} />
+    </IconButton>
+  ))
+);
+
+stories.add(
+  'size:md',
+  withInfo('The size prop controls the size of the IconButton')(() => (
+    <IconButton size="md" backgroundColour={colours.pink}>
+      <Icon name="bars" size="md" fill={colours.white} />
+    </IconButton>
+  ))
+);
+
+stories.add(
+  'size:lg',
+  withInfo('The size prop controls the size of the IconButton')(() => (
+    <IconButton size="lg" backgroundColour={colours.pink}>
+      <Icon name="bars" size="lg" fill={colours.white} />
+    </IconButton>
+  ))
+);
+
+stories.add(
   'type',
   withInfo(
     'The type is an HTML type attribute and can be used with IconButton'

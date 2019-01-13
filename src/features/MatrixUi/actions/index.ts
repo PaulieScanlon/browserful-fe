@@ -1,6 +1,7 @@
 import {
   UPDATE_QUERY,
   UPDATE_VALUE,
+  UPDATE_NAME,
   UPDATE_AUTO,
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
@@ -20,6 +21,13 @@ export const updateValue = (queryType: string, value: number) => dispatch => {
     type: UPDATE_VALUE,
     queryType,
     value
+  });
+};
+
+export const updateName = (matrixName: any) => dispatch => {
+  return dispatch({
+    type: UPDATE_NAME,
+    matrixName
   });
 };
 

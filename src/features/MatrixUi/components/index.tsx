@@ -25,12 +25,14 @@ export class MatrixUi extends React.Component<IProps> {
     const {
       queryType,
       slidervValues,
+      matrixName,
       browserList,
       includedList,
       excludedList,
       total,
       handleAccordionChange,
       handleSliderChange,
+      handleNameChange,
       handleAutoChange,
       handleIncludeChange,
       handleExcludeChange
@@ -42,8 +44,10 @@ export class MatrixUi extends React.Component<IProps> {
           <Col xs={12} sm={12} md={12} lg={8}>
             <SliderControls
               queryType={queryType}
+              matrixName={matrixName}
               handleAccordionChange={handleAccordionChange}
               handleSliderChange={handleSliderChange}
+              handleNameChange={handleNameChange}
               slidervValues={slidervValues}
             />
           </Col>

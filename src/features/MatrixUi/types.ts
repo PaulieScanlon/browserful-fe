@@ -1,6 +1,7 @@
 export interface IProps {
   variant?: string;
   queryType?: string;
+  matrixName?: any;
   lastVersions?: number;
   globalUsage?: number;
   yearReleased?: number;
@@ -10,6 +11,7 @@ export interface IProps {
   //
   updateQuery?: Function;
   updateValue?: Function;
+  updateName?: Function;
   updateBrowserQuery?: Function;
   updateAuto?: Function;
   updateIncluded?: Function;
@@ -19,6 +21,7 @@ export interface IProps {
   slidervValues?: Object;
   handleAccordionChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSliderChange?: (value: number, id: string) => void;
+  handleNameChange?: (html) => void;
   //
   browser?: any;
   selectColour?: string;

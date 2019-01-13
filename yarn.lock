@@ -1124,6 +1124,10 @@
   dependencies:
     "@types/react" "*"
 
+"@types/prop-types@^15.5.6":
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
+
 "@types/react-redux@^6.0.9":
   version "6.0.9"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.9.tgz#96aa7f5b0716bcc3bfb36ceaa1223118d509f79a"
@@ -8464,6 +8468,13 @@ react-compound-slider@^0.16.3:
     d3-array "^1.2.4"
     prop-types "^15.6.2"
     warning "^3.0.0"
+
+react-contenteditable@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/react-contenteditable/-/react-contenteditable-3.2.5.tgz#abdeae18a0677ae758a84c686bc3227b92b708e9"
+  dependencies:
+    "@types/prop-types" "^15.5.6"
+    fast-deep-equal "^2.0.1"
 
 react-datetime@^2.14.0:
   version "2.15.0"
