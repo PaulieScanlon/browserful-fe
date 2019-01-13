@@ -5,8 +5,6 @@ import { RouterLink } from '../../../common/RouterLink';
 
 import { Container, Row, Col } from 'react-grid-system';
 
-import { HeadTag } from '../../../ui/HeadTag';
-import { AppBar } from '../../../ui/AppBar';
 import { Button } from '../../../ui/Button';
 import { H1, H4, P } from '../../../ui/Typography';
 
@@ -17,9 +15,7 @@ import { LandingContent, LandingImage, CopyPanel } from './styles';
 export const LandingPage: React.SFC = () => {
   return (
     <React.Fragment>
-      <HeadTag />
       <LandingImage />
-      <AppBar fixed={true} width="100%" />
 
       <Container>
         <Row>

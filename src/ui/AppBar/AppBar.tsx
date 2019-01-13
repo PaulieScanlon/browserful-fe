@@ -8,17 +8,15 @@ import { AppBarWrapper } from './styles';
 interface IProps extends React.Props<ChildNode> {
   showLogo?: boolean;
   fixed?: boolean;
-  width?: string | null;
 }
 
 export const AppBar: React.SFC<IProps> = ({
   showLogo,
   fixed,
-  width,
   children
 }: IProps) => {
   return (
-    <AppBarWrapper fixed={fixed} width={width}>
+    <AppBarWrapper fixed={fixed}>
       {showLogo && (
         <Link href="/">
           <a className={`${RouterLink}`}>
@@ -33,6 +31,5 @@ export const AppBar: React.SFC<IProps> = ({
 
 AppBar.defaultProps = {
   showLogo: true,
-  fixed: false,
-  width: null
+  fixed: false
 };

@@ -18,10 +18,11 @@ export const AppBarWrapper = styled.header<IProps>(
     backgroundColor: colours.white,
     boxShadow: `${materialBuilder(1)}`,
     minHeight: common.appBar.height,
-    padding: `0px ${scaffolding.gutterLg}`
+    padding: `0px ${scaffolding.gutterLg}`,
+    boxSizing: 'border-box',
+    width: '100%'
   },
-  ({ fixed, width }) => ({
-    position: fixed ? 'fixed' : 'relative',
-    width: width
+  ({ fixed }) => ({
+    position: fixed ? 'fixed' : 'relative'
   })
 );
