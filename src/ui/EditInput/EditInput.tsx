@@ -85,6 +85,14 @@ export class EditInput extends React.Component<Props> {
     }
   }
 
+  onKeyDown(event: React.KeyboardEvent) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      const el = this.getEl();
+      el.blur();
+    }
+  }
+
   onClick() {
     const el = this.getEl();
     el.focus();
@@ -104,7 +112,9 @@ export class EditInput extends React.Component<Props> {
           className={`${EditField}`}
           onInput={event => this.onInput(event)}
           onBlur={event => this.onBlur(event)}
+          onKeyDown={event => this.onKeyDown(event)}
           contentEditable
+          spellCheck={false}
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <IconButton

@@ -31,6 +31,7 @@ export class MatrixUi extends React.Component<IProps> {
       total,
       handleAccordionChange,
       handleSliderChange,
+      handleNameChange,
       handleAutoChange,
       handleIncludeChange,
       handleExcludeChange
@@ -44,6 +45,7 @@ export class MatrixUi extends React.Component<IProps> {
               queryType={queryType}
               handleAccordionChange={handleAccordionChange}
               handleSliderChange={handleSliderChange}
+              handleNameChange={handleNameChange}
               slidervValues={slidervValues}
             />
           </Col>

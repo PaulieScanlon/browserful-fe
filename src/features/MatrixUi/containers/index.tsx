@@ -95,6 +95,10 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     }
   }
 
+  handleNameChange(html: any) {
+    console.log(html);
+  }
+
   handleAutoChange(query: string) {
     const { variant, updateAuto, incQuery, excQuery } = this.props;
     updateAuto(incQuery, excQuery, query);
@@ -180,6 +184,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
             total={matrix.total}
             handleAccordionChange={this.handleAccordionChange}
             handleSliderChange={this.handleSliderChange}
+            handleNameChange={this.handleNameChange}
             handleAutoChange={this.handleAutoChange}
             handleIncludeChange={this.handleIncludeChange}
             handleExcludeChange={this.handleExcludeChange}

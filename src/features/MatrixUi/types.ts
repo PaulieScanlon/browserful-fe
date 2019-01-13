@@ -19,6 +19,7 @@ export interface IProps {
   slidervValues?: Object;
   handleAccordionChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSliderChange?: (value: number, id: string) => void;
+  handleNameChange?: (html) => void;
   //
   browser?: any;
   selectColour?: string;

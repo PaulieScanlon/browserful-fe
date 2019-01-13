@@ -9,8 +9,8 @@ import { LabelTextRegular } from '../Typography';
 
 interface IProps {
   highlightColour?: string;
-  icon: string;
-  title: string;
+  icon?: string;
+  title?: string;
   renderStats?(): React.ReactNode;
 }
 
@@ -22,10 +22,12 @@ export const TitleBar: React.SFC<IProps> = ({
 }: IProps) => {
   return (
     <TitleBarWrapper>
-      <TitleChip className="title-chip" highlightColour={highlightColour}>
-        <Icon name={icon} size="md" fill={colours.white} />
-      </TitleChip>
-      <LabelTextRegular className="title">{title}</LabelTextRegular>
+      {icon && (
+        <TitleChip className="title-chip" highlightColour={highlightColour}>
+          <Icon name={icon} size="md" fill={colours.white} />
+        </TitleChip>
+      )}
+      {title && <LabelTextRegular className="title">{title}</LabelTextRegular>}
       {renderStats()}
     </TitleBarWrapper>
   );
