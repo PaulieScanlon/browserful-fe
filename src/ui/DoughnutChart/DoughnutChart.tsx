@@ -4,8 +4,6 @@ import { ResponsiveContainer, PieChart, Pie } from 'recharts';
 import { addFillToData } from './utils';
 import { ChartWrapper } from './styles';
 
-import { colours } from '../../theme';
-
 export interface IData {
   name: string;
   value: number;
@@ -15,15 +13,9 @@ export interface IData {
 
 interface IProps {
   data: Array<IData>;
-  segmentColour?: string;
-  strokeColour?: string;
 }
 
-export const DoughnutChart: React.SFC<IProps> = ({
-  data,
-  segmentColour,
-  strokeColour
-}: IProps) => {
+export const DoughnutChart: React.SFC<IProps> = ({ data }: IProps) => {
   return (
     <ChartWrapper>
       <ResponsiveContainer
@@ -40,16 +32,9 @@ export const DoughnutChart: React.SFC<IProps> = ({
             innerRadius={'70%'}
             outerRadius={'100%'}
             paddingAngle={2}
-            fill={segmentColour}
-            stroke={strokeColour}
           />
         </PieChart>
       </ResponsiveContainer>
     </ChartWrapper>
   );
-};
-
-DoughnutChart.defaultProps = {
-  segmentColour: colours.pink,
-  strokeColour: colours.white
 };
