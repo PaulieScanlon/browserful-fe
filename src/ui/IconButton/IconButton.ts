@@ -26,6 +26,7 @@ const buttonStyles = {
   display: 'flex',
   justifyContent: 'center',
   fontFamily: font.fontFamily,
+  padding: '0px',
   border: 0,
   borderRadius: '100%',
   backgroundColor: colours.offWhite,
