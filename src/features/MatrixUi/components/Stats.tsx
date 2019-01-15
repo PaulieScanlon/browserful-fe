@@ -55,11 +55,7 @@ export const Stats: React.SFC<IProps> = ({
     <React.Fragment>
       <ChartContainer>
         <ChartArea>
-          <DoughnutChart
-            data={chartData}
-            segmentColour={colours.white}
-            strokeColour={colours.white}
-          />
+          <DoughnutChart data={chartData} />
           <ChartIcon>
             <Icon name="bars" size="lg" fill={colours.white} />
           </ChartIcon>
