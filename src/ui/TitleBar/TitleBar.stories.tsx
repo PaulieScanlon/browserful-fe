@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { TitleBar } from './TitleBar';
-import { colours } from '../../theme';
+
 import {
   LabelTextRegular,
   LabelTextItalic,
   LabelTextBold
 } from '../Typography';
+import { PreTag } from '../../common/PreTag';
+import { colours } from '../../theme';
 
 const stories = storiesOf('TitleBar', module);
 
@@ -29,6 +31,18 @@ stories.add(
 );
 
 stories.add(
+  'filll',
+  withInfo('The hill props controls the colour of the icon')(() => (
+    <TitleBar
+      highlightColour={colours.greyDark}
+      fill={colours.pink}
+      icon="bars"
+      title="Lorem Ipsum"
+    />
+  ))
+);
+
+stories.add(
   'renderStats',
   withInfo(
     'The highlight colour determines the colour of circle which encapsulates the icon'
@@ -44,5 +58,22 @@ stories.add(
         <LabelTextRegular key={'label-text-regular'}>included</LabelTextRegular>
       ]}
     />
+  ))
+);
+
+stories.add(
+  'functional test',
+  withInfo('Functional test for TitleBar and PreTag (saved in common)')(() => (
+    <div>
+      <TitleBar
+        highlightColour={colours.greyDark}
+        fill={colours.pink}
+        icon="code"
+        title="PostCSS"
+      />
+      <PreTag>
+        last 5 versions, not ie 5.5, not ie 6, not ie 7, not ie 8, not ie 9
+      </PreTag>
+    </div>
   ))
 );
