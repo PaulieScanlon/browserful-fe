@@ -21,7 +21,7 @@ export const colours = {
 
 export const scaffolding = {
   gutterXxl: '42px',
-  gutterXl: '22px',
+  gutterXl: '32px',
   gutterLg: '16px',
   gutterMd: '12px',
   gutterSm: '8px',
