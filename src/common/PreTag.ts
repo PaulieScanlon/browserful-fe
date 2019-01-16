@@ -8,6 +8,7 @@ export const PreTag = styled.pre({
   fontFamily: 'monospace',
   margin: scaffolding.gutterLg,
   padding: scaffolding.gutterLg,
+  borderRadius: '3px',
   boxSizing: 'border-box',
   whiteSpace: 'pre-wrap',
   backgroundColor: colours.offWhite

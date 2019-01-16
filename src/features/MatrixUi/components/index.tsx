@@ -17,7 +17,7 @@ import {
 } from '../../../ui/Typography';
 
 import { colours, scaffolding } from '../../../theme';
-import { ColContainer } from '../../../common/ColContainer';
+import { ColContainer } from './styles';
 
 const colMinHeight = '220px';
 
@@ -59,7 +59,7 @@ export class MatrixUi extends React.Component<IProps> {
           </Col>
         </Row>
 
-        <Row justify="end">
+        <Row>
           <Col xs={12} sm={12} md={6} lg={4}>
             <ColContainer minHeight={colMinHeight}>
               <Stats />
@@ -80,7 +80,7 @@ export class MatrixUi extends React.Component<IProps> {
           </Col>
 
           <Col xs={12} sm={12} md={12} lg={4}>
-            <ColContainer minHeight={colMinHeight}>
+            <ColContainer minHeight={colMinHeight} breakpoint={2}>
               <PostCss browserQuery={browserQuery} />
             </ColContainer>
             <div style={{ height: scaffolding.gutterLg }} />

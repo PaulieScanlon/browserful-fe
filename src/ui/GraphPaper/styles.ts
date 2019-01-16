@@ -29,8 +29,7 @@ const commonStyles = {
 export const HozLines = styled.div({
   label: 'hoz-lines',
   ...(commonStyles as any),
-  width: `calc(100% - ${scaffolding.gutterLg})`,
-  marginLeft: scaffolding.gutterSm,
+  width: '100%',
   backgroundImage: `linear-gradient(to right, ${
     colours.offWhite
   } 1px, transparent 1px)`
@@ -39,8 +38,7 @@ export const HozLines = styled.div({
 export const VertLines = styled.div({
   label: 'vert-lines',
   ...(commonStyles as any),
-  height: `calc(100% - ${scaffolding.gutterLg})`,
-  marginTop: scaffolding.gutterSm,
+  height: '100%',
   backgroundImage: `linear-gradient(to bottom, ${
     colours.greyUltraLight
   } 1px, transparent 1px)`

@@ -1,5 +1,47 @@
 import styled from 'react-emotion';
-import { colours, scaffolding, materialBuilder } from '../../../theme';
+import { colours, scaffolding, materialBuilder, mq } from '../../../theme';
+
+interface IProps {
+  minHeight?: string;
+  alignment?: string;
+  breakpoint?: number;
+}
+
+const getStyles = (minHeight: string, breakpoint: number) => {
+  if (breakpoint) {
+    return {
+      [mq[breakpoint]]: {
+        pre: {
+          display: 'flex',
+          flexGrow: 1
+        },
+        minHeight: minHeight
+      }
+    };
+  }
+
+  if (minHeight) {
+    return {
+      minHeight: minHeight
+    };
+  }
+
+  return;
+};
+
+export const ColContainer = styled.div<IProps>(
+  {
+    label: 'col-container',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: colours.white
+  },
+  ({ minHeight, breakpoint, alignment }) => ({
+    justifyContent: alignment,
+    ...getStyles(minHeight, breakpoint)
+  })
+);
 
 export const ChartArea = styled.div({
   label: 'chart-area',
