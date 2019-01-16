@@ -39,6 +39,9 @@ export const DescriptionList = styled.dl<IProps>(
     ...commonStyles
   },
   ({ lastPadding, variant }) => ({
+    'dt:first-of-type': {
+      marginTop: '0px'
+    },
     'dt:not(:first-of-type):before': {
       ...(getStyles(variant) as any)
     },
