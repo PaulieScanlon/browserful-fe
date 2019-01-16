@@ -2,90 +2,94 @@ import * as React from 'react';
 
 import { IProps } from '../types';
 
-import { DoughnutChart } from '../../../ui/DoughnutChart';
+import {
+  DescriptionList,
+  DescriptionTerm,
+  DescriptionDescription
+} from '../../../ui/DescriptionList';
+import { variantTypes } from '../../../ui/DescriptionList/enums';
+import { LabelTextBold } from '../../../ui/Typography';
+
+import { StatArea, StatDetails, StatIcons, StatIconWrapper } from './styles';
+
+import { colours, scaffolding } from '../../../theme';
 import { Icon } from '../../../ui/Icon';
-import {
-  LabelTextRegular,
-  LabelTextItalic,
-  LabelTextBold
-} from '../../../ui/Typography';
 
-import {
-  ChartContainer,
-  ChartArea,
-  StatArea,
-  StatBox,
-  StatDot,
-  ChartIcon
-} from './styles';
-
-import { colours } from '../../../theme';
-
-export const Stats: React.SFC<IProps> = ({
-  includedList,
-  excludedList
-}: IProps) => {
-  const chartData = [
-    {
-      name: 'desktop',
-      value: includedList.desktop,
-      fill: colours.blue,
-      stroke: colours.blue
-    },
-    {
-      name: 'mobile',
-      value: includedList.mobile,
-      fill: colours.teal,
-      stroke: colours.teal
-    },
-    {
-      name: 'desktop-excluded',
-      value: excludedList.desktop,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
-    },
-    {
-      name: 'mobile-excluded',
-      value: excludedList.mobile,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
-    }
-  ];
+export const Stats: React.SFC<IProps> = ({  }: IProps) => {
   return (
     <React.Fragment>
-      <ChartContainer>
-        <ChartArea>
-          <DoughnutChart data={chartData} />
-          <ChartIcon>
-            <Icon name="bars" size="lg" fill={colours.white} />
-          </ChartIcon>
-        </ChartArea>
-        <StatArea>
-          <StatBox className="stat-box">
-            <LabelTextItalic style={{ fontSize: '14px' }}>
-              <StatDot dotColour={colours.blue} />
+      <StatArea>
+        <StatIcons>
+          <StatIconWrapper>
+            <Icon name="desktop" fill={colours.blue} />
+          </StatIconWrapper>
+
+          <StatIconWrapper>
+            <Icon name="mobile" fill={colours.teal} />
+          </StatIconWrapper>
+
+          <StatIconWrapper style={{ marginTop: 30 }}>
+            <Icon name="bars" fill={colours.pink} />
+          </StatIconWrapper>
+        </StatIcons>
+        <StatDetails>
+          <DescriptionList lastPadding={20} variant={variantTypes.TIMELINE}>
+            <DescriptionTerm bulletColour={colours.blue}>
               Desktop
-            </LabelTextItalic>
-            <LabelTextRegular>{includedList.desktop}</LabelTextRegular>
-          </StatBox>
-          <StatBox className="stat-box">
-            <LabelTextItalic style={{ fontSize: '14px' }}>
-              <StatDot dotColour={colours.teal} />
+            </DescriptionTerm>
+            <DescriptionDescription>
+              Dolor sit
+              <LabelTextBold
+                style={{
+                  position: 'absolute',
+                  right: '0px',
+                  top: `-${scaffolding.gutterMd}`
+                }}
+                fontColour={colours.blue}
+              >
+                1
+              </LabelTextBold>
+            </DescriptionDescription>
+
+            <DescriptionTerm bulletColour={colours.teal}>
               Mobile
-            </LabelTextItalic>
-            <LabelTextRegular>{includedList.mobile}</LabelTextRegular>
-          </StatBox>
-          <StatBox className="stat-box">
-            <LabelTextRegular fontColour={colours.pink}>
-              <StatDot dotColour={colours.pink} />
-              Total
-            </LabelTextRegular>
-            <LabelTextBold fontColour={colours.pink}>
-              {includedList.desktop + includedList.mobile}
-            </LabelTextBold>
-          </StatBox>
-        </StatArea>
-      </ChartContainer>
+            </DescriptionTerm>
+            <DescriptionDescription>
+              Dolor sit
+              <LabelTextBold
+                style={{
+                  position: 'absolute',
+                  right: '0px',
+                  top: `-${scaffolding.gutterMd}`
+                }}
+                fontColour={colours.teal}
+              >
+                2
+              </LabelTextBold>
+            </DescriptionDescription>
+
+            <DescriptionTerm
+              bulletColour={colours.pink}
+              fontColour={colours.pink}
+            >
+              <LabelTextBold fontColour={colours.pink}>Total</LabelTextBold>{' '}
+            </DescriptionTerm>
+            <DescriptionDescription>
+              Dolor sit
+              <LabelTextBold
+                style={{
+                  position: 'absolute',
+                  right: '0px',
+                  top: `-${scaffolding.gutterMd}`
+                }}
+                fontColour={colours.pink}
+              >
+                3
+              </LabelTextBold>
+            </DescriptionDescription>
+          </DescriptionList>
+        </StatDetails>
+      </StatArea>
     </React.Fragment>
   );
 };

@@ -2,15 +2,13 @@ import styled from 'react-emotion';
 import { colours, scaffolding } from '../../theme';
 import { font } from '../Typography';
 
+import { variantTypes } from './enums';
+
 interface IProps {
   variant?: string;
   lastPadding?: number;
   fontColour?: string;
   bulletColour?: string;
-}
-
-export enum variantTypes {
-  TIMELINE = 'timeline'
 }
 
 const commonStyles = {

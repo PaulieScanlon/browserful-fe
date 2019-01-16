@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { DescriptionList, DescriptionTerm, DescriptionDescription } from './';
-import { variantTypes } from './DescriptionList';
+import { variantTypes } from './enums';
 
 import { LabelTextBold } from '../Typography';
 import { colours, scaffolding } from '../../theme';

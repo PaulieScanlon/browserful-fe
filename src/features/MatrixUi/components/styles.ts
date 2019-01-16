@@ -1,29 +1,17 @@
 import styled from 'react-emotion';
 import { colours, scaffolding, materialBuilder } from '../../../theme';
 
-export const ChartContainer = styled.div({
-  label: 'chart-container',
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '370px',
-  backgroundColor: colours.white,
-  marginBottom: scaffolding.gutterXxl
-});
-
 export const ChartArea = styled.div({
   label: 'chart-area',
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  justifyContent: 'flex-end',
-  paddingTop: scaffolding.gutterLg
+  position: 'relative',
+  padding: scaffolding.gutterLg
 });
 
 export const ChartIcon = styled.div({
   label: 'chart-icon',
   position: 'absolute',
   left: '50%',
-  transform: 'translate(80%, -55%)',
+  transform: 'translate(80%, -155%)',
   display: 'flex',
   justifyContent: 'center',
   width: '46px',
@@ -36,43 +24,27 @@ export const ChartIcon = styled.div({
 export const StatArea = styled.div({
   label: 'stat-area',
   display: 'flex',
+  padding: `${scaffolding.gutterSm} ${scaffolding.gutterXl} ${
+    scaffolding.gutterLg
+  } ${scaffolding.gutterLg}`
+});
+
+export const StatDetails = styled.div({
+  label: 'stat-details',
   flexDirection: 'column',
-  flexGrow: 1,
-  justifyContent: 'flex-end',
-  padding: scaffolding.gutterLg,
-  '.stat-box:not(:last-child)': {
-    borderTopColor: colours.offWhite,
-    borderLeftColor: colours.offWhite,
-    borderRightColor: colours.offWhite,
-    marginBottom: scaffolding.gutterMd
-  }
+  flexGrow: 1
 });
 
-export const StatBox = styled.div({
-  label: 'stat-box',
+export const StatIcons = styled.div({
+  label: 'stat-icons',
   display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  boxSizing: 'border-box',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  borderTopColor: colours.white,
-  borderLeftColor: colours.white,
-  borderRightColor: colours.white,
-  borderBottomColor: colours.offWhite,
-  padding: scaffolding.gutterSm
+  flexDirection: 'column',
+  marginTop: scaffolding.gutterSm
 });
 
-export const StatDot = styled.span<{ dotColour: string }>(
-  {
-    label: 'label-dot',
-    display: 'inline-block',
-    width: '12px',
-    height: '12px',
-    borderRadius: '100%',
-    marginRight: scaffolding.gutterSm
-  },
-  ({ dotColour }) => ({
-    backgroundColor: dotColour
-  })
-);
+export const StatIconWrapper = styled.div({
+  label: 'stat-icon-wrapper',
+  margin: `${scaffolding.gutterLg} ${scaffolding.gutterLg} ${
+    scaffolding.gutterLg
+  } 0px`
+});

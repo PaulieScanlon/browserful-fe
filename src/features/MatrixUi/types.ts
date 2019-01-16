@@ -33,6 +33,9 @@ export interface IProps {
   handleAutoChange?: Function;
   handleIncludeChange?: Function;
   handleExcludeChange?: Function;
+
+  // post css
+  // browserQuery
 }
 
 export interface IState {
