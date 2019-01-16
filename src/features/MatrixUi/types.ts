@@ -27,8 +27,8 @@ export interface IProps {
   selectColour?: string;
   //
   browserList?: any;
-  includedList?: any;
-  excludedList?: any;
+  includedTotal?: any;
+  excludedTotal?: any;
   total?: any;
   handleAutoChange?: Function;
   handleIncludeChange?: Function;

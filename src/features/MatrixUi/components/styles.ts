@@ -2,31 +2,27 @@ import styled from 'react-emotion';
 import { colours, scaffolding, materialBuilder, mq } from '../../../theme';
 
 interface IProps {
-  minHeight?: string;
   alignment?: string;
   breakpoint?: number;
 }
 
-const getStyles = (minHeight: string, breakpoint: number) => {
+const getStyles = (breakpoint: number) => {
   if (breakpoint) {
     return {
       [mq[breakpoint]]: {
         pre: {
           display: 'flex',
           flexGrow: 1
-        },
-        minHeight: minHeight
+        }
       }
     };
   }
-
-  if (minHeight) {
-    return {
-      minHeight: minHeight
-    };
-  }
-
   return;
+};
+
+// this is required because Col isn't flex enabled.
+export const ReactGridStyemOverride = {
+  display: 'flex'
 };
 
 export const ColContainer = styled.div<IProps>(
@@ -35,11 +31,13 @@ export const ColContainer = styled.div<IProps>(
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
+    marginBottom: scaffolding.gutterLg,
     backgroundColor: colours.white
   },
-  ({ minHeight, breakpoint, alignment }) => ({
+  ({ breakpoint, alignment }) => ({
     justifyContent: alignment,
-    ...getStyles(minHeight, breakpoint)
+    ...getStyles(breakpoint)
   })
 );
 
@@ -65,28 +63,6 @@ export const ChartIcon = styled.div({
 
 export const StatArea = styled.div({
   label: 'stat-area',
-  display: 'flex',
-  padding: `${scaffolding.gutterSm} ${scaffolding.gutterXl} ${
-    scaffolding.gutterLg
-  } ${scaffolding.gutterLg}`
-});
-
-export const StatDetails = styled.div({
-  label: 'stat-details',
-  flexDirection: 'column',
-  flexGrow: 1
-});
-
-export const StatIcons = styled.div({
-  label: 'stat-icons',
-  display: 'flex',
-  flexDirection: 'column',
-  marginTop: scaffolding.gutterSm
-});
-
-export const StatIconWrapper = styled.div({
-  label: 'stat-icon-wrapper',
-  margin: `${scaffolding.gutterLg} ${scaffolding.gutterLg} ${
-    scaffolding.gutterLg
-  } 0px`
+  position: 'relative',
+  padding: scaffolding.gutterLg
 });

@@ -11,31 +11,31 @@ import { ChartArea, ChartIcon } from './styles';
 import { colours } from '../../../theme';
 
 export const Chart: React.SFC<IProps> = ({
-  includedList,
-  excludedList
+  includedTotal,
+  excludedTotal
 }: IProps) => {
   const chartData = [
     {
       name: 'desktop',
-      value: includedList.desktop,
+      value: includedTotal.desktop,
       fill: colours.blue,
       stroke: colours.blue
     },
     {
       name: 'mobile',
-      value: includedList.mobile,
+      value: includedTotal.mobile,
       fill: colours.teal,
       stroke: colours.teal
     },
     {
       name: 'desktop-excluded',
-      value: excludedList.desktop,
+      value: excludedTotal.desktop,
       fill: colours.offWhite,
       stroke: colours.offWhite
     },
     {
       name: 'mobile-excluded',
-      value: excludedList.mobile,
+      value: excludedTotal.mobile,
       fill: colours.offWhite,
       stroke: colours.offWhite
     }

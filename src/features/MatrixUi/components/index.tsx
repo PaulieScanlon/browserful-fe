@@ -16,10 +16,8 @@ import {
   LabelTextItalic
 } from '../../../ui/Typography';
 
-import { colours, scaffolding } from '../../../theme';
-import { ColContainer } from './styles';
-
-const colMinHeight = '220px';
+import { colours } from '../../../theme';
+import { ColContainer, ReactGridStyemOverride } from './styles';
 
 export class MatrixUi extends React.Component<IProps> {
   constructor(props: IProps) {
@@ -33,8 +31,8 @@ export class MatrixUi extends React.Component<IProps> {
       matrixName,
       browserQuery,
       browserList,
-      includedList,
-      excludedList,
+      includedTotal,
+      excludedTotal,
       total,
       handleAccordionChange,
       handleSliderChange,
@@ -60,30 +58,49 @@ export class MatrixUi extends React.Component<IProps> {
         </Row>
 
         <Row>
-          <Col xs={12} sm={12} md={6} lg={4}>
-            <ColContainer minHeight={colMinHeight}>
-              <Stats />
-            </ColContainer>
-            <div style={{ height: scaffolding.gutterLg }} />
-          </Col>
-
-          <Col xs={12} sm={12} md={6} lg={4}>
-            <ColContainer minHeight={colMinHeight} alignment="center">
-              <Chart
-                key={Math.random() * 10}
-                includedList={includedList}
-                excludedList={excludedList}
+          <Col
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer>
+              <Stats
+                includedTotal={includedTotal}
+                excludedTotal={excludedTotal}
                 total={total}
               />
             </ColContainer>
-            <div style={{ height: scaffolding.gutterLg }} />
           </Col>
 
-          <Col xs={12} sm={12} md={12} lg={4}>
-            <ColContainer minHeight={colMinHeight} breakpoint={2}>
+          <Col
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer alignment="center">
+              <Chart
+                key={Math.random() * 10}
+                includedTotal={includedTotal}
+                excludedTotal={excludedTotal}
+                total={total}
+              />
+            </ColContainer>
+          </Col>
+
+          <Col
+            xs={12}
+            sm={12}
+            md={12}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer breakpoint={2}>
               <PostCss browserQuery={browserQuery} />
             </ColContainer>
-            <div style={{ height: scaffolding.gutterLg }} />
           </Col>
         </Row>
 
@@ -96,7 +113,7 @@ export class MatrixUi extends React.Component<IProps> {
                 title="Desktop"
                 renderStats={() => [
                   <LabelTextBold key="amount">
-                    {includedList.desktop}&nbsp;
+                    {includedTotal.desktop}&nbsp;
                   </LabelTextBold>,
                   <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
                   <LabelTextBold key="total">
@@ -106,7 +123,6 @@ export class MatrixUi extends React.Component<IProps> {
                 ]}
               />
             </ColContainer>
-            <div style={{ height: scaffolding.gutterLg }} />
 
             {browserList.desktop.map((browser, index) => {
               return (
@@ -129,7 +145,7 @@ export class MatrixUi extends React.Component<IProps> {
                 title="Mobile / Other"
                 renderStats={() => [
                   <LabelTextBold key="amount">
-                    {includedList.mobile}&nbsp;
+                    {includedTotal.mobile}&nbsp;
                   </LabelTextBold>,
                   <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
                   <LabelTextBold key="total">
@@ -139,7 +155,6 @@ export class MatrixUi extends React.Component<IProps> {
                 ]}
               />
             </ColContainer>
-            <div style={{ height: scaffolding.gutterLg }} />
 
             {browserList.mobile.map((browser, index) => {
               return (

@@ -198,8 +198,8 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
             matrixName={matrixName}
             browserList={matrix.browserList}
             browserQuery={browserQuery}
-            includedList={matrix.includedList}
-            excludedList={matrix.excludedList}
+            includedTotal={matrix.includedTotal}
+            excludedTotal={matrix.excludedTotal}
             total={matrix.total}
             handleAccordionChange={this.handleAccordionChange}
             handleSliderChange={this.handleSliderChange}
