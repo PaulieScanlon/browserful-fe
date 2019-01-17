@@ -17,8 +17,7 @@ import { colours } from '../../../theme';
 
 export const Stats: React.SFC<IProps> = ({
   includedTotal,
-  excludedTotal,
-  total
+  excludedTotal
 }: IProps) => {
   return (
     <StatArea>
@@ -75,7 +74,7 @@ export const Stats: React.SFC<IProps> = ({
               fontColour={colours.pink}
               style={{ fontSize: '22px' }}
             >
-              {total.desktop + total.mobile}
+              {includedTotal.desktop + includedTotal.mobile}
             </LabelTextBold>
           )}
         />

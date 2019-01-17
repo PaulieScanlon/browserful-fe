@@ -65,7 +65,6 @@ export class MatrixUi extends React.Component<IProps> {
               <Stats
                 includedTotal={includedTotal}
                 excludedTotal={excludedTotal}
-                total={total}
               />
             </ColContainer>
           </Col>
