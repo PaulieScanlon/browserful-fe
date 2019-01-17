@@ -2,15 +2,13 @@ import styled from 'react-emotion';
 import { colours, scaffolding } from '../../theme';
 import { font } from '../Typography';
 
+import { variantTypes } from './enums';
+
 interface IProps {
   variant?: string;
   lastPadding?: number;
   fontColour?: string;
   bulletColour?: string;
-}
-
-export enum variantTypes {
-  TIMELINE = 'timeline'
 }
 
 const commonStyles = {
@@ -41,6 +39,9 @@ export const DescriptionList = styled.dl<IProps>(
     ...commonStyles
   },
   ({ lastPadding, variant }) => ({
+    'dt:first-of-type': {
+      marginTop: '0px'
+    },
     'dt:not(:first-of-type):before': {
       ...(getStyles(variant) as any)
     },
@@ -70,8 +71,8 @@ export const DescriptionTerm = styled.dt<IProps>(
       position: 'absolute',
       left: '-16px',
       content: `""`,
-      width: '9px',
-      height: '9px',
+      width: '10px',
+      height: '10px',
       borderRadius: '100%',
       backgroundColor: bulletColour ? bulletColour : colours.pink
     }

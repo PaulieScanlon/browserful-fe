@@ -6,6 +6,8 @@ import { IProps } from '../types';
 import { SliderControls } from './SliderControls';
 import { BrowserAccordion } from './BrowserAccordion';
 import { Stats } from './Stats';
+import { Chart } from './Chart';
+import { PostCss } from './PostCss';
 
 import { TitleBar } from '../../../ui/TitleBar';
 import {
@@ -15,6 +17,7 @@ import {
 } from '../../../ui/Typography';
 
 import { colours } from '../../../theme';
+import { ColContainer, ReactGridStyemOverride } from './styles';
 
 export class MatrixUi extends React.Component<IProps> {
   constructor(props: IProps) {
@@ -26,9 +29,10 @@ export class MatrixUi extends React.Component<IProps> {
       queryType,
       slidervValues,
       matrixName,
+      browserQuery,
       browserList,
-      includedList,
-      excludedList,
+      includedTotal,
+      excludedTotal,
       total,
       handleAccordionChange,
       handleSliderChange,
@@ -41,7 +45,7 @@ export class MatrixUi extends React.Component<IProps> {
     return (
       <React.Fragment>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={8}>
+          <Col xs={12} sm={12} md={12} lg={12}>
             <SliderControls
               queryType={queryType}
               matrixName={matrixName}
@@ -51,32 +55,68 @@ export class MatrixUi extends React.Component<IProps> {
               slidervValues={slidervValues}
             />
           </Col>
-          <Col xs={12} sm={12} md={12} lg={4}>
-            <Stats
-              key={Math.random() * 10}
-              includedList={includedList}
-              excludedList={excludedList}
-              total={total}
-            />
+        </Row>
+
+        <Row>
+          <Col
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer>
+              <Stats
+                includedTotal={includedTotal}
+                excludedTotal={excludedTotal}
+                total={total}
+              />
+            </ColContainer>
+          </Col>
+
+          <Col
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer alignment="center">
+              <Chart
+                key={Math.random() * 10}
+                includedTotal={includedTotal}
+                excludedTotal={excludedTotal}
+                total={total}
+              />
+            </ColContainer>
+          </Col>
+
+          <Col
+            xs={12}
+            sm={12}
+            md={12}
+            lg={4}
+            style={{ ...ReactGridStyemOverride }}
+          >
+            <ColContainer breakpoint={2}>
+              <PostCss browserQuery={browserQuery} />
+            </ColContainer>
           </Col>
         </Row>
+
         <Row>
           <Col xs={12} sm={12} md={12} lg={6}>
-            <TitleBar
-              highlightColour={colours.blue}
-              icon="bars"
-              title="Desktop"
-              renderStats={() => [
-                <LabelTextBold key="amount">
-                  {includedList.desktop}&nbsp;
-                </LabelTextBold>,
-                <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
-                <LabelTextBold key="total">
-                  &nbsp;{total.desktop}
-                </LabelTextBold>,
-                <LabelTextRegular key="text">&nbsp;included</LabelTextRegular>
-              ]}
-            />
+            <ColContainer>
+              <TitleBar
+                highlightColour={colours.blue}
+                icon="bars"
+                title="Desktop"
+                renderStats={() => (
+                  <LabelTextBold>{includedTotal.desktop}&nbsp;</LabelTextBold>
+                )}
+              />
+            </ColContainer>
+
             {browserList.desktop.map((browser, index) => {
               return (
                 <BrowserAccordion
@@ -90,20 +130,18 @@ export class MatrixUi extends React.Component<IProps> {
               );
             })}
           </Col>
-          <Col xs={12} sm={12} md={6} lg={6}>
-            <TitleBar
-              highlightColour={colours.teal}
-              icon="bars"
-              title="Mobile / Other"
-              renderStats={() => [
-                <LabelTextBold key="amount">
-                  {includedList.mobile}&nbsp;
-                </LabelTextBold>,
-                <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
-                <LabelTextBold key="total">&nbsp;{total.mobile}</LabelTextBold>,
-                <LabelTextRegular key="text">&nbsp;included</LabelTextRegular>
-              ]}
-            />
+          <Col xs={12} sm={12} md={12} lg={6}>
+            <ColContainer>
+              <TitleBar
+                highlightColour={colours.teal}
+                icon="bars"
+                title="Mobile / Other"
+                renderStats={() => (
+                  <LabelTextBold>{includedTotal.mobile}</LabelTextBold>
+                )}
+              />
+            </ColContainer>
+
             {browserList.mobile.map((browser, index) => {
               return (
                 <BrowserAccordion

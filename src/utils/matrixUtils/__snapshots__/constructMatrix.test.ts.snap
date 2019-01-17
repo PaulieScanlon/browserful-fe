@@ -46,11 +46,11 @@ Object {
       },
     ],
   },
-  "excludedList": Object {
+  "excludedTotal": Object {
     "desktop": 0,
     "mobile": 0,
   },
-  "includedList": Object {
+  "includedTotal": Object {
     "desktop": 1,
     "mobile": 1,
   },

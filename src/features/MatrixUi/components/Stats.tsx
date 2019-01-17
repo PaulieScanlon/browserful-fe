@@ -2,90 +2,84 @@ import * as React from 'react';
 
 import { IProps } from '../types';
 
-import { DoughnutChart } from '../../../ui/DoughnutChart';
-import { Icon } from '../../../ui/Icon';
+import { VersatileGroup } from '../../../ui/VersatileGroup';
+import { Versatile } from '../../../ui/Versatile';
+import { Icon } from '../../../ui/Icon/Icon';
 import {
   LabelTextRegular,
   LabelTextItalic,
   LabelTextBold
 } from '../../../ui/Typography';
 
-import {
-  ChartContainer,
-  ChartArea,
-  StatArea,
-  StatBox,
-  StatDot,
-  ChartIcon
-} from './styles';
+import { StatArea } from './styles';
 
 import { colours } from '../../../theme';
 
 export const Stats: React.SFC<IProps> = ({
-  includedList,
-  excludedList
+  includedTotal,
+  excludedTotal,
+  total
 }: IProps) => {
-  const chartData = [
-    {
-      name: 'desktop',
-      value: includedList.desktop,
-      fill: colours.blue,
-      stroke: colours.blue
-    },
-    {
-      name: 'mobile',
-      value: includedList.mobile,
-      fill: colours.teal,
-      stroke: colours.teal
-    },
-    {
-      name: 'desktop-excluded',
-      value: excludedList.desktop,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
-    },
-    {
-      name: 'mobile-excluded',
-      value: excludedList.mobile,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
-    }
-  ];
   return (
-    <React.Fragment>
-      <ChartContainer>
-        <ChartArea>
-          <DoughnutChart data={chartData} />
-          <ChartIcon>
-            <Icon name="bars" size="lg" fill={colours.white} />
-          </ChartIcon>
-        </ChartArea>
-        <StatArea>
-          <StatBox className="stat-box">
-            <LabelTextItalic style={{ fontSize: '14px' }}>
-              <StatDot dotColour={colours.blue} />
-              Desktop
+    <StatArea>
+      <VersatileGroup timeline={true}>
+        <Versatile
+          bulletColour={colours.blue}
+          renderStart={() => <Icon name="desktop" fill={colours.blue} />}
+          renderContent={() => [
+            <LabelTextRegular key="title">Desktop</LabelTextRegular>,
+            <LabelTextItalic
+              key="description"
+              fontColour={colours.greyUltraLight}
+            >
+              {excludedTotal.desktop} excluded
             </LabelTextItalic>
-            <LabelTextRegular>{includedList.desktop}</LabelTextRegular>
-          </StatBox>
-          <StatBox className="stat-box">
-            <LabelTextItalic style={{ fontSize: '14px' }}>
-              <StatDot dotColour={colours.teal} />
-              Mobile
-            </LabelTextItalic>
-            <LabelTextRegular>{includedList.mobile}</LabelTextRegular>
-          </StatBox>
-          <StatBox className="stat-box">
-            <LabelTextRegular fontColour={colours.pink}>
-              <StatDot dotColour={colours.pink} />
-              Total
-            </LabelTextRegular>
-            <LabelTextBold fontColour={colours.pink}>
-              {includedList.desktop + includedList.mobile}
+          ]}
+          renderEnd={() => (
+            <LabelTextBold fontColour={colours.blue}>
+              {includedTotal.desktop}
             </LabelTextBold>
-          </StatBox>
-        </StatArea>
-      </ChartContainer>
-    </React.Fragment>
+          )}
+        />
+        <Versatile
+          bulletColour={colours.teal}
+          renderStart={() => <Icon name="mobile" fill={colours.teal} />}
+          renderContent={() => [
+            <LabelTextRegular key="title">Mobile</LabelTextRegular>,
+            <LabelTextItalic
+              key="description"
+              fontColour={colours.greyUltraLight}
+            >
+              {excludedTotal.mobile} excluded
+            </LabelTextItalic>
+          ]}
+          renderEnd={() => (
+            <LabelTextBold fontColour={colours.teal}>
+              {includedTotal.mobile}
+            </LabelTextBold>
+          )}
+        />
+        <Versatile
+          tilePadding="30px"
+          renderStart={() => <Icon name="bars" fill={colours.pink} />}
+          renderContent={() => (
+            <LabelTextBold
+              fontColour={colours.pink}
+              style={{ fontSize: '18px', lineHeight: '0px' }}
+            >
+              Total
+            </LabelTextBold>
+          )}
+          renderEnd={() => (
+            <LabelTextBold
+              fontColour={colours.pink}
+              style={{ fontSize: '22px' }}
+            >
+              {total.desktop + total.mobile}
+            </LabelTextBold>
+          )}
+        />
+      </VersatileGroup>
+    </StatArea>
   );
 };

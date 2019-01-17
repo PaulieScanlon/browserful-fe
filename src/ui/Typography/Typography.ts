@@ -161,6 +161,8 @@ export const LabelTextRegular = styled.span<IProps>(
     label: 'label-text-regular',
     ...(font as any),
     display: 'inline-block',
+    fontSize: '16px',
+    lineHeight: '22px',
     marginBottom: '0px',
     transition: transitionBuilder('opacity')
   },
@@ -171,9 +173,11 @@ export const LabelTextRegular = styled.span<IProps>(
 
 export const LabelTextItalic = styled.span<IProps>(
   {
-    label: 'label-text-bold',
+    label: 'label-text',
     ...(font as any),
     display: 'inline-block',
+    fontSize: '14px',
+    lineHeight: '16px',
     marginBottom: '0px',
     fontStyle: 'italic',
     transition: transitionBuilder('opacity')
@@ -188,6 +192,8 @@ export const LabelTextBold = styled.span<IProps>(
     label: 'label-text-bold',
     ...(font as any),
     display: 'inline-block',
+    fontSize: '14px',
+    lineHeight: '16px',
     marginBottom: '0px',
     fontWeight: 'bold',
     transition: transitionBuilder('opacity')

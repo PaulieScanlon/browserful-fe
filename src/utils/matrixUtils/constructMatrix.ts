@@ -96,11 +96,11 @@ export const constructMatrix = (
       desktop: platformObject.desktop,
       mobile: platformObject.mobile
     },
-    includedList: {
+    includedTotal: {
       desktop: platformObject.desktop.reduce(getTotalIncluded, 0),
       mobile: platformObject.mobile.reduce(getTotalIncluded, 0)
     },
-    excludedList: {
+    excludedTotal: {
       desktop: platformObject.desktop.reduce(getTotalExcluded, 0),
       mobile: platformObject.mobile.reduce(getTotalExcluded, 0)
     },

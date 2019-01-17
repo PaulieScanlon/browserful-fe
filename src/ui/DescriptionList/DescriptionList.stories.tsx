@@ -3,11 +3,9 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { DescriptionList, DescriptionTerm, DescriptionDescription } from './';
-import { variantTypes } from './DescriptionList';
+import { variantTypes } from './enums';
 
-import { LabelTextBold } from '../Typography';
-import { colours, scaffolding } from '../../theme';
-import { Icon } from '../Icon';
+import { colours } from '../../theme';
 
 const stories = storiesOf('DescriptionList', module);
 
@@ -60,105 +58,5 @@ stories.add(
       <DescriptionTerm>Lorem Ipsum 3</DescriptionTerm>
       <DescriptionDescription>Dolor sit 3</DescriptionDescription>
     </DescriptionList>
-  ))
-);
-
-stories.add(
-  'functional test',
-  withInfo('Funtional test using LabelTextBold and Icon')(() => (
-    <div style={{ display: 'flex' }}>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            marginTop: '22px',
-            marginRight: scaffolding.gutterSm,
-            marginBottom: '10px'
-          }}
-        >
-          <Icon name="desktop" fill={colours.blue} />
-        </div>
-
-        <div
-          style={{
-            marginTop: '22px',
-            marginRight: scaffolding.gutterSm,
-            marginBottom: '10px'
-          }}
-        >
-          <Icon name="mobile" fill={colours.teal} />
-        </div>
-
-        <div
-          style={{
-            marginTop: '22px',
-            marginRight: scaffolding.gutterSm,
-            marginBottom: '10px',
-            paddingTop: '34px'
-          }}
-        >
-          <Icon name="bars" fill={colours.pink} />
-        </div>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexGrow: 1,
-          paddingRight: scaffolding.gutterLg
-        }}
-      >
-        <DescriptionList lastPadding={40} variant={variantTypes.TIMELINE}>
-          <DescriptionTerm bulletColour={colours.blue}>Desktop</DescriptionTerm>
-          <DescriptionDescription>
-            Dolor sit
-            <LabelTextBold
-              style={{
-                position: 'absolute',
-                right: '0px',
-                top: `-${scaffolding.gutterMd}`
-              }}
-              fontColour={colours.blue}
-            >
-              1
-            </LabelTextBold>
-          </DescriptionDescription>
-
-          <DescriptionTerm bulletColour={colours.teal}>Mobile</DescriptionTerm>
-          <DescriptionDescription>
-            Dolor sit
-            <LabelTextBold
-              style={{
-                position: 'absolute',
-                right: '0px',
-                top: `-${scaffolding.gutterMd}`
-              }}
-              fontColour={colours.teal}
-            >
-              2
-            </LabelTextBold>
-          </DescriptionDescription>
-
-          <DescriptionTerm
-            bulletColour={colours.pink}
-            fontColour={colours.pink}
-          >
-            <LabelTextBold fontColour={colours.pink}>Total</LabelTextBold>{' '}
-          </DescriptionTerm>
-          <DescriptionDescription>
-            Dolor sit
-            <LabelTextBold
-              style={{
-                position: 'absolute',
-                right: '0px',
-                top: `-${scaffolding.gutterMd}`
-              }}
-              fontColour={colours.pink}
-            >
-              3
-            </LabelTextBold>
-          </DescriptionDescription>
-        </DescriptionList>
-      </div>
-    </div>
   ))
 );

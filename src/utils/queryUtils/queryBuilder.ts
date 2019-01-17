@@ -19,9 +19,9 @@ export const queryBuilder = (
   );
 
   const constructed = {
-    [queryParams.LAST_VERSIONS]: `last ${sv} versions, ${combinedQuery}`,
-    [queryParams.GLOBAL_USAGE]: `>= ${sv}%, ${combinedQuery}`,
-    [queryParams.YEAR_RELEASED]: `since ${sv}, ${combinedQuery}`
+    [queryParams.LAST_VERSIONS]: `last ${sv} versions,${combinedQuery}`,
+    [queryParams.GLOBAL_USAGE]: `>= ${sv}%,${combinedQuery}`,
+    [queryParams.YEAR_RELEASED]: `since ${sv},${combinedQuery}`
   };
 
   return constructed[qt];

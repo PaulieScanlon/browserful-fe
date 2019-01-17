@@ -77,7 +77,7 @@ describe('constructMatrix', () => {
     expect(typeof platform).toEqual('string');
   });
 
-  it('returns correct values for includedList', () => {
+  it('returns correct values for includedTotal', () => {
     const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
 
     const matrix = constructMatrix(
@@ -87,7 +87,7 @@ describe('constructMatrix', () => {
       []
     );
 
-    expect(matrix.includedList).toEqual(
+    expect(matrix.includedTotal).toEqual(
       expect.objectContaining({
         desktop: 1,
         mobile: 1
@@ -95,7 +95,7 @@ describe('constructMatrix', () => {
     );
   });
 
-  it('returns correct values for excludedList', () => {
+  it('returns correct values for excludedTotal', () => {
     const comparisonQuery = browserslist('chrome 70, chrome 69');
 
     const matrix = constructMatrix(
@@ -105,7 +105,7 @@ describe('constructMatrix', () => {
       []
     );
 
-    expect(matrix.excludedList).toEqual(
+    expect(matrix.excludedTotal).toEqual(
       expect.objectContaining({
         desktop: 1,
         mobile: 0

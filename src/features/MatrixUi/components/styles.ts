@@ -1,29 +1,57 @@
 import styled from 'react-emotion';
-import { colours, scaffolding, materialBuilder } from '../../../theme';
+import { colours, scaffolding, materialBuilder, mq } from '../../../theme';
 
-export const ChartContainer = styled.div({
-  label: 'chart-container',
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '370px',
-  backgroundColor: colours.white,
-  marginBottom: scaffolding.gutterXxl
-});
+interface IProps {
+  alignment?: string;
+  breakpoint?: number;
+}
+
+const getStyles = (breakpoint: number) => {
+  if (breakpoint) {
+    return {
+      [mq[breakpoint]]: {
+        pre: {
+          display: 'flex',
+          flexGrow: 1
+        }
+      }
+    };
+  }
+  return;
+};
+
+// this is required because Col isn't flex enabled.
+export const ReactGridStyemOverride = {
+  display: 'flex'
+};
+
+export const ColContainer = styled.div<IProps>(
+  {
+    label: 'col-container',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    marginBottom: scaffolding.gutterLg,
+    backgroundColor: colours.white
+  },
+  ({ breakpoint, alignment }) => ({
+    justifyContent: alignment,
+    ...getStyles(breakpoint)
+  })
+);
 
 export const ChartArea = styled.div({
   label: 'chart-area',
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  justifyContent: 'flex-end',
-  paddingTop: scaffolding.gutterLg
+  position: 'relative',
+  padding: scaffolding.gutterLg
 });
 
 export const ChartIcon = styled.div({
   label: 'chart-icon',
   position: 'absolute',
   left: '50%',
-  transform: 'translate(80%, -55%)',
+  transform: 'translate(80%, -155%)',
   display: 'flex',
   justifyContent: 'center',
   width: '46px',
@@ -35,44 +63,6 @@ export const ChartIcon = styled.div({
 
 export const StatArea = styled.div({
   label: 'stat-area',
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  justifyContent: 'flex-end',
-  padding: scaffolding.gutterLg,
-  '.stat-box:not(:last-child)': {
-    borderTopColor: colours.offWhite,
-    borderLeftColor: colours.offWhite,
-    borderRightColor: colours.offWhite,
-    marginBottom: scaffolding.gutterMd
-  }
+  position: 'relative',
+  padding: scaffolding.gutterLg
 });
-
-export const StatBox = styled.div({
-  label: 'stat-box',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  boxSizing: 'border-box',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  borderTopColor: colours.white,
-  borderLeftColor: colours.white,
-  borderRightColor: colours.white,
-  borderBottomColor: colours.offWhite,
-  padding: scaffolding.gutterSm
-});
-
-export const StatDot = styled.span<{ dotColour: string }>(
-  {
-    label: 'label-dot',
-    display: 'inline-block',
-    width: '12px',
-    height: '12px',
-    borderRadius: '100%',
-    marginRight: scaffolding.gutterSm
-  },
-  ({ dotColour }) => ({
-    backgroundColor: dotColour
-  })
-);
