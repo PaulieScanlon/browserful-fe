@@ -61,7 +61,7 @@ export class MatrixUi extends React.Component<IProps> {
             lg={4}
             style={{ ...ReactGridStyemOverride }}
           >
-            <ColContainer>
+            <ColContainer alignment="center">
               <Stats
                 includedTotal={includedTotal}
                 excludedTotal={excludedTotal}
