@@ -10,11 +10,7 @@ import { Chart } from './Chart';
 import { PostCss } from './PostCss';
 
 import { TitleBar } from '../../../ui/TitleBar';
-import {
-  LabelTextRegular,
-  LabelTextBold,
-  LabelTextItalic
-} from '../../../ui/Typography';
+import { LabelTextBold } from '../../../ui/Typography';
 
 import { colours } from '../../../theme';
 import { ColContainer, ReactGridStyemOverride } from './styles';
