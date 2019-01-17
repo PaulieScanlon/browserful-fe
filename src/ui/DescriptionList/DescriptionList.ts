@@ -71,8 +71,8 @@ export const DescriptionTerm = styled.dt<IProps>(
       position: 'absolute',
       left: '-16px',
       content: `""`,
-      width: '9px',
-      height: '9px',
+      width: '10px',
+      height: '10px',
       borderRadius: '100%',
       backgroundColor: bulletColour ? bulletColour : colours.pink
     }

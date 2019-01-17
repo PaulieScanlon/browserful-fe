@@ -111,16 +111,9 @@ export class MatrixUi extends React.Component<IProps> {
                 highlightColour={colours.blue}
                 icon="bars"
                 title="Desktop"
-                renderStats={() => [
-                  <LabelTextBold key="amount">
-                    {includedTotal.desktop}&nbsp;
-                  </LabelTextBold>,
-                  <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
-                  <LabelTextBold key="total">
-                    &nbsp;{total.desktop}
-                  </LabelTextBold>,
-                  <LabelTextRegular key="text">&nbsp;included</LabelTextRegular>
-                ]}
+                renderStats={() => (
+                  <LabelTextBold>{includedTotal.desktop}&nbsp;</LabelTextBold>
+                )}
               />
             </ColContainer>
 
@@ -143,16 +136,9 @@ export class MatrixUi extends React.Component<IProps> {
                 highlightColour={colours.teal}
                 icon="bars"
                 title="Mobile / Other"
-                renderStats={() => [
-                  <LabelTextBold key="amount">
-                    {includedTotal.mobile}&nbsp;
-                  </LabelTextBold>,
-                  <LabelTextItalic key="of">of&nbsp;</LabelTextItalic>,
-                  <LabelTextBold key="total">
-                    &nbsp;{total.mobile}
-                  </LabelTextBold>,
-                  <LabelTextRegular key="text">&nbsp;included</LabelTextRegular>
-                ]}
+                renderStats={() => (
+                  <LabelTextBold>{includedTotal.mobile}</LabelTextBold>
+                )}
               />
             </ColContainer>
 

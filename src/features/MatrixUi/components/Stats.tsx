@@ -2,19 +2,14 @@ import * as React from 'react';
 
 import { IProps } from '../types';
 
-// import {
-//   DescriptionList,
-//   DescriptionTerm,
-//   DescriptionDescription
-// } from '../../../ui/DescriptionList';
-// import { variantTypes } from '../../../ui/DescriptionList/enums';
+import { VersatileGroup } from '../../../ui/VersatileGroup';
+import { Versatile } from '../../../ui/Versatile';
+import { Icon } from '../../../ui/Icon/Icon';
 import {
-  StatTile,
-  StatTitle,
-  StatSummary,
-  StatNumber
-} from '../../../ui/StatTile';
-import { Icon } from '../../../ui/Icon';
+  LabelTextRegular,
+  LabelTextItalic,
+  LabelTextBold
+} from '../../../ui/Typography';
 
 import { StatArea } from './styles';
 
@@ -25,35 +20,66 @@ export const Stats: React.SFC<IProps> = ({
   excludedTotal,
   total
 }: IProps) => {
-  console.log('includedTotal: ', includedTotal);
-  console.log('excludedTotal: ', excludedTotal);
-  console.log('total: ', total);
-
   return (
-    <React.Fragment>
-      <StatArea>
-        <StatTile>
-          <Icon name="desktop" fill={colours.pink} />
-          <StatTitle>Lorem Ipsum</StatTitle>
-          <StatSummary>Dolor sit</StatSummary>
-          <StatNumber>3</StatNumber>
-        </StatTile>
-        {/* <DescriptionList lastPadding={20} variant={variantTypes.TIMELINE}>
-          <DescriptionTerm bulletColour={colours.blue}>Desktop</DescriptionTerm>
-          <DescriptionDescription>Dolor sit 1</DescriptionDescription>
-
-          <DescriptionTerm bulletColour={colours.teal}>Mobile</DescriptionTerm>
-          <DescriptionDescription>Dolor sit 2</DescriptionDescription>
-
-          <DescriptionTerm
-            bulletColour={colours.pink}
-            fontColour={colours.pink}
-          >
-            Total
-          </DescriptionTerm>
-          <DescriptionDescription>Dolor sit 3</DescriptionDescription>
-        </DescriptionList> */}
-      </StatArea>
-    </React.Fragment>
+    <StatArea>
+      <VersatileGroup timeline={true}>
+        <Versatile
+          bulletColour={colours.blue}
+          renderStart={() => <Icon name="desktop" fill={colours.blue} />}
+          renderContent={() => [
+            <LabelTextRegular key="title">Desktop</LabelTextRegular>,
+            <LabelTextItalic
+              key="description"
+              fontColour={colours.greyUltraLight}
+            >
+              {excludedTotal.desktop} excluded
+            </LabelTextItalic>
+          ]}
+          renderEnd={() => (
+            <LabelTextBold fontColour={colours.blue}>
+              {includedTotal.desktop}
+            </LabelTextBold>
+          )}
+        />
+        <Versatile
+          bulletColour={colours.teal}
+          renderStart={() => <Icon name="mobile" fill={colours.teal} />}
+          renderContent={() => [
+            <LabelTextRegular key="title">Mobile</LabelTextRegular>,
+            <LabelTextItalic
+              key="description"
+              fontColour={colours.greyUltraLight}
+            >
+              {excludedTotal.mobile} excluded
+            </LabelTextItalic>
+          ]}
+          renderEnd={() => (
+            <LabelTextBold fontColour={colours.teal}>
+              {includedTotal.mobile}
+            </LabelTextBold>
+          )}
+        />
+        <Versatile
+          tilePadding="30px"
+          renderStart={() => <Icon name="bars" fill={colours.pink} />}
+          renderContent={() => (
+            <LabelTextBold
+              fontColour={colours.pink}
+              style={{ fontSize: '18px', lineHeight: '0px' }}
+            >
+              Total
+            </LabelTextBold>
+          )}
+          renderEnd={() => (
+            <LabelTextBold
+              fontColour={colours.pink}
+              style={{ fontSize: '22px' }}
+            >
+              {total.desktop + total.mobile}
+            </LabelTextBold>
+          )}
+        />
+      </VersatileGroup>
+    </StatArea>
   );
 };
