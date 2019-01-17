@@ -2,7 +2,7 @@ import browserslist from 'browserslist';
 import { queryParams } from './enums';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
-const standardExcluded = '';
+const standardExcluded = 'not dead';
 
 export const comparisonQuery = {
   [queryParams.LAST_VERSIONS]: browserslist(

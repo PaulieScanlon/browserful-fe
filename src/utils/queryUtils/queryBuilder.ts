@@ -1,10 +1,10 @@
 import { queryParams } from './enums';
 
 export const incQueryBuilder = (query: Array<String>) =>
-  query.map(query => (query.length > 1 ? ` ${query}` : ''));
+  query.map(query => ` ${query}`);
 
 export const excQueryBuilder = (query: Array<String>) =>
-  query.map(query => (query.length > 1 ? ` not ${query}` : ''));
+  query.map(query => ` not ${query}`);
 
 const removeEmpty = v => v !== '';
 
@@ -15,7 +15,7 @@ export const queryBuilder = (
   excq: Array<String>
 ) => {
   const combinedQuery = incQueryBuilder(incq.filter(removeEmpty)).concat(
-    ...excQueryBuilder(excq.filter(removeEmpty))
+    excQueryBuilder(excq.filter(removeEmpty))
   );
 
   const constructed = {
@@ -24,5 +24,9 @@ export const queryBuilder = (
     [queryParams.YEAR_RELEASED]: `since ${sv},${combinedQuery}`
   };
 
-  return constructed[qt];
+  if (combinedQuery.length < 1) {
+    return `${constructed[qt]} not dead`;
+  }
+
+  return `${constructed[qt]}, not dead`;
 };
