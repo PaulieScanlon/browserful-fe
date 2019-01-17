@@ -2,12 +2,19 @@ import * as React from 'react';
 
 import { IProps } from '../types';
 
+// import {
+//   DescriptionList,
+//   DescriptionTerm,
+//   DescriptionDescription
+// } from '../../../ui/DescriptionList';
+// import { variantTypes } from '../../../ui/DescriptionList/enums';
 import {
-  DescriptionList,
-  DescriptionTerm,
-  DescriptionDescription
-} from '../../../ui/DescriptionList';
-import { variantTypes } from '../../../ui/DescriptionList/enums';
+  StatTile,
+  StatTitle,
+  StatSummary,
+  StatNumber
+} from '../../../ui/StatTile';
+import { Icon } from '../../../ui/Icon';
 
 import { StatArea } from './styles';
 
@@ -25,7 +32,13 @@ export const Stats: React.SFC<IProps> = ({
   return (
     <React.Fragment>
       <StatArea>
-        <DescriptionList lastPadding={20} variant={variantTypes.TIMELINE}>
+        <StatTile>
+          <Icon name="desktop" fill={colours.pink} />
+          <StatTitle>Lorem Ipsum</StatTitle>
+          <StatSummary>Dolor sit</StatSummary>
+          <StatNumber>3</StatNumber>
+        </StatTile>
+        {/* <DescriptionList lastPadding={20} variant={variantTypes.TIMELINE}>
           <DescriptionTerm bulletColour={colours.blue}>Desktop</DescriptionTerm>
           <DescriptionDescription>Dolor sit 1</DescriptionDescription>
 
@@ -39,7 +52,7 @@ export const Stats: React.SFC<IProps> = ({
             Total
           </DescriptionTerm>
           <DescriptionDescription>Dolor sit 3</DescriptionDescription>
-        </DescriptionList>
+        </DescriptionList> */}
       </StatArea>
     </React.Fragment>
   );
