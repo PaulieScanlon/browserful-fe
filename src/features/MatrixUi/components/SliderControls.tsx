@@ -16,7 +16,7 @@ export const SliderControls: React.SFC<IProps> = ({
   queryType,
   slidervValues,
   matrixName,
-  handleAccordionChange,
+  // handleAccordionChange,
   handleSliderChange,
   handleNameChange
 }: IProps) => {
@@ -38,7 +38,7 @@ export const SliderControls: React.SFC<IProps> = ({
             )}
           />
         )}
-        onChange={event => handleAccordionChange(event)}
+        // onChange={event => handleAccordionChange(event)}
       >
         <CompoundSlider
           showHandleValue
@@ -57,6 +57,7 @@ export const SliderControls: React.SFC<IProps> = ({
   return (
     <React.Fragment>
       <TitleBar
+        style={{ marginBottom: scaffolding.gutterLg }}
         renderStats={() => (
           <EditInput
             html={matrixName}
@@ -64,7 +65,7 @@ export const SliderControls: React.SFC<IProps> = ({
           />
         )}
       />
-      <Accordion maxHeight="200px" type="radio" name="slider-controls">
+      <Accordion maxHeight="200px" type="checkbox" name="slider-controls">
         {accordionItems}
       </Accordion>
       <div style={{ height: scaffolding.gutterLg }} />

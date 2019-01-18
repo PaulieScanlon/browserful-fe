@@ -11,6 +11,9 @@ const removeEmpty = v => v !== '';
 export const queryBuilder = (
   qt: string,
   sv: number,
+  lv: number,
+  gu: number,
+  yr: number,
   incq: Array<String>,
   excq: Array<String>
 ) => {
@@ -18,15 +21,27 @@ export const queryBuilder = (
     excQueryBuilder(excq.filter(removeEmpty))
   );
 
-  const constructed = {
-    [queryParams.LAST_VERSIONS]: `last ${sv} versions,${combinedQuery}`,
-    [queryParams.GLOBAL_USAGE]: `>= ${sv}%,${combinedQuery}`,
-    [queryParams.YEAR_RELEASED]: `since ${sv},${combinedQuery}`
-  };
+  console.log('lv: ', lv);
+  console.log('gu: ', gu);
+  console.log('yr: ', yr);
+
+  const constructed = `last ${lv} versions, >= ${gu}%, since ${yr},${combinedQuery}`;
 
   if (combinedQuery.length < 1) {
-    return `${constructed[qt]} not dead`;
+    return `${constructed} not dead`;
   }
 
-  return `${constructed[qt]}, not dead`;
+  return `${constructed}, not dead`;
+
+  // const constructed = {
+  //   [queryParams.LAST_VERSIONS]: `last ${sv} versions,${combinedQuery}`,
+  //   [queryParams.GLOBAL_USAGE]: `>= ${sv}%,${combinedQuery}`,
+  //   [queryParams.YEAR_RELEASED]: `since ${sv},${combinedQuery}`
+  // };
+
+  // if (combinedQuery.length < 1) {
+  //   return `${constructed[qt]} not dead`;
+  // }
+
+  // return `${constructed[qt]}, not dead`;
 };

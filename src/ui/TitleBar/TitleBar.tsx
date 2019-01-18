@@ -13,6 +13,7 @@ interface IProps {
   fill?: string;
   title?: string;
   renderStats?(): React.ReactNode;
+  style?: any;
 }
 
 export const TitleBar: React.SFC<IProps> = ({
@@ -20,10 +21,11 @@ export const TitleBar: React.SFC<IProps> = ({
   icon,
   fill,
   title,
-  renderStats
+  renderStats,
+  style
 }: IProps) => {
   return (
-    <TitleBarWrapper>
+    <TitleBarWrapper style={{ ...style }}>
       {icon && (
         <TitleChip className="title-chip" highlightColour={highlightColour}>
           <Icon name={icon} fill={fill} size="md" />

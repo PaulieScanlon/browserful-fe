@@ -31,6 +31,9 @@ const initialState: IProps = {
   browserQuery: queryBuilder(
     queryParams.LAST_VERSIONS,
     config[queryParams.LAST_VERSIONS].slider.defaultValue,
+    config[queryParams.LAST_VERSIONS].slider.defaultValue,
+    config[queryParams.GLOBAL_USAGE].slider.defaultValue,
+    config[queryParams.YEAR_RELEASED].slider.defaultValue,
     [''],
     ['']
   ),

@@ -34,7 +34,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       isLoaded: false
     };
 
-    this.handleAccordionChange = this.handleAccordionChange.bind(this);
+    // this.handleAccordionChange = this.handleAccordionChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAutoChange = this.handleAutoChange.bind(this);
@@ -72,26 +72,34 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { updateBrowserQuery } = this.props;
+    const {
+      updateBrowserQuery,
+      lastVersions,
+      globalUsage,
+      yearReleased
+    } = this.props;
     const bq = queryBuilder(
       nextProps.queryType,
       nextProps[nextProps.queryType],
+      lastVersions,
+      globalUsage,
+      yearReleased,
       nextProps.incQuery,
       nextProps.excQuery
     );
     updateBrowserQuery(bq);
   }
 
-  handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { variant, updateQuery } = this.props;
-    const qt = event.currentTarget.id;
-    updateQuery(qt);
+  // handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   const { variant, updateQuery } = this.props;
+  //   const qt = event.currentTarget.id;
+  //   updateQuery(qt);
 
-    if (variant === variantTypes.FREEVIEW) {
-      urlSetter('qt', qt);
-      urlSetter('sv', this.props[qt]);
-    }
-  }
+  //   if (variant === variantTypes.FREEVIEW) {
+  //     urlSetter('qt', qt);
+  //     urlSetter('sv', this.props[qt]);
+  //   }
+  // }
 
   handleSliderChange(value: number, id: string) {
     const { variant, updateValue } = this.props;
@@ -162,9 +170,9 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     const {
       queryType,
       lastVersions,
-      matrixName,
       globalUsage,
       yearReleased,
+      matrixName,
       incQuery,
       excQuery
     } = this.props;
@@ -178,13 +186,16 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     const browserQuery = queryBuilder(
       queryType,
       slidervValues[queryType],
+      lastVersions,
+      globalUsage,
+      yearReleased,
       incQuery,
       excQuery
     );
 
     const matrix = constructMatrix(
       browserQuery,
-      comparisonQuery[queryType],
+      comparisonQuery,
       incQuery,
       excQuery
     );
@@ -201,7 +212,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
             includedTotal={matrix.includedTotal}
             excludedTotal={matrix.excludedTotal}
             total={matrix.total}
-            handleAccordionChange={this.handleAccordionChange}
+            // handleAccordionChange={this.handleAccordionChange}
             handleSliderChange={this.handleSliderChange}
             handleNameChange={this.handleNameChange}
             handleAutoChange={this.handleAutoChange}
