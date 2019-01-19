@@ -8,40 +8,36 @@ export const excQueryBuilder = (query: Array<String>) =>
 
 const removeEmpty = v => v !== '';
 
+const standardExcluded = 'not dead';
+
 export const queryBuilder = (
-  qt: string,
-  sv: number,
-  lv: number,
-  gu: number,
-  yr: number,
+  // qt: string,
+  lv: any, // @TODO should be IQuery
+  gu: any, // @TODO should be IQuery
+  yr: any, // @TODO should be IQuery
   incq: Array<String>,
   excq: Array<String>
 ) => {
-  const combinedQuery = incQueryBuilder(incq.filter(removeEmpty)).concat(
+  const overrideQueries = incQueryBuilder(incq.filter(removeEmpty)).concat(
     excQueryBuilder(excq.filter(removeEmpty))
   );
 
-  console.log('lv: ', lv);
-  console.log('gu: ', gu);
-  console.log('yr: ', yr);
+  const objectQueries = {
+    [queryParams.LAST_VERSIONS]: lv.checked ? `last ${lv.value} versions` : '',
+    [queryParams.GLOBAL_USAGE]: gu.checked ? `>= ${gu.value}%` : '',
+    [queryParams.YEAR_RELEASED]: yr.checked ? `since ${yr.value}` : ''
+  };
 
-  const constructed = `last ${lv} versions, >= ${gu}%, since ${yr},${combinedQuery}`;
+  const constructedString = Object.keys(objectQueries)
+    .map(key => objectQueries[key])
+    .filter(removeEmpty)
+    .join(', ');
 
-  if (combinedQuery.length < 1) {
-    return `${constructed} not dead`;
+  if (overrideQueries.length < 1) {
+    return `${constructedString},${overrideQueries} ${standardExcluded}`;
   }
 
-  return `${constructed}, not dead`;
+  //TODO if all objectQueries are unchecked and override queries are empty return an empty string and don't add the not dead query
 
-  // const constructed = {
-  //   [queryParams.LAST_VERSIONS]: `last ${sv} versions,${combinedQuery}`,
-  //   [queryParams.GLOBAL_USAGE]: `>= ${sv}%,${combinedQuery}`,
-  //   [queryParams.YEAR_RELEASED]: `since ${sv},${combinedQuery}`
-  // };
-
-  // if (combinedQuery.length < 1) {
-  //   return `${constructed[qt]} not dead`;
-  // }
-
-  // return `${constructed[qt]}, not dead`;
+  return `${constructedString}, ${overrideQueries}, ${standardExcluded}`;
 };

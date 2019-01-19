@@ -1,11 +1,17 @@
+interface IQuery {
+  value: number;
+  checked: boolean;
+}
+
 export interface IProps {
   variant?: string;
   queryType?: string;
   matrixName?: any;
-  lastVersions?: number;
-  globalUsage?: number;
-  yearReleased?: number;
+  lastVersions?: IQuery;
+  globalUsage?: IQuery;
+  yearReleased?: IQuery;
   browserQuery?: string;
+  comparisonQuery?: string;
   incQuery?: Array<String>;
   excQuery?: Array<String>;
   //
@@ -13,14 +19,16 @@ export interface IProps {
   updateValue?: Function;
   updateName?: Function;
   updateBrowserQuery?: Function;
+  updateComparisonQuery?: Function;
   updateAuto?: Function;
   updateIncluded?: Function;
   updateExcluded?: Function;
   updateIncExc?: Function;
+
   //
   slidervValues?: Object;
   handleAccordionChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSliderChange?: (value: number, id: string) => void;
+  handleSliderChange?: (id: string, value: number) => void;
   handleNameChange?: (html) => void;
   //
   browser?: any;

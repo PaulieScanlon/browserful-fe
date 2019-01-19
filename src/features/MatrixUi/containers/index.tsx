@@ -11,14 +11,15 @@ import {
   updateIncluded,
   updateExcluded,
   updateIncExc,
-  updateBrowserQuery
+  updateBrowserQuery,
+  updateComparisonQuery
 } from '../actions';
 
 import { urlValidator } from '../../../utils/urlUtils/urlValidator';
 import { urlGetter } from '../../../utils/urlUtils/urlGetter';
 import { urlSetter } from '../../../utils/urlUtils/urlSetter';
 import { constructMatrix } from '../../../utils/matrixUtils/constructMatrix';
-import { comparisonQuery } from '../../../utils/queryUtils/queryComparison';
+import { comparisonBuilder } from '../../../utils/comparisonUtils/comparisonBuilder';
 import { queryBuilder } from '../../../utils/queryUtils/queryBuilder';
 import { queryParams } from '../../../utils/queryUtils/enums';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
@@ -34,7 +35,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       isLoaded: false
     };
 
-    // this.handleAccordionChange = this.handleAccordionChange.bind(this);
+    this.handleAccordionChange = this.handleAccordionChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAutoChange = this.handleAutoChange.bind(this);
@@ -60,9 +61,9 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       const excq = urlGetter()[queryParams.EXCLUDED_QUERY];
       const mn = urlGetter()[queryParams.MATRIX_NAME];
 
-      updateQuery(qt);
-      updateValue(qt, sv);
-      updateName(mn);
+      // updateQuery(qt);
+      // updateValue(qt, sv);
+      // updateName(mn);
       updateIncExc(incq, excq);
     }
 
@@ -72,44 +73,49 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const {
-      updateBrowserQuery,
-      lastVersions,
-      globalUsage,
-      yearReleased
-    } = this.props;
+    const { updateBrowserQuery, updateComparisonQuery } = this.props;
+
     const bq = queryBuilder(
-      nextProps.queryType,
-      nextProps[nextProps.queryType],
-      lastVersions,
-      globalUsage,
-      yearReleased,
+      nextProps.lastVersions,
+      nextProps.globalUsage,
+      nextProps.yearReleased,
       nextProps.incQuery,
       nextProps.excQuery
     );
     updateBrowserQuery(bq);
+
+    updateComparisonQuery(
+      comparisonBuilder(
+        nextProps.lastVersions,
+        nextProps.globalUsage,
+        nextProps.yearReleased
+      )
+    );
   }
 
-  // handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   const { variant, updateQuery } = this.props;
-  //   const qt = event.currentTarget.id;
-  //   updateQuery(qt);
+  handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { updateQuery } = this.props;
+    const { id, checked } = event.currentTarget;
 
-  //   if (variant === variantTypes.FREEVIEW) {
-  //     urlSetter('qt', qt);
-  //     urlSetter('sv', this.props[qt]);
-  //   }
-  // }
+    // const { variant, updateQuery } = this.props;
+    // const qt = event.currentTarget.id;
+    updateQuery(id, checked);
+    // if (variant === variantTypes.FREEVIEW) {
+    //   urlSetter('qt', qt);
+    //   urlSetter('sv', this.props[qt]);
+    // }
+  }
 
-  handleSliderChange(value: number, id: string) {
+  handleSliderChange(id: string, value: number) {
     const { variant, updateValue } = this.props;
-    const qt = id;
-    const sv = value;
-    updateValue(qt, sv);
+
+    // const qt = id;
+    // const sv = value;
+    updateValue(id, value);
 
     if (variant === variantTypes.FREEVIEW) {
-      urlSetter('qt', qt);
-      urlSetter('sv', sv);
+      //   urlSetter('qt', qt);
+      //   urlSetter('sv', sv);
     }
   }
 
@@ -169,6 +175,8 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     const { isLoaded } = this.state;
     const {
       queryType,
+      browserQuery,
+      comparisonQuery,
       lastVersions,
       globalUsage,
       yearReleased,
@@ -176,22 +184,6 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       incQuery,
       excQuery
     } = this.props;
-
-    const slidervValues = {
-      lastVersions,
-      globalUsage,
-      yearReleased
-    };
-
-    const browserQuery = queryBuilder(
-      queryType,
-      slidervValues[queryType],
-      lastVersions,
-      globalUsage,
-      yearReleased,
-      incQuery,
-      excQuery
-    );
 
     const matrix = constructMatrix(
       browserQuery,
@@ -205,14 +197,14 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
         {isLoaded && (
           <MatrixUi
             queryType={queryType}
-            slidervValues={slidervValues}
+            slidervValues={{ lastVersions, globalUsage, yearReleased }}
             matrixName={matrixName}
             browserList={matrix.browserList}
             browserQuery={browserQuery}
             includedTotal={matrix.includedTotal}
             excludedTotal={matrix.excludedTotal}
             total={matrix.total}
-            // handleAccordionChange={this.handleAccordionChange}
+            handleAccordionChange={this.handleAccordionChange}
             handleSliderChange={this.handleSliderChange}
             handleNameChange={this.handleNameChange}
             handleAutoChange={this.handleAutoChange}
@@ -232,6 +224,7 @@ const mapStateToProps = state => ({
   globalUsage: state.matrixUi.globalUsage,
   yearReleased: state.matrixUi.yearReleased,
   browserQuery: state.matrixUi.browserQuery,
+  comparisonQuery: state.matrixUi.comparisonQuery,
   incQuery: state.matrixUi.incQuery,
   excQuery: state.matrixUi.excQuery
 });
@@ -241,6 +234,7 @@ const mapDispatchToProps = dispatch => ({
   updateValue: bindActionCreators(updateValue, dispatch),
   updateName: bindActionCreators(updateName, dispatch),
   updateBrowserQuery: bindActionCreators(updateBrowserQuery, dispatch),
+  updateComparisonQuery: bindActionCreators(updateComparisonQuery, dispatch),
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),
   updateExcluded: bindActionCreators(updateExcluded, dispatch),

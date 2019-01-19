@@ -16,7 +16,7 @@ export const SliderControls: React.SFC<IProps> = ({
   queryType,
   slidervValues,
   matrixName,
-  // handleAccordionChange,
+  handleAccordionChange,
   handleSliderChange,
   handleNameChange
 }: IProps) => {
@@ -27,18 +27,19 @@ export const SliderControls: React.SFC<IProps> = ({
       <AccordionItem
         key={index}
         id={accordionName.id}
-        defaultChecked={queryType === accordionName.id ? true : false}
+        // defaultChecked={queryType === accordionName.id ? true : false}
+        defaultChecked
         renderLabel={() => (
           <DetailsLabel
             label={accordionName.label}
             renderStats={() => (
-              <LabelTextBold>{`${slidervValues[accordionName.id]}${
+              <LabelTextBold>{`${slidervValues[accordionName.id].value}${
                 accordionName.valueSuffix
               }`}</LabelTextBold>
             )}
           />
         )}
-        // onChange={event => handleAccordionChange(event)}
+        onChange={event => handleAccordionChange(event)}
       >
         <CompoundSlider
           showHandleValue
@@ -46,9 +47,9 @@ export const SliderControls: React.SFC<IProps> = ({
           sliderColour={accordionName.slider.sliderColour}
           domain={accordionName.slider.domain}
           step={accordionName.slider.step}
-          values={[slidervValues[accordionName.id]]}
+          values={[slidervValues[accordionName.id].value]}
           tickCount={accordionName.slider.tickCount}
-          onChange={values => handleSliderChange(values[0], accordionName.id)}
+          onChange={values => handleSliderChange(accordionName.id, values[0])}
         />
       </AccordionItem>
     );
