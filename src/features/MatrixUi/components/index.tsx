@@ -75,12 +75,14 @@ export class MatrixUi extends React.Component<IProps> {
             style={{ ...ReactGridStyemOverride }}
           >
             <ColContainer alignment="center">
-              <Chart
-                key={Math.random() * 10}
-                includedTotal={includedTotal}
-                excludedTotal={excludedTotal}
-                total={total}
-              />
+              {browserQuery && (
+                <Chart
+                  key={Math.random() * 10}
+                  includedTotal={includedTotal}
+                  excludedTotal={excludedTotal}
+                  total={total}
+                />
+              )}
             </ColContainer>
           </Col>
 
@@ -92,7 +94,7 @@ export class MatrixUi extends React.Component<IProps> {
             style={{ ...ReactGridStyemOverride }}
           >
             <ColContainer breakpoint={2}>
-              <PostCss browserQuery={browserQuery} />
+              {browserQuery && <PostCss browserQuery={browserQuery} />}
             </ColContainer>
           </Col>
         </Row>
