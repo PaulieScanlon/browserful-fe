@@ -13,9 +13,8 @@ import { config } from '../config/sliderControls.config';
 import { scaffolding } from '../../../theme';
 
 export const SliderControls: React.SFC<IProps> = ({
-  queryType,
   slidervValues,
-  matrixName,
+  mn,
   handleAccordionChange,
   handleSliderChange,
   handleNameChange
@@ -27,8 +26,7 @@ export const SliderControls: React.SFC<IProps> = ({
       <AccordionItem
         key={index}
         id={accordionName.id}
-        // defaultChecked={queryType === accordionName.id ? true : false}
-        defaultChecked
+        defaultChecked={slidervValues[item].checked}
         renderLabel={() => (
           <DetailsLabel
             label={accordionName.label}
@@ -61,7 +59,7 @@ export const SliderControls: React.SFC<IProps> = ({
         style={{ marginBottom: scaffolding.gutterLg }}
         renderStats={() => (
           <EditInput
-            html={matrixName}
+            html={mn}
             onBlur={event => handleNameChange(event.currentTarget.innerHTML)}
           />
         )}

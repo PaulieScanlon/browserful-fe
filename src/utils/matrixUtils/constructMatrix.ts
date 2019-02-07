@@ -11,9 +11,6 @@ export const constructMatrix = (
   const builtQuery = browserslist(`${browserQuery}`);
   const builtComparison = browserslist(`${comparisonQuery}`);
 
-  console.log('browserQuery: ', browserQuery);
-  console.log('comparisonQuery: ', comparisonQuery);
-
   const getIsIncluded = version => version.isIncluded;
   const getIsExcluded = version => !version.isIncluded;
 

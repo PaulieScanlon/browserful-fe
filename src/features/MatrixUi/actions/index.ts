@@ -18,18 +18,23 @@ export const updateQuery = (id: string, checked: boolean) => dispatch => {
   });
 };
 
-export const updateValue = (id: string, value: number) => dispatch => {
+export const updateValue = (
+  id: string,
+  value: number | null,
+  checked: boolean
+) => dispatch => {
   return dispatch({
     type: UPDATE_VALUE,
     id,
-    value
+    value,
+    checked
   });
 };
 
-export const updateName = (matrixName: any) => dispatch => {
+export const updateName = (mn: any) => dispatch => {
   return dispatch({
     type: UPDATE_NAME,
-    matrixName
+    mn
   });
 };
 

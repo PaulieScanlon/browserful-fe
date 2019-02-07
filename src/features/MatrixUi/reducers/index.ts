@@ -10,7 +10,7 @@ import {
   UPDATE_COMPARISON_QUERY
 } from '../constants';
 
-import { queryParams } from '../../../utils/queryUtils/enums';
+import { queryParams } from '../../../utils/enums';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
@@ -20,7 +20,6 @@ import { config as uiMisc } from '../config/uiMisc.config';
 import { IProps } from '../types';
 
 const initialState: IProps = {
-  queryType: queryParams.LAST_VERSIONS,
   [queryParams.LAST_VERSIONS]: {
     value: config[queryParams.LAST_VERSIONS].slider.defaultValue,
     checked: true
@@ -33,7 +32,7 @@ const initialState: IProps = {
     value: config[queryParams.YEAR_RELEASED].slider.defaultValue,
     checked: true
   },
-  matrixName: uiMisc[queryParams.MATRIX_NAME].name,
+  mn: uiMisc[queryParams.MATRIX_NAME].name,
   browserQuery: '',
   comparisonQuery: '',
   incQuery: [''],
@@ -55,14 +54,15 @@ export const reducer = (state = initialState, action) => {
         ...state,
         [action.id]: {
           ...state[action.id],
-          value: action.value
+          value: action.value,
+          checked: action.checked
         }
       };
 
     case UPDATE_NAME:
       return {
         ...state,
-        matrixName: action.matrixName
+        mn: action.mn
       };
 
     case UPDATE_BROWSER_QUERY:

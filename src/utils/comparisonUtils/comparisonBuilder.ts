@@ -1,4 +1,4 @@
-import { queryParams } from '../queryUtils/enums';
+import { queryParams } from '../enums';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
 const standardExcluded = 'not dead';
@@ -15,7 +15,7 @@ export const comparisonBuilder = (
       ? `last ${config[queryParams.LAST_VERSIONS].slider.domain[1]} versions`
       : '',
     [queryParams.GLOBAL_USAGE]: gu.checked
-      ? `>= ${config[queryParams.GLOBAL_USAGE].slider.domain[0]}%`
+      ? `> ${config[queryParams.GLOBAL_USAGE].slider.domain[0]}%`
       : '',
     [queryParams.YEAR_RELEASED]: yr.checked
       ? `since ${config[queryParams.YEAR_RELEASED].slider.domain[0]}`
@@ -29,23 +29,3 @@ export const comparisonBuilder = (
 
   return `${constructedString}, ${standardExcluded}`;
 };
-
-// export const comparisonQuery = {
-//   [queryParams.LAST_VERSIONS]: browserslist(
-//     `last ${
-//       config[queryParams.LAST_VERSIONS].slider.domain[1]
-//     } versions, ${standardExcluded}`
-//   ),
-
-//   [queryParams.GLOBAL_USAGE]: browserslist(
-//     `>= ${
-//       config[queryParams.GLOBAL_USAGE].slider.domain[0]
-//     }%, ${standardExcluded}`
-//   ),
-
-//   [queryParams.YEAR_RELEASED]: browserslist(
-//     `since ${
-//       config[queryParams.YEAR_RELEASED].slider.domain[0]
-//     }, ${standardExcluded}`
-//   )
-// };

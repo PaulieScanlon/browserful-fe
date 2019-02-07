@@ -1,12 +1,15 @@
-import { queryParams } from '../queryUtils/enums';
+import { queryParams } from '../enums';
 
 export const urlGetter = () => {
   const wls = window.location.search;
 
   const urlParams = new URLSearchParams(wls);
 
-  const qt = urlParams.getAll(queryParams.QUERY_TYPE);
-  const sv = urlParams.getAll(queryParams.SLIDER_VALUES).toString();
+  const lv = urlParams.getAll(queryParams.LAST_VERSIONS).toString();
+  // console.log('lv: // ', !!lv);
+  const gu = urlParams.getAll(queryParams.GLOBAL_USAGE).toString();
+  const yr = urlParams.getAll(queryParams.YEAR_RELEASED).toString();
+
   const mn = urlParams.getAll(queryParams.MATRIX_NAME).toString();
   const incq = urlParams
     .getAll(queryParams.INCLUDED_QUERY)
@@ -24,8 +27,18 @@ export const urlGetter = () => {
     });
 
   return {
-    qt: qt.toString(),
-    sv: Number(sv),
+    lv: {
+      value: !!lv ? Number(lv) : null,
+      checked: !!lv ? true : false
+    },
+    gu: {
+      value: !!gu ? Number(gu) : null,
+      checked: !!gu ? true : false
+    },
+    yr: {
+      value: !!yr ? Number(yr) : null,
+      checked: !!yr ? true : false
+    },
     mn: mn,
     incq: incq,
     excq: excq

@@ -1,9 +1,10 @@
-import { queryParams } from '../queryUtils/enums';
+import { queryParams } from '../enums';
 import { queryDefault } from '../queryUtils/queryDefault';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 import browserslist from 'browserslist';
 
 enum typeString {
+  QUERY = 'query',
   SLIDER = 'slider',
   BROWSERSLIST = 'browserslist'
 }
@@ -40,9 +41,21 @@ export const urlValidator = () => {
   const urlParams = new URLSearchParams(wls);
 
   const urlParamValues: IUrlParams = {
-    [urlParams.getAll(queryParams.QUERY_TYPE).toString()]: {
+    [queryParams.MATRIX_NAME]: {
+      type: typeString.QUERY,
+      value: urlParams.getAll(queryParams.MATRIX_NAME).toString()
+    },
+    [queryParams.LAST_VERSIONS]: {
       type: typeString.SLIDER,
-      value: Number(urlParams.getAll(queryParams.SLIDER_VALUES).toString())
+      value: urlParams.getAll(queryParams.LAST_VERSIONS).toString()
+    },
+    [queryParams.GLOBAL_USAGE]: {
+      type: typeString.SLIDER,
+      value: urlParams.getAll(queryParams.GLOBAL_USAGE).toString()
+    },
+    [queryParams.YEAR_RELEASED]: {
+      type: typeString.SLIDER,
+      value: urlParams.getAll(queryParams.YEAR_RELEASED).toString()
     },
     [queryParams.EXCLUDED_QUERY]: {
       type: typeString.BROWSERSLIST,
@@ -61,19 +74,23 @@ export const urlValidator = () => {
   };
 
   const validate = {
-    slider: (item: any) => {
-      try {
-        config[item].slider.domain[0];
+    [typeString.QUERY]: (item: any) => {
+      if (urlParamValues[item].value) {
+        return true;
+      }
+      return false;
+    },
+    [typeString.SLIDER]: (item: any) => {
+      if (urlParamValues[item].value) {
         return validateRanges(
           config[item].slider.domain[0],
           config[item].slider.domain[1],
           urlParamValues[item].value
         );
-      } catch (e) {
-        return false;
       }
+      return true;
     },
-    browserslist: (item: any) => {
+    [typeString.BROWSERSLIST]: (item: any) => {
       try {
         urlParamValues[item].value;
         return validateBrowserslist(urlParamValues[item].value);

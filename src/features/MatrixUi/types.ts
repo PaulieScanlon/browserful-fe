@@ -5,11 +5,10 @@ interface IQuery {
 
 export interface IProps {
   variant?: string;
-  queryType?: string;
-  matrixName?: any;
-  lastVersions?: IQuery;
-  globalUsage?: IQuery;
-  yearReleased?: IQuery;
+  mn?: any;
+  lv?: IQuery;
+  gu?: IQuery;
+  yr?: IQuery;
   browserQuery?: string;
   comparisonQuery?: string;
   incQuery?: Array<String>;

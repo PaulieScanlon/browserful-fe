@@ -21,7 +21,7 @@ import { urlSetter } from '../../../utils/urlUtils/urlSetter';
 import { constructMatrix } from '../../../utils/matrixUtils/constructMatrix';
 import { comparisonBuilder } from '../../../utils/comparisonUtils/comparisonBuilder';
 import { queryBuilder } from '../../../utils/queryUtils/queryBuilder';
-import { queryParams } from '../../../utils/queryUtils/enums';
+import { queryParams } from '../../../utils/enums';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
@@ -44,26 +44,25 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
-    const {
-      variant,
-      updateQuery,
-      updateValue,
-      updateName,
-      updateIncExc
-    } = this.props;
+    const { variant, updateValue, updateName, updateIncExc } = this.props;
 
     if (variant === variantTypes.FREEVIEW) {
       history.replaceState({}, '', `${urlValidator()}`);
 
-      const qt = urlGetter().qt;
-      const sv = urlGetter().sv;
+      const mn = urlGetter()[queryParams.MATRIX_NAME];
+      const lv = urlGetter()[queryParams.LAST_VERSIONS];
+      const gu = urlGetter()[queryParams.GLOBAL_USAGE];
+      const yr = urlGetter()[queryParams.YEAR_RELEASED];
       const incq = urlGetter()[queryParams.INCLUDED_QUERY];
       const excq = urlGetter()[queryParams.EXCLUDED_QUERY];
-      const mn = urlGetter()[queryParams.MATRIX_NAME];
 
-      // updateQuery(qt);
-      // updateValue(qt, sv);
-      // updateName(mn);
+      updateValue('lv', lv.value ? lv.value : this.props.lv.value, lv.checked);
+
+      updateValue('gu', gu.value ? gu.value : this.props.gu.value, gu.checked);
+
+      updateValue('yr', yr.value ? yr.value : this.props.yr.value, yr.checked);
+
+      updateName(mn);
       updateIncExc(incq, excq);
     }
 
@@ -76,46 +75,38 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     const { updateBrowserQuery, updateComparisonQuery } = this.props;
 
     const bq = queryBuilder(
-      nextProps.lastVersions,
-      nextProps.globalUsage,
-      nextProps.yearReleased,
+      nextProps.lv,
+      nextProps.gu,
+      nextProps.yr,
       nextProps.incQuery,
       nextProps.excQuery
     );
+
     updateBrowserQuery(bq);
 
     updateComparisonQuery(
-      comparisonBuilder(
-        nextProps.lastVersions,
-        nextProps.globalUsage,
-        nextProps.yearReleased
-      )
+      comparisonBuilder(nextProps.lv, nextProps.gu, nextProps.yr)
     );
   }
 
   handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { updateQuery } = this.props;
+    const { variant, updateQuery } = this.props;
     const { id, checked } = event.currentTarget;
 
-    // const { variant, updateQuery } = this.props;
-    // const qt = event.currentTarget.id;
     updateQuery(id, checked);
-    // if (variant === variantTypes.FREEVIEW) {
-    //   urlSetter('qt', qt);
-    //   urlSetter('sv', this.props[qt]);
-    // }
+
+    if (variant === variantTypes.FREEVIEW) {
+      urlSetter(id, this.props[id].value, checked);
+    }
   }
 
   handleSliderChange(id: string, value: number) {
     const { variant, updateValue } = this.props;
 
-    // const qt = id;
-    // const sv = value;
     updateValue(id, value);
 
     if (variant === variantTypes.FREEVIEW) {
-      //   urlSetter('qt', qt);
-      //   urlSetter('sv', sv);
+      urlSetter(id, this.props[id].value, this.props[id].checked);
     }
   }
 
@@ -125,7 +116,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     updateName(html);
 
     if (variant === variantTypes.FREEVIEW) {
-      urlSetter('mn', mn);
+      urlSetter('mn', mn, null);
     }
   }
 
@@ -136,11 +127,13 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     if (variant === variantTypes.FREEVIEW) {
       urlSetter(
         queryParams.EXCLUDED_QUERY,
-        arrayRemove(excQuery, query).join()
+        arrayRemove(excQuery, query).join(),
+        null
       );
       urlSetter(
         queryParams.INCLUDED_QUERY,
-        arrayRemove(incQuery, query).join()
+        arrayRemove(incQuery, query).join(),
+        null
       );
     }
   }
@@ -152,9 +145,14 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     if (variant === variantTypes.FREEVIEW) {
       urlSetter(
         queryParams.EXCLUDED_QUERY,
-        arrayRemove(excQuery, query).join()
+        arrayRemove(excQuery, query).join(),
+        null
       );
-      urlSetter(queryParams.INCLUDED_QUERY, arrayAdd(incQuery, query).join());
+      urlSetter(
+        queryParams.INCLUDED_QUERY,
+        arrayAdd(incQuery, query).join(),
+        null
+      );
     }
   }
 
@@ -165,22 +163,26 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     if (variant === variantTypes.FREEVIEW) {
       urlSetter(
         queryParams.INCLUDED_QUERY,
-        arrayRemove(incQuery, query).join()
+        arrayRemove(incQuery, query).join(),
+        null
       );
-      urlSetter(queryParams.EXCLUDED_QUERY, arrayAdd(excQuery, query).join());
+      urlSetter(
+        queryParams.EXCLUDED_QUERY,
+        arrayAdd(excQuery, query).join(),
+        null
+      );
     }
   }
 
   render() {
     const { isLoaded } = this.state;
     const {
-      queryType,
       browserQuery,
       comparisonQuery,
-      lastVersions,
-      globalUsage,
-      yearReleased,
-      matrixName,
+      lv,
+      gu,
+      yr,
+      mn,
       incQuery,
       excQuery
     } = this.props;
@@ -196,9 +198,8 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       <React.Fragment>
         {isLoaded && (
           <MatrixUi
-            queryType={queryType}
-            slidervValues={{ lastVersions, globalUsage, yearReleased }}
-            matrixName={matrixName}
+            slidervValues={{ lv, gu, yr }}
+            mn={mn}
             browserList={matrix.browserList}
             browserQuery={browserQuery}
             includedTotal={matrix.includedTotal}
@@ -218,11 +219,10 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
 }
 
 const mapStateToProps = state => ({
-  queryType: state.matrixUi.queryType,
-  matrixName: state.matrixUi.matrixName,
-  lastVersions: state.matrixUi.lastVersions,
-  globalUsage: state.matrixUi.globalUsage,
-  yearReleased: state.matrixUi.yearReleased,
+  mn: state.matrixUi.mn,
+  lv: state.matrixUi.lv,
+  gu: state.matrixUi.gu,
+  yr: state.matrixUi.yr,
   browserQuery: state.matrixUi.browserQuery,
   comparisonQuery: state.matrixUi.comparisonQuery,
   incQuery: state.matrixUi.incQuery,

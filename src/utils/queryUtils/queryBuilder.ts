@@ -1,4 +1,4 @@
-import { queryParams } from './enums';
+import { queryParams } from '../enums';
 
 export const incQueryBuilder = (query: Array<String>) =>
   query.map(query => ` ${query}`);
@@ -33,11 +33,13 @@ export const queryBuilder = (
     .filter(removeEmpty)
     .join(', ');
 
-  if (overrideQueries.length < 1) {
-    return `${constructedString},${overrideQueries} ${standardExcluded}`;
+  if (overrideQueries.length < 1 && constructedString !== '') {
+    return `${constructedString}, ${standardExcluded}`;
   }
 
-  //TODO if all objectQueries are unchecked and override queries are empty return an empty string and don't add the not dead query
+  if (constructedString === '') {
+    return '';
+  }
 
-  return `${constructedString}, ${overrideQueries}, ${standardExcluded}`;
+  return `${constructedString},${overrideQueries}, ${standardExcluded}`;
 };
