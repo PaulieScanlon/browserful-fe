@@ -103,7 +103,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
   handleSliderChange(id: string, value: number) {
     const { variant, updateValue } = this.props;
 
-    updateValue(id, value);
+    updateValue(id, value, true);
 
     if (variant === variantTypes.FREEVIEW) {
       urlSetter(id, this.props[id].value, this.props[id].checked);

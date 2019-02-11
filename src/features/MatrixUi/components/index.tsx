@@ -11,6 +11,7 @@ import { PostCss } from './PostCss';
 
 import { TitleBar } from '../../../ui/TitleBar';
 import { LabelTextBold } from '../../../ui/Typography';
+import { EmptyState } from '../../../ui/EmptyState';
 
 import { colours } from '../../../theme';
 import { ColContainer, ReactGridStyemOverride } from './styles';
@@ -50,7 +51,8 @@ export class MatrixUi extends React.Component<IProps> {
             />
           </Col>
         </Row>
-        {browserQuery && (
+
+        {browserQuery ? (
           <React.Fragment>
             <Row>
               <Col
@@ -153,6 +155,11 @@ export class MatrixUi extends React.Component<IProps> {
               </Col>
             </Row>
           </React.Fragment>
+        ) : (
+          <EmptyState
+            mainMessage="No browsers to display! 👻"
+            subMessage="Select at least one slider"
+          />
         )}
       </React.Fragment>
     );
