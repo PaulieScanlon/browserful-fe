@@ -19,7 +19,7 @@ import { urlValidator } from '../../../utils/urlUtils/urlValidator';
 import { urlGetter } from '../../../utils/urlUtils/urlGetter';
 import { urlSetter } from '../../../utils/urlUtils/urlSetter';
 import { constructMatrix } from '../../../utils/matrixUtils/constructMatrix';
-import { comparisonBuilder } from '../../../utils/comparisonUtils/comparisonBuilder';
+import { comparisonBuilder } from '../../../utils/queryUtils/comparisonBuilder';
 import { queryBuilder } from '../../../utils/queryUtils/queryBuilder';
 import { queryParams } from '../../../utils/enums';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';

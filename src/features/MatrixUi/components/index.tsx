@@ -158,7 +158,7 @@ export class MatrixUi extends React.Component<IProps> {
         ) : (
           <EmptyState
             mainMessage="No browsers to display! 👻"
-            subMessage="Select at least one slider"
+            subMessage="Select at least one of the sliders"
           />
         )}
       </React.Fragment>

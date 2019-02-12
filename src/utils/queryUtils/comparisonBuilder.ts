@@ -1,7 +1,7 @@
 import { queryParams } from '../enums';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
-const standardExcluded = 'not dead';
+import { standardExcludedBrowsers } from './standardExcluded';
 
 const removeEmpty = v => v !== '';
 
@@ -27,5 +27,5 @@ export const comparisonBuilder = (
     .filter(removeEmpty)
     .join(', ');
 
-  return `${constructedString}, ${standardExcluded}`;
+  return `${constructedString}, ${standardExcludedBrowsers}`;
 };

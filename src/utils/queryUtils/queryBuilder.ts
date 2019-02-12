@@ -1,4 +1,5 @@
 import { queryParams } from '../enums';
+import { standardExcludedBrowsers } from './standardExcluded';
 
 export const incQueryBuilder = (query: Array<String>) =>
   query.map(query => ` ${query}`);
@@ -7,8 +8,6 @@ export const excQueryBuilder = (query: Array<String>) =>
   query.map(query => ` not ${query}`);
 
 const removeEmpty = v => v !== '';
-
-const standardExcluded = 'not dead';
 
 export const queryBuilder = (
   // qt: string,
@@ -34,12 +33,12 @@ export const queryBuilder = (
     .join(', ');
 
   if (overrideQueries.length < 1 && constructedString !== '') {
-    return `${constructedString}, ${standardExcluded}`;
+    return `${constructedString}, ${standardExcludedBrowsers}`;
   }
 
   if (constructedString === '') {
     return '';
   }
 
-  return `${constructedString},${overrideQueries}, ${standardExcluded}`;
+  return `${constructedString},${overrideQueries}, ${standardExcludedBrowsers}`;
 };
