@@ -4,11 +4,12 @@ import { platform, overrides } from './enums';
 
 export const constructMatrix = (
   browserQuery: string,
-  comparisonArray: Array<String>,
+  comparisonQuery: string,
   incQuery: Array<String>,
   excQuery: Array<String>
 ) => {
   const builtQuery = browserslist(`${browserQuery}`);
+  const builtComparison = browserslist(`${comparisonQuery}`);
 
   const getIsIncluded = version => version.isIncluded;
   const getIsExcluded = version => !version.isIncluded;
@@ -25,7 +26,7 @@ export const constructMatrix = (
 
   const getTotal = (sum, item) => sum + item.total;
 
-  const browserObject: any = comparisonArray
+  const browserObject: any = builtComparison
     .map(result => {
       const [name, version] = result.split(' ', 2);
       return {

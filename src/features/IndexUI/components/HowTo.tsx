@@ -37,7 +37,7 @@ export const HowTo: React.SFC = () => {
               <P>
                 Browserful works by showing you a list of browsers and their
                 respective versions. The version numbers you'll see are within
-                the range selected by one of the sliders.
+                the range selected by at least one of the sliders.
               </P>
               <DescriptionList>
                 <DescriptionTerm>Last Versions (x)</DescriptionTerm>

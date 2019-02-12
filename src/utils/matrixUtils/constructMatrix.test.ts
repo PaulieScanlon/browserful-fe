@@ -1,9 +1,8 @@
-import browserslist from 'browserslist';
 import { constructMatrix } from './constructMatrix';
 
 describe('constructMatrix', () => {
   it('matches snapshot', () => {
-    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
+    const comparisonQuery = 'chrome 70, chromeandroid 69';
 
     const matrix = constructMatrix(
       'chrome 70, chromeandroid 69',
@@ -17,7 +16,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct keys for browserList', () => {
-    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
+    const comparisonQuery = 'chrome 70, chromeandroid 69';
 
     const matrix = constructMatrix(
       'chrome 70, chromeandroid 69',
@@ -32,7 +31,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct shape for browserObject', () => {
-    const comparisonQuery = browserslist('chrome 70');
+    const comparisonQuery = 'chrome 70';
 
     const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
 
@@ -56,7 +55,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct shape for browserObject.versions', () => {
-    const comparisonQuery = browserslist('chrome 70');
+    const comparisonQuery = 'chrome 70';
 
     const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
 
@@ -78,7 +77,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct values for includedTotal', () => {
-    const comparisonQuery = browserslist('chrome 70, chromeandroid 69');
+    const comparisonQuery = 'chrome 70, chromeandroid 69';
 
     const matrix = constructMatrix(
       'chrome 70, chromeandroid 69',
@@ -96,7 +95,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct values for excludedTotal', () => {
-    const comparisonQuery = browserslist('chrome 70, chrome 69');
+    const comparisonQuery = 'chrome 70, chrome 69';
 
     const matrix = constructMatrix(
       'chrome 70, chromeandroid 69',
@@ -114,9 +113,7 @@ describe('constructMatrix', () => {
   });
 
   it('returns correct values for total', () => {
-    const comparisonQuery = browserslist(
-      'chrome 70, chrome 69, chrome 68, chrome 67'
-    );
+    const comparisonQuery = 'chrome 70, chrome 69, chrome 68, chrome 67';
 
     const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
 
@@ -129,7 +126,7 @@ describe('constructMatrix', () => {
   });
 
   it('is correctly isIncluded if isIncluded ovverride is set', () => {
-    const comparisonQuery = browserslist('chrome 70');
+    const comparisonQuery = 'chrome 70';
 
     const matrix = constructMatrix(
       'chrome 70',
@@ -149,7 +146,7 @@ describe('constructMatrix', () => {
   });
 
   it('is correctly isIncluded if isExcluded ovverride is set', () => {
-    const comparisonQuery = browserslist('chrome 70');
+    const comparisonQuery = 'chrome 70';
 
     const matrix = constructMatrix(
       'chrome 70',

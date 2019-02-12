@@ -13,9 +13,8 @@ import { config } from '../config/sliderControls.config';
 import { scaffolding } from '../../../theme';
 
 export const SliderControls: React.SFC<IProps> = ({
-  queryType,
   slidervValues,
-  matrixName,
+  mn,
   handleAccordionChange,
   handleSliderChange,
   handleNameChange
@@ -27,12 +26,12 @@ export const SliderControls: React.SFC<IProps> = ({
       <AccordionItem
         key={index}
         id={accordionName.id}
-        defaultChecked={queryType === accordionName.id ? true : false}
+        defaultChecked={slidervValues[item].checked}
         renderLabel={() => (
           <DetailsLabel
             label={accordionName.label}
             renderStats={() => (
-              <LabelTextBold>{`${slidervValues[accordionName.id]}${
+              <LabelTextBold>{`${slidervValues[accordionName.id].value}${
                 accordionName.valueSuffix
               }`}</LabelTextBold>
             )}
@@ -46,9 +45,9 @@ export const SliderControls: React.SFC<IProps> = ({
           sliderColour={accordionName.slider.sliderColour}
           domain={accordionName.slider.domain}
           step={accordionName.slider.step}
-          values={[slidervValues[accordionName.id]]}
+          values={[slidervValues[accordionName.id].value]}
           tickCount={accordionName.slider.tickCount}
-          onChange={values => handleSliderChange(values[0], accordionName.id)}
+          onChange={values => handleSliderChange(accordionName.id, values[0])}
         />
       </AccordionItem>
     );
@@ -57,14 +56,15 @@ export const SliderControls: React.SFC<IProps> = ({
   return (
     <React.Fragment>
       <TitleBar
+        style={{ marginBottom: scaffolding.gutterLg }}
         renderStats={() => (
           <EditInput
-            html={matrixName}
+            html={mn}
             onBlur={event => handleNameChange(event.currentTarget.innerHTML)}
           />
         )}
       />
-      <Accordion maxHeight="200px" type="radio" name="slider-controls">
+      <Accordion maxHeight="200px" type="checkbox" name="slider-controls">
         {accordionItems}
       </Accordion>
       <div style={{ height: scaffolding.gutterLg }} />

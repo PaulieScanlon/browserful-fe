@@ -118,9 +118,10 @@ export const H5 = styled.h5<IProps>(
     lineHeight: '20px',
     marginBottom: 0
   },
-  ({ fontColour, display }) => ({
+  ({ fontColour, display, fontAlign }) => ({
     color: fontColour,
-    display: display
+    display: display,
+    textAlign: fontAlign
   })
 );
 

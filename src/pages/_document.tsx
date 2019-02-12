@@ -53,7 +53,7 @@ export default class MyDocument extends Document {
           />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <link
-            href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
+            // href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
             rel="stylesheet"
           />
         </Head>

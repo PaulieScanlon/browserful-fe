@@ -1,9 +1,17 @@
-export const urlSetter = (param: string, value: number | string) => {
+export const urlSetter = (
+  id: string,
+  value: number | string,
+  checked: boolean | null
+) => {
   const wls = window.location.search;
 
   const urlParams = new URLSearchParams(wls);
 
-  urlParams.set(`${param}`, value.toString());
+  if (checked === false) {
+    urlParams.delete(`${id}`);
+  } else {
+    urlParams.set(`${id}`, value.toString());
+  }
 
   history.replaceState({}, '', `?${urlParams}`);
 };

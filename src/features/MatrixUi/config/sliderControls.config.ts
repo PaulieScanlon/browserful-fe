@@ -1,4 +1,4 @@
-import { queryParams } from '../../../utils/queryUtils/enums';
+import { queryParams } from '../../../utils/enums';
 
 const currentYear = new Date().getFullYear();
 

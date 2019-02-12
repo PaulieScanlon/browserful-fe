@@ -6,28 +6,35 @@ import {
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC,
-  UPDATE_BROWSER_QUERY
+  UPDATE_BROWSER_QUERY,
+  UPDATE_COMPARISON_QUERY
 } from '../constants';
 
-export const updateQuery = (queryType: string) => dispatch => {
+export const updateQuery = (id: string, checked: boolean) => dispatch => {
   return dispatch({
     type: UPDATE_QUERY,
-    queryType
+    id,
+    checked
   });
 };
 
-export const updateValue = (queryType: string, value: number) => dispatch => {
+export const updateValue = (
+  id: string,
+  value: number | null,
+  checked: boolean
+) => dispatch => {
   return dispatch({
     type: UPDATE_VALUE,
-    queryType,
-    value
+    id,
+    value,
+    checked
   });
 };
 
-export const updateName = (matrixName: any) => dispatch => {
+export const updateName = (mn: any) => dispatch => {
   return dispatch({
     type: UPDATE_NAME,
-    matrixName
+    mn
   });
 };
 
@@ -48,6 +55,13 @@ export const updateBrowserQuery = (browserQuery: string) => dispatch => {
   return dispatch({
     type: UPDATE_BROWSER_QUERY,
     browserQuery
+  });
+};
+
+export const updateComparisonQuery = (comparisonQuery: string) => dispatch => {
+  return dispatch({
+    type: UPDATE_COMPARISON_QUERY,
+    comparisonQuery
   });
 };
 

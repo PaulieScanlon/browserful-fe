@@ -6,11 +6,11 @@ import {
   UPDATE_INCLUDED,
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC,
-  UPDATE_BROWSER_QUERY
+  UPDATE_BROWSER_QUERY,
+  UPDATE_COMPARISON_QUERY
 } from '../constants';
 
-import { queryParams } from '../../../utils/queryUtils/enums';
-import { queryBuilder } from '../../../utils/queryUtils/queryBuilder';
+import { queryParams } from '../../../utils/enums';
 import { arrayAdd } from '../../../utils/arrayUtils/arrayAdd';
 import { arrayRemove } from '../../../utils/arrayUtils/arrayRemove';
 
@@ -20,20 +20,21 @@ import { config as uiMisc } from '../config/uiMisc.config';
 import { IProps } from '../types';
 
 const initialState: IProps = {
-  queryType: queryParams.LAST_VERSIONS,
-  [queryParams.LAST_VERSIONS]:
-    config[queryParams.LAST_VERSIONS].slider.defaultValue,
-  [queryParams.GLOBAL_USAGE]:
-    config[queryParams.GLOBAL_USAGE].slider.defaultValue,
-  [queryParams.YEAR_RELEASED]:
-    config[queryParams.YEAR_RELEASED].slider.defaultValue,
-  matrixName: uiMisc[queryParams.MATRIX_NAME].name,
-  browserQuery: queryBuilder(
-    queryParams.LAST_VERSIONS,
-    config[queryParams.LAST_VERSIONS].slider.defaultValue,
-    [''],
-    ['']
-  ),
+  [queryParams.LAST_VERSIONS]: {
+    value: config[queryParams.LAST_VERSIONS].slider.defaultValue,
+    checked: true
+  },
+  [queryParams.GLOBAL_USAGE]: {
+    value: config[queryParams.GLOBAL_USAGE].slider.defaultValue,
+    checked: true
+  },
+  [queryParams.YEAR_RELEASED]: {
+    value: config[queryParams.YEAR_RELEASED].slider.defaultValue,
+    checked: true
+  },
+  mn: uiMisc[queryParams.MATRIX_NAME].name,
+  browserQuery: '',
+  comparisonQuery: '',
   incQuery: [''],
   excQuery: ['']
 };
@@ -43,24 +44,37 @@ export const reducer = (state = initialState, action) => {
     case UPDATE_QUERY:
       return {
         ...state,
-        queryType: action.queryType
+        [action.id]: {
+          ...state[action.id],
+          checked: action.checked
+        }
       };
     case UPDATE_VALUE:
       return {
         ...state,
-        [action.queryType]: action.value
+        [action.id]: {
+          ...state[action.id],
+          value: action.value,
+          checked: action.checked
+        }
       };
 
     case UPDATE_NAME:
       return {
         ...state,
-        matrixName: action.matrixName
+        mn: action.mn
       };
 
     case UPDATE_BROWSER_QUERY:
       return {
         ...state,
         browserQuery: action.browserQuery
+      };
+
+    case UPDATE_COMPARISON_QUERY:
+      return {
+        ...state,
+        comparisonQuery: action.comparisonQuery
       };
 
     case UPDATE_AUTO:
