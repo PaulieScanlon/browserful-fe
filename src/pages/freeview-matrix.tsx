@@ -51,6 +51,7 @@ class FreeviewMatrix extends React.Component<IProps, IState> {
           style={{
             margin: `${scaffolding.gutterSm} auto`
           }}
+          fluid
         >
           {isLoaded && <MatrixUi variant={variantTypes.FREEVIEW} />}
         </Container>

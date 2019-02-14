@@ -3,17 +3,19 @@ import { Row, Col } from 'react-grid-system';
 
 import { IProps } from '../types';
 
+import { TitleBar } from '../../../ui/TitleBar';
+import { EditInput } from '../../../ui/EditInput';
+
 import { SliderControls } from './SliderControls';
 import { BrowserAccordion } from './BrowserAccordion';
 import { Stats } from './Stats';
 import { Chart } from './Chart';
 import { PostCss } from './PostCss';
 
-import { TitleBar } from '../../../ui/TitleBar';
 import { LabelTextBold } from '../../../ui/Typography';
 import { EmptyState } from '../../../ui/EmptyState';
 
-import { colours } from '../../../theme';
+import { colours, scaffolding } from '../../../theme';
 import { ColContainer, ReactGridStyemOverride } from './styles';
 
 export class MatrixUi extends React.Component<IProps> {
@@ -40,21 +42,35 @@ export class MatrixUi extends React.Component<IProps> {
 
     return (
       <React.Fragment>
-        <Row>
+        <Row style={{ backgroundColor: colours.offBlack }}>
           <Col xs={12} sm={12} md={12} lg={12}>
-            <SliderControls
-              mn={mn}
-              handleAccordionChange={handleAccordionChange}
-              handleSliderChange={handleSliderChange}
-              handleNameChange={handleNameChange}
-              slidervValues={slidervValues}
+            <div style={{ height: scaffolding.gutterLg }} />
+            <TitleBar
+              style={{ marginBottom: scaffolding.gutterLg }}
+              renderStats={() => (
+                <EditInput
+                  html={mn}
+                  onBlur={event =>
+                    handleNameChange(event.currentTarget.innerHTML)
+                  }
+                />
+              )}
             />
           </Col>
+        </Row>
+        <Row style={{ backgroundColor: colours.offBlack }}>
+          <SliderControls
+            mn={mn}
+            handleAccordionChange={handleAccordionChange}
+            handleSliderChange={handleSliderChange}
+            handleNameChange={handleNameChange}
+            slidervValues={slidervValues}
+          />
         </Row>
 
         {browserQuery ? (
           <React.Fragment>
-            <Row>
+            <Row style={{ backgroundColor: colours.offBlack }}>
               <Col
                 xs={12}
                 sm={12}
@@ -99,7 +115,7 @@ export class MatrixUi extends React.Component<IProps> {
                 </ColContainer>
               </Col>
             </Row>
-
+            <div style={{ height: scaffolding.gutterLg }} />
             <Row>
               <Col xs={12} sm={12} md={12} lg={6}>
                 <ColContainer>

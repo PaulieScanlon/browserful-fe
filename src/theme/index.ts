@@ -9,6 +9,7 @@ export const colours = {
   greyUltraLight: '#dedede',
   offWhite: '#f7f7f7',
   white: '#ffffff',
+  offBlack: '#212121',
   greenLight: '#e8faf2',
   green: '#00b256',
   redLight: '#ffefef',

@@ -9,9 +9,9 @@ export const config = {
     valueSuffix: '',
     slider: {
       defaultValue: 5,
-      domain: [1, 20],
+      domain: [1, 10],
       step: 1,
-      tickCount: 20
+      tickCount: 10
     }
   },
 
@@ -32,11 +32,11 @@ export const config = {
     label: 'Year Released',
     valueSuffix: '',
     slider: {
-      defaultValue: 2015,
+      defaultValue: currentYear - 3,
       reversed: true,
-      domain: [currentYear - 10, currentYear],
+      domain: [currentYear - 6, currentYear],
       step: 1,
-      tickCount: 8
+      tickCount: 5
     }
   }
 };

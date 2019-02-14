@@ -45,7 +45,6 @@ class AppMatrix extends React.Component<IProps, IState> {
       <AppContent>
         <HeadTag />
         <AppBar showLogo={false} fixed={true}>
-          <div />
           <IconLink
             href="http://www.twitter.com/browserful"
             target="_blank"
@@ -57,7 +56,7 @@ class AppMatrix extends React.Component<IProps, IState> {
         <SideBar active={true}>
           <Container
             style={{
-              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
+              margin: `${scaffolding.gutterSm} auto`
             }}
           >
             {isLoaded && <MatrixUi variant={variantTypes.APPVIEW} />}
