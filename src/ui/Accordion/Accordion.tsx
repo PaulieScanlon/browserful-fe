@@ -14,16 +14,16 @@ interface IProps {
   maxHeight?: string;
   type?: string;
   name?: string;
+  theme?: 'light' | 'dark';
   children: React.ReactNode;
 }
 
 interface EProps extends IProps {
   id: string;
   label?: string;
-  renderLabel?(): React.ReactNode;
   defaultChecked?: boolean;
   selectColour?: string;
-  backgroundColour?: string;
+  renderLabel?(): React.ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -31,16 +31,18 @@ export const Accordion: React.SFC<IProps> = ({
   maxHeight,
   type,
   name,
+  theme,
   children
 }: IProps) => {
   const _children = React.Children.map(children, child => {
     return React.cloneElement(child as any, {
       maxHeight: maxHeight,
       type: type,
-      name: name
+      name: name,
+      theme: theme
     });
   });
-  return <AccordionWrapper>{_children}</AccordionWrapper>;
+  return <AccordionWrapper theme={theme}>{_children}</AccordionWrapper>;
 };
 
 export const AccordionItem: React.SFC<EProps> = ({
@@ -49,10 +51,10 @@ export const AccordionItem: React.SFC<EProps> = ({
   renderLabel,
   defaultChecked,
   selectColour,
-  backgroundColour,
   maxHeight,
   type,
   name,
+  theme,
   onChange,
   children
 }: EProps) => {
@@ -65,27 +67,30 @@ export const AccordionItem: React.SFC<EProps> = ({
         defaultChecked={defaultChecked}
         maxHeight={maxHeight}
         selectColour={selectColour}
+        theme={theme}
         onChange={event => onChange(event)}
       />
-      <AccordionLabel className="accordion-label" htmlFor={id}>
+      <AccordionLabel theme={theme} className="accordion-label" htmlFor={id}>
         {label}
         {renderLabel()}
       </AccordionLabel>
 
       <AccordionContent>
-        <AccordionContentInner backgroundColour={backgroundColour}>
-          {children}
-        </AccordionContentInner>
+        <AccordionContentInner theme={theme}>{children}</AccordionContentInner>
       </AccordionContent>
     </React.Fragment>
   );
+};
+
+Accordion.defaultProps = {
+  theme: 'light'
 };
 
 AccordionItem.defaultProps = {
   maxHeight: '100px',
   defaultChecked: false,
   selectColour: colours.pink,
-  backgroundColour: colours.offWhite,
+  theme: 'light',
   renderLabel: () => null,
   onChange: () => {}
 };

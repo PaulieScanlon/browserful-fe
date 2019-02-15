@@ -39,6 +39,25 @@ stories.add(
 );
 
 stories.add(
+  'theme: dark',
+  withInfo(
+    'The theme prop converts the colour theme from default light to dark'
+  )(() => (
+    <Accordion type="radio" name="storybook-accordion" theme="dark">
+      <AccordionItem id="item1" label="Item 1">
+        child 1
+      </AccordionItem>
+      <AccordionItem id="item2" label="Item 2">
+        child 2
+      </AccordionItem>
+      <AccordionItem id="item3" label="Item 3">
+        child 3
+      </AccordionItem>
+    </Accordion>
+  ))
+);
+
+stories.add(
   'onChange',
   withInfo(
     'Each Accordion Item can have an onChange handler which passes the synthetic event'
@@ -62,7 +81,7 @@ stories.add(
 );
 
 stories.add(
-  'type:checkbox',
+  'type: checkbox',
   withInfo(`Use type="checkbox" for multiple selection`)(() => (
     <Accordion type="checkbox" name="storybook-accordion">
       <AccordionItem id="item1" label="Item 1">
@@ -136,25 +155,6 @@ stories.add(
 );
 
 stories.add(
-  'backgroundColour',
-  withInfo(
-    'The backgroundColour controls the colour of the content background'
-  )(() => (
-    <Accordion type="radio" name="storybook-accordion">
-      <AccordionItem backgroundColour={colours.pink} id="item1" label="Item 1">
-        <span style={{ color: colours.white }}>child 1</span>
-      </AccordionItem>
-      <AccordionItem backgroundColour={colours.teal} id="item2" label="Item 2">
-        <span style={{ color: colours.white }}>child 2</span>
-      </AccordionItem>
-      <AccordionItem backgroundColour={colours.blue} id="item3" label="Item 3">
-        <span style={{ color: colours.white }}>child 3</span>
-      </AccordionItem>
-    </Accordion>
-  ))
-);
-
-stories.add(
   'renderLabel',
   withInfo('Displaying DetailsLabel as label using renderLabel()')(() => (
     <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
@@ -182,7 +182,12 @@ stories.add(
 stories.add(
   'children',
   withInfo('Displaying CompoundSlider as Accordion Item child')(() => (
-    <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
+    <Accordion
+      maxHeight="200px"
+      type="checkbox"
+      name="storybook-accordion"
+      theme="dark"
+    >
       <AccordionItem defaultChecked id="item1" label="Item 1">
         <CompoundSlider
           domain={[0, 10]}

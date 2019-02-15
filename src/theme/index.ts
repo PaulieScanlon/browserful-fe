@@ -5,11 +5,14 @@ export const colours = {
   purple: '#8b76bb',
   greyDark: '#333333',
   greyMid: '#666666',
+  black: '#000000',
+  offBlack: '#292929',
+
   greyLight: '#999999',
   greyUltraLight: '#dedede',
   offWhite: '#f7f7f7',
   white: '#ffffff',
-  offBlack: '#212121',
+
   greenLight: '#e8faf2',
   green: '#00b256',
   redLight: '#ffefef',
