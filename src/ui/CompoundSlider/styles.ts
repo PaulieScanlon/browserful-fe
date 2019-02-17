@@ -45,7 +45,7 @@ export const RailStyles = styled.div({
   height: '10px',
   marginTop: `${commonStyles.marginTop}px`,
   borderRadius: '5px',
-  backgroundColor: colours.greyUltraLight
+  backgroundColor: colours.greyDark
 });
 
 export const TrackStyles = styled.div<IProps>(
@@ -113,7 +113,7 @@ export const TickMarksStyles = styled.div({
   marginLeft: '-0.5px',
   width: '1px',
   height: '8px',
-  backgroundColor: colours.greyLight
+  backgroundColor: colours.greyMid
 });
 
 export const TickNumbersStyles = styled.div({
@@ -122,5 +122,5 @@ export const TickNumbersStyles = styled.div({
   marginTop: `${commonStyles.marginTop + 25}px`,
   fontSize: '10px',
   textAlign: 'center',
-  color: colours.greyMid
+  color: colours.greyLight
 });

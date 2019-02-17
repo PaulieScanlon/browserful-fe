@@ -116,10 +116,10 @@ export class EditInput extends React.Component<Props> {
         />
         <IconButton
           size="sm"
-          backgroundColour={colours.offWhite}
+          backgroundColour={colours.pink}
           onClick={() => this.onClick()}
         >
-          <Icon name="edit" size="sm" />
+          <Icon name="edit" size="sm" fill={colours.white} />
         </IconButton>
       </EditWrapper>
     );

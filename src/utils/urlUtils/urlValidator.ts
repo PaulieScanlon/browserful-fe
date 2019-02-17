@@ -62,14 +62,14 @@ export const urlValidator = () => {
       value: urlParams
         .getAll(queryParams.EXCLUDED_QUERY)
         .toString()
-        .trim()
+        .replace(',', '')
     },
     [queryParams.INCLUDED_QUERY]: {
       type: typeString.BROWSERSLIST,
       value: urlParams
         .getAll(queryParams.INCLUDED_QUERY)
         .toString()
-        .trim()
+        .replace(',', '')
     }
   };
 

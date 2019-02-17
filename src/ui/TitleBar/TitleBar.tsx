@@ -8,7 +8,9 @@ import { TitleBarWrapper, TitleChip } from './styles';
 import { colours } from '../../theme';
 
 interface IProps {
+  backgrondColour?: string;
   highlightColour?: string;
+  fontColour?: string;
   icon?: string;
   fill?: string;
   title?: string;
@@ -17,7 +19,9 @@ interface IProps {
 }
 
 export const TitleBar: React.SFC<IProps> = ({
+  backgrondColour,
   highlightColour,
+  fontColour,
   icon,
   fill,
   title,
@@ -25,20 +29,26 @@ export const TitleBar: React.SFC<IProps> = ({
   style
 }: IProps) => {
   return (
-    <TitleBarWrapper style={{ ...style }}>
+    <TitleBarWrapper backgrondColour={backgrondColour} style={{ ...style }}>
       {icon && (
         <TitleChip className="title-chip" highlightColour={highlightColour}>
           <Icon name={icon} fill={fill} size="md" />
         </TitleChip>
       )}
-      {title && <LabelTextRegular className="title">{title}</LabelTextRegular>}
+      {title && (
+        <LabelTextRegular className="title" fontColour={fontColour}>
+          {title}
+        </LabelTextRegular>
+      )}
       {renderStats()}
     </TitleBarWrapper>
   );
 };
 
 TitleBar.defaultProps = {
+  backgrondColour: colours.white,
   highlightColour: colours.pink,
+  fontColour: colours.greyDark,
   fill: colours.white,
   renderStats: () => null
 };

@@ -30,19 +30,19 @@ export const Chart: React.SFC<IProps> = ({
     {
       name: 'desktop-excluded',
       value: excludedTotal.desktop,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
+      fill: colours.greyMid,
+      stroke: colours.greyMid
     },
     {
       name: 'mobile-excluded',
       value: excludedTotal.mobile,
-      fill: colours.offWhite,
-      stroke: colours.offWhite
+      fill: colours.greyMid,
+      stroke: colours.greyMid
     }
   ];
   return (
     <React.Fragment>
-      <GraphPaper opacity={0.2} />
+      <GraphPaper opacity={0.1} />
       <ChartArea>
         <DoughnutChart data={chartData} />
         <ChartIcon>

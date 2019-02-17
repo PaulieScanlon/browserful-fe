@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Row, Col } from 'react-grid-system';
+import { Row, Col, Container } from 'react-grid-system';
 
 import { IProps } from '../types';
 
@@ -15,7 +15,7 @@ import { PostCss } from './PostCss';
 import { LabelTextBold } from '../../../ui/Typography';
 import { EmptyState } from '../../../ui/EmptyState';
 
-import { colours, scaffolding } from '../../../theme';
+import { colours, scaffolding, breakpoints } from '../../../theme';
 import { ColContainer, ReactGridStyemOverride } from './styles';
 
 export class MatrixUi extends React.Component<IProps> {
@@ -42,80 +42,97 @@ export class MatrixUi extends React.Component<IProps> {
 
     return (
       <React.Fragment>
-        <Row style={{ backgroundColor: colours.offBlack }}>
-          <Col xs={12} sm={12} md={12} lg={12}>
-            <div style={{ height: scaffolding.gutterLg }} />
-            <TitleBar
-              style={{ marginBottom: scaffolding.gutterLg }}
-              renderStats={() => (
-                <EditInput
-                  html={mn}
-                  onBlur={event =>
-                    handleNameChange(event.currentTarget.innerHTML)
-                  }
+        <div
+          style={{
+            backgroundColor: colours.appBlack
+          }}
+        >
+          <Container
+            fluid
+            style={{
+              maxWidth: breakpoints.xxl
+            }}
+          >
+            <Row>
+              <Col xs={12} sm={12} md={12} lg={12}>
+                <div style={{ height: scaffolding.gutterLg }} />
+                <TitleBar
+                  backgrondColour={colours.greyDark}
+                  style={{ marginBottom: scaffolding.gutterLg }}
+                  renderStats={() => (
+                    <EditInput
+                      html={mn}
+                      onBlur={event =>
+                        handleNameChange(event.currentTarget.innerHTML)
+                      }
+                    />
+                  )}
                 />
-              )}
-            />
-          </Col>
-        </Row>
-        <Row style={{ backgroundColor: colours.offBlack }}>
-          <SliderControls
-            mn={mn}
-            handleAccordionChange={handleAccordionChange}
-            handleSliderChange={handleSliderChange}
-            handleNameChange={handleNameChange}
-            slidervValues={slidervValues}
-          />
-        </Row>
-
-        {browserQuery ? (
-          <React.Fragment>
-            <Row style={{ backgroundColor: colours.offBlack }}>
-              <Col
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                style={{ ...ReactGridStyemOverride }}
-              >
-                <ColContainer alignment="center">
-                  <Stats
-                    includedTotal={includedTotal}
-                    excludedTotal={excludedTotal}
-                  />
-                </ColContainer>
-              </Col>
-
-              <Col
-                xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                style={{ ...ReactGridStyemOverride }}
-              >
-                <ColContainer alignment="center">
-                  <Chart
-                    key={Math.random() * 10}
-                    includedTotal={includedTotal}
-                    excludedTotal={excludedTotal}
-                    total={total}
-                  />
-                </ColContainer>
-              </Col>
-
-              <Col
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                style={{ ...ReactGridStyemOverride }}
-              >
-                <ColContainer breakpoint={2}>
-                  <PostCss browserQuery={browserQuery} />
-                </ColContainer>
               </Col>
             </Row>
-            <div style={{ height: scaffolding.gutterLg }} />
+
+            <Row>
+              <SliderControls
+                mn={mn}
+                handleAccordionChange={handleAccordionChange}
+                handleSliderChange={handleSliderChange}
+                handleNameChange={handleNameChange}
+                slidervValues={slidervValues}
+              />
+            </Row>
+
+            {browserQuery && (
+              <Row>
+                <Col
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  style={{ ...ReactGridStyemOverride }}
+                >
+                  <ColContainer alignment="center">
+                    <Stats
+                      includedTotal={includedTotal}
+                      excludedTotal={excludedTotal}
+                    />
+                  </ColContainer>
+                </Col>
+
+                <Col
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  style={{ ...ReactGridStyemOverride }}
+                >
+                  <ColContainer alignment="center">
+                    <Chart
+                      key={Math.random() * 10}
+                      includedTotal={includedTotal}
+                      excludedTotal={excludedTotal}
+                      total={total}
+                    />
+                  </ColContainer>
+                </Col>
+
+                <Col
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={4}
+                  style={{ ...ReactGridStyemOverride }}
+                >
+                  <ColContainer breakpoint={2}>
+                    <PostCss browserQuery={browserQuery} />
+                  </ColContainer>
+                </Col>
+              </Row>
+            )}
+          </Container>
+        </div>
+        <div style={{ height: scaffolding.gutterLg }} />
+        {browserQuery ? (
+          <Container>
             <Row>
               <Col xs={12} sm={12} md={12} lg={6}>
                 <ColContainer>
@@ -170,7 +187,7 @@ export class MatrixUi extends React.Component<IProps> {
                 })}
               </Col>
             </Row>
-          </React.Fragment>
+          </Container>
         ) : (
           <EmptyState
             mainMessage="No browsers to display! 👻"

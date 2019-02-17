@@ -33,7 +33,7 @@ export const ColContainer = styled.div<IProps>(
     flexDirection: 'column',
     width: '100%',
     marginBottom: scaffolding.gutterLg,
-    backgroundColor: colours.white
+    backgroundColor: colours.offBlack
   },
   ({ breakpoint, alignment }) => ({
     justifyContent: alignment,
@@ -57,12 +57,13 @@ export const ChartIcon = styled.div({
   width: '46px',
   height: '46px',
   borderRadius: '100%',
-  backgroundColor: colours.pink,
+  backgroundColor: colours.greyDark,
   boxShadow: materialBuilder(2)
 });
 
 export const StatArea = styled.div({
   label: 'stat-area',
   position: 'relative',
-  padding: scaffolding.gutterLg
+  padding: scaffolding.gutterLg,
+  backgroundColor: colours.offBlack
 });

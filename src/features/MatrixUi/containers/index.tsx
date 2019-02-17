@@ -87,8 +87,6 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     updateComparisonQuery(
       comparisonBuilder(nextProps.lv, nextProps.gu, nextProps.yr)
     );
-
-    console.log('nextProps: ', nextProps);
   }
 
   handleAccordionChange(event: React.ChangeEvent<HTMLInputElement>) {

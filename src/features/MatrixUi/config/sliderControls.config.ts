@@ -8,7 +8,7 @@ export const config = {
     label: 'Last Versions',
     valueSuffix: '',
     slider: {
-      defaultValue: 5,
+      defaultValue: 3,
       domain: [1, 10],
       step: 1,
       tickCount: 10

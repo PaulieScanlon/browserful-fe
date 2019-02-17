@@ -10,6 +10,7 @@ export const comparisonBuilder = (
   gu: any, // @TODO should be IQuery
   yr: any // @TODO should be IQuery
 ) => {
+  // @TODO these object queries are the same in queryBuilder, refactor to combine these to methods
   const objectQueries = {
     [queryParams.LAST_VERSIONS]: lv.checked
       ? `last ${config[queryParams.LAST_VERSIONS].slider.domain[1]} versions`

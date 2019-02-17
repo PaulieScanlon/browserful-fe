@@ -14,15 +14,17 @@ const getTheme = {
   light: {
     color: colours.greyMid,
     borderColour: colours.greyUltraLight,
+    borderBottomColour: colours.greyUltraLight,
     backgroundColour: colours.white,
-    backgroundColourInner: colours.offWhite,
+    backgroundColourInner: colours.white,
     labelColour: colours.greyUltraLight,
     dotColour: colours.greyUltraLight
   },
 
   dark: {
     color: colours.white,
-    borderColour: colours.greyMid,
+    borderColour: colours.greyDark,
+    borderBottomColour: colours.greyDark,
     backgroundColour: colours.greyDark,
     backgroundColourInner: colours.offBlack,
     labelColour: colours.greyMid,
@@ -52,14 +54,8 @@ export const AccordionInput = styled.input<IProps>(
     top: '-10px',
     left: '-10px',
     display: 'none',
-
     transition: transitionBuilder('background-color'),
-
-    '.accordion-label': {
-      borderBottomColor: colours.transparent
-    },
     ':checked + .accordion-label': {
-      color: colours.greyMid,
       div: {
         span: {
           opacity: 1
@@ -119,7 +115,7 @@ export const AccordionLabel = styled.label<EProps>(
   },
   ({ theme }) => ({
     color: getTheme[theme].labelColour,
-    borderBottomColor: getTheme[theme].borderColour,
+    borderBottomColor: getTheme[theme].borderBottomColour,
     '&:after': {
       backgroundColor: getTheme[theme].dotColour
     }

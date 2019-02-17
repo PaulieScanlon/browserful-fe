@@ -11,5 +11,6 @@ export const PreTag = styled.pre({
   borderRadius: '3px',
   boxSizing: 'border-box',
   whiteSpace: 'pre-wrap',
-  backgroundColor: colours.offWhite
+  color: colours.greyLight,
+  backgroundColor: colours.greyDark
 });

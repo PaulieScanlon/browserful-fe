@@ -22,22 +22,25 @@ export const SliderControls: React.SFC<IProps> = ({
     return (
       <Col key={index} xs={12} sm={12} md={12} lg={4}>
         <Accordion
-          maxHeight="200px"
+          maxHeight="120px"
           type="checkbox"
           name={`slider-${config[item]}`}
+          theme="dark"
         >
           <AccordionItem
             id={accordionName.id}
             defaultChecked={slidervValues[item].checked}
-            backgroundColour={colours.offWhite}
             renderLabel={() => (
               <DetailsLabel
                 label={accordionName.label}
-                renderStats={() => (
-                  <LabelTextBold>{`${slidervValues[accordionName.id].value}${
-                    accordionName.valueSuffix
-                  }`}</LabelTextBold>
-                )}
+                fontColour={colours.greyLight}
+                renderStats={() =>
+                  slidervValues[item].checked ? (
+                    <LabelTextBold fontColour={colours.greyLight}>{`${
+                      slidervValues[accordionName.id].value
+                    }${accordionName.valueSuffix}`}</LabelTextBold>
+                  ) : null
+                }
               />
             )}
             onChange={event => handleAccordionChange(event)}
