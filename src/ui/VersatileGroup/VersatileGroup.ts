@@ -16,7 +16,7 @@ const getStyles = (timeline: boolean) => {
       content: `""`,
       width: '1px',
       height: '100%',
-      backgroundColor: colours.greyUltraLight,
+      backgroundColor: colours.greyMid,
       zIndex: -1
     };
   }
@@ -27,7 +27,7 @@ export const VersatileGroup = styled.div<IProps>(
     label: 'versatile-group',
     '.tile-wrapper:last-child': {
       '.tile-bullet:before': {
-        bottom: '20px'
+        display: 'none'
       }
     },
     '.tile-wrapper:not(:last-child)': {

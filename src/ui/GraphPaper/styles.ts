@@ -31,7 +31,7 @@ export const HozLines = styled.div({
   ...(commonStyles as any),
   width: '100%',
   backgroundImage: `linear-gradient(to right, ${
-    colours.offWhite
+    colours.greyMid
   } 1px, transparent 1px)`
 });
 
@@ -40,7 +40,7 @@ export const VertLines = styled.div({
   ...(commonStyles as any),
   height: '100%',
   backgroundImage: `linear-gradient(to bottom, ${
-    colours.greyUltraLight
+    colours.greyMid
   } 1px, transparent 1px)`
 });
 

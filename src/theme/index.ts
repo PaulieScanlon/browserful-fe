@@ -5,10 +5,14 @@ export const colours = {
   purple: '#8b76bb',
   greyDark: '#333333',
   greyMid: '#666666',
+  black: '#000000',
+  offBlack: '#292929',
+  appBlack: '#212121',
   greyLight: '#999999',
   greyUltraLight: '#dedede',
   offWhite: '#f7f7f7',
   white: '#ffffff',
+
   greenLight: '#e8faf2',
   green: '#00b256',
   redLight: '#ffefef',
@@ -32,7 +36,8 @@ export const breakpoints = {
   sm: '576px',
   md: '768px',
   lg: '992px',
-  xl: '1200px'
+  xl: '1200px',
+  xxl: '1440px'
 };
 
 export const mq = Object.keys(breakpoints).map(

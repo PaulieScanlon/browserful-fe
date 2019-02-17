@@ -8,7 +8,7 @@ import { SideBar } from '../ui/SideBar';
 import { IconLink } from '../ui/IconButton';
 import { Icon } from '../ui/Icon';
 
-import { scaffolding, colours } from '../theme';
+import { colours } from '../theme';
 
 import MatrixUi from '../features/MatrixUi/containers';
 import { variantTypes } from '../features/MatrixUi/enums';
@@ -45,7 +45,6 @@ class AppMatrix extends React.Component<IProps, IState> {
       <AppContent>
         <HeadTag />
         <AppBar showLogo={false} fixed={true}>
-          <div />
           <IconLink
             href="http://www.twitter.com/browserful"
             target="_blank"
@@ -55,11 +54,7 @@ class AppMatrix extends React.Component<IProps, IState> {
           </IconLink>
         </AppBar>
         <SideBar active={true}>
-          <Container
-            style={{
-              margin: `${scaffolding.gutterLg} ${scaffolding.gutterSm}`
-            }}
-          >
+          <Container fluid style={{ margin: '0px -15px' }}>
             {isLoaded && <MatrixUi variant={variantTypes.APPVIEW} />}
           </Container>
         </SideBar>

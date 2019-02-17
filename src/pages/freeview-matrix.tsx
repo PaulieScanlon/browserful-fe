@@ -7,7 +7,7 @@ import { AppBar } from '../ui/AppBar';
 import { IconLink } from '../ui/IconButton';
 import { Icon } from '../ui/Icon';
 
-import { scaffolding, colours } from '../theme';
+import { colours } from '../theme';
 
 import MatrixUi from '../features/MatrixUi/containers';
 import { variantTypes } from '../features/MatrixUi/enums';
@@ -47,11 +47,7 @@ class FreeviewMatrix extends React.Component<IProps, IState> {
             <Icon name="twitter" fill={colours.blue} />
           </IconLink>
         </AppBar>
-        <Container
-          style={{
-            margin: `${scaffolding.gutterSm} auto`
-          }}
-        >
+        <Container fluid style={{ margin: '0px -15px' }}>
           {isLoaded && <MatrixUi variant={variantTypes.FREEVIEW} />}
         </Container>
       </AppContent>

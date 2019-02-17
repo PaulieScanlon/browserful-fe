@@ -8,5 +8,5 @@ export const queryDefault = {
     config[queryParams.LAST_VERSIONS].slider.defaultValue
   }&gu=${config[queryParams.GLOBAL_USAGE].slider.defaultValue}&yr=${
     config[queryParams.YEAR_RELEASED].slider.defaultValue
-  }&excq=${standardExcludedQuery}`
+  }&incq=&excq=${standardExcludedQuery}`
 };

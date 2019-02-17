@@ -16,7 +16,7 @@ import { colours } from '../../theme';
 const stories = storiesOf('VersatileGroup', module);
 
 const versatiles = (tilePadding: string) => (
-  <React.Fragment>
+  <div>
     <Versatile
       bulletColour={colours.blue}
       renderStart={() => <Icon name="desktop" fill={colours.blue} />}
@@ -56,7 +56,7 @@ const versatiles = (tilePadding: string) => (
         <LabelTextBold fontColour={colours.pink}>15</LabelTextBold>
       )}
     />
-  </React.Fragment>
+  </div>
 );
 
 stories.add(

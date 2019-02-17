@@ -1,73 +1,68 @@
 import * as React from 'react';
+import { Col } from 'react-grid-system';
 
 import { IProps } from '../types';
 
-import { TitleBar } from '../../../ui/TitleBar';
 import { Accordion, AccordionItem } from '../../../ui/Accordion';
 import { DetailsLabel } from '../../../ui/DetailsLabel';
 import { LabelTextBold } from '../../../ui/Typography';
 import { CompoundSlider } from '../../../ui/CompoundSlider';
-import { EditInput } from '../../../ui/EditInput';
 
 import { config } from '../config/sliderControls.config';
-import { scaffolding } from '../../../theme';
+import { scaffolding, colours } from '../../../theme';
 
 export const SliderControls: React.SFC<IProps> = ({
   slidervValues,
-  mn,
   handleAccordionChange,
-  handleSliderChange,
-  handleNameChange
+  handleSliderChange
 }: IProps) => {
-  const accordionItems = Object.keys(config).map((item: any, index: number) => {
+  const accordions = Object.keys(config).map((item: any, index: number) => {
     const accordionName = config[item];
 
     return (
-      <AccordionItem
-        key={index}
-        id={accordionName.id}
-        defaultChecked={slidervValues[item].checked}
-        renderLabel={() => (
-          <DetailsLabel
-            label={accordionName.label}
-            renderStats={() => (
-              <LabelTextBold>{`${slidervValues[accordionName.id].value}${
-                accordionName.valueSuffix
-              }`}</LabelTextBold>
+      <Col key={index} xs={12} sm={12} md={12} lg={4}>
+        <Accordion
+          maxHeight="120px"
+          type="checkbox"
+          name={`slider-${config[item]}`}
+          theme="dark"
+        >
+          <AccordionItem
+            id={accordionName.id}
+            defaultChecked={slidervValues[item].checked}
+            renderLabel={() => (
+              <DetailsLabel
+                label={accordionName.label}
+                fontColour={colours.greyLight}
+                renderStats={() =>
+                  slidervValues[item].checked ? (
+                    <LabelTextBold fontColour={colours.greyLight}>{`${
+                      slidervValues[accordionName.id].value
+                    }${accordionName.valueSuffix}`}</LabelTextBold>
+                  ) : null
+                }
+              />
             )}
-          />
-        )}
-        onChange={event => handleAccordionChange(event)}
-      >
-        <CompoundSlider
-          showHandleValue
-          reversed={accordionName.slider.reversed}
-          sliderColour={accordionName.slider.sliderColour}
-          domain={accordionName.slider.domain}
-          step={accordionName.slider.step}
-          values={[slidervValues[accordionName.id].value]}
-          tickCount={accordionName.slider.tickCount}
-          onChange={values => handleSliderChange(accordionName.id, values[0])}
-        />
-      </AccordionItem>
+            onChange={event => handleAccordionChange(event)}
+          >
+            <CompoundSlider
+              showHandleValue
+              reversed={accordionName.slider.reversed}
+              sliderColour={accordionName.slider.sliderColour}
+              domain={accordionName.slider.domain}
+              step={accordionName.slider.step}
+              values={[slidervValues[accordionName.id].value]}
+              tickCount={accordionName.slider.tickCount}
+              onChange={values =>
+                handleSliderChange(accordionName.id, values[0])
+              }
+            />
+          </AccordionItem>
+        </Accordion>
+        <div style={{ height: scaffolding.gutterLg }} />
+      </Col>
     );
   });
 
-  return (
-    <React.Fragment>
-      <TitleBar
-        style={{ marginBottom: scaffolding.gutterLg }}
-        renderStats={() => (
-          <EditInput
-            html={mn}
-            onBlur={event => handleNameChange(event.currentTarget.innerHTML)}
-          />
-        )}
-      />
-      <Accordion maxHeight="200px" type="checkbox" name="slider-controls">
-        {accordionItems}
-      </Accordion>
-      <div style={{ height: scaffolding.gutterLg }} />
-    </React.Fragment>
-  );
+  return <React.Fragment>{accordions}</React.Fragment>;
 };

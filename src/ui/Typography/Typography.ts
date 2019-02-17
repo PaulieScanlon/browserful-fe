@@ -162,8 +162,8 @@ export const LabelTextRegular = styled.span<IProps>(
     label: 'label-text-regular',
     ...(font as any),
     display: 'inline-block',
-    fontSize: '16px',
-    lineHeight: '22px',
+    fontSize: '14px',
+    lineHeight: '16px',
     marginBottom: '0px',
     transition: transitionBuilder('opacity')
   },

@@ -27,7 +27,11 @@ export const Versatile: React.SFC<IProps> = ({
     <TileWrapper className="tile-wrapper" tilePadding={tilePadding}>
       {renderStart && <TileStart>{renderStart()}</TileStart>}
 
-      <TileBullet className="tile-bullet" bulletColour={bulletColour} />
+      <TileBullet
+        tilePadding={tilePadding}
+        className="tile-bullet"
+        bulletColour={bulletColour}
+      />
 
       <TileContent>{renderContent()}</TileContent>
 

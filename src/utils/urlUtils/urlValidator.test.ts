@@ -26,7 +26,7 @@ describe('urlValidator', () => {
     window.history.pushState(
       {},
       'testC',
-      '?mn=test+matrix&lv=5&gu=0.3&yr=2015&excq=%2CChrome+70%2CChrome+69&incq=%2CChrome+70'
+      '?mn=test+matrix&lv=3&gu=0.3&yr=2016&excq=%2Cchrome+71%2Cedge+16&incq=%2Cchrome+70%2Cedge+17'
     );
     expect(urlValidator()).toEqual(window.location.search);
   });

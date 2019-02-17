@@ -17,10 +17,10 @@ export const EditField = css`
   overflow: hidden;
   margin-right: ${scaffolding.gutterSm};
   font-family: ${font.fontFamily};
+  font-weight: ${font.fontWeight};
   font-size: 24px;
   line-height: 24px;
-  color: ${colours.greyDark};
-  background-color: ${colours.white};
+  color: ${colours.white};
   outline: none;
   border-style: solid;
   border-width: 2px;

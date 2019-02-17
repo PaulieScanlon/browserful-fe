@@ -11,7 +11,9 @@ export const PostCss: React.SFC<IProps> = ({ browserQuery }: IProps) => {
   return (
     <React.Fragment>
       <TitleBar
+        backgrondColour={colours.greyDark}
         highlightColour={colours.greyDark}
+        fontColour={colours.greyLight}
         fill={colours.pink}
         icon="code"
         title="PostCSS"

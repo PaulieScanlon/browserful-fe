@@ -6,6 +6,11 @@ interface IProps {
   sliderColour: string;
 }
 
+const commonStyles = {
+  height: '60px',
+  marginTop: 25
+};
+
 export const SliderWrapper = styled.div({
   label: 'slider-wrapper',
   marginBottom: scaffolding.gutterLg
@@ -30,7 +35,7 @@ export const TickMarksWrapper = styled.div({
 export const SliderStyles = css`
   position: relative;
   width: calc(100% - ${scaffolding.gutterXl});
-  height: 80px;
+  height: ${commonStyles.height};
   margin: 0px auto;
 `;
 
@@ -38,9 +43,9 @@ export const RailStyles = styled.div({
   position: 'absolute',
   width: '100%',
   height: '10px',
-  marginTop: '35px',
+  marginTop: `${commonStyles.marginTop}px`,
   borderRadius: '5px',
-  backgroundColor: colours.greyUltraLight
+  backgroundColor: colours.greyDark
 });
 
 export const TrackStyles = styled.div<IProps>(
@@ -49,7 +54,7 @@ export const TrackStyles = styled.div<IProps>(
     position: 'absolute',
     height: '10px',
     zIndex: 1,
-    marginTop: '35px',
+    marginTop: `${commonStyles.marginTop}px`,
     borderRadius: '5px',
     cursor: 'pointer'
   },
@@ -65,7 +70,7 @@ export const HandleStyles = styled.button<IProps>(
     display: 'flex',
     justifyContent: 'center',
     marginLeft: '-12px',
-    marginTop: '25px',
+    marginTop: `${commonStyles.marginTop - 10}px`,
     zIndex: 2,
     width: '26px',
     height: '26px',
@@ -90,9 +95,10 @@ export const HandleValueStyles = styled.span({
   label: 'handle-value-styles',
   position: 'absolute',
   display: 'none',
-  top: '-35px',
+  top: '-25px',
   textAlign: 'center',
-  padding: scaffolding.gutterSm,
+  padding: '4px',
+  minWidth: '20px',
   borderRadius: '6px',
   color: colours.white,
   backgroundColor: colours.greyDark,
@@ -103,18 +109,18 @@ export const HandleValueStyles = styled.span({
 export const TickMarksStyles = styled.div({
   label: 'tick-marks-styles',
   position: 'absolute',
-  marginTop: '50px',
+  marginTop: `${commonStyles.marginTop + 15}px`,
   marginLeft: '-0.5px',
   width: '1px',
   height: '8px',
-  backgroundColor: colours.greyLight
+  backgroundColor: colours.greyMid
 });
 
 export const TickNumbersStyles = styled.div({
   label: 'tick-numbers-styles',
   position: 'absolute',
-  marginTop: '60px',
+  marginTop: `${commonStyles.marginTop + 25}px`,
   fontSize: '10px',
   textAlign: 'center',
-  color: colours.greyMid
+  color: colours.greyLight
 });

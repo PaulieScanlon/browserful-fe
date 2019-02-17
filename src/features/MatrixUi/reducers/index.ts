@@ -33,8 +33,13 @@ const initialState: IProps = {
     checked: true
   },
   mn: uiMisc[queryParams.MATRIX_NAME].name,
-  browserQuery: '',
-  comparisonQuery: '',
+  // @TODO it's a bit shit to have these query strings duplicated here
+  browserQuery: `last ${
+    config[queryParams.LAST_VERSIONS].slider.defaultValue
+  } versions`,
+  comparisonQuery: `last ${
+    config[queryParams.LAST_VERSIONS].slider.domain[1]
+  } versions`,
   incQuery: [''],
   excQuery: ['']
 };

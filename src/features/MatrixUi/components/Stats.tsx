@@ -26,11 +26,10 @@ export const Stats: React.SFC<IProps> = ({
           bulletColour={colours.blue}
           renderStart={() => <Icon name="desktop" fill={colours.blue} />}
           renderContent={() => [
-            <LabelTextRegular key="title">Desktop</LabelTextRegular>,
-            <LabelTextItalic
-              key="description"
-              fontColour={colours.greyUltraLight}
-            >
+            <LabelTextRegular key="title" fontColour={colours.greyLight}>
+              Desktop
+            </LabelTextRegular>,
+            <LabelTextItalic key="description" fontColour={colours.greyMid}>
               {excludedTotal.desktop} excluded
             </LabelTextItalic>
           ]}
@@ -44,11 +43,10 @@ export const Stats: React.SFC<IProps> = ({
           bulletColour={colours.teal}
           renderStart={() => <Icon name="mobile" fill={colours.teal} />}
           renderContent={() => [
-            <LabelTextRegular key="title">Mobile</LabelTextRegular>,
-            <LabelTextItalic
-              key="description"
-              fontColour={colours.greyUltraLight}
-            >
+            <LabelTextRegular key="title" fontColour={colours.greyLight}>
+              Mobile
+            </LabelTextRegular>,
+            <LabelTextItalic key="description" fontColour={colours.greyMid}>
               {excludedTotal.mobile} excluded
             </LabelTextItalic>
           ]}
@@ -59,11 +57,11 @@ export const Stats: React.SFC<IProps> = ({
           )}
         />
         <Versatile
-          tilePadding="30px"
-          renderStart={() => <Icon name="bars" fill={colours.pink} />}
+          bulletColour={colours.greyLight}
+          renderStart={() => <Icon name="bars" fill={colours.greyLight} />}
           renderContent={() => (
             <LabelTextBold
-              fontColour={colours.pink}
+              fontColour={colours.greyLight}
               style={{ fontSize: '18px', lineHeight: '0px' }}
             >
               Total
@@ -71,7 +69,7 @@ export const Stats: React.SFC<IProps> = ({
           )}
           renderEnd={() => (
             <LabelTextBold
-              fontColour={colours.pink}
+              fontColour={colours.greyLight}
               style={{ fontSize: '22px' }}
             >
               {includedTotal.desktop + includedTotal.mobile}
