@@ -7,7 +7,8 @@ import {
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC,
   UPDATE_BROWSER_QUERY,
-  UPDATE_COMPARISON_QUERY
+  UPDATE_COMPARISON_QUERY,
+  UPDATE_BROWSER_EXCLUDED
 } from '../constants';
 
 import { queryParams } from '../../../utils/enums';
@@ -41,7 +42,8 @@ const initialState: IProps = {
     config[queryParams.LAST_VERSIONS].slider.domain[1]
   } versions`,
   incQuery: [''],
-  excQuery: ['']
+  excQuery: [''],
+  excBrowser: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -109,6 +111,15 @@ export const reducer = (state = initialState, action) => {
         incQuery: action.incQuery,
         excQuery: action.excQuery
       };
+
+    case UPDATE_BROWSER_EXCLUDED:
+      return {
+        ...state,
+        excBrowser: action.checked
+          ? arrayRemove(action.excBrowser, action.query)
+          : arrayAdd(action.excBrowser, action.query)
+      };
+
     default:
       return state;
   }

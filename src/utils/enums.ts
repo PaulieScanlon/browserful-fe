@@ -4,5 +4,6 @@ export enum queryParams {
   INCLUDED_QUERY = 'incq',
   LAST_VERSIONS = 'lv',
   GLOBAL_USAGE = 'gu',
-  YEAR_RELEASED = 'yr'
+  YEAR_RELEASED = 'yr',
+  EXCLUDED_BROWSER = 'excb'
 }

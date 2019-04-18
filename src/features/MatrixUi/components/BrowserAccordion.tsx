@@ -16,13 +16,23 @@ export const BrowserAccordion: React.SFC<IProps> = ({
   selectColour,
   handleAutoChange,
   handleIncludeChange,
-  handleExcludeChange
+  handleExcludeChange,
+  handleBrowserChange
 }: IProps) => {
   return (
     <div style={{ marginBottom: scaffolding.gutterLg }}>
       <Accordion maxHeight="700px" type="checkbox" name={browser.friendlyName}>
         <AccordionItem
           id={browser.friendlyName}
+          onChange={event =>
+            handleBrowserChange(
+              event,
+              browser.queryName,
+              browser.versions[0].version
+            )
+          }
+          selectColour={selectColour}
+          defaultChecked={browser.expandCard}
           renderLabel={() => (
             <DetailsLabel
               label={browser.friendlyName}
@@ -40,9 +50,6 @@ export const BrowserAccordion: React.SFC<IProps> = ({
               ]}
             />
           )}
-          selectColour={selectColour}
-          backgroundColour={colours.white}
-          defaultChecked={browser.expandCard}
         >
           {browser.versions.map((version: any, index: number) => {
             return (

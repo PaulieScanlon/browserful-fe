@@ -13,6 +13,7 @@ export interface IProps {
   comparisonQuery?: string;
   incQuery?: Array<String>;
   excQuery?: Array<String>;
+  excBrowser?: Array<String>;
   //
   updateQuery?: Function;
   updateValue?: Function;
@@ -23,11 +24,17 @@ export interface IProps {
   updateIncluded?: Function;
   updateExcluded?: Function;
   updateIncExc?: Function;
+  updateBrowserExcluded?: Function;
 
   //
   slidervValues?: Object;
   handleAccordionChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSliderChange?: (id: string, value: number) => void;
+  handleBrowserChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    query: string,
+    version: number
+  ) => void;
   handleNameChange?: (html) => void;
   //
   browser?: any;

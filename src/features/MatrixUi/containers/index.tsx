@@ -12,7 +12,8 @@ import {
   updateExcluded,
   updateIncExc,
   updateBrowserQuery,
-  updateComparisonQuery
+  updateComparisonQuery,
+  updateBrowserExcluded
 } from '../actions';
 
 import { urlValidator } from '../../../utils/urlUtils/urlValidator';
@@ -41,10 +42,17 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     this.handleAutoChange = this.handleAutoChange.bind(this);
     this.handleIncludeChange = this.handleIncludeChange.bind(this);
     this.handleExcludeChange = this.handleExcludeChange.bind(this);
+    this.handleBrowserChange = this.handleBrowserChange.bind(this);
   }
 
   componentDidMount() {
-    const { variant, updateValue, updateName, updateIncExc } = this.props;
+    const {
+      variant,
+      updateValue,
+      updateName,
+      updateIncExc,
+      updateBrowserExcluded
+    } = this.props;
 
     if (variant === variantTypes.FREEVIEW) {
       history.replaceState({}, '', `${urlValidator()}`);
@@ -55,15 +63,14 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       const yr = urlGetter()[queryParams.YEAR_RELEASED];
       const incq = urlGetter()[queryParams.INCLUDED_QUERY];
       const excq = urlGetter()[queryParams.EXCLUDED_QUERY];
-
-      updateValue('lv', lv.value ? lv.value : this.props.lv.value, lv.checked);
-
-      updateValue('gu', gu.value ? gu.value : this.props.gu.value, gu.checked);
-
-      updateValue('yr', yr.value ? yr.value : this.props.yr.value, yr.checked);
+      const excb = urlGetter()[queryParams.EXCLUDED_BROWSER];
 
       updateName(mn);
+      updateValue('lv', lv.value ? lv.value : this.props.lv.value, lv.checked);
+      updateValue('gu', gu.value ? gu.value : this.props.gu.value, gu.checked);
+      updateValue('yr', yr.value ? yr.value : this.props.yr.value, yr.checked);
       updateIncExc(incq, excq);
+      updateBrowserExcluded(excb, null, true);
     }
 
     this.setState({
@@ -79,10 +86,13 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       nextProps.gu,
       nextProps.yr,
       nextProps.incQuery,
-      nextProps.excQuery
+      nextProps.excQuery,
+      nextProps.excBrowser
     );
 
     updateBrowserQuery(bq);
+
+    // console.log('updateBrowserQuery(bq): ', updateBrowserQuery(bq));
 
     updateComparisonQuery(
       comparisonBuilder(nextProps.lv, nextProps.gu, nextProps.yr)
@@ -174,6 +184,30 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
     }
   }
 
+  handleBrowserChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+    query: string
+  ) {
+    const { variant, updateBrowserExcluded, excBrowser } = this.props;
+    const { checked } = event.currentTarget;
+
+    updateBrowserExcluded(excBrowser, query, checked);
+
+    if (variant === variantTypes.FREEVIEW && checked) {
+      urlSetter(
+        queryParams.EXCLUDED_BROWSER,
+        arrayRemove(excBrowser, query).join(),
+        null
+      );
+    } else {
+      urlSetter(
+        queryParams.EXCLUDED_BROWSER,
+        arrayAdd(excBrowser, query).join(),
+        null
+      );
+    }
+  }
+
   render() {
     const { isLoaded } = this.state;
     const {
@@ -184,14 +218,16 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
       yr,
       mn,
       incQuery,
-      excQuery
+      excQuery,
+      excBrowser
     } = this.props;
 
     const matrix = constructMatrix(
       browserQuery,
       comparisonQuery,
       incQuery,
-      excQuery
+      excQuery,
+      excBrowser
     );
 
     return (
@@ -211,6 +247,7 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
             handleAutoChange={this.handleAutoChange}
             handleIncludeChange={this.handleIncludeChange}
             handleExcludeChange={this.handleExcludeChange}
+            handleBrowserChange={this.handleBrowserChange}
           />
         )}
       </React.Fragment>
@@ -226,7 +263,8 @@ const mapStateToProps = state => ({
   browserQuery: state.matrixUi.browserQuery,
   comparisonQuery: state.matrixUi.comparisonQuery,
   incQuery: state.matrixUi.incQuery,
-  excQuery: state.matrixUi.excQuery
+  excQuery: state.matrixUi.excQuery,
+  excBrowser: state.matrixUi.excBrowser
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -238,7 +276,8 @@ const mapDispatchToProps = dispatch => ({
   updateAuto: bindActionCreators(updateAuto, dispatch),
   updateIncluded: bindActionCreators(updateIncluded, dispatch),
   updateExcluded: bindActionCreators(updateExcluded, dispatch),
-  updateIncExc: bindActionCreators(updateIncExc, dispatch)
+  updateIncExc: bindActionCreators(updateIncExc, dispatch),
+  updateBrowserExcluded: bindActionCreators(updateBrowserExcluded, dispatch)
 });
 
 export default connect(

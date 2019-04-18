@@ -6,7 +6,8 @@ export const constructMatrix = (
   browserQuery: string,
   comparisonQuery: string,
   incQuery: Array<String>,
-  excQuery: Array<String>
+  excQuery: Array<String>,
+  excBrowser: Array<String>
 ) => {
   const builtQuery = browserslist(`${browserQuery}`);
   const builtComparison = browserslist(`${comparisonQuery}`);
@@ -37,13 +38,12 @@ export const constructMatrix = (
     })
     .reduce((browser, item) => {
       const { name, version } = item;
-
       browser[name] = browser[name] || {
         ...browserDetails[name],
         totalIncluded: 0,
         totalExcluded: 0,
         total: 0,
-        expandCard: true,
+        expandCard: !excBrowser.includes(browserDetails[name].queryName),
         versions: []
       };
 
@@ -91,6 +91,9 @@ export const constructMatrix = (
       },
       { [platform.DESKTOP]: [], [platform.MOBILE]: [] }
     );
+
+  // console.log('platformObject.desktop: ', platformObject.desktop);
+  // console.log('platformObject.mobile: ', platformObject.mobile);
 
   return {
     browserList: {

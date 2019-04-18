@@ -8,6 +8,7 @@ describe('constructMatrix', () => {
       'chrome 70, chromeandroid 69',
       comparisonQuery,
       [],
+      [],
       []
     );
 
@@ -22,6 +23,7 @@ describe('constructMatrix', () => {
       'chrome 70, chromeandroid 69',
       comparisonQuery,
       [],
+      [],
       []
     );
 
@@ -33,7 +35,7 @@ describe('constructMatrix', () => {
   it('returns correct shape for browserObject', () => {
     const comparisonQuery = 'chrome 70';
 
-    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], [], []);
 
     const {
       friendlyName,
@@ -57,7 +59,7 @@ describe('constructMatrix', () => {
   it('returns correct shape for browserObject.versions', () => {
     const comparisonQuery = 'chrome 70';
 
-    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], [], []);
 
     const {
       friendlyName,
@@ -83,6 +85,7 @@ describe('constructMatrix', () => {
       'chrome 70, chromeandroid 69',
       comparisonQuery,
       [],
+      [],
       []
     );
 
@@ -101,6 +104,7 @@ describe('constructMatrix', () => {
       'chrome 70, chromeandroid 69',
       comparisonQuery,
       [],
+      [],
       []
     );
 
@@ -115,7 +119,7 @@ describe('constructMatrix', () => {
   it('returns correct values for total', () => {
     const comparisonQuery = 'chrome 70, chrome 69, chrome 68, chrome 67';
 
-    const matrix = constructMatrix('chrome 70', comparisonQuery, [], []);
+    const matrix = constructMatrix('chrome 70', comparisonQuery, [], [], []);
 
     expect(matrix.total).toEqual(
       expect.objectContaining({
@@ -132,6 +136,7 @@ describe('constructMatrix', () => {
       'chrome 70',
       comparisonQuery,
       ['chrome 70'],
+      [],
       []
     );
 
@@ -152,7 +157,8 @@ describe('constructMatrix', () => {
       'chrome 70',
       comparisonQuery,
       [],
-      ['chrome 70']
+      ['chrome 70'],
+      []
     );
 
     const {
