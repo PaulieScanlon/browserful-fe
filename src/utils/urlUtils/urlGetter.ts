@@ -6,11 +6,11 @@ export const urlGetter = () => {
   const urlParams = new URLSearchParams(wls);
 
   const lv = urlParams.getAll(queryParams.LAST_VERSIONS).toString();
-  // console.log('lv: // ', !!lv);
   const gu = urlParams.getAll(queryParams.GLOBAL_USAGE).toString();
   const yr = urlParams.getAll(queryParams.YEAR_RELEASED).toString();
 
   const mn = urlParams.getAll(queryParams.MATRIX_NAME).toString();
+
   const incq = urlParams
     .getAll(queryParams.INCLUDED_QUERY)
     .toString()
@@ -25,6 +25,12 @@ export const urlGetter = () => {
     .map(item => {
       return item;
     });
+
+  const excb = urlParams
+    .getAll(queryParams.EXCLUDED_BROWSER)
+    .toString()
+    .toLowerCase()
+    .split(',');
 
   return {
     lv: {
@@ -41,6 +47,7 @@ export const urlGetter = () => {
     },
     mn: mn,
     incq: incq,
-    excq: excq
+    excq: excq,
+    excb: excb
   };
 };

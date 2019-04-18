@@ -7,7 +7,8 @@ import {
   UPDATE_EXCLUDED,
   UPDATE_INC_EXC,
   UPDATE_BROWSER_QUERY,
-  UPDATE_COMPARISON_QUERY
+  UPDATE_COMPARISON_QUERY,
+  UPDATE_BROWSER_EXCLUDED
 } from '../constants';
 
 export const updateQuery = (id: string, checked: boolean) => dispatch => {
@@ -99,5 +100,18 @@ export const updateIncExc = (
     type: UPDATE_INC_EXC,
     incQuery,
     excQuery
+  });
+};
+
+export const updateBrowserExcluded = (
+  excBrowser: Array<String>,
+  query: string | null,
+  checked: boolean
+) => dispatch => {
+  return dispatch({
+    type: UPDATE_BROWSER_EXCLUDED,
+    excBrowser,
+    query,
+    checked
   });
 };

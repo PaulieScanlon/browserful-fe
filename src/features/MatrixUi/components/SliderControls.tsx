@@ -30,6 +30,7 @@ export const SliderControls: React.SFC<IProps> = ({
           <AccordionItem
             id={accordionName.id}
             defaultChecked={slidervValues[item].checked}
+            onChange={event => handleAccordionChange(event)}
             renderLabel={() => (
               <DetailsLabel
                 label={accordionName.label}
@@ -43,7 +44,6 @@ export const SliderControls: React.SFC<IProps> = ({
                 }
               />
             )}
-            onChange={event => handleAccordionChange(event)}
           >
             <CompoundSlider
               showHandleValue

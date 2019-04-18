@@ -37,7 +37,8 @@ export class MatrixUi extends React.Component<IProps> {
       handleNameChange,
       handleAutoChange,
       handleIncludeChange,
-      handleExcludeChange
+      handleExcludeChange,
+      handleBrowserChange
     } = this.props;
 
     return (
@@ -157,6 +158,7 @@ export class MatrixUi extends React.Component<IProps> {
                       handleAutoChange={handleAutoChange}
                       handleIncludeChange={handleIncludeChange}
                       handleExcludeChange={handleExcludeChange}
+                      handleBrowserChange={handleBrowserChange}
                     />
                   );
                 })}
@@ -182,6 +184,7 @@ export class MatrixUi extends React.Component<IProps> {
                       handleAutoChange={handleAutoChange}
                       handleIncludeChange={handleIncludeChange}
                       handleExcludeChange={handleExcludeChange}
+                      handleBrowserChange={handleBrowserChange}
                     />
                   );
                 })}
