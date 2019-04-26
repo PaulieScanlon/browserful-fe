@@ -1,5 +1,6 @@
 import { queryParams } from '../enums';
-// import { standardExcludedBrowsers } from './standardExcluded';
+
+import { IQuery } from '../../features/MatrixUi/types';
 
 export const incQueryBuilder = (query: Array<String>) =>
   query.map(query => ` ${query}`);
@@ -10,10 +11,9 @@ export const excQueryBuilder = (query: Array<String>) =>
 const removeEmpty = v => v != '';
 
 export const queryBuilder = (
-  // qt: string,
-  lv: any, // @TODO should be IQuery
-  gu: any, // @TODO should be IQuery
-  yr: any, // @TODO should be IQuery
+  lv: IQuery,
+  gu: IQuery,
+  yr: IQuery,
   incq: Array<String>,
   excq: Array<String>,
   excb: Array<String>
@@ -34,8 +34,6 @@ export const queryBuilder = (
     .map(key => objectQueries[key])
     .filter(removeEmpty)
     .join(', ');
-
-  console.log('constructedString: ', constructedString);
 
   return `${constructedString}`;
 };

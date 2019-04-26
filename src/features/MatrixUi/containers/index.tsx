@@ -92,8 +92,6 @@ class MatrixUiContainer extends React.Component<IProps, IState> {
 
     updateBrowserQuery(bq);
 
-    // console.log('updateBrowserQuery(bq): ', updateBrowserQuery(bq));
-
     updateComparisonQuery(
       comparisonBuilder(nextProps.lv, nextProps.gu, nextProps.yr)
     );

@@ -22,11 +22,11 @@ describe('urlValidator', () => {
     expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
   });
 
-  it(`returns the url un-touched because it's valid`, () => {
+  it.only(`returns the url un-touched because it's valid`, () => {
     window.history.pushState(
       {},
       'testC',
-      '?mn=test+matrix&lv=3&gu=0.3&yr=2016&excq=%2Cchrome+71%2Cedge+16&incq=%2Cchrome+70%2Cedge+17'
+      '?mn=test+matrix&lv=3&gu=0.3&yr=2016&excq=%2Cchrome+71%2Cedge+16&incq=%2Cchrome+70%2Cedge+17&excb=%2Cchrome%2Cfirefox'
     );
     expect(urlValidator()).toEqual(window.location.search);
   });
@@ -35,7 +35,17 @@ describe('urlValidator', () => {
     window.history.pushState(
       {},
       'testD',
-      '?incq=excq=%2CChro_me+70&incq=%2CChro_me+69'
+      '?excq=%2CChro_me+70&incq=%2CChro_me+69'
+    );
+    expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
+  });
+
+  it('returns default queryUrl if excb is not a valid browser name', () => {
+    // window.history.pushState({}, 'testE, ?excb=%2Cchrom_e');
+    window.history.pushState(
+      {},
+      'testE',
+      '?excq=%2CChrome+70&incq=%2CChrome+69&excb=%2Cchro_me'
     );
     expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
   });

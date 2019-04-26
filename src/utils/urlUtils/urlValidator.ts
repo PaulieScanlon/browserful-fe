@@ -6,7 +6,8 @@ import browserslist from 'browserslist';
 enum typeString {
   QUERY = 'query',
   SLIDER = 'slider',
-  BROWSERSLIST = 'browserslist'
+  BROWSERSLIST = 'browserslist',
+  NOT_BROWSERSLIST = 'notBrowserslist'
 }
 
 interface IUrlParams {
@@ -25,6 +26,8 @@ const validateRanges = (min: number, max: number, value: number | string) => {
 };
 
 const validateBrowserslist = (value: string | number) => {
+  console.log('validateBrowserslist: ', value);
+  // console.log('here: ', browserslist(`last 1 versions, ${value}`));
   try {
     // to test a value that is 'not' ...
     // we also need a valid browser query for browserslist to run
@@ -35,8 +38,11 @@ const validateBrowserslist = (value: string | number) => {
   }
 };
 
+// console.log('validateBrowserslist: ', validateBrowserslist('not chrome > 0'));
+
 export const urlValidator = () => {
   const wls = window.location.search;
+  console.log('wls: ', wls);
 
   const urlParams = new URLSearchParams(wls);
 
@@ -70,8 +76,17 @@ export const urlValidator = () => {
         .getAll(queryParams.INCLUDED_QUERY)
         .toString()
         .replace(',', '')
+    },
+    [queryParams.EXCLUDED_BROWSER]: {
+      type: typeString.NOT_BROWSERSLIST,
+      value: urlParams
+        .getAll(queryParams.EXCLUDED_BROWSER)
+        .toString()
+        .replace(',', '')
     }
   };
+
+  // console.log('urlParamValues: ', urlParamValues);
 
   const validate = {
     [typeString.QUERY]: (item: any) => {
@@ -97,8 +112,23 @@ export const urlValidator = () => {
       } catch (e) {
         return false;
       }
+    },
+    [typeString.NOT_BROWSERSLIST]: (item: any) => {
+      try {
+        urlParamValues[item].value;
+        console.log(
+          'thing: ',
+          urlParamValues[item].value.toString().split(',')
+        );
+        // console.log('thing: ', Array.from(urlParamValues[item].value as string));
+        return validateBrowserslist(`not ${urlParamValues[item].value} > 0`);
+      } catch (e) {
+        return false;
+      }
     }
   };
+
+  // console.log('validate: ', validate);
 
   const urlParamObject: IUrlParams = Object.keys(urlParamValues).reduce(
     (urls, item) => {
@@ -111,6 +141,8 @@ export const urlValidator = () => {
     },
     {}
   );
+
+  console.log('urlParamObject: ', urlParamObject);
 
   const checkTrueValues = Object.keys(urlParamObject)
     .map(url => {
