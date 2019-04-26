@@ -22,7 +22,7 @@ describe('urlValidator', () => {
     expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
   });
 
-  it.only(`returns the url un-touched because it's valid`, () => {
+  it(`returns the url un-touched because it's valid`, () => {
     window.history.pushState(
       {},
       'testC',
@@ -48,5 +48,14 @@ describe('urlValidator', () => {
       '?excq=%2CChrome+70&incq=%2CChrome+69&excb=%2Cchro_me'
     );
     expect(urlValidator()).toEqual(queryDefault.DEFAULT_QUERY);
+  });
+
+  it('legal tech test', () => {
+    window.history.pushState(
+      {},
+      'testF',
+      '?mn=Legal+Tech%26nbsp%3B&lv=1&incq=%2Cios_saf+11.0-11.2%2Cios_saf+11.3-11.4&excq=&excb=%2Cedge%2Cexplorer%2Copera%2Cchromeandroid%2Cfirefoxandroid%2Cqqandroid%2Cucandroid%2Candroid%2Cbaidu%2Cblackberry%2Cexplorermobile%2Coperamini%2Coperamobile%2Csamsung'
+    );
+    expect(urlValidator()).toEqual(window.location.search);
   });
 });
