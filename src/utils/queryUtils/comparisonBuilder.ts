@@ -1,16 +1,14 @@
 import { queryParams } from '../enums';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
-import { standardExcludedBrowsers } from './standardExcluded';
-
-const removeEmpty = v => v !== '';
+const removeEmpty = v => v != '';
 
 export const comparisonBuilder = (
   lv: any, // @TODO should be IQuery
   gu: any, // @TODO should be IQuery
   yr: any // @TODO should be IQuery
 ) => {
-  // @TODO these object queries are the same in queryBuilder, refactor to combine these to methods
+  // @TODO these object queries are the same in queryBuilder, refactor to combine these two methods
   const objectQueries = {
     [queryParams.LAST_VERSIONS]: lv.checked
       ? `last ${config[queryParams.LAST_VERSIONS].slider.domain[1]} versions`
@@ -28,5 +26,5 @@ export const comparisonBuilder = (
     .filter(removeEmpty)
     .join(', ');
 
-  return `${constructedString}, ${standardExcludedBrowsers}`;
+  return `${constructedString}`;
 };

@@ -108,5 +108,11 @@ export const browserDetails = {
     queryName: 'samsung',
     logo: 'samsung-internet',
     platform: platform.MOBILE
+  },
+  kaios: {
+    friendlyName: 'KaiOS',
+    queryName: 'kaios',
+    logo: 'kaios',
+    platform: platform.MOBILE
   }
 };

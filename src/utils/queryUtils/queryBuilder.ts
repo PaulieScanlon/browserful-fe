@@ -35,7 +35,5 @@ export const queryBuilder = (
     .filter(removeEmpty)
     .join(', ');
 
-  console.log('constructedString: ', constructedString);
-
   return `${constructedString}`;
 };
