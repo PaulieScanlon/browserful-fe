@@ -1,14 +1,10 @@
 import { queryParams } from '../enums';
+import { IQuery } from '../../features/MatrixUi/types';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
 const removeEmpty = v => v != '';
 
-export const comparisonBuilder = (
-  lv: any, // @TODO should be IQuery
-  gu: any, // @TODO should be IQuery
-  yr: any // @TODO should be IQuery
-) => {
-  // @TODO these object queries are the same in queryBuilder, refactor to combine these two methods
+export const comparisonBuilder = (lv: IQuery, gu: IQuery, yr: IQuery) => {
   const objectQueries = {
     [queryParams.LAST_VERSIONS]: lv.checked
       ? `last ${config[queryParams.LAST_VERSIONS].slider.domain[1]} versions`

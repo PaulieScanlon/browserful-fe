@@ -1,4 +1,4 @@
-interface IQuery {
+export interface IQuery {
   value: number;
   checked: boolean;
 }

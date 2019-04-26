@@ -6,7 +6,8 @@ import browserslist from 'browserslist';
 enum typeString {
   QUERY = 'query',
   SLIDER = 'slider',
-  BROWSERLIST = 'browserlist'
+  BROWSERLIST = 'browserlist',
+  NOT_BROWSERSLIST = 'notBrowserslist'
 }
 
 interface IUrlParams {
@@ -24,11 +25,27 @@ const validateRanges = (min: number, max: number, value: number | string) => {
   return false;
 };
 
-const validateBrowserslist = (value: string | number) => {
+const validateBrowserslist = (value: string | number, queryType: string) => {
   try {
-    // to test a value that is 'not' ...
-    // we also need a valid browser query for browserslist to run
-    browserslist(`last 1 versions, ${value}`);
+    if (queryType === typeString.BROWSERLIST) {
+      if (!!value) {
+        browserslist(`last 1 versions, ${value}`);
+      } else {
+        browserslist(`last 1 versions`);
+      }
+    } else {
+      const testNotBrowserslist = value
+        .toString()
+        .split(',')
+        .map(browser => ` not ${browser} > 0`)
+        .toString();
+
+      if (!!value) {
+        browserslist(`last 1 versions, ${testNotBrowserslist}`);
+      } else {
+        browserslist(`last 1 versions`);
+      }
+    }
     return true;
   } catch (e) {
     return false;
@@ -70,8 +87,17 @@ export const urlValidator = () => {
         .getAll(queryParams.INCLUDED_QUERY)
         .toString()
         .replace(',', '')
+    },
+    [queryParams.EXCLUDED_BROWSER]: {
+      type: typeString.NOT_BROWSERSLIST,
+      value: urlParams
+        .getAll(queryParams.EXCLUDED_BROWSER)
+        .toString()
+        .replace(',', '')
     }
   };
+
+  // console.log('urlParamValues: ', urlParamValues);
 
   const validate = {
     [typeString.QUERY]: (item: any) => {
@@ -93,12 +119,28 @@ export const urlValidator = () => {
     [typeString.BROWSERLIST]: (item: any) => {
       try {
         urlParamValues[item].value;
-        return validateBrowserslist(urlParamValues[item].value);
+        return validateBrowserslist(
+          urlParamValues[item].value,
+          typeString.BROWSERLIST
+        );
+      } catch (e) {
+        return false;
+      }
+    },
+    [typeString.NOT_BROWSERSLIST]: (item: any) => {
+      try {
+        urlParamValues[item].value;
+        return validateBrowserslist(
+          urlParamValues[item].value,
+          typeString.NOT_BROWSERSLIST
+        );
       } catch (e) {
         return false;
       }
     }
   };
+
+  // console.log('validate: ', validate);
 
   const urlParamObject: IUrlParams = Object.keys(urlParamValues).reduce(
     (urls, item) => {
@@ -111,6 +153,8 @@ export const urlValidator = () => {
     },
     {}
   );
+
+  // console.log('urlParamObject: ', urlParamObject);
 
   const checkTrueValues = Object.keys(urlParamObject)
     .map(url => {
