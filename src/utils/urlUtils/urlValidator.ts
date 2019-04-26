@@ -6,7 +6,7 @@ import browserslist from 'browserslist';
 enum typeString {
   QUERY = 'query',
   SLIDER = 'slider',
-  BROWSERSLIST = 'browserslist',
+  BROWSERLIST = 'browserlist',
   NOT_BROWSERSLIST = 'notBrowserslist'
 }
 
@@ -64,14 +64,14 @@ export const urlValidator = () => {
       value: urlParams.getAll(queryParams.YEAR_RELEASED).toString()
     },
     [queryParams.EXCLUDED_QUERY]: {
-      type: typeString.BROWSERSLIST,
+      type: typeString.BROWSERLIST,
       value: urlParams
         .getAll(queryParams.EXCLUDED_QUERY)
         .toString()
         .replace(',', '')
     },
     [queryParams.INCLUDED_QUERY]: {
-      type: typeString.BROWSERSLIST,
+      type: typeString.BROWSERLIST,
       value: urlParams
         .getAll(queryParams.INCLUDED_QUERY)
         .toString()
@@ -105,7 +105,7 @@ export const urlValidator = () => {
       }
       return true;
     },
-    [typeString.BROWSERSLIST]: (item: any) => {
+    [typeString.BROWSERLIST]: (item: any) => {
       try {
         urlParamValues[item].value;
         return validateBrowserslist(urlParamValues[item].value);

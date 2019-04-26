@@ -2,7 +2,7 @@ import { queryParams } from '../enums';
 import { IQuery } from '../../features/MatrixUi/types';
 import { config } from '../../features/MatrixUi/config/sliderControls.config';
 
-const removeEmpty = v => v !== '';
+const removeEmpty = v => v != '';
 
 export const comparisonBuilder = (lv: IQuery, gu: IQuery, yr: IQuery) => {
   const objectQueries = {
