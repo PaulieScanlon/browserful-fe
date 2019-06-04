@@ -4,16 +4,16 @@ import { font } from '../../ui/Typography';
 interface IProps {
   selectColour?: string;
   flexDirection?: string;
+  justifyContent?: string;
+  config?: {
+    checked: any;
+    unchecked: any;
+  };
 }
 
 export const SwitchLabel = styled.label<IProps>(
   {
     label: 'switch-label',
-    position: 'relative',
-    display: 'inline-flex',
-    flexGrow: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
     margin: `${scaffolding.gutterSm} 0px`,
     cursor: 'pointer',
     userSelect: 'none',
@@ -33,21 +33,33 @@ export const SwitchInput = styled.input<IProps>(
     display: 'none',
     transition: transitionBuilder('background-color'),
 
-    ':checked + .switch-slider': {
-      ':before': {
-        transform: 'translateX(14px)'
+    ':checked + .switch-controls': {
+      '.switch-slider': {
+        ':before': {
+          transform: 'translateX(14px)'
+        }
       }
     }
   },
-  ({ selectColour }) => ({
-    ':checked + .switch-slider': {
-      '+ .switch-text': {
-        color: colours.greyMid
-      },
-      backgroundColor: selectColour
+  ({ selectColour, config }) => ({
+    ':checked + .switch-controls': {
+      '.switch-slider': {
+        '+ .switch-text': {
+          color: colours.greyMid
+        },
+        backgroundColor: selectColour
+      }
     },
-    ':hover + .switch-slider': {
-      backgroundColor: selectColour
+    ':checked ~ .switch-content': {
+      ...config.checked
+    },
+    ' ~ .switch-content': {
+      ...config.unchecked
+    },
+    ':hover + .switch-controls': {
+      '.switch-slider': {
+        backgroundColor: selectColour
+      }
     }
   })
 );
@@ -85,4 +97,20 @@ export const SwitchText = styled.small({
   margin: `0px ${scaffolding.gutterSm}`,
   color: colours.greyLight,
   transition: transitionBuilder('all')
+});
+
+export const SwitchControls = styled.div<IProps>(
+  {
+    label: 'switch-controls',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  ({ justifyContent }) => ({
+    justifyContent: justifyContent
+  })
+);
+
+export const SwitchContent = styled.div({
+  label: 'switch-content',
+  display: 'flex'
 });

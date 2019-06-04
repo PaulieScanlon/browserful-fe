@@ -60,9 +60,44 @@ stories.add(
 );
 
 stories.add(
+  'renderContent',
+  withInfo(
+    'renderContent can be used to render a sibling element with config styles for checked and unchecked'
+  )(() => (
+    <ToggleSwitch
+      id="storybook-togggle-switch"
+      renderContent={{
+        config: {
+          checked: {
+            transition: '.2s linear',
+            opacity: 0
+          },
+          unchecked: {
+            transition: '.2s linear',
+            opacity: 1
+          }
+        },
+        component: <div>Click the toggle</div>
+      }}
+    >
+      Label text
+    </ToggleSwitch>
+  ))
+);
+
+stories.add(
   'flexDirection',
   withInfo('flexDirection is any valid css flex-direction value')(() => (
     <ToggleSwitch flexDirection="row-reverse" id="storybook-togggle-switch">
+      Label text
+    </ToggleSwitch>
+  ))
+);
+
+stories.add(
+  'justifyContent',
+  withInfo('...')(() => (
+    <ToggleSwitch justifyContent="space-between" id="storybook-togggle-switch">
       Label text
     </ToggleSwitch>
   ))
