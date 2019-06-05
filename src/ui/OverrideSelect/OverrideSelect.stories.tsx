@@ -19,7 +19,7 @@ const onExcludeChange = (browser, version, event) => {
 
 const commonProps = {
   friendlyName: 'Chrome',
-  queryName: 'Chrome 70',
+  query: 'Chrome 70',
   version: '70',
   logo: 'chrome'
 };

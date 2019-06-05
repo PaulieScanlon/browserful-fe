@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { colours } from '../../theme';
+import { colours, scaffolding } from '../../theme';
 import {
   SwitchLabel,
   SwitchInput,
@@ -14,6 +14,7 @@ interface IProps {
   id: string;
   name?: string;
   type?: string;
+  theme?: 'light' | 'dark';
   defaultChecked?: boolean;
   selectColour?: string;
   flexDirection?: string;
@@ -39,12 +40,11 @@ export const ToggleSwitch: React.SFC<IProps> = ({
   justifyContent,
   onChange,
   children,
-  renderContent
+  renderContent,
+  theme
 }: IProps) => {
-  console.log('renderContent: ', renderContent);
-  // @TODO get at the config object pass along with renderContent
   return (
-    <SwitchLabel htmlFor={id} flexDirection={flexDirection}>
+    <SwitchLabel htmlFor={id} className="switch-label">
       <SwitchInput
         id={id}
         name={name}
@@ -52,26 +52,34 @@ export const ToggleSwitch: React.SFC<IProps> = ({
         defaultChecked={defaultChecked}
         selectColour={selectColour}
         onChange={event => onChange(event)}
-        config={renderContent.config}
+        config={
+          renderContent ? renderContent.config : { checked: {}, unchecked: {} }
+        }
       />
       <SwitchControls
         className="switch-controls"
         justifyContent={justifyContent}
+        flexDirection={flexDirection}
       >
-        <SwitchSlider className="switch-slider" />
+        <SwitchSlider className="switch-slider" theme={theme} />
+        <span style={{ width: scaffolding.gutterMd }} />
         <SwitchText className="switch-text">{children}</SwitchText>
       </SwitchControls>
-      <SwitchContent className="switch-content">
-        {renderContent ? renderContent.component : null}
-      </SwitchContent>
+      {renderContent && (
+        <SwitchContent className="switch-content">
+          {renderContent.component}
+        </SwitchContent>
+      )}
     </SwitchLabel>
   );
 };
 
 ToggleSwitch.defaultProps = {
   defaultChecked: false,
+  theme: 'light',
   type: 'checkbox',
   selectColour: colours.pink,
-  flexDirection: 'column',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
   onChange: () => {}
 };

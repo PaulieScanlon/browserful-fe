@@ -9,7 +9,7 @@ import { VersionChip } from '../../../ui/VersionChip';
 import { Modal } from '../../../ui/Modal';
 import { OverrideSelect } from '../../../ui/OverrideSelect';
 
-import { colours, scaffolding } from '../../../theme';
+import { scaffolding } from '../../../theme';
 
 export const BrowserAccordion: React.SFC<IProps> = ({
   browser,

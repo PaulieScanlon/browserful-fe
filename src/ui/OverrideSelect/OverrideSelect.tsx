@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { ToggleSwitch } from '../ToggleSwitch';
-import { RadioButton } from '../RadioButton';
 import { colours } from '../../theme';
 
 import { OverrideWrapper, DetailsBorder, InputWrapper } from './styles';
@@ -64,16 +63,19 @@ export const OverrideSelect: React.SFC<IProps> = ({
           name={name}
           type="radio"
           flexDirection="row-reverse"
+          justifyContent="space-between"
           defaultChecked={!hasOverride ? true : false}
           onChange={event => onAutoChange(query, version, event)}
         >
           Automatic mode
         </ToggleSwitch>
 
-        <RadioButton
+        <ToggleSwitch
           id={`include ${query} ${version}`}
           name={name}
+          type="radio"
           flexDirection="row-reverse"
+          justifyContent="space-between"
           defaultChecked={
             hasOverride === overrideTypes.IS_INCLUDED ? true : false
           }
@@ -81,11 +83,14 @@ export const OverrideSelect: React.SFC<IProps> = ({
           onChange={event => onIncludeChange(query, version, event)}
         >
           Always Include
-        </RadioButton>
-        <RadioButton
+        </ToggleSwitch>
+
+        <ToggleSwitch
           id={`exclude ${query} ${version}`}
           name={name}
+          type="radio"
           flexDirection="row-reverse"
+          justifyContent="space-between"
           defaultChecked={
             hasOverride === overrideTypes.IS_EXCLUDED ? true : false
           }
@@ -93,7 +98,7 @@ export const OverrideSelect: React.SFC<IProps> = ({
           onChange={event => onExcludeChange(query, version, event)}
         >
           Always Exclude
-        </RadioButton>
+        </ToggleSwitch>
       </InputWrapper>
     </OverrideWrapper>
   );
