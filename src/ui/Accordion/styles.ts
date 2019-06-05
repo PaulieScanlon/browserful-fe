@@ -1,10 +1,5 @@
 import styled from 'react-emotion';
-import { colours, scaffolding, transitionBuilder } from '../../theme';
-
-interface IProps extends EProps {
-  maxHeight: string;
-  selectColour: string;
-}
+import { colours, scaffolding } from '../../theme';
 
 interface EProps {
   theme: string;
@@ -15,6 +10,7 @@ const getTheme = {
     color: colours.greyMid,
     borderColour: colours.greyUltraLight,
     borderBottomColour: colours.greyUltraLight,
+    borderTopColour: colours.greyUltraLight,
     backgroundColour: colours.white,
     backgroundColourInner: colours.white,
     labelColour: colours.greyUltraLight,
@@ -25,6 +21,7 @@ const getTheme = {
     color: colours.white,
     borderColour: colours.greyDark,
     borderBottomColour: colours.greyDark,
+    borderTopColour: colours.greyDark,
     backgroundColour: colours.greyDark,
     backgroundColourInner: colours.offBlack,
     labelColour: colours.greyMid,
@@ -39,7 +36,10 @@ export const AccordionWrapper = styled.div<EProps>(
     width: '100%',
     borderWidth: '1px',
     borderStyle: 'solid',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    '.switch-controls': {
+      padding: `0px ${scaffolding.gutterLg}`
+    }
   },
   ({ theme }) => ({
     borderColor: getTheme[theme].borderColour,
@@ -47,94 +47,30 @@ export const AccordionWrapper = styled.div<EProps>(
   })
 );
 
-export const AccordionInput = styled.input<IProps>(
-  {
-    label: 'accordion-input',
-    position: 'absolute',
-    top: '-10px',
-    left: '-10px',
-    display: 'none',
-    transition: transitionBuilder('background-color'),
-    ':checked + .accordion-label': {
-      div: {
-        span: {
-          opacity: 1
-        }
-      },
-      '&:after': {
-        content: `""`
-      }
-    }
-  },
-  ({ maxHeight, selectColour, theme }) => ({
-    ':checked + .accordion-label + div': {
-      maxHeight: maxHeight
-    },
-    ':checked + .accordion-label': {
-      color: getTheme[theme].color,
-      '&:after': {
-        backgroundColor: selectColour
-      }
-    },
-    ':hover + .accordion-label': {
-      '&:after': {
-        backgroundColor: selectColour
-      }
-    }
-  })
-);
+export const AccordionHeader = styled.div({
+  label: 'accordion-label',
+  WebkitTapHighlightColor: colours.transparent
+});
 
-export const AccordionLabel = styled.label<EProps>(
+export const AccordionHeaderLabel = styled.div({
+  label: 'accordion-header-label',
+  padding: `${scaffolding.gutterLg} 0px`
+});
+
+export const AccordionContent = styled.div<EProps>(
   {
-    label: 'accordion-label',
-    display: 'flex',
-    alignItems: 'center',
-    minHeight: '56px',
-    padding: `0px ${scaffolding.gutterLg}`,
-    cursor: 'pointer',
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
+    label: 'accordion-content',
+    width: '100%',
+    borderWidth: '1px 0px',
+    borderStyle: 'solid none',
     boxSizing: 'border-box',
-    color: colours.greyUltraLight,
-
-    WebkitTapHighlightColor: colours.transparent,
-    div: {
-      span: {
-        opacity: 0.5
-      }
-    },
-    '&:after': {
-      content: `""`,
-      position: 'absolute',
-      right: scaffolding.gutterLg,
-      width: '16px',
-      height: '16px',
-      borderRadius: '100%',
-      transition: transitionBuilder('all')
-    }
+    color: colours.greyMid,
+    padding: `${scaffolding.gutterLg}`
   },
   ({ theme }) => ({
     color: getTheme[theme].labelColour,
-    borderBottomColor: getTheme[theme].borderBottomColour,
-    '&:after': {
-      backgroundColor: getTheme[theme].dotColour
-    }
-  })
-);
-
-export const AccordionContent = styled.div({
-  label: 'accordion-content',
-  overflow: 'hidden',
-  maxHeight: '0px',
-  transition: 'max-height .3s ease-out'
-});
-
-export const AccordionContentInner = styled.div<EProps>(
-  {
-    padding: `${scaffolding.gutterLg}`,
-    color: colours.greyMid
-  },
-  ({ theme }) => ({
-    backgroundColor: getTheme[theme].backgroundColourInner
+    backgroundColor: getTheme[theme].backgroundColourInner,
+    borderTopColor: getTheme[theme].borderTopColour,
+    borderBottomColor: getTheme[theme].borderBottomColour
   })
 );

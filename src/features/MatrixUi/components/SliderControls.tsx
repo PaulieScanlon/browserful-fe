@@ -29,6 +29,7 @@ export const SliderControls: React.SFC<IProps> = ({
         >
           <AccordionItem
             id={accordionName.id}
+            theme="dark"
             defaultChecked={slidervValues[item].checked}
             onChange={event => handleAccordionChange(event)}
             renderLabel={() => (

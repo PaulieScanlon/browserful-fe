@@ -1,21 +1,32 @@
 import styled from 'react-emotion';
-import { transitionBuilder, colours, scaffolding } from '../../theme';
+import { transitionBuilder, colours } from '../../theme';
 import { font } from '../../ui/Typography';
 interface IProps {
+  theme?: 'light' | 'dark';
   selectColour?: string;
   flexDirection?: string;
+  justifyContent?: string;
+  config?: {
+    checked: any;
+    unchecked: any;
+  };
 }
+
+const getTheme = {
+  light: {
+    switchBackgroundColour: colours.greyUltraLight
+  },
+
+  dark: {
+    switchBackgroundColour: colours.offBlack
+  }
+};
 
 export const SwitchLabel = styled.label<IProps>(
   {
     label: 'switch-label',
-    position: 'relative',
-    display: 'inline-flex',
-    flexGrow: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: `${scaffolding.gutterSm} 0px`,
     cursor: 'pointer',
+    width: '100%',
     userSelect: 'none',
     WebkitTapHighlightColor: colours.transparent
   },
@@ -33,56 +44,89 @@ export const SwitchInput = styled.input<IProps>(
     display: 'none',
     transition: transitionBuilder('background-color'),
 
-    ':checked + .switch-slider': {
-      ':before': {
-        transform: 'translateX(14px)'
+    ':checked + .switch-controls': {
+      '.switch-slider': {
+        ':before': {
+          transform: 'translateX(14px)'
+        }
       }
     }
   },
-  ({ selectColour }) => ({
-    ':checked + .switch-slider': {
-      '+ .switch-text': {
-        color: colours.greyMid
-      },
-      backgroundColor: selectColour
+  ({ selectColour, config }) => ({
+    ':checked + .switch-controls': {
+      '.switch-slider': {
+        '+ .switch-text': {
+          color: colours.greyMid
+        },
+        backgroundColor: selectColour
+      }
     },
-    ':hover + .switch-slider': {
-      backgroundColor: selectColour
+    ':checked ~ .switch-content': {
+      ...config.checked
+    },
+    ' ~ .switch-content': {
+      ...config.unchecked
+    },
+    ':hover + .switch-controls': {
+      '.switch-slider': {
+        backgroundColor: selectColour
+      }
     }
   })
 );
 
-export const SwitchSlider = styled.span({
-  label: 'switch-slider',
-  position: 'relative',
-  display: 'inline-block',
-  borderRadius: '32px',
-  width: '32px',
-  height: '18px',
-  right: '0px',
-  backgroundColor: colours.greyUltraLight,
-  transition: transitionBuilder('all'),
-  ':before': {
-    position: 'absolute',
-    content: `""`,
-    borderRadius: '50%',
-    width: '12px',
-    height: '12px',
-    left: '3px',
-    bottom: '3px',
-    backgroundColor: colours.white,
-    transition: transitionBuilder('all')
-  }
-});
+export const SwitchSlider = styled.span<IProps>(
+  {
+    label: 'switch-slider',
+    position: 'relative',
+    display: 'inline-block',
+    borderRadius: '32px',
+    width: '32px',
+    height: '18px',
+    right: '0px',
+    // backgroundColor: colours.greyUltraLight,
+    transition: transitionBuilder('all'),
+    ':before': {
+      position: 'absolute',
+      content: `""`,
+      borderRadius: '50%',
+      width: '12px',
+      height: '12px',
+      left: '3px',
+      bottom: '3px',
+      backgroundColor: colours.white,
+      transition: transitionBuilder('all')
+    }
+  },
+  ({ theme }) => ({
+    backgroundColor: getTheme[theme].switchBackgroundColour
+  })
+);
 
-export const SwitchText = styled.small({
+export const SwitchText = styled.span({
   label: 'switch-text',
   fontSize: `${font.fontSize}`,
   lineHeight: `${font.lineHeight}`,
   fontFamily: `${font.fontFamily}`,
   fontWeight: 'normal',
   textAlign: 'center',
-  margin: `0px ${scaffolding.gutterSm}`,
   color: colours.greyLight,
   transition: transitionBuilder('all')
+});
+
+export const SwitchControls = styled.div<IProps>(
+  {
+    label: 'switch-controls',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  ({ justifyContent, flexDirection }: any) => ({
+    justifyContent: justifyContent,
+    flexDirection: flexDirection
+  })
+);
+
+export const SwitchContent = styled.div({
+  label: 'switch-content',
+  display: 'flex'
 });

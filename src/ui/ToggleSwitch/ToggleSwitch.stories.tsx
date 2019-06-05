@@ -53,9 +53,42 @@ stories.add(
 );
 
 stories.add(
+  'theme',
+  withInfo(
+    'The theme prop converts the colour theme from default light to dark'
+  )(() => <ToggleSwitch id="storybook-togggle-switch" theme="dark" />)
+);
+
+stories.add(
   'children',
   withInfo('Children can be used to render label text')(() => (
     <ToggleSwitch id="storybook-togggle-switch">Label text</ToggleSwitch>
+  ))
+);
+
+stories.add(
+  'renderContent',
+  withInfo(
+    'renderContent can be used to render a sibling element with config styles for checked and unchecked'
+  )(() => (
+    <ToggleSwitch
+      id="storybook-togggle-switch"
+      renderContent={{
+        config: {
+          checked: {
+            transition: '.2s linear',
+            color: colours.pink
+          },
+          unchecked: {
+            transition: '.2s linear',
+            color: colours.greyLight
+          }
+        },
+        component: <div>Toggle my styles</div>
+      }}
+    >
+      Label text
+    </ToggleSwitch>
   ))
 );
 
@@ -69,12 +102,26 @@ stories.add(
 );
 
 stories.add(
+  'justifyContent',
+  withInfo('...')(() => (
+    <ToggleSwitch justifyContent="space-between" id="storybook-togggle-switch">
+      Label text
+    </ToggleSwitch>
+  ))
+);
+
+stories.add(
   'functional test',
-  withInfo(
-    `ToggleSwitch defaults to flex-grow 1 and justify-content space between to fill it's container and places the label and the input at either end`
-  )(() => (
-    <div style={{ display: 'flex', width: '200px' }}>
+  withInfo('Testing width with row-reverse')(() => (
+    <div
+      style={{
+        display: 'flex',
+        width: '200px',
+        border: `1px solid ${colours.greyUltraLight}`
+      }}
+    >
       <ToggleSwitch
+        justifyContent="space-between"
         flexDirection="row-reverse"
         id="storybook-togggle-switch"
         defaultChecked

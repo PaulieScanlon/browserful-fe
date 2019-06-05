@@ -2,7 +2,7 @@ import styled from 'react-emotion';
 import { scaffolding, colours, breakpoints } from '../../theme';
 
 export const OverrideWrapper = styled.div({
-  label: 'overrid-wrapper',
+  label: 'override-wrapper',
   position: 'relative',
   display: 'inline-flex',
   flexDirection: 'column',
@@ -22,5 +22,8 @@ export const DetailsBorder = styled.div({
 export const InputWrapper = styled.div({
   label: 'input-wrapper',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  '.switch-label': {
+    margin: `${scaffolding.gutterSm} 0px`
+  }
 });

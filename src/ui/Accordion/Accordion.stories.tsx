@@ -157,7 +157,7 @@ stories.add(
 stories.add(
   'renderLabel',
   withInfo('Displaying DetailsLabel as label using renderLabel()')(() => (
-    <Accordion maxHeight="200px" type="checkbox" name="storybook-accordion">
+    <Accordion maxHeight="150px" type="checkbox" name="storybook-accordion">
       <AccordionItem
         defaultChecked
         id="item1"

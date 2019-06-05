@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import {
   AccordionWrapper,
-  AccordionLabel,
-  AccordionInput,
-  AccordionContent,
-  AccordionContentInner
+  AccordionHeader,
+  AccordionHeaderLabel,
+  AccordionContent
 } from './styles';
 
+import { ToggleSwitch } from '../ToggleSwitch';
 import { colours } from '../../theme';
 
 interface IProps {
@@ -60,24 +60,39 @@ export const AccordionItem: React.SFC<EProps> = ({
 }: EProps) => {
   return (
     <React.Fragment>
-      <AccordionInput
+      <ToggleSwitch
         id={id}
         type={type}
         name={name}
-        defaultChecked={defaultChecked}
-        maxHeight={maxHeight}
-        selectColour={selectColour}
         theme={theme}
+        flexDirection="row-reverse"
+        justifyContent="space-between"
+        defaultChecked={defaultChecked}
+        selectColour={selectColour}
         onChange={event => onChange(event)}
-      />
-      <AccordionLabel theme={theme} className="accordion-label" htmlFor={id}>
-        {label}
-        {renderLabel()}
-      </AccordionLabel>
-
-      <AccordionContent>
-        <AccordionContentInner theme={theme}>{children}</AccordionContentInner>
-      </AccordionContent>
+        renderContent={{
+          config: {
+            checked: {
+              transition: '.3s ease-out',
+              maxHeight: maxHeight,
+              overflow: 'hidden'
+            },
+            unchecked: {
+              transition: '.3s ease-out',
+              maxHeight: '1px',
+              overflow: 'hidden'
+            }
+          },
+          component: (
+            <AccordionContent theme={theme}>{children}</AccordionContent>
+          )
+        }}
+      >
+        <AccordionHeader theme={theme} className="accordion-label">
+          {label && <AccordionHeaderLabel>{label}</AccordionHeaderLabel>}
+          {renderLabel()}
+        </AccordionHeader>
+      </ToggleSwitch>
     </React.Fragment>
   );
 };
