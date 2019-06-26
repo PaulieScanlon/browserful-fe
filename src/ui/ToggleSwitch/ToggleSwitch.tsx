@@ -66,12 +66,12 @@ export const ToggleSwitch: React.SFC<IProps> = ({
           <span style={{ width: scaffolding.gutterMd }} />
           <SwitchText className="switch-text">{children}</SwitchText>
         </SwitchControls>
-        {renderContent && (
-          <SwitchContent className="switch-content">
-            {renderContent.component}
-          </SwitchContent>
-        )}
       </SwitchLabel>
+      {renderContent && (
+        <SwitchContent className={`switch-content-${id}`}>
+          {renderContent.component}
+        </SwitchContent>
+      )}
     </>
   );
 };

@@ -10,6 +10,7 @@ interface IProps {
     checked: any;
     unchecked: any;
   };
+  id?: string;
 }
 
 const getTheme = {
@@ -52,21 +53,21 @@ export const SwitchInput = styled.input<IProps>(
       }
     }
   },
-  ({ selectColour, config }) => ({
+  ({ selectColour, config, id }) => ({
     ':checked + .switch-label': {
       '.switch-slider': {
         backgroundColor: selectColour
-      },
-      '.switch-content': {
-        ...config.checked
       }
     },
 
-    '+ .switch-label': {
-      '.switch-content': {
-        ...config.unchecked
-      }
+    [`:checked ~ .switch-content-${id}`]: {
+      ...config.checked
     },
+
+    [`~ .switch-content-${id}`]: {
+      ...config.unchecked
+    },
+
     ':hover + .switch-label': {
       '.switch-slider': {
         backgroundColor: selectColour
