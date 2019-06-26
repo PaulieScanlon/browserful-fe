@@ -44,7 +44,7 @@ export const SwitchInput = styled.input<IProps>(
     display: 'none',
     transition: transitionBuilder('background-color'),
 
-    ':checked + .switch-controls': {
+    ':checked + .switch-label': {
       '.switch-slider': {
         ':before': {
           transform: 'translateX(14px)'
@@ -53,21 +53,21 @@ export const SwitchInput = styled.input<IProps>(
     }
   },
   ({ selectColour, config }) => ({
-    ':checked + .switch-controls': {
+    ':checked + .switch-label': {
       '.switch-slider': {
-        '+ .switch-text': {
-          color: colours.greyMid
-        },
         backgroundColor: selectColour
+      },
+      '.switch-content': {
+        ...config.checked
       }
     },
-    ':checked ~ .switch-content': {
-      ...config.checked
+
+    '+ .switch-label': {
+      '.switch-content': {
+        ...config.unchecked
+      }
     },
-    ' ~ .switch-content': {
-      ...config.unchecked
-    },
-    ':hover + .switch-controls': {
+    ':hover + .switch-label': {
       '.switch-slider': {
         backgroundColor: selectColour
       }
@@ -84,7 +84,8 @@ export const SwitchSlider = styled.span<IProps>(
     width: '32px',
     height: '18px',
     right: '0px',
-    // backgroundColor: colours.greyUltraLight,
+    cursor: 'pointer',
+    backgroundColor: colours.greyUltraLight,
     transition: transitionBuilder('all'),
     ':before': {
       position: 'absolute',
@@ -119,6 +120,7 @@ export const SwitchControls = styled.div<IProps>(
     label: 'switch-controls',
     display: 'flex',
     alignItems: 'center'
+    // border: '1px solid red'
   },
   ({ justifyContent, flexDirection }: any) => ({
     justifyContent: justifyContent,
@@ -129,4 +131,5 @@ export const SwitchControls = styled.div<IProps>(
 export const SwitchContent = styled.div({
   label: 'switch-content',
   display: 'flex'
+  // border: '1px solid blue'
 });

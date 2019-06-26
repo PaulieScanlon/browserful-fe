@@ -25,7 +25,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <SwitchInput
@@ -41,30 +41,32 @@ ShallowWrapper {
           selectColour="#ff5ca3"
           type="checkbox"
         />,
-        <SwitchControls
-          className="switch-controls"
-          flexDirection="row"
-          justifyContent="flex-start"
+        <SwitchLabel
+          className="switch-label"
+          htmlFor="test-togggle-switch"
         >
-          <SwitchSlider
-            className="switch-slider"
-            theme="light"
-          />
-          <span
-            style={
-              Object {
-                "width": "12px",
+          <SwitchControls
+            className="switch-controls"
+            flexDirection="row"
+            justifyContent="flex-start"
+          >
+            <SwitchSlider
+              className="switch-slider"
+              theme="light"
+            />
+            <span
+              style={
+                Object {
+                  "width": "12px",
+                }
               }
-            }
-          />
-          <SwitchText
-            className="switch-text"
-          />
-        </SwitchControls>,
-        undefined,
+            />
+            <SwitchText
+              className="switch-text"
+            />
+          </SwitchControls>
+        </SwitchLabel>,
       ],
-      "className": "switch-label",
-      "htmlFor": "test-togggle-switch",
     },
     "ref": null,
     "rendered": Array [
@@ -94,24 +96,30 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <SwitchSlider
-              className="switch-slider"
-              theme="light"
-            />,
-            <span
-              style={
-                Object {
-                  "width": "12px",
+            <SwitchControls
+              className="switch-controls"
+              flexDirection="row"
+              justifyContent="flex-start"
+            >
+              <SwitchSlider
+                className="switch-slider"
+                theme="light"
+              />
+              <span
+                style={
+                  Object {
+                    "width": "12px",
+                  }
                 }
-              }
-            />,
-            <SwitchText
-              className="switch-text"
-            />,
+              />
+              <SwitchText
+                className="switch-text"
+              />
+            </SwitchControls>,
+            undefined,
           ],
-          "className": "switch-controls",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
+          "className": "switch-label",
+          "htmlFor": "test-togggle-switch",
         },
         "ref": null,
         "rendered": Array [
@@ -120,50 +128,80 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "className": "switch-slider",
-              "theme": "light",
+              "children": Array [
+                <SwitchSlider
+                  className="switch-slider"
+                  theme="light"
+                />,
+                <span
+                  style={
+                    Object {
+                      "width": "12px",
+                    }
+                  }
+                />,
+                <SwitchText
+                  className="switch-text"
+                />,
+              ],
+              "className": "switch-controls",
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "style": Object {
-                "width": "12px",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "className": "switch-slider",
+                  "theme": "light",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "span",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": undefined,
-              "className": "switch-text",
-            },
-            "ref": null,
-            "rendered": null,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "style": Object {
+                    "width": "12px",
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": undefined,
+                  "className": "switch-text",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
             "type": [Function],
           },
+          undefined,
         ],
         "type": [Function],
       },
-      undefined,
     ],
-    "type": [Function],
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <SwitchInput
@@ -179,30 +217,32 @@ ShallowWrapper {
             selectColour="#ff5ca3"
             type="checkbox"
           />,
-          <SwitchControls
-            className="switch-controls"
-            flexDirection="row"
-            justifyContent="flex-start"
+          <SwitchLabel
+            className="switch-label"
+            htmlFor="test-togggle-switch"
           >
-            <SwitchSlider
-              className="switch-slider"
-              theme="light"
-            />
-            <span
-              style={
-                Object {
-                  "width": "12px",
+            <SwitchControls
+              className="switch-controls"
+              flexDirection="row"
+              justifyContent="flex-start"
+            >
+              <SwitchSlider
+                className="switch-slider"
+                theme="light"
+              />
+              <span
+                style={
+                  Object {
+                    "width": "12px",
+                  }
                 }
-              }
-            />
-            <SwitchText
-              className="switch-text"
-            />
-          </SwitchControls>,
-          undefined,
+              />
+              <SwitchText
+                className="switch-text"
+              />
+            </SwitchControls>
+          </SwitchLabel>,
         ],
-        "className": "switch-label",
-        "htmlFor": "test-togggle-switch",
       },
       "ref": null,
       "rendered": Array [
@@ -232,24 +272,30 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <SwitchSlider
-                className="switch-slider"
-                theme="light"
-              />,
-              <span
-                style={
-                  Object {
-                    "width": "12px",
+              <SwitchControls
+                className="switch-controls"
+                flexDirection="row"
+                justifyContent="flex-start"
+              >
+                <SwitchSlider
+                  className="switch-slider"
+                  theme="light"
+                />
+                <span
+                  style={
+                    Object {
+                      "width": "12px",
+                    }
                   }
-                }
-              />,
-              <SwitchText
-                className="switch-text"
-              />,
+                />
+                <SwitchText
+                  className="switch-text"
+                />
+              </SwitchControls>,
+              undefined,
             ],
-            "className": "switch-controls",
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
+            "className": "switch-label",
+            "htmlFor": "test-togggle-switch",
           },
           "ref": null,
           "rendered": Array [
@@ -258,44 +304,74 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "className": "switch-slider",
-                "theme": "light",
+                "children": Array [
+                  <SwitchSlider
+                    className="switch-slider"
+                    theme="light"
+                  />,
+                  <span
+                    style={
+                      Object {
+                        "width": "12px",
+                      }
+                    }
+                  />,
+                  <SwitchText
+                    className="switch-text"
+                  />,
+                ],
+                "className": "switch-controls",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "style": Object {
-                  "width": "12px",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "className": "switch-slider",
+                    "theme": "light",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "span",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": undefined,
-                "className": "switch-text",
-              },
-              "ref": null,
-              "rendered": null,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "style": Object {
+                      "width": "12px",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "span",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "switch-text",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
               "type": [Function],
             },
+            undefined,
           ],
           "type": [Function],
         },
-        undefined,
       ],
-      "type": [Function],
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {

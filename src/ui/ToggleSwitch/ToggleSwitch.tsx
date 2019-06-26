@@ -44,7 +44,7 @@ export const ToggleSwitch: React.SFC<IProps> = ({
   theme
 }: IProps) => {
   return (
-    <SwitchLabel htmlFor={id} className="switch-label">
+    <>
       <SwitchInput
         id={id}
         name={name}
@@ -56,21 +56,23 @@ export const ToggleSwitch: React.SFC<IProps> = ({
           renderContent ? renderContent.config : { checked: {}, unchecked: {} }
         }
       />
-      <SwitchControls
-        className="switch-controls"
-        justifyContent={justifyContent}
-        flexDirection={flexDirection}
-      >
-        <SwitchSlider className="switch-slider" theme={theme} />
-        <span style={{ width: scaffolding.gutterMd }} />
-        <SwitchText className="switch-text">{children}</SwitchText>
-      </SwitchControls>
-      {renderContent && (
-        <SwitchContent className="switch-content">
-          {renderContent.component}
-        </SwitchContent>
-      )}
-    </SwitchLabel>
+      <SwitchLabel htmlFor={id} className="switch-label">
+        <SwitchControls
+          className="switch-controls"
+          justifyContent={justifyContent}
+          flexDirection={flexDirection}
+        >
+          <SwitchSlider className="switch-slider" theme={theme} />
+          <span style={{ width: scaffolding.gutterMd }} />
+          <SwitchText className="switch-text">{children}</SwitchText>
+        </SwitchControls>
+        {renderContent && (
+          <SwitchContent className="switch-content">
+            {renderContent.component}
+          </SwitchContent>
+        )}
+      </SwitchLabel>
+    </>
   );
 };
 
